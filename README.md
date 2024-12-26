@@ -17,7 +17,7 @@ You're mainly supposed to use our site at places that have restrictions.
 ## Pete Zah Games Stats
 Our website is host to over 10k users!
 
-Links- Your can visit https://petezahgames.com, https://pineaaple-petezah.github.io, https://petezahiscool.web.app, and https://petezah.web.app for unblocked links!
+Links- Your can visit https://petezahgames.com, https://pineapple-petezah.github.io, https://petezahiscool.web.app, and https://petezah.web.app for unblocked links!
 
 ## Summary
 Pete Zah Games is a unblocked games and proxy service meant for you to use at school or work but you can use it at home to. Pete Zah Games provides many games which are all self hosted meaning all content is stored in the website.

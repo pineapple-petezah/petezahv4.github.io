@@ -9,7 +9,7 @@ You're mainly supposed to use our site at places that have restrictions.
 
 ## Pete Zah Games Sourced
 - Our biggest contributer is Space:  We use his styling
-- We use Bruny's static uv proxy setup
+- We use Bruny's static proxy setup
 - We use Szvy Central's proxy server
 - We use games from Math 66 Games and the old Selenete.cc
 - We owe our now.gg app and games to Frogie's Arcade

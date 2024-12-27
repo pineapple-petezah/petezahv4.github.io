@@ -1,8 +1,8 @@
-//  science.petezahgames.com works too.  Thanks Benrogo :)!!!
+//  https://v2202412246404304352.megasrv.de/bare/ works too.  Thanks Benrogo :)!!!
 
 self.__uv$config = {
     prefix: '/static/ixl/',
-    bare:'https://v2202412246404304352.megasrv.de/bare/',
+    bare:'https://science.petezahgames.com',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/static/uv/uv.handler.js',

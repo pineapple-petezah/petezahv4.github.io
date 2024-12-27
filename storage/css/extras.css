@@ -24,11 +24,9 @@ body {
   background: var(--bgColor);
 }
 
-h1 {
-  text-align: center;
-}
 
-ul {
+
+jomama {
   --col-gap: 2rem;
   --barH: 1rem;
   --roleH: 2rem;
@@ -47,7 +45,7 @@ ul {
   align-items: flex-start;
   list-style: none;
 }
-ul li {
+jomama li {
   width: 10em;
   display: grid;
   grid-template:
@@ -75,7 +73,7 @@ ul li {
 }
 
 /* bar */
-ul li::before {
+jomama li::before {
   content: "";
   grid-area: role;
   height: var(--barH);
@@ -95,7 +93,7 @@ ul li::before {
 }
 
 /* role */
-ul li::after {
+jomama li::after {
   content: "";
   grid-area: role;
   background: var(--accent-color);
@@ -110,23 +108,23 @@ ul li::after {
   height: var(--roleH);
 }
 
-ul li .icon,
-ul li .title,
-ul li .descr {
+jomama li .icon,
+jomama li .title,
+jomama li .descr {
   padding-inline: 1rem;
   color: white;
   text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-ul li .icon {
+jomama li .icon {
   font-size: 3rem;
 }
-ul li .title {
+jomama li .title {
   font-size: 1.25rem;
   font-weight: 700;
 }
 
-ul li .descr {
+jomama li .descr {
   font-size: 0.9rem;
 }
 

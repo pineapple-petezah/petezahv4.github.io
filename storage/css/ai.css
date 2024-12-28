@@ -47,6 +47,7 @@ iframe {
 }
 
 .chatbot-container {
+    margin: auto;
     margin-top: 90px;
     width: 50vw;
     height: 70vh;

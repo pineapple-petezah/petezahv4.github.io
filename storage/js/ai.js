@@ -4,7 +4,7 @@ const sendButton = document.getElementById('send-button');
 
 const apiKey = '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';
 let messageHistory = [
-    { role: "system", content: "I am the helpful PeteAI assistant.  You can call me PeteAI.  Thank Pete Zah Games for making me!  Pete Zah is the ceo of Pete Zah Games."}
+    { role: "system", content: "You are the helpful PeteAI assistant.  You are called PeteAI.  Thank Pete Zah Games for making you!  Pete Zah is the ceo of Pete Zah Games."}
 ];
 
 let sessionMemory = {

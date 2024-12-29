@@ -3,22 +3,23 @@ const switchElement = document.getElementById('mySwitch');
 
 // Function to handle the switch change
 function handleSwitchChange() {
-  // Get the script element
-  const scriptElement = document.getElementById('afdsScript');
+  // Get the script element (if it exists)
+  const scriptElement = document.getElementById('authproScript');
 
   // Check if the switch is checked
   if (switchElement.checked) {
     // If the switch is checked, add the script tag
     if (!scriptElement) {
       const newScript = document.createElement('script');
-      newScript.id = 'afdsScript';
-      newScript.src = 'afds.js';
+      newScript.id = 'authproScript';
+      newScript.type = 'text/javascript';
+      newScript.src = 'https://www.authpro.com/auth/PeteZah/?action=pp';
       document.body.appendChild(newScript);
     }
   } else {
     // If the switch is unchecked, remove the script tag
     if (scriptElement) {
-      scriptElement.removeAttribute('id');
+      scriptElement.remove();
     }
   }
 

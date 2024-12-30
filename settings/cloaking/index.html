@@ -194,21 +194,27 @@
 						tab stays hidden from sight. Select a cloak down below
 						to activate it.
 					</p>
-					<div class="dropdown dropdown-memory" id="tabCloak">
-						<button class="dropdown-button dropdown-toggle">
-							<span class="dropdown-selected">None (Default)</span>
-							<span id="arrow" class="material-symbols-outlined">chevron_right</span>
-						</button>
-						<ul class="dropdown-menu">
-							<li class="hidden">None (Default)</li>
-							<li class="second-to-first-conditional">Desmos</li>
-							<li>Google Classroom</li>
-							<li>Google Drive</li>
-							<li>Khan Academy</li>
-							<li>Quizlet</li>
-							<li>Schoology</li>
-						</ul>
+					<div class="dropdown dropdown-memory">
+						<select class="dropdown-menu" id="presetSelect">
+                                                        <option value="ixl">ixl</option>
+                                                        <option value="s">schoology</option>
+                                                        <option value="google">google</option>
+                                                        <option value="googleclassroom">google classroom</option>
+                                                        <option value="googledrive">google drive</option>
+                                                        <option value="chrometab">chrome new tab</option>
+                                                        <option value="gmail">gmail</option>
+                                                        <option value="bing">bing</option>
+                                                        <option value="desmos">desmos calculator</option>
+                                                        <option value="wikipedia">wikipedia</option>
+                                                </select>
 					</div>
+			                <button style="width: 300px" class="buttonreg panicKeySave" id="saveButton">
+						Select
+					</button>
+			                <button style="width: 300px" class="buttonreg panicKeySave" id="resetButton">
+						Reset
+					</button>
+			                <p id="success" style="display: none;">success message here</p>
 				</div>
 
 		<div style="z-index: 998; animation-delay: 0.4s; position: relative;" class="settingsection settingsection1 no-animation2">

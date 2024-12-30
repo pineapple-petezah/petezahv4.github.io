@@ -230,11 +230,13 @@
 							<rect x="2" y="2" width="20" height="20" rx="3" ry="3" fill="none" stroke-linejoin="round" stroke-linecap="round"></rect>
 							<line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></line>
 						</svg>
-						<input class="password panicKey" id="panicKey" placeholder="Set a keybind. Backtick by default">  
+						<input class="password panicKey" type="text" id="panicKey" placeholder="Set a keybind. Backtick by default">  
+						<input class="password panicKey" type="text" id="panicUrl" placeholder="https://www.desmos.com/scientific">  
 					</div>
 					<button style="width: 300px" class="buttonreg panicKeySave" onclick="saveSettings()">
 						Save
 					</button>
+			                <p id="success-panic" style="display: none;">success message here</p>
 				</div>
 		</div>
 			

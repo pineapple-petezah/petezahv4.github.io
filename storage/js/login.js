@@ -1,5 +1,6 @@
 // Get the switch element
 const switchElement = document.getElementById('mySwitch');
+const saveButton = document.getElementById('saveButton');
 
 // Function to handle the switch change
 function handleSwitchChange() {
@@ -27,8 +28,10 @@ function handleSwitchChange() {
   localStorage.setItem('switchState', switchElement.checked);
 }
 
-// Add an event listener to the switch
-switchElement.addEventListener('change', handleSwitchChange);
+// Add an event listener to the save button
+saveButton.addEventListener('click', () => {
+  handleSwitchChange();
+});
 
 // Load the switch state from local storage
 const savedSwitchState = localStorage.getItem('switchState');

@@ -1,4 +1,5 @@
- function setCookie(name, value, options) {
+
+function setCookie(name, value, options) {
     options = options || {};
 
     let expires = options.expires;
@@ -39,10 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const selectedPreset = getCookie("tabCloakPreset");
 
     const presets = {
-        petezah: {
-            favicon: "/storage/images/favicon.ico",
-            title: "Pete Zah Games"
-        },
         ixl: {
             favicon: "/storage/images/icons/icons/ixl.ico",
             title: "IXL | Math, Language Arts, Science, Social Studies, and Spanish"

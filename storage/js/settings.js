@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	const panicKeyInput = document.querySelector('.panicKey');
-	const saveButton = document.querySelector('.panicKeySave');
+	
 	const validKeys =
 		'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`.~!@#$%^&*()-_=+[{]}|;:,<.>/?';
 	function panicKeySuccessPopup() {
@@ -767,15 +767,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		panicKeyInput.value = localStorage.getItem('panicKeyBind');
 	}
 
-	saveButton.addEventListener('click', () => {
-		const keys = panicKeyInput.value.split(',').map(key => key.trim());
-		let allValid = true;
-
-		for (let key of keys) {
-			if (!validKeys.includes(key) || key.length !== 1) {
-				allValid = false;
-				break;
-			}
+	
 		}
 
 		if (allValid) {
@@ -834,8 +826,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	const saveButton2 = document.querySelector('.pPasswordSave');
-	saveButton2.addEventListener('click', savePassword);
+	
 
 	const pages = document.querySelectorAll('.scontent');
 	pages.forEach(page => {
@@ -946,14 +937,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	checkboxToggle('adsYesNo', 'hideAds', true);
 	checkboxToggle('passwordYesNo', 'passwordOff', false);
 
-	const passwordKeyInput = document.querySelector('.passwordHotkeyInput');
-	const saveButton3 = document.querySelector('.pPasswordKeybind');
-
+	
 	if (localStorage.getItem('passwordKeyBind')) {
 		passwordKeyInput.value = localStorage.getItem('passwordKeyBind');
 	}
 
-	saveButton3.addEventListener('click', () => {
+	
 		const keys = passwordKeyInput.value.split(',').map(key => key.trim());
 		let allValid = true;
 
@@ -1004,7 +993,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	saveButton2.addEventListener('click', savePassword);
+	
 
 	document.querySelector('.adsYesNo').addEventListener('change', () => {
 		window.location.reload();

@@ -773,9 +773,7 @@ Banner Style
 */
 
 .main-banner {
-  background-image: url(../images/grey.jpeg);
-  background-position: center center;
-  background-size: cover;
+  background-color: #1f2122;
   min-height: 380px;
   border-radius: 23px;
   padding: 80px 60px;

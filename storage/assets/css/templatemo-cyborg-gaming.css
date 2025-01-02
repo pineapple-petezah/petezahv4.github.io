@@ -1767,12 +1767,12 @@ body {
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: #f0f0f0; /* Light gray background */
+  background-color: #222; /* Dark gray background */
   border-radius: 5px; /* Rounded corners */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #999; /* Dark gray thumb */
+  background-color: #555; /* Dark gray thumb */
   border-radius: 5px; /* Rounded corners */
 }
 

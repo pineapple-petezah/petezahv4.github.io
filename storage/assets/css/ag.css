@@ -3,6 +3,17 @@
     margin-bottom: 20px;
 }
 
+.search-container input {
+    font-family: "Nunito", serif;
+    width: 30vw;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    color: #fff;
+    background: #141414;
+    border-radius: 50px;
+}
+
 #search {
     width: 40vw;
     padding: 10px;

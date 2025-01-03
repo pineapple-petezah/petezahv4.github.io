@@ -22,7 +22,7 @@
     "<h1 style="margin: 0; padding-top: 40px;">Pete Proxy</h1>
     <p id="dynamicParagraph">gyatt</p>
 
-    <div id="search-container">
+    <div id="search-container" style="position: relative; ">
         <form id="uv-form">
             <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/>
             <input id="uv-address" type="text" class="search-bar-home" placeholder="Start by inputting a link or searching with UV..." />
@@ -65,5 +65,30 @@
         window.onload = changeText;
     </script>
 
+        <style>
+        #uv-form {
+            background-color: #27292a;
+            height: 46px;
+            border-radius: 23px;
+            border: none;
+            color: #666;
+            font-size: 14px;
+            padding: 0px 15px 0px 45px;
+        }
+
+        #uv-form input {
+            background-color: #27292a;
+            height: 46px;
+            border-radius: 23px;
+            border: none;
+            color: #666;
+            font-size: 14px;
+            padding: 0px 15px 0px 45px;
+          }
+
+        
+
+        
+        </style>
 </body>
 </html>

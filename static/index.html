@@ -1,40 +1,80 @@
+
 <html>
 <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TFZ72L5FPQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-TFZ72L5FPQ');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeteZah</title>
-    <link rel="icon" type="icon/x-icon" href="storage/images/logo-png-removebg-preview.png" />
-    <link rel="stylesheet" href="/storage/assets/css/templatemo-cyborg-gaming.css">
+    <title>Pete Zah | Proxy</title>
+    <link rel="stylesheet" href="/storage/css/evenmorestyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin: 0;
+            padding-top: 20px;
+        }
+
+        #search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #uv-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar-home {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        #search-button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .desc {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #dynamicParagraph {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+    </style>
 </head>
-<body style="background-color: #000000; text-align: center; >
+<body>
 
-<div style="margin-top: 100px;">
-    "<h1 style="margin: 0; padding-top: 40px;">Pete Proxy</h1>
-    <p id="dynamicParagraph">gyatt</p>
+    <h1>Pete Prօxy</h1>
+    <p id="dynamicParagraph">(TEXT)</p>
 
-    <div id="search-container" style="position: relative; ">
+    <div id="search-container">
         <form id="uv-form">
             <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/>
-            <input id="uv-address" type="text" class="search-bar-home" placeholder="Start by inputting a link or searching with UV..." />
-            <button class="search-button" onclick="submitSearch()">SEARCH <i class="fa-solid fa-magnifying-glass"></i></button>
+            <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
+            <button id="search-button" onclick="submitSearch()">SEARCH <i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-         
+
         <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
         </div>
     </div>
-</div>
 
     <script src="/static/uv/uv.bundle.js" defer></script>
     <script src="/static/uv/uv.config.js" defer></script>
@@ -46,12 +86,10 @@
         const phrases = [
             "Pete Zah best unblocked games ever!",
             "https://petezahgames.com",
-            "Made by Pete Zah",
-            "Also try Jade Proxy!",
-            "still active despite being inactive for months ¯\\_(ツ)_/¯",
+            "Credits to Brunys for the proxy setup, brunysixlwork.github.io :)",
+            "just had a major update ¯\\_(ツ)_/¯",
             "Roblox should now work my eskibidi sigmets",
-            "IVE EDGED TO Pete Zah -frogiee1",
-            "iris has voice revealed once -iris"
+            "IVE EDGED TO Pete Zah -idkiguess",
         ];
 
         const paragraph = document.getElementById('dynamicParagraph');
@@ -65,30 +103,5 @@
         window.onload = changeText;
     </script>
 
-        <style>
-        #uv-form {
-            background-color: #27292a;
-            height: 46px;
-            border-radius: 23px;
-            border: none;
-            color: #666;
-            font-size: 14px;
-            padding: 0px 15px 0px 45px;
-        }
-
-        #uv-form input {
-            background-color: #27292a;
-            height: 46px;
-            border-radius: 23px;
-            border: none;
-            color: #666;
-            font-size: 14px;
-            padding: 0px 15px 0px 45px;
-          }
-
-        
-
-        
-        </style>
 </body>
 </html>

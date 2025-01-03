@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-    <title>PeteZah</title>
+    <title>PeteZah | Proxy</title>
     <link rel="icon" type="icon/x-icon" href="storage/images/logo-png-removebg-preview.png" />
 
     <!-- Bootstrap core CSS -->
@@ -39,10 +39,19 @@
 
 <body style="background-color: #000000;">
 
-
+	<div id="particles-js"></div>
 
   <!-- ***** Preloader Start ***** -->
-
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
@@ -68,8 +77,8 @@
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="g.html">Games</a></li>
-                        <li><a href="a.html" class="active">Apps</a></li>
-                        <li><a href="p.html">Proxy</a></li>
+                        <li><a href="a.html">Apps</a></li>
+                        <li><a href="p.html" class="active">Proxy</a></li>
                         <li><a href="profile.html">Settings <img src="storage/assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -86,23 +95,77 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-	      <iframe
-			src="static/prox/main.html"
-			style="
-				width: 100%;
-			  height: calc(100vh - 70px);
-				position: absolute;
-				border: none;
-				outline: 0;
-			  right: 0;
-				z-index: 9999999;
-			  top: -600%;
-		></iframe>
+        <div class="page-content">
 
+		<iframe 
+			src="static/prox/main.html" 
+			style=" 
+			width: 100%; 
+			height: calc(100vh - 70px); 
+			position: absolute; 
+			border: none; 
+			outline: 0; 
+			right: 0; 
+			z-index: 9999999;" > 
+
+		 </iframe>
+			
+
+	
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Most Popular End ***** -->
+
+          <!-- ***** Gaming Library Start ***** -->
+          <div class="gaming-library">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4><em>New Games</em> Library</h4>
+              </div>
+              <div class="item">
+                <ul>
+                  <li><img src="storage/ag/g/slope2/splash.png" alt="" class="templatemo-item"></li>
+                  <li><h4>Slope 2</h4><span>Skill</span></li>
+                  <li><h4>Date Added</h4><span>12/24/2024</span></li>
+                  <li><h4>Hours Played</h4><span>104 H 22 Mins</span></li>
+                  <li><h4>Currently</h4><span>Playable</span></li>
+                  <li><div class="main-border-button"><a href="iframe.html?url=/storage/ag/g/slope2/">Play</a></div></li>
+                </ul>
+              </div>
+              <div class="item">
+                <ul>
+                  <li><img src="storage/images/main/csgo.jpg" alt="" class="templatemo-item"></li>
+                  <li><h4>CSGO Clicker</h4><span>Gambling</span></li>
+                  <li><h4>Date Added</h4><span>12/24/2024</span></li>
+                  <li><h4>Hours Played</h4><span>85 H 52 Mins</span></li>
+                  <li><h4>Currently</h4><span>Playable</span></li>
+                  <li><div class="main-border-button"><a href="iframe.html?url=/storage/ag/g/csgoclicker">Play</a></div></li>
+                </ul>
+              </div>
+              <div class="item last-item">
+                <ul>
+                  <li><img src="storage/images/main/fakefortnight.jpg" alt="" class="templatemo-item"></li>
+                  <li><h4>Fortnite</h4><span>Shooting</span></li>
+                  <li><h4>Date Added</h4><span>12/12/2024</span></li>
+                  <li><h4>Hours Played</h4><span>154 H 14 Mins</span></li>
+                  <li><h4>Currently</h4><span>Playable</span></li>
+                  <li><div class="main-border-button"><a href="iframe.html?url=/storage/ag/g/fortnight">Play</a></div></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="main-button">
+                <a href="g.html">View Games</a>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Gaming Library End ***** -->
+        </div>
       </div>
     </div>
   </div>
-
 
 	<br>
 	<br>

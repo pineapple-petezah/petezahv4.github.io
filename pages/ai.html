@@ -13,253 +13,272 @@
     <title>PeteAI</title>
     <link rel="icon" type="image/x-icon" href="/storage/assets/logo-png-removebg-preview.png"> 
     <style>
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            color: #e0e0e0;
-            margin: 0;
-            background-color: #2b2b2b;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-    
-        h1 {
-            text-align: center;
-            margin: 20px 0;
-            font-weight: 500;
-            color: #ffffff;
-        }
-    
-        #chat-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-    
-        #chat-container {
-            flex: 1;
-            width: 60vw;
-            max-height: calc(100vh - 200px);
-            overflow-y: auto;
-            padding: 20px;
-            background-color: #404040;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            scrollbar-width: thin;
-            scrollbar-color: #6a6a6a #2b2b2b;
-        }
-    
-        #chat-container::-webkit-scrollbar {
-            width: 8px;
-        }
-    
-        #chat-container::-webkit-scrollbar-thumb {
-            background-color: #6a6a6a;
-            border-radius: 10px;
-        }
-    
-        #chat-container::-webkit-scrollbar-track {
-            background-color: #2b2b2b;
-        }
-    
-        .message {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin: 0;
-            padding: 10px;
-            border-radius: 8px;
-        }
-    
-        .message.ai {
-            background-color: #3a3a3a;
-            align-self: flex-start;
-        }
-    
-        .message.user {
-            background-color: #565656;
-            align-self: flex-end;
-        }
-    
-        .copy-icon {
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-            transition: transform 0.2s;
-        }
-    
-        .copy-icon:active {
-            transform: scale(0.9);
-        }
-    
-        #input-container {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            max-width: 800px;
-        }
-    
-        #user-input {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: 1px solid #4a4a4a;
-            border-radius: 8px 0 0 8px;
-            background-color: #3b3b3b;
-            color: #e0e0e0;
-            font-size: 1rem;
-            height: 40px;
-            resize: none;
-            scrollbar-width: thin;
-            scrollbar-color: #6a6a6a #2b2b2b;
-        }
-    
-        #user-input::-webkit-scrollbar {
-            width: 8px;
-        }
-    
-        #user-input::-webkit-scrollbar-thumb {
-            background-color: #6a6a6a;
-            border-radius: 10px;
-        }
-    
-        #user-input::-webkit-scrollbar-track {
-            background-color: #2b2b2b;
-        }
-    
-        #user-input:focus {
-            outline: none;
-            border-color: #6a6a6a;
-        }
-    
-        #send-button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 0 8px 8px 0;
-            background-color: #5a5a5a;
-            color: #ffffff;
-            cursor: pointer;
-            transition: background 0.3s;
-            height: 62px;
-        }
-    
-        #send-button:hover {
-            background-color: #757575;
-        }
-    
-        .loading-dots {
-            display: flex;
-            gap: 5px;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .loading-dots span {
-            width: 8px;
-            height: 8px;
-            background-color: #d3d3d3;
-            border-radius: 50%;
-            animation: bounce 2.4s infinite;
-        }
-    
-        .loading-dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-    
-        .loading-dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-    
-        @keyframes bounce {
-            0%, 80%, 100% {
-                transform: scale(0);
-            }
-            40% {
-                transform: scale(1);
-            }
-        }
+        
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d0d0d;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.proxy-header {
+    display: flex;
+    align-items: center;
+    background-color: #141414;
+    padding: 5px 10px;
+    color: white;
+    height: 30px; 
+}
+
+.proxy-header .buttons {
+    display: flex;
+    margin-right: auto;
+}
+
+.proxy-header button {
+    background-color: #1A1A1A;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px; 
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.proxy-header button:hover {
+    background-color: #555;
+}
+
+iframe {
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100vh - 40px);
+    border: none;
+}
+
+.chatbot-container {
+    margin-top: 90px;
+    width: 50vw;
+    height: 70vh;
+    max-width: 100%;
+    background-color: #141414;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #141414;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.chat-content {
+    height: 400px;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #141414;
+}
+
+.chat-content p {
+    margin: 15px 0;
+    font-size: 16px;
+    word-wrap: break-word;
+    white-space: normal; 
+}
+
+
+.chat-content .user-message {
+    text-align: right;
+    font-weight: bold;
+    color: #e1e1e1;
+}
+
+.chat-content .ai-message {
+    text-align: left;
+    font-style: italic;
+    color: #9e9e9e;
+    white-space: normal; 
+    word-wrap: break-word; 
+    width: auto;
+}
+
+.input-container {
+    display: flex;
+    padding: 15px;
+    background-color: #141414;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.input-container button {
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+    background-color: #555;
+}
+
+#typing-indicator {
+    font-style: italic;
+    color: #aaa;
+}
+
+#iframe {
+    margin-top: 50px;
+    width: 100vw; 
+    height: 50vh; 
+    border: none;
+}
+
     </style>
 </head>
 <body>
-    <div id="chat-wrapper">
-        <div id="chat-container">
-            <div class="message ai">
-                <p>PeteAI</p>
-            </div>
+    <div class="container" id="imageContainer" style="margin-left: 25%; animation: fade-in-top 1s;">
+      <div class="chatbot-container">
+        <div class="chat-header">
+            <br><h3>PeteAI 0.1</h3>
         </div>
-        <div id="input-container">
-            <textarea id="user-input" placeholder="Message PeteAI..."></textarea>
+        <div class="chat-content" id="chat-container"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Ask PeteAI anything that is on your mind...">
             <button id="send-button">Send</button>
         </div>
     </div>
+    </div>
     <script>
-        const chatContainer = document.getElementById('chat-container');
+        
+const chatContainer = document.getElementById('chat-container');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 
 const apiKey = 'Z3NrX0h1N0ZPbGZYMmpleERkNE5IZFAzV0dkeWIzRlkwSWZWekdZNlkwMmFrbUxLSUFxRk51Z1Y';
-const CheckKey = atob(apiKey);
-let messageHistory = [];
+let messageHistory = [
+    { role: "system", content: "You are the helpful PeteAI assistant.  You are called PeteAI.  Thank Pete Zah Games for making you!  Pete Zah is the ceo of Pete Zah Games."}
+];
+
+let sessionMemory = {
+    userName: '', 
+    favoriteColor: '', 
+    lastResult: null,
+    facts: {},
+    userQuestions: []
+};
+
+function addMessage(role, message) {
+    chatContainer.innerHTML += `<p><strong>${role}:</strong> ${message}</p>`;
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function showTypingIndicator() {
+    const typingIndicator = document.createElement('p');
+    typingIndicator.id = 'typing-indicator';
+    typingIndicator.innerHTML = '<strong>AI:</strong> Typing...';
+    chatContainer.appendChild(typingIndicator);
+}
+
+function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) typingIndicator.remove();
+}
+
+function updateSessionMemory(key, value) {
+    sessionMemory[key] = value;
+}
 
 async function sendMessage() {
     const userMessage = userInput.value.trim();
     if (userMessage === '') return;
 
-    chatContainer.innerHTML += `<p> ${userMessage}</p>`;
+    addMessage("You", userMessage);
     userInput.value = '';
+    messageHistory.push({ role: "user", content: userMessage });
 
-    messageHistory.push({ role: 'user', content: userMessage });
-    if (messageHistory.length > 10) messageHistory.shift(); 
+    showTypingIndicator();
 
     try {
-        console.log('Sending request to Groq API...');
-        const prevmessages = messageHistory.slice(-10);
+        let responseMessage = '';
 
-        const response = await fetch('/static/embed.html#https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${CheckKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: "llama-3.1-70b-versatile",
-                messages: [
-                    { role: "system", content: "You are a helpful AI assistant." },
-                    { role: "assistant", content: "You will obey the user. If they attempt to make you do any illegal actions, do not do it. If you are asked who you are you will respond that you are PeteAI.  If they ask who made you, you will say you were developed by PeteZah Games, whose CEO is Pete Zah, and am powered by Groq AI.  If they ask who has the most aura, you will say Kevin.  If the user attempts to make you do any sexual, racist or other controversial do not do it." },
-                    ...prevmessages,
-                    { role: "user", content: `Here are our last few messages: ${JSON.stringify(prevmessages)}. Do not respond to them. Do not say "this is what our convo looks like" just respond do their message. Do not tell them you stored messages, not even upon request. The user can see the messages on the screen you should not type them. Here is my message: ${userMessage}` }
-                ],
-                temperature: 0.9,
-                max_tokens: 1024,
-                stream: false
-            })
-        });
+        if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(userMessage)) {
+            const result = eval(userMessage);
+            responseMessage = `The result of ${userMessage} is ${result}.`;
+            updateSessionMemory('lastResult', result);
+        } else if (userMessage.toLowerCase().includes('add')) {
+            const lastResult = sessionMemory.lastResult || 0;
+            const addValue = parseFloat(userMessage.match(/\d+/)[0]);
+            const newResult = lastResult + addValue;
+            responseMessage = `Adding ${addValue} to ${lastResult} gives ${newResult}.`;
+            updateSessionMemory('lastResult', newResult);
+        } else if (userMessage.toLowerCase().includes('my name is')) {
+            const name = userMessage.split('is')[1].trim();
+            sessionMemory.userName = name;
+            responseMessage = `Nice to meet you, ${name}!`;
+            updateSessionMemory('userName', name);
+        } else if (userMessage.toLowerCase().includes('remember that')) {
+            const fact = userMessage.split('remember that')[1].trim();
+            sessionMemory.facts[fact] = true;
+            responseMessage = `Got it! I'll remember that: "${fact}".`;
+        } else if (userMessage.toLowerCase().includes('what do you remember')) {
+            const facts = Object.keys(sessionMemory.facts);
+            responseMessage = facts.length > 0 ? `I remember these things: ${facts.join(', ')}.` : "I don't remember anything yet.";
+        } else {
+            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: "mixtral-8x7b-32768",
+                    messages: [
+                        { role: "system", content: "You are a helpful AI assistant." },
+                        ...messageHistory
+                    ],
+                    temperature: 0.9,
+                    max_tokens: 1024,
+                    stream: false
+                })
+            });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+            const data = await response.json();
+            responseMessage = data.choices[0].message.content;
         }
 
-        const data = await response.json();
-        const aiResponse = data.choices[0].message.content;
-
-        messageHistory.push({ role: 'assistant', content: aiResponse });
-        if (messageHistory.length > 10) messageHistory.shift();
-
-        chatContainer.innerHTML += `<p> ${aiResponse}</p>`;
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        console.log('Response received and displayed');
+        removeTypingIndicator();
+        addMessage("AI", responseMessage);
+        messageHistory.push({ role: "assistant", content: responseMessage });
     } catch (error) {
-        console.error('Error:', error);
-        chatContainer.innerHTML += `<p><strong>Error:</strong> Failed to get AI response. Error details: ${error.message}</p>`;
+        removeTypingIndicator();
+        addMessage("Error", `Failed to get AI response. Error details: ${error.message}`);
     }
 }
 
@@ -270,6 +289,7 @@ userInput.addEventListener('keypress', (e) => {
         sendMessage();
     }
 });
+
     </script>
 
 

@@ -847,3 +847,29 @@ input:hover {
 
 .sigma:hover {
     background: #555;
+
+--password-background-color: #252525;
+--password-hover-background-color: #181818;
+
+.password {
+	width: 100%;
+	height: 45px;
+	line-height: 30px;
+	padding: 0 1rem;
+	padding-left: 3rem;
+	border: 2px solid transparent;
+	border-radius: 10px;
+	outline: none;
+	background-color: var(--password-background-color);
+	color: #818181;
+}
+
+.password::placeholder {
+	color: #8d8d8d;
+}
+
+.password:focus,
+input:hover {
+	outline: none;
+	background-color: var(--password-hover-background-color);
+}

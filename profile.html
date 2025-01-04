@@ -223,7 +223,7 @@
 						tab stays hidden from sight. Select a cloak down below
 						to activate it.
 					</p>
-					<div class="dropdown dropdown-memory">
+					<div class="dropdown dropdown-memory" style="width: 100%;">
 						<select class="sigma" id="presetSelect">
 							<option value="petezah">default</option>
                                                         <option value="ixl">ixl</option>
@@ -237,14 +237,21 @@
                                                         <option value="desmos">desmos calculator</option>
                                                         <option value="wikipedia">wikipedia</option>
                                                 </select>
-					</div>
-			                <button style="width: 300px" class="buttonreg panicKeySave" id="saveButton">
+					</div>    
+		                        <div style="
+							width: 100%;
+							display: flex;
+							justify-content: space-between;
+						">
+		      
+			                <button style="color: white" class="buttonreg panicKeySave" id="saveButton">
 						Select
 					</button>
-			                <button style="width: 300px" class="buttonreg panicKeySave" id="resetButton">
+			                <button style="color: white" class="buttonreg panicKeySave" id="resetButton">
 						Reset
 					</button>
 			                <p id="success" style="display: none;">success message here</p>
+					</div>
 			
             </div>
           </div>

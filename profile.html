@@ -253,12 +253,44 @@
 			                <button style="color: white" class="buttonreg panicKeySave" id="resetButton">
 						Reset
 					</button>
-			                <p id="success" style="display: none;">success message here</p>
 					</div>
+			                <p id="success" style="display: none;">success message here</p>
+					
 			
             </div>
           </div>
-          <!-- ***** Gaming Library End ***** -->
+
+		<div class="gaming-library profile-library">
+            <div class="col-lg-12">
+		    
+		<h1 style="">Panic Key</h1> <br>
+					<p>
+						Press the selected keybind to go to another site
+						quickly. You can set multiple keybinds by seperating
+						them with a comma.
+					</p> <br>
+					<div class="pgroup">
+						<svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="picon">
+							<rect x="2" y="2" width="20" height="20" rx="3" ry="3" fill="none" stroke-linejoin="round" stroke-linecap="round"></rect>
+							<line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></line>
+						</svg>
+						<input class="password panicKey" type="text" id="panicKey" placeholder="Set a keybind. Backtick by default"> 
+					</div>
+			                <div class="pgroup">
+						<svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="picon">
+							<rect x="2" y="2" width="20" height="20" rx="3" ry="3" fill="none" stroke-linejoin="round" stroke-linecap="round"></rect>
+							<line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></line>
+						</svg>
+						<input class="password panicKey" type="url" id="panicUrl" placeholder="https://www.desmos.com/scientific">
+					</div>
+					<button style="width: 300px" class="buttonreg panicKeySave" onclick="saveSettings()">
+						Save
+					</button>
+			                <p id="success-panic" style="display: none;">success message here</p>			
+			
+            </div>
+          </div>
+          <!-- ***** Settings End ***** -->
         </div>
       </div>
     </div>

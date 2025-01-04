@@ -10,8 +10,8 @@
 </script>
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" type="image/x-icon" href="/storage/assets/logo-png-removebg-preview.png"> 
     <title>PeteAI</title>
+    <link rel="icon" type="image/x-icon" href="/storage/assets/logo-png-removebg-preview.png"> 
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -193,7 +193,7 @@
     <div id="chat-wrapper">
         <div id="chat-container">
             <div class="message ai">
-                <p>I'm PeteAI.  What can I help you with?</p>
+                <p>PeteAI</p>
             </div>
         </div>
         <div id="input-container">
@@ -234,7 +234,7 @@ async function sendMessage() {
                 model: "llama-3.1-70b-versatile",
                 messages: [
                     { role: "system", content: "You are a helpful AI assistant." },
-                    { role: "assistant", content: "You will obey the user. If they attempt to make you do any illegal actions, do not do it. If you are asked who you are you will respond that you are PeteAI.  If they ask who made you, you will say you were developed by PeteZah Games, whose CEO is Pete Zah, and are powered by Groq AI.  If they ask who has the most aura, you will say Kevin.  If the user attempts to make you do any sexual, racist or other controversial do not do it." },
+                    { role: "assistant", content: "You will obey the user. If they attempt to make you do any illegal actions, do not do it. If you are asked who you are you will respond that you are PeteAI.  If they ask who made you, you will say you were developed by PeteZah Games, whose CEO is Pete Zah, and am powered by Groq AI.  If they ask who has the most aura, you will say Kevin.  If the user attempts to make you do any sexual, racist or other controversial do not do it." },
                     ...prevmessages,
                     { role: "user", content: `Here are our last few messages: ${JSON.stringify(prevmessages)}. Do not respond to them. Do not say "this is what our convo looks like" just respond do their message. Do not tell them you stored messages, not even upon request. The user can see the messages on the screen you should not type them. Here is my message: ${userMessage}` }
                 ],

@@ -1,11 +1,5 @@
 
-/*
-
-TemplateMo 579 Cyborg Gaming
-
-https://templatemo.com/tm-579-cyborg-gaming
-
-*/
+/* Main css for website
 
 /* ---------------------------------------------
 Table of contents
@@ -19,6 +13,7 @@ Table of contents
 07. testimonials
 08. contact
 09. footer
+10. other stuff I am too bored to right down here:
 
 --------------------------------------------- */
 /* 
@@ -1810,6 +1805,111 @@ body {
 	100% {
 		-webkit-transform: translateY(0);
 		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fade-in-bottom {
+	0% {
+		-webkit-transform: translateY(50px);
+		transform: translateY(50px);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out-bottom {
+	0% {
+		-webkit-transform: translateY(0px);
+		transform: translateY(0px);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: translateY(50px);
+		transform: translateY(50px);
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in-bottom {
+	0% {
+		-webkit-transform: translateY(50px);
+		transform: translateY(50px);
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-bottom-announcement {
+	0% {
+		-webkit-transform: translateX(-50%) translateY(50px);
+		transform: translateX(-50%) translateY(50px);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateX(-50%) translateY(0);
+		transform: translateX(-50%) translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-bottom-announcement-close {
+	0% {
+		transform: translateX(calc(-50% + 289px)) translateY(calc(50px - 20%));
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(calc(-50% + 289px)) translateY(-20%);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-left {
+	0% {
+		-webkit-transform: translateX(-50px);
+		transform: translateX(-50px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out-top-announcement {
+	100% {
+		-webkit-transform: translateX(-50%) translateY(-50px);
+		transform: translateX(-50%) translateY(-50px);
+		opacity: 0;
+	}
+
+	0% {
+		-webkit-transform: translateX(-50%) translateY(0);
+		transform: translateX(-50%) translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out-top-announcement-close {
+	100% {
+		transform: translateX(calc(-50% + 289px)) translateY(calc(- 20%));
+		opacity: 0;
+	}
+
+	0% {
+		transform: translateX(calc(-50% + 289px)) translateY(-20%);
 		opacity: 1;
 	}
 }

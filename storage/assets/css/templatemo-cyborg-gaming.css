@@ -1780,3 +1780,36 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #777; /* Slightly darker thumb on hover */
 }
+
+.fade-in-top {
+	-webkit-animation: fade-in-top 0.6s ease-in-out;
+	animation: fade-in-top 0.6s ease-in-out;
+}
+
+@-webkit-keyframes fade-in-top {
+	0% {
+		-webkit-transform: translateY(-50px);
+		transform: translateY(-50px);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-top {
+	0% {
+		-webkit-transform: translateY(-50px);
+		transform: translateY(-50px);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}

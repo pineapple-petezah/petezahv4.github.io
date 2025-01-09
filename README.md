@@ -8,11 +8,11 @@ We are mainly a service that provides games completely self hosted but we also h
 You're mainly supposed to use our site at places that have restrictions.
 
 ## Pete Zah Games Sourced
-- Our biggest contributer is Space:  We use his styling
+- We use Space's Typescript setup.
 - We use Bruny's static proxy setup
 - We use Szvy Central's proxy server
 - We use games from Math 66 Games and the old Selenete.cc
-- We owe our now.gg app and games to Frogie's Arcade
+- We owe our now.gg bypass to Frogie's Arcade
 
 ## Pete Zah Games Stats
 Our website is host to over 10k users!

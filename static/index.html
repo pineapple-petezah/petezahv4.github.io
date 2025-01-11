@@ -7,272 +7,56 @@
     <link rel="stylesheet" href="storage/assets/css/proxy2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        
         body {
-            background: linear-gradient(90deg, rgba(17,17,21,1) 0%, rgba(5,5,5,1) 5%);
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-        html, body {
-            border: 0px;
-            margin: 0px;
-            padding: 0px;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-        
-        * {
-            margin: 0;
-            padding:0;
-            box-sizing: border-box;
-        }
-       
-        section{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            animation: animateBg 50s linear infinite;
-        }
-
-        @keyframes animateBg{
-            0%,100%{
-                transform: scale(1);
-            }
-            50%{
-                transform: scale(1.2);
-            }
-        }
-
-        span{
-            z-index: 0;
-            position: absolute;
-            top:50%;
-            left:50%;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(255,255,255,0.1),0 0 0 8px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.1);
-            animation: animate 3s linear infinite;
-        }
-        span::before{
-            content:'';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 1px;
-            background: linear-gradient(90deg,#fff,transparent);
-        }
-        @keyframes animate
-        {
-            0%
-            {
-                transform: rotate(315deg) translateX(0);
-                opacity: 1;
-            }
-            70%
-            {
-                opacity: 1;
-            }
-            100%
-            {
-                transform: rotate(315deg) translateX(-1000px);
-                opacity: 0;
-            }
-        }
-        span:nth-child(1){
-            top: 0;
-            right: 0;
-            left: initial;
-            animation-delay: 0s;
-            animation-duration: 1s;
-        }
-        span:nth-child(2){
-            top: 0;
-            right: 80px;
-            left: initial;
-            animation-delay: 0.2s;
-            animation-duration: 3s;
-        }
-        span:nth-child(3){
-            top: 80;
-            right: 0px;
-            left: initial;
-            animation-delay: 0.4s;
-            animation-duration: 2s;
-        }
-        span:nth-child(4){
-            top: 0;
-            right: 180px;
-            left: initial;
-            animation-delay: 0.6s;
-            animation-duration: 1.5s;
-        }
-        span:nth-child(5){
-            top: 0;
-            right: 400px;
-            left: initial;
-            animation-delay: 0.8s;
-            animation-duration: 2.5s;
-        }
-        span:nth-child(6){
-            top: 0;
-            right: 600px;
-            left: initial;
-            animation-delay: 1s;
-            animation-duration: 3s;
-        }
-        span:nth-child(7){
-            top: 300px;
-            right: 0px;
-            left: initial;
-            animation-delay: 1.2s;
-            animation-duration: 1.75s;
-        }
-        span:nth-child(8){
-            top: 0px;
-            right: 700px;
-            left: initial;
-            animation-delay: 1.4s;
-            animation-duration: 1.25s;
-        }
-        span:nth-child(9){
-            top: 0px;
-            right: 1000px;
-            left: initial;
-            animation-delay: 0.75s;
-            animation-duration: 2.25s;
-        }
-        span:nth-child(9){
-            top: 0px;
-            right: 450px;
-            left: initial;
-            animation-delay: 2.75s;
-            animation-duration: 2.75s;
-        }
-
-        #textinputany {
-            padding-top: 50px;
-            border-radius: 15px;
-            width: 400px;
-        }
-        
-
-        .button-20 {
-           appearance: none;
-           background-color: rgb(0, 0, 0, 0.25);
-           border: 2px solid #1A1A1A;
-           border-radius: 15px;
-           box-sizing: border-box;
-           color: #FFFFFF;
-           cursor: pointer;
-           display: inline-block;
-           font-family: 'Poppins', sans-serif;
-           font-size: 16px;
-           font-weight: 600;
-           line-height: normal;
-           margin: 0;
-           min-height: 60px;
-           min-width: 0;
-           outline: none;
-           padding: 16px 24px;
-           padding-bottom: 30px;
-           text-align: center;
-           text-decoration: none;
-           transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-           user-select: none;
-           -webkit-user-select: none;
-           touch-action: manipulation;
-           width: 20%;
-           will-change: transform;
-           position:relative;
-           top:50%; 
-           left:40%;
-        }
-
-        .button-20:disabled {
-           pointer-events: none;
-        }
-
-        .button-20:hover {
-           box-shadow: rgba(0, 0, 0, 0.5) 0 8px 15px;
-           transform: translateY(-2px);
-        }
-
-        .button-20:active {
-           box-shadow: none;
-           transform: translateY(0);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
         }
 
         h1 {
-            padding-top: 100px;
-            left: 25%;
-            top: 50%;
-            font-family: 'Poppins', sans-serif;
-            color: rgb(255, 255, 255);
-            padding-bottom: 30px;
-            text-align: center;
-            z-index: 2;
+            margin: 0;
+            padding-top: 20px;
         }
 
-        #anycontent {
-            position:absolute; left: 0; right: 0; bottom: 0; top: 0px; 
-        }
-        .positionruined {
-            left: 0%
-        }
-        #wrapper {
+        #search-container {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #uv-form {
+            display: flex;
+            align-items: center;
             justify-content: center;
         }
-        button{
-            vertical-align: top;
-            z-index: 1;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            
+
+        .search-bar-home {
+            padding: 10px;
+            margin-right: 10px;
         }
 
-        #textinputany {
-            padding-top: 50px;
-            border-radius: 15px;
-            width: 400px;
-        }
-        input {
-            z-index: 2;
-            padding-bottom: 50px;
-            background-color: rgb(0, 0, 0);
-            color: #FFFFFF;
-            height: 30px;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-        }
-        h2 {
-            color: #FFFFFF;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 19px;
-            padding-bottom: 10px;
-            z-index: 2;
-        }
-        h3 {
-            color: #FFFFFF;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            z-index: 2;
+        #search-button {
+            padding: 10px 15px;
+            cursor: pointer;
         }
 
-        #content {
-            position:absolute; left: 0; right: 0; bottom: 0; top: 0px; 
-            visiblity: "hidden";
+        .desc {
+            margin-top: 10px;
+            text-align: center;
         }
-        #frame {
 
+        #dynamicParagraph {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 20px 0;
         }
     </style>
 </head>

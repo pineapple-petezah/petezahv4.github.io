@@ -15,3 +15,5 @@ self.__uv$config = {
     config: '/static/uv/uv.config.js',
     sw: '/static/uv/uv.sw.js',
 };
+
+// BEN AURAAAAA FOREVAAAA

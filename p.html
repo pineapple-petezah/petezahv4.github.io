@@ -210,6 +210,20 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="storage/assets/js/login.js"></script>
 
+  <script>function toggleFullscreen() {
+            const iframe = document.getElementById('myIframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { 
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { 
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { 
+                iframe.msRequestFullscreen();
+            }
+        }
+  </script>
+
   <script>
     let CLF_config = {
         app_id: "03599c7b-79db-4651-8efa-90e18b54dabf",

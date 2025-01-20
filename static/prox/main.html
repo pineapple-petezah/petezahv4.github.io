@@ -289,7 +289,7 @@
         const input = document.getElementById('search-input').value.trim();
         const iframe = document.querySelector('.tab-iframe.active');
         if (input) {
-            const url = input.startsWith('http') ? input : `https://google.com/search?q=${encodeURIComponent(input)}`;
+            const url = input.startsWith('http') ? input : `https://duckduckgo.com/${encodeURIComponent(input)}`;
             iframe.src = `/static/embed#${url}`;
         }
     }

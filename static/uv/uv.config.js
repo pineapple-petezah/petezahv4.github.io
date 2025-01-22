@@ -7,7 +7,7 @@
 
 self.__uv$config = {
     prefix: '/static/ixl/',
-    bare:'https://uhbm.arybarbosa.com/bare/',
+    bare:'https://science.petezahgames.com',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/static/uv/uv.handler.js',

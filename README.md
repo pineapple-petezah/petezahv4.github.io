@@ -9,9 +9,9 @@ You're mainly supposed to use our site at places that have restrictions.
 
 ## Pete Zah Games Sourced
 - We use Space's Typescript setup.
-- We use Bruny's static proxy setup
-- We use Szvy Central's proxy server
-- We use games from Math 66 Games and the old Selenete.cc
+- We use Brunysixlwork's static proxy setup which is based off of Titanium Network's ultraviolet proxy.
+- We use a bare proxy server that links to Benrogo's proxy
+- We use games from Math 66 Games, 3kh0, and the old Selenete.cc
 - We owe our now.gg bypass to Frogie's Arcade
 
 ## Pete Zah Games Stats

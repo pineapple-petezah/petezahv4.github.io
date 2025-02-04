@@ -1943,3 +1943,29 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+.main-banner .row {
+            display: flex; /* Enable flexbox */
+            align-items: center; /* Vertically align items */
+        }
+
+        .main-banner .col-lg-7 {
+            flex: 1; /* Allow text to take up available space */
+        }
+
+        .image-shuffler {
+            width: 300px;
+            height: 300px;
+            margin-left: 20px; /* Add some space between text and slider */
+        }
+
+        @media (max-width: 992px) {
+            .main-banner .row {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+                align-items: center;
+            }
+            .image-shuffler {
+                margin-left: 0;
+                margin-top: 20px; /* Add space above the slider when stacked */
+            }
+        }

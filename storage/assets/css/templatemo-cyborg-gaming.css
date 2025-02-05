@@ -1918,8 +1918,8 @@ body {
 }
 
 .image-shuffler {
-  width: auto; 
-  max-width: 300px; 
+  width: 100%; /* Make width responsive */
+  max-width: 300px; /* Set maximum width */
   height: auto; 
   max-height: 300px; 
   position: relative;

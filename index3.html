@@ -397,6 +397,45 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="storage/assets/js/login.js"></script>
 
+<script>
+	
+           const form = document.querySelector("#uv-form");
+           const input = document.querySelector("#uv-address");
+           document.addEventListener("DOMContentLoaded", function () {
+             if (!localStorage.getItem('announcementClosed')) {
+               $('#announcement-banner').fadeIn();
+             }
+             $('#announcement-close').click(function() {
+               $('#announcement-banner').fadeOut();
+               localStorage.setItem('announcementClosed', 'true');
+             });
+             form.addEventListener("submit", async (event) => {
+               event.preventDefault();
+               window.navigator.serviceWorker
+                 .register("/szvy/sw.js", {
+                   scope: __uv$config.prefix,
+                 })
+                 .then(() => {
+                   let url = input.value.trim();
+                   if (!isUrl(url)) url = "https://www.google.com/search?hl=en-us&q=" + url;
+                   else if (!(url.startsWith("https://") || url.startsWith("http://")))
+                     url = "http://" + url;
+                   sessionStorage.setItem("encodedUrl", __uv$config.encodeUrl(url));
+                   location.href = "math.html";
+                 });
+             });
+           });
+           function isUrl(val = "") {
+             if (
+               /^http(s?):\/\//.test(val) ||
+               (val.includes(".") && val.slice(0, 1) !== " ")
+             )
+               return true;
+             return false;
+           }
+         
+</script>
+
   <script>
     let CLF_config = {
         app_id: "03599c7b-79db-4651-8efa-90e18b54dabf",

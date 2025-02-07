@@ -1997,8 +1997,7 @@ body {
     color: #fff;
     width: 300px;
     height: 200px;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -2007,4 +2006,12 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 20px;
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.announcement-text {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
 }

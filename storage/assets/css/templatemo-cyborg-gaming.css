@@ -1987,3 +1987,24 @@ body {
                 float: none; 
             }
         }
+
+.announcement-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    color: #fff;
+    width: 300px;
+    height: 200px;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-family: notitle;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+}

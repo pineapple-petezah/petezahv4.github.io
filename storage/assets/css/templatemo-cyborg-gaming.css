@@ -2008,10 +2008,20 @@ body {
     padding: 20px;
     display: block;
     unicode-bidi: isolate;
+    font-family: notitle;
 }
 
 .announcement-text {
     text-align: center;
     font-size: 16px;
     margin-bottom: 20px;
+}
+
+#announcement-close {
+  cursor: pointer;
+  transition: color 0.3s ease; /* Add a smooth transition for the color change */
+}
+
+#announcement-close:hover {
+  color: red;
 }

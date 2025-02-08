@@ -94,6 +94,39 @@
                         <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
                         <i class="fa fa-search"></i>
                       </form>
+		      <select id="game-select">
+  <option value="/storage/ag/g/1v1lol">1v1.lol</option>
+  <option value="/storage/ag/g/2048">2048</option>
+  <option value="/storage/ag/g/n-gon">n-gon</option>
+  <option value="/storage/ag/g/retrobowl">retrobowl</option>
+  <option value="/storage/ag/g/slope">slope</option>
+  <option value="/storage/ag/g/slope2">slope 2</option>
+  <option value="/storage/ag/g/tetris">tetris</option>
+  <option value="/storage/ag/g/tinyfishing">tiny fishing</option>
+  <option value="/storage/ag/g/spacehuggers">spacehuggers</option>
+  <option value="/epoggames/cookie/">cookie clicker</option>
+  <option value="/storage/ag/g/minecraft">minecraft</option>
+  <option value="/storage/ag/g/motox3m/">moto3sm</option>
+  <option value="/storage/ag/g/stickslasher">stickslasher</option>
+  <option value="/storage/ag/g/stickmanhook">stickmanhook</option>
+  <option value="/storage/ag/g/bitlife">bitlife</option>
+  <option value="/storage/ag/g/csgoclicker">csgo clicker</option>
+  <option value="/storage/ag/g/chromedino">chrome dino</option>
+  <option value="/storage/ag/g/monkeymart">monkeymart</option>
+  <option value="/storage/ag/g/basketballstars">basketball bros</option>
+  <option value="/storage/ag/g/totm">tomb of the mask</option>
+  <option value="/storage/ag/g/getawayshootout">getaway shootout</option>
+  <option value="/storage/ag/g/deathrun3d">death run 3d</option>
+</select>
+
+<script>
+  const gameSelect = document.getElementById('game-select');
+
+  gameSelect.addEventListener('change', () => {
+    const selectedGame = gameSelect.value;
+    window.location.href = selectedGame;
+  });
+</script>
                     </div>
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->

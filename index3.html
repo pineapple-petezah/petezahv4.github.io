@@ -424,6 +424,16 @@ $(document).ready(function () {
     localStorage.setItem(announcementClosedTimeKey, thirtyMinutesFromNow);
   });
 
+  $(document).ready(function () {
+  // ... (rest of the code is the same)
+
+  if (!isAnnouncementClosed || (announcementClosedUntil && now > announcementClosedUntil)) {
+    announcementBanner.fadeIn(1000); // Fade in over 1 second
+  }
+
+  // ... (rest of the code is the same)
+});
+
   $("#uv-form").submit(async function (event) {
     event.preventDefault();
     const input = $("#uv-address");

@@ -1,10 +1,10 @@
 const scramjet = new ScramjetController({
 	files: {
-		wasm: "/scram/scramjet.wasm.js",
-		worker: "/scram/scramjet.worker.js",
-		client: "/scram/scramjet.client.js",
-		shared: "/scram/scramjet.shared.js",
-		sync: "/scram/scramjet.sync.js",
+		wasm: "/static/scramjet/scram/scramjet.wasm.js",
+		worker: "/static/scramjet/scram/scramjet.worker.js",
+		client: "/static/scramjet/scram/scramjet.client.js",
+		shared: "/static/scramjet/scram/scramjet.shared.js",
+		sync: "/static/scramjet/scram/scramjet.sync.js",
 	},
 	siteFlags: {
 		"https://worker-playground.glitch.me/.*": {
@@ -14,9 +14,9 @@ const scramjet = new ScramjetController({
 });
 
 scramjet.init();
-navigator.serviceWorker.register("./sw.js");
+navigator.serviceWorker.register("./static/scramjet/sw.js");
 
-const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+const connection = new BareMux.BareMuxConnection("/static/scramjet/baremux/worker.js");
 const flex = css`
 	display: flex;
 `;
@@ -43,7 +43,7 @@ const store = $store(
 	},
 	{ ident: "settings", backing: "localstorage", autosave: "auto" }
 );
-connection.setTransport("/epoxy/index.mjs", [{ wisp: store.wispurl }]);
+connection.setTransport("/static/scramjet/epoxy/index.mjs", [{ wisp: store.wispurl }]);
 
 function Config() {
 	this.css = `
@@ -99,12 +99,12 @@ function Config() {
       <dialog class="cfg" style="background-color: #121212; color: white; border-radius: 8px;">
         <div style="align-self: end">
           <div class=${[flex, "buttons"]}>
-            <button on:click=${() => connection.setTransport("/baremod/index.mjs", [store.bareurl])}>use bare server 3</button>
+            <button on:click=${() => connection.setTransport("/static/scramjet/baremod/index.mjs", [store.bareurl])}>use bare server 3</button>
             <button on:click=${() =>
 							connection.setTransport("/libcurl/index.mjs", [
 								{ wisp: store.wispurl },
 							])}>use libcurl.js</button>
-              <button on:click=${() => connection.setTransport("/epoxy/index.mjs", [{ wisp: store.wispurl }])}>use epoxy</button>
+              <button on:click=${() => connection.setTransport("/static/scramjet/epoxy/index.mjs", [{ wisp: store.wispurl }])}>use epoxy</button>
           </div>
         </div>
         <div class=${[flex, col, "input_row"]}>

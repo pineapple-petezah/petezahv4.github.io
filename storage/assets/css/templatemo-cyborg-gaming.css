@@ -1969,6 +1969,9 @@ body {
             display: flex; 
             align-items: center; 
         }
+row {
+    z-index: 1;
+}
 
         .main-banner .col-lg-7 {
             flex: 1; 

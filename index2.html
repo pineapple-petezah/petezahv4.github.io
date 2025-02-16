@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +34,7 @@
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="storage/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="storage/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="storage/assets/css/themes/gamer.css">
     <link rel="stylesheet" href="storage/assets/css/owl.css">
     <link rel="stylesheet" href="storage/assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -54,7 +55,6 @@
 
 <body style="background: linear-gradient(#000000, #05021f);">
 
-	<div id="particles-js"></div>
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -79,7 +79,6 @@
 
   <style>
         @import url('https://fonts.googleapis.com/css2?family=Bobby+Jones+Soft&display=swap');
-
         .particles {
             position: fixed;
             top: 0;
@@ -90,17 +89,16 @@
             pointer-events: none;
 	    opacity: 0.2;
         }
-
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+	    position: fixed;
+            width: 4.5px;
+            height: 4.5px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            animation: floatParticle 10s infinite ease-in-out;
+            animation: floatParticle 8s infinite ease-in-out;
 	    opacity: 0.2;
         }
-
         @keyframes floatParticle {
             0% {
                 transform: translate(0, 0);
@@ -115,14 +113,11 @@
                 opacity: 0;
             }
         }
-
-
     </style>
-
 	<div class="particles" style->
         <!-- Generate 50 floating particles -->
         <script>
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 25; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + 'vw';
@@ -175,7 +170,7 @@
 
 
 	
-  <div class="container">
+  <div class="container" style="z-index: 1;">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
@@ -469,9 +464,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="storage/assets/js/login.js"></script>
   <script async="async" data-cfasync="false" src="//pl25832426.effectiveratecpm.com/1f9ef1ea03eb9743ae2feb0b3f839a92/invoke.js"></script>
-  <script type='text/javascript' src='//pl25832516.effectiveratecpm.com/c5/b1/11/c5b1117dae13faec54751fdd311f61f1.js'></script>
-  <script type="text/javascript" src="//www.highperformanceformat.com/8d5d7f54d9148f51ce4dc1ade18518f2/invoke.js"></script>
-
+  
 	  
 <script>
 	
@@ -561,7 +554,6 @@ $(document).ready(function () {
 </script>
 <script async src="https://widget.changelogfy.com/index.js"></script>
 
-	
   </body>
 
 </html>

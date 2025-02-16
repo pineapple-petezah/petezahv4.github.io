@@ -133,6 +133,10 @@ body .page-content {
   border-radius: 23px;
 }
 
+page-content {
+	z-index: 1;
+}
+
 p {
   font-size: 15px;
   color: #666;

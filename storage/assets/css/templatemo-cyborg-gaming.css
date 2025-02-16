@@ -134,6 +134,7 @@ body .page-content {
 }
 
 container {
+  position: relative;
   z-index: 50;
 }
 

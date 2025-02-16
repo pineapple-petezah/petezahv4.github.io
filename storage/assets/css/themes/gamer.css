@@ -22,14 +22,10 @@ Table of contents
 ---------------------------------------------
 font & reset css
 --------------------------------------------- 
-*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
-/* 
----------------------------------------------
-reset
---------------------------------------------- 
-*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
+
+/* Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div,
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
 figure, header, nav, section, article, aside, footer, figcaption {
@@ -77,7 +73,7 @@ header, nav, section, article, aside, footer, hgroup {
 html, body {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  background-color: #000000;
+  background-color: #000000; /* Black background */
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -85,17 +81,18 @@ html, body {
 }
 
 a {
-	color: #CCC;
+  color: #00FF00; /* Green link color */
   text-decoration: none !important;
 }
+
 a:hover {
-	color: #F99;
+  color: #008000; /* Darker green on hover */
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
   margin-bottom: 0px;
-  color: #fff;
+  color: #00FF00; /* Green heading color */
   font-weight: 700;
 }
 
@@ -106,7 +103,7 @@ ul {
 p {
   font-size: 15px;
   line-height: 30px;
-  color: #fff;
+  color: #00FF00; /* Green text color */
 }
 
 img {
@@ -114,20 +111,15 @@ img {
   overflow: hidden;
 }
 
-/* 
----------------------------------------------
-Global Styles
---------------------------------------------- 
-*/
-html,
-body {
-  background: #1f2122;
+/* Global Styles */
+html, body {
+  background: #000000; /* Black background */
   font-family: 'Poppins', sans-serif;
 }
 
 body .page-content {
   margin-top: 110px;
-  background-color: #27292a;
+  background-color: #111111; /* Darker black background for content */
   padding: 60px;
   border-radius: 23px;
 }
@@ -139,30 +131,30 @@ container {
 
 p {
   font-size: 15px;
-  color: #666;
+  color: #00FF00; /* Green text color */
   line-height: 30px;
   margin-bottom: 0px;
 }
 
 ::selection {
-  background: #e75e8d;
-  color: #fff;
+  background: #00FF00; /* Green selection color */
+  color: #000000; /* Black text in selection */
 }
 
 ::-moz-selection {
-  background: #e75e8d;
-  color: #fff;
+  background: #00FF00; /* Green selection color */
+  color: #000000; /* Black text in selection */
 }
 
 .templatemo-item {
-	max-width: 80px; 
-	border-radius: 23px;
+  max-width: 80px;
+  border-radius: 23px;
 }
 
 .main-button a {
   font-size: 14px;
-  color: #fff;
-  background-color: #e75e8d;
+  color: #000000; /* Black text on button */
+  background-color: #00FF00; /* Green button background */
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -175,15 +167,15 @@ p {
 }
 
 .main-button a:hover {
-  background-color: #fff;
-  color: #e75e8d;
+  background-color: #008000; /* Darker green on hover */
+  color: #00FF00; /* Green text on hover */
 }
 
 .main-border-button a {
   font-size: 14px;
-  color: #ec6090;
+  color: #00FF00; /* Green border and text */
   background-color: transparent;
-  border: 1px solid #ec6090;
+  border: 1px solid #00FF00; /* Green border */
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -196,19 +188,19 @@ p {
 }
 
 .main-border-button a:hover {
-  border-color: #fff;
-  background-color: #fff;
-  color: #e75e8d;
+  border-color: #008000; /* Darker green border on hover */
+  background-color: #008000; /* Darker green background on hover */
+  color: #00FF00; /* Green text on hover */
 }
 
 .border-no-active a {
-  border-color: #666;
-  color: #666;
+  border-color: #333333; /* Darker gray border */
+  color: #333333; /* Darker gray text */
 }
 
 .border-no-active a:hover{
-  border-color: #666;
-  color: #666;
+  border-color: #333333; /* Darker gray border on hover */
+  color: #333333; /* Darker gray text on hover */
   background-color: transparent;
 }
 
@@ -217,31 +209,26 @@ section {
 }
 
 .heading-section h4 {
-  color: #ec6090;
+  color: #00FF00; /* Green heading color */
   font-size: 34px;
   text-decoration: none;
   margin-bottom: 30px;
 }
 
 .heading-section h4 em {
-  color: #fff;
+  color: #00FF00; /* Green em text color */
   font-style: normal;
   text-decoration: underline;
 }
 
-/* 
----------------------------------------------
-Pre-loader Style
---------------------------------------------- 
-*/
-
+/* Pre-loader Style */
 .js-preloader {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.99);
+  background-color: rgba(0,0,0,0.99); /* Black background */
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -263,33 +250,40 @@ Pre-loader Style
 
 @-webkit-keyframes dot {
   50% {
-      -webkit-transform: translateX(96px);
-      transform: translateX(96px);
+    -webkit-transform: translateX(96px);
+    transform: translateX(96px);
   }
 }
 
 @keyframes dot {
   50% {
-      -webkit-transform: translateX(96px);
-      transform: translateX(96px);
+    -webkit-transform: translateX(96px);
+    transform: translateX(96px);
   }
 }
 
 @-webkit-keyframes dots {
   50% {
-      -webkit-transform: translateX(-31px);
-      transform: translateX(-31px);
+    -webkit-transform: translateX(-31px);
+    transform: translateX(-31px);
   }
 }
 
 @keyframes dots {
   50% {
-      -webkit-transform: translateX(-31px);
-      transform: translateX(-31px);
+    -webkit-transform: translateX(-31px);
+    transform: translateX(-31px);
   }
 }
 
 .preloader-inner {
+  position: relative;
+  width: 142px;
+  height: 40px;
+  background: transparent;
+}
+
+.preloader-inner .dot {
   position: relative;
   width: 142px;
   height: 40px;

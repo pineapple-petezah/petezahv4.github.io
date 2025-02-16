@@ -133,8 +133,8 @@ body .page-content {
   border-radius: 23px;
 }
 
-page-content {
-	z-index: 1;
+container {
+  z-index: 50;
 }
 
 p {

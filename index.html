@@ -91,8 +91,8 @@
         .particle {
             position: absolute;
 	    position: fixed;
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             animation: floatParticle 10s infinite ease-in-out;
@@ -116,7 +116,7 @@
 	<div class="particles" style->
         <!-- Generate 50 floating particles -->
         <script>
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 25; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + 'vw';

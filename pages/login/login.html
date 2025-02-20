@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+	  		        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SHE360M0YP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SHE360M0YP');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <title>PeteZah | About</title>
+    <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/storage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/storage/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/storage/assets/css/main.css">
+    <link rel="stylesheet" href="/storage/assets/css/owl.css">
+    <link rel="stylesheet" href="/storage/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="/storage/assets/css/footer.css">
+
+
+
+    <meta
+			name="description"
+			content="Pete Zah, game on"
+		/>
+		<meta
+			name="keywords"
+			content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah"
+		/>
+  </head>
+
+<body style="background-color: #000000;">
+
+	
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+        <br>
+	<br>
+	<br>
+
+
+
+
+          <!-- ***** Banner Start ***** -->
+          
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .profile-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .save-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .save-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <h2>Profile</h2>
+    <div class="profile-image">
+        <img src="default-avatar.jpg" alt="Profile Picture" id="profileImage">
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+    <div class="input-group">
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+    </div>
+    <button class="save-button" onclick="saveProfile()">Save Profile</button>
+</div>
+
+<script>
+    // Load the profile data from localStorage
+    window.onload = function() {
+        let savedName = localStorage.getItem('name');
+        let savedImage = localStorage.getItem('profileImage');
+        
+        if (savedName) {
+            document.getElementById('nameInput').value = savedName;
+        }
+        
+        if (savedImage) {
+            document.getElementById('profileImage').src = savedImage;
+        }
+    };
+
+    // Function to handle profile picture change
+    document.getElementById('profileImage').addEventListener('click', function() {
+        document.getElementById('imageInput').click();
+    });
+
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                document.getElementById('profileImage').src = reader.result;
+            };
+            reader.readAsDataURL(file);
+            localStorage.setItem('profileImage', reader.result); // Save image in localStorage
+        }
+    });
+
+    // Save the name and profile image to localStorage
+    function saveProfile() {
+        const name = document.getElementById('nameInput').value;
+        localStorage.setItem('name', name); // Save name in localStorage
+        alert('Profile saved successfully!');
+    }
+</script>
+
+
+
+  
+	<!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="/storage/vendor/jquery/jquery.min.js"></script>
+  <script src="/storage/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Other Scripts -->
+  <script src="/storage/assets/js/particles.js"></script>
+  <script src="/storage/assets/js/index.js"></script>
+  <script src="/storage/assets/js/isotope.min.js"></script>
+  <script src="/storage/assets/js/owl-carousel.js"></script>
+  <script src="/storage/assets/js/tabs.js"></script>
+  <script src="/storage/assets/js/popup.js"></script>
+  <script src="/storage/assets/js/custom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="storage/assets/js/login.js"></script>
+  <script async="async" data-cfasync="false" src="//pl25832426.effectiveratecpm.com/1f9ef1ea03eb9743ae2feb0b3f839a92/invoke.js"></script>
+  <script type='text/javascript' src='//pl25832516.effectiveratecpm.com/c5/b1/11/c5b1117dae13faec54751fdd311f61f1.js'></script>
+  <script>
+    let CLF_config = {
+        app_id: "03599c7b-79db-4651-8efa-90e18b54dabf",
+        data: {
+            user_id: '123456', // required
+            user_email: 'user@email.com', // required
+            user_name: 'User Name', // optional
+            custom_data: {
+                'JobRole': 'CEO', // optional
+                'Plan': 'Pro', // optional
+                'teamMates': '4', // optional
+                'MonthlySpend': '50 USD' // optional
+            }
+        }
+    };
+</script>
+<script async src="https://widget.changelogfy.com/index.js"></script>
+
+	
+  </body>
+
+</html>

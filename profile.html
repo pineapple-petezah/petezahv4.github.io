@@ -162,6 +162,8 @@
                       <span>PeteZah Games</span>
                       <h4>Settings</h4>
                       <p>We have everything you need.  Game on!</p>
+		      <br>
+		      <p>Your IP Address: <span id="ip"></span></p>
                       <div class="main-border-button">
                         <a href="g.html">Continue Gaming</a>
                       </div>
@@ -622,7 +624,16 @@
   <script src="storage/assets/js/settings.js"></script>
   <script src="storage/assets/js/login.js"></script>
   <script async="async" data-cfasync="false" src="//pl25832426.effectiveratecpm.com/1f9ef1ea03eb9743ae2feb0b3f839a92/invoke.js"></script>
-  
+           <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip;
+      })
+      .catch(err => {
+        document.getElementById('ip').textContent = 'Unable to retrieve IP address';
+      });
+  </script>
 	  <script>
     let CLF_config = {
         app_id: "03599c7b-79db-4651-8efa-90e18b54dabf",

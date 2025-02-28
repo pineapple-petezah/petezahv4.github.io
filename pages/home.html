@@ -17,19 +17,19 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: #f1f4fd;
+        background: #181818; /* Dark background for the body */
       }
       .container {
-        max-width: 600px; /* Reduced max width */
-        width: 90%;
-        border: 2px solid #ccc; /* Added border */
-        border-radius: 10px; /* Rounded corners */
+        max-width: 1000px; /* Increased width */
+        width: 95%;
+        border: 2px solid #333; /* Dark border */
+        border-radius: 10px;
         padding: 10px;
-        background-color: #fff; /* White background for the container */
+        background-color: #1e1e1e; /* Dark container background */
       }
       .slider-wrapper {
         position: relative;
-        overflow: hidden; /* Hide the overflowed content */
+        overflow: hidden; /* Hide overflowed content */
       }
       .slider-wrapper .slide-button {
         position: absolute;
@@ -43,29 +43,29 @@
         display: flex;
         cursor: pointer;
         font-size: 1.8rem; /* Smaller font size */
-        background: #000;
+        background: #444; /* Dark button background */
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         transform: translateY(-50%);
       }
       .slider-wrapper .slide-button:hover {
-        background: #404040;
+        background: #555; /* Darker hover effect */
       }
       .slider-wrapper .slide-button#prev-slide {
-        left: -20px; /* Adjusted to fit smaller button */
+        left: -20px; /* Adjusted for smaller button */
         display: none;
       }
       .slider-wrapper .slide-button#next-slide {
-        right: -20px; /* Adjusted to fit smaller button */
+        right: -20px; /* Adjusted for smaller button */
       }
       .slider-wrapper .image-list {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* Reduced number of columns */
+        grid-template-columns: repeat(5, 1fr); /* Reduced columns */
         gap: 10px;
         font-size: 0;
         list-style: none;
-        margin-bottom: 20px; /* Reduced margin */
+        margin-bottom: 20px;
         overflow-x: auto;
         scrollbar-width: none;
       }
@@ -74,18 +74,18 @@
       }
       .slider-wrapper .image-list .image-item {
         width: 200px; /* Reduced image width */
-        height: 250px; /* Reduced image height */
+        height: 150px; /* Reduced image height (1 image row) */
         object-fit: cover;
         border-radius: 8px; /* Rounded corners for the images */
       }
       .container .slider-scrollbar {
-        height: 24px;
+        height: 10px; /* Smaller scrollbar height */
         width: 100%;
         display: flex;
         align-items: center;
       }
       .slider-scrollbar .scrollbar-track {
-        background: #ccc;
+        background: #333; /* Dark scrollbar track */
         width: 100%;
         height: 2px;
         display: flex;
@@ -98,7 +98,7 @@
       }
       .slider-scrollbar .scrollbar-thumb {
         position: absolute;
-        background: #000;
+        background: #fff; /* Light color for the thumb */
         top: 0;
         bottom: 0;
         width: 50%;
@@ -131,7 +131,7 @@
         }
         .slider-wrapper .image-list .image-item {
           width: 180px; /* Smaller image width for mobile */
-          height: 220px; /* Smaller image height for mobile */
+          height: 140px; /* Smaller image height for mobile */
         }
         .slider-scrollbar .scrollbar-thumb {
           width: 20%;

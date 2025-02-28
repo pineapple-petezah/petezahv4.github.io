@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Image Shuffler with Fixed Captions</title>
+    <title>Modern Image Shuffler</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
         body {
             display: flex;
             justify-content: center;
@@ -13,6 +15,7 @@
             margin: 0;
             background-color: #121212; /* Dark theme */
             color: white;
+            font-family: 'Poppins', sans-serif;
         }
 
         .image-shuffler {
@@ -20,12 +23,12 @@
             align-items: center;
             width: 85%;
             max-width: 900px;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             background-color: #1e1e1e;
-            padding: 12px;
+            padding: 14px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); /* Deeper shadow */
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.25);
         }
 
         .image-wrapper {
@@ -45,6 +48,7 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            text-align: center;
         }
 
         .image {
@@ -53,25 +57,28 @@
             object-fit: cover;
             margin-right: 12px;
             border-radius: 8px;
-            border: 3px solid #666; /* More prominent border */
-            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4); /* Stronger shadow */
+            border: 3px solid #888; /* More prominent border */
+            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .image:hover {
-            transform: scale(1.08); /* Slight zoom effect */
-            box-shadow: 0 8px 18px rgba(255, 255, 255, 0.5); /* More glow */
+            transform: scale(1.08);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
         }
 
         .caption {
             width: 100%;
             text-align: center;
             font-size: 14px;
-            background: rgba(0, 0, 0, 0.75);
-            color: white;
-            padding: 6px 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.85), rgba(40, 40, 40, 0.9));
+            color: #fff;
+            padding: 8px 0;
             border-radius: 0 0 8px 8px;
-            font-weight: 500;
+            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.2);
+            transition: opacity 0.3s ease-in-out;
         }
 
         .arrow {
@@ -98,14 +105,13 @@
         <button id="prev-btn" class="arrow">&lt;</button>
         <div class="image-wrapper">
             <div class="image-container">
-                <!-- Image Boxes with Captions at Bottom -->
                 <div class="image-box">
                     <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
                     <div class="caption">Smashy Road</div>
                 </div>
                 <div class="image-box">
                     <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
-                    <div class="caption">Ragdoll Archers</div>
+                    <div class="caption">Ragdoll Simulator</div>
                 </div>
                 <div class="image-box">
                     <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
@@ -144,7 +150,7 @@
             const images = document.querySelectorAll('.image-box');
             const totalImages = images.length;
             let counter = 0;
-            const imageWidth = 195; // 180px image + 12px margin + border width
+            const imageWidth = 195; // 180px image + margin + border width
 
             function moveImages() {
                 imageContainer.style.transition = "transform 0.5s ease-in-out";
@@ -154,9 +160,9 @@
             nextBtn.addEventListener('click', () => {
                 if (counter >= totalImages - 4) {
                     counter = 0;
-                    imageContainer.style.transition = "none"; 
+                    imageContainer.style.transition = "none";
                     imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
-                    
+
                     setTimeout(() => {
                         counter++;
                         moveImages();
@@ -170,7 +176,7 @@
             prevBtn.addEventListener('click', () => {
                 if (counter <= 0) {
                     counter = totalImages - 4;
-                    imageContainer.style.transition = "none"; 
+                    imageContainer.style.transition = "none";
                     imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
 
                     setTimeout(() => {

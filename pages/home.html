@@ -13,9 +13,29 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #121212; /* Dark theme */
+            background-color: #121212;
             color: white;
             font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
         }
 
         .image-shuffler {
@@ -29,6 +49,7 @@
             padding: 14px;
             position: relative;
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.25);
+            margin: 0 auto;
         }
 
         .image-wrapper {
@@ -57,7 +78,7 @@
             object-fit: cover;
             margin-right: 12px;
             border-radius: 8px;
-            border: 3px solid #888; /* More prominent border */
+            border: 3px solid #888;
             box-shadow: 0 7px 20px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -101,46 +122,48 @@
     </style>
 </head>
 <body>
-    <div class="image-shuffler">
-        <button id="prev-btn" class="arrow">&lt;</button>
-        <div class="image-wrapper">
-            <div class="image-container">
-                <!-- Images will be dynamically duplicated for seamless looping -->
-                <div class="image-box">
-                    <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
-                    <div class="caption">Smashy Road</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
-                    <div class="caption">Ragdoll Simulator</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
-                    <div class="caption">Slope</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
-                    <div class="caption">Slither.io</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image">
-                    <div class="caption">Race Survival</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
-                    <div class="caption">Polytrack</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
-                    <div class="caption">Brawl Stars</div>
-                </div>
-                <div class="image-box">
-                    <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
-                    <div class="caption">YoHoHo!</div>
+    <div class="container">
+        <h1>Featured Games</h1>
+        <div class="image-shuffler">
+            <button id="prev-btn" class="arrow">&lt;</button>
+            <div class="image-wrapper">
+                <div class="image-container">
+                    <div class="image-box">
+                        <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
+                        <div class="caption">Smashy Road</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
+                        <div class="caption">Ragdoll Simulator</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
+                        <div class="caption">Slope</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
+                        <div class="caption">Slither.io</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image">
+                        <div class="caption">Race Survival</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
+                        <div class="caption">Polytrack</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
+                        <div class="caption">Brawl Stars</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
+                        <div class="caption">YoHoHo!</div>
+                    </div>
                 </div>
             </div>
+            <button id="next-btn" class="arrow">&gt;</button>
         </div>
-        <button id="next-btn" class="arrow">&gt;</button>
     </div>
 
     <script>
@@ -150,11 +173,10 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
-            const imageWidth = 195; // 180px image + margin
+            const imageWidth = 195;
             const totalImages = images.length;
             let counter = 0;
 
-            // Clone first and last few images for seamless transition
             for (let i = 0; i < 4; i++) {
                 const firstClone = images[i].cloneNode(true);
                 const lastClone = images[totalImages - 1 - i].cloneNode(true);
@@ -162,7 +184,6 @@
                 imageContainer.insertBefore(lastClone, imageContainer.firstChild);
             }
 
-            // Adjust for the clones
             const fullImageSet = document.querySelectorAll('.image-box');
             imageContainer.style.transform = `translateX(-${imageWidth * 4}px)`;
             counter = 4;
@@ -175,7 +196,6 @@
             nextBtn.addEventListener('click', () => {
                 counter++;
                 moveImages();
-
                 if (counter >= totalImages + 4) {
                     setTimeout(() => {
                         imageContainer.style.transition = "none";
@@ -188,7 +208,6 @@
             prevBtn.addEventListener('click', () => {
                 counter--;
                 moveImages();
-
                 if (counter <= 0) {
                     setTimeout(() => {
                         imageContainer.style.transition = "none";

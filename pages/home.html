@@ -13,8 +13,8 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text for dark mode */
         }
 
         /* Title section */
@@ -24,8 +24,26 @@
         }
         header h1 {
             font-size: 3em;
-            color: #333;
+            color: #fff;
             text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Button Animation */
+        .start-button {
+            background-color: #ff6347;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .start-button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 99, 71, 0.8);
         }
 
         /* Image Slider */
@@ -35,6 +53,7 @@
             max-width: 1200px;
             margin: 40px auto;
             overflow: hidden;
+            border-radius: 20px;
         }
         .slider {
             display: flex;
@@ -43,6 +62,7 @@
         .slider img {
             width: 100%;
             height: auto;
+            border-radius: 20px;
         }
 
         .slider-controls {
@@ -60,6 +80,7 @@
             padding: 10px;
             font-size: 18px;
             cursor: pointer;
+            border-radius: 50%;
         }
 
         /* Most Popular Games Section */
@@ -68,39 +89,43 @@
             margin: 50px 0;
         }
         .popular-games h2 {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 20px;
+            color: #fff;
         }
         .game-cards {
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
         .game-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #2c2c2c;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             width: 250px;
             overflow: hidden;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .game-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            border-radius: 15px;
         }
         .game-card h3 {
             padding: 10px;
             font-size: 1.2em;
-            color: #333;
+            color: #fff;
         }
         .game-card p {
             padding: 0 10px 10px;
-            color: #777;
+            color: #bbb;
         }
         .game-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
         }
 
     </style>
@@ -108,18 +133,32 @@
 <body>
     <header>
         <h1>Game World</h1>
+        <button class="start-button">Start Gaming</button>
     </header>
 
-    <!-- Image Slider Section -->
+    <!-- Image Slider Section 1 -->
     <div class="slider-container">
-        <div class="slider" id="slider">
+        <div class="slider" id="slider1">
             <img src="https://via.placeholder.com/1200x500/FF6347/FFFFFF?text=Game+1" alt="Game Image 1">
             <img src="https://via.placeholder.com/1200x500/4682B4/FFFFFF?text=Game+2" alt="Game Image 2">
             <img src="https://via.placeholder.com/1200x500/32CD32/FFFFFF?text=Game+3" alt="Game Image 3">
         </div>
         <div class="slider-controls">
-            <button onclick="prevSlide()">❮</button>
-            <button onclick="nextSlide()">❯</button>
+            <button onclick="prevSlide(1)">❮</button>
+            <button onclick="nextSlide(1)">❯</button>
+        </div>
+    </div>
+
+    <!-- Image Slider Section 2 -->
+    <div class="slider-container">
+        <div class="slider" id="slider2">
+            <img src="https://via.placeholder.com/1200x500/FFD700/FFFFFF?text=Game+4" alt="Game Image 4">
+            <img src="https://via.placeholder.com/1200x500/8A2BE2/FFFFFF?text=Game+5" alt="Game Image 5">
+            <img src="https://via.placeholder.com/1200x500/228B22/FFFFFF?text=Game+6" alt="Game Image 6">
+        </div>
+        <div class="slider-controls">
+            <button onclick="prevSlide(2)">❮</button>
+            <button onclick="nextSlide(2)">❯</button>
         </div>
     </div>
 
@@ -146,27 +185,42 @@
     </section>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slider img');
-        const slider = document.getElementById('slider');
+        let currentSlide1 = 0;
+        let currentSlide2 = 0;
+        const slides1 = document.querySelectorAll('#slider1 img');
+        const slides2 = document.querySelectorAll('#slider2 img');
+        const slider1 = document.getElementById('slider1');
+        const slider2 = document.getElementById('slider2');
 
-        function showSlide(index) {
-            if (index >= slides.length) currentSlide = 0;
-            else if (index < 0) currentSlide = slides.length - 1;
-            else currentSlide = index;
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        function showSlide(slider, index, slides) {
+            if (index >= slides.length) index = 0;
+            else if (index < 0) index = slides.length - 1;
+            slider.style.transform = `translateX(-${index * 100}%)`;
         }
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
+        function nextSlide(sliderNumber) {
+            if (sliderNumber === 1) {
+                currentSlide1++;
+                showSlide(slider1, currentSlide1, slides1);
+            } else if (sliderNumber === 2) {
+                currentSlide2++;
+                showSlide(slider2, currentSlide2, slides2);
+            }
         }
 
-        function prevSlide() {
-            showSlide(currentSlide - 1);
+        function prevSlide(sliderNumber) {
+            if (sliderNumber === 1) {
+                currentSlide1--;
+                showSlide(slider1, currentSlide1, slides1);
+            } else if (sliderNumber === 2) {
+                currentSlide2--;
+                showSlide(slider2, currentSlide2, slides2);
+            }
         }
 
         // Automatically change slides every 3 seconds
-        setInterval(nextSlide, 3000);
+        setInterval(() => nextSlide(1), 3000);
+        setInterval(() => nextSlide(2), 3000);
     </script>
 </body>
 </html>

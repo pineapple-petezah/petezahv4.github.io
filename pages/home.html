@@ -1,463 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game World</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-  <head>
+        /* Title section */
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        header h1 {
+            font-size: 3em;
+            color: #333;
+            text-transform: uppercase;
+        }
 
-	  		        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SHE360M0YP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        /* Image Slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
 
-  gtag('config', 'G-SHE360M0YP');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
-     crossorigin="anonymous"></script>
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        /* Most Popular Games Section */
+        .popular-games {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .popular-games h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .game-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .game-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .game-card h3 {
+            padding: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .game-card p {
+            padding: 0 10px 10px;
+            color: #777;
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Game World</h1>
+    </header>
 
-    <title>PeteZah</title>
-    <link rel="icon" type="icon/x-icon" href="storage/images/logo-png-removebg-preview.png" />
-
-    <!-- Bootstrap core CSS -->
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/v4/storage/css/test.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-
-    <meta
-			name="description"
-			content="Pete Zah, game on"
-		/>
-		<meta
-			name="keywords"
-			content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah"
-		/>
-  </head>
-
-<body style="background: #151A2D;">
-
-
-  <!-- ***** Preloader Start ***** -->
-  
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky" style="postition: fixed">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo">
-                        <img src="storage/images/logo-png-removebg-preview.png" style="width: 50px; height: 50px;" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="/static/embed.html#https://duckduckgo.com/?q">
-                        <input type="text" placeholder="Type Something" id='searchText' name="=" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="g.html">Games</a></li>
-                        <li><a href="a.html">Apps</a></li>
-                        <li><a href="p.html">Proxy</a></li>
-                        <li><a href="profile.html">Settings <img src="storage/assets/images/profile-header.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
+    <!-- Image Slider Section -->
+    <div class="slider-container">
+        <div class="slider" id="slider">
+            <img src="https://via.placeholder.com/1200x500/FF6347/FFFFFF?text=Game+1" alt="Game Image 1">
+            <img src="https://via.placeholder.com/1200x500/4682B4/FFFFFF?text=Game+2" alt="Game Image 2">
+            <img src="https://via.placeholder.com/1200x500/32CD32/FFFFFF?text=Game+3" alt="Game Image 3">
+        </div>
+        <div class="slider-controls">
+            <button onclick="prevSlide()">❮</button>
+            <button onclick="nextSlide()">❯</button>
         </div>
     </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
 
-
-	
-  <div class="container" style="z-index: 1;">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="page-content">
-
-          <!-- ***** Banner Start ***** -->
-          <div class="main-banner" style="animation: fade-in-top 1s"> 
-            <div class="row">
-              <div class="col-lg-7">
-                <div class="header-text">
-                  <h6 style="text-align: center;">The next gen gaming site.</h6>
-                  <h1
-				style="
-					text-align: center;
-					margin: -10px;
-					animation: fade-in-top 0.6s ease-in-out;
-					-webkit-animation: fade-in-top 0.6s ease-in-out;
-				"
-			>
-				Welcome to 
-			        <br>
-				<span style="cursor: text; background: linear-gradient(to right, #40e0d0, #0096FF, #40e0d0);  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-					<span
-						class="typewrite"
-						data-period="2000"
-						data-type='[ "Pete Zah Games.","beautiful.","vibrant.", "prosperous.", "welcoming.", "peaceful.","stable.","thriving.","amazing.","resilient.","friendly.","flourishing.","sustainable."]'
-					>
-						<span class="wrap"></span>
-					</span>
-				</span>
-			</h1>
-			<br>
-			<br>
-			<br>
-                  <div class="main-button" style="text-align: center;">
-                    <a href="g.html">Start Gaming</a>
-                  </div>
-                </div>
-              </div>
-		    <div class="col-lg-5">
-			    <div class="image-shuffler" style="margin-right: 50px;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> 
-  			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/slope/">
-    			        <img src="storage/ag/g/slope/IMG_5256.jpeg" alt="Slope"> 
-    			        <div class="image-title">Slope</div>
-			      </a></div>
-  			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/ragdoll-archers/">
-    			        <img src="/storage/images/main/ragdoll.jpg" alt="Ragdoll Archers">
-    			        <div class="image-title">Ragdoll Archers</div>
-			      </a> </div>
-  			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/racesurvival/">
-    			        <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Race Survival">
-    			       <div class="image-title">Race Survival</div>
-			      </a></div>
-			    </div>
-		    </div>
+    <!-- Most Popular Games Section -->
+    <section class="popular-games">
+        <h2>Most Popular Games</h2>
+        <div class="game-cards">
+            <div class="game-card">
+                <img src="https://via.placeholder.com/250x150/FFD700/FFFFFF?text=Game+1" alt="Game 1">
+                <h3>Game 1</h3>
+                <p>Action-packed and full of adventure.</p>
             </div>
-          </div>
-          <!-- ***** Banner End ***** -->
-
-          <!-- ***** Most Popular Start ***** -->
-          <div class="most-popular">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="heading-section">
-                  <h4><em>Most Popular</em> Right Now</h4>
-                </div>
-                <div class="row">
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/polytrack/">
-                    <div class="item">
-                      <img src="storage/ag/g/polytrack/splash.png" style="width: 120px; height: 120px;" alt="">
-                      <h4>Polytrack<br><span>Car</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/smashyroad">
-                    <div class="item">
-                      <img src="storage/images/main/smashy.jpg" style="width: 120px; height: 120px;" alt="">
-                      <h4>Smashy<br><span>Car</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/ragdoll-archers">
-                    <div class="item">
-                      <img src="storage/images/main/ragdoll.jpg" style="width: 120px; height: 120px;" alt="">
-                      <h4>Ragdoll<br><span>Aim</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=https://foodstars.io"> 
-                    <div class="item">
-                      <img src="storage/images/main/brawlstars1.jpg" style="width: 120px; height: 120px;"  alt="">
-                      <h4>Brawl<br><span>Skill</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/slither"> 
-                    <div class="item">
-                      <img src="storage/images/main/slitherio.jpg" style="width: 120px; height: 120px;"  alt="">
-                      <h4>Slither<br><span>io</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/slope"> 
-                    <div class="item">
-                      <img src="storage/ag/g/slope/IMG_5256.jpeg" style="width: 120px; height: 120px;"  alt="">
-                      <h4>Slope<br><span>skill</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/yohoho/"> 
-                    <div class="item">
-                      <img src="storage/ag/g/yohoho/IMG_5302.jpeg" style="width: 120px; height: 120px;" alt="">
-                      <h4>Yohoho<br><span>io</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-3 col-sm-6" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> <a href="iframe.html?url=/storage/ag/g/stickman-hook/"> 
-                    <div class="item">
-                      <img src="storage/images/main/stickmanhook.jpg" style="width: 120px; height: 120px;" alt="">
-                      <h4>Hook<br><span>skill</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-download"></i></li>
-                      </ul>
-                    </div>
-                  </a> </div>
-                  <div class="col-lg-12">
-                    <div class="main-button">
-                      <a href="g.html">Discover Popular</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="game-card">
+                <img src="https://via.placeholder.com/250x150/8A2BE2/FFFFFF?text=Game+2" alt="Game 2">
+                <h3>Game 2</h3>
+                <p>Explore new worlds and challenges.</p>
             </div>
-          </div> <br> <br>
-
-		        </div>
-      </div>
-    </div>
-  </div> <br> <br> <br>
-          <!-- ***** Most Popular End ***** -->
-<div id="container-1f9ef1ea03eb9743ae2feb0b3f839a92"></div>
-          <!-- ***** Gaming Library Start ***** -->
-
-	  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="page-content">
-          <div class="gaming-library">
-            <div class="col-lg-12">
-              <div class="heading-section">
-                <h4><em>New Games</em> Library</h4>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="storage/ag/g/slope2/splash.png" alt="" class="templatemo-item"></li>
-                  <li><h4>Slope 2</h4><span>Skill</span></li>
-                  <li><h4>Date Added</h4><span>12/24/2024</span></li>
-                  <li><h4>Hours Played</h4><span>104 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Playable</span></li>
-                  <li><div class="main-border-button"><a href="iframe.html?url=/storage/ag/g/slope2/">Play</a></div></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="storage/images/main/csgo.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>CSGO Clicker</h4><span>Gambling</span></li>
-                  <li><h4>Date Added</h4><span>12/24/2024</span></li>
-                  <li><h4>Hours Played</h4><span>85 H 52 Mins</span></li>
-                  <li><h4>Currently</h4><span>Playable</span></li>
-                  <li><div class="main-border-button"><a href="iframe.html?url=/storage/ag/g/csgoclicker">Play</a></div></li>
-                </ul>
-              </div>
-              <div class="item last-item">
-                <ul>
-                  <li><img src="storage/images/main/fakefortnight.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Fortnite</h4><span>Shooting</span></li>
-                  <li><h4>Date Added</h4><span>12/12/2024</span></li>
-                  <li><h4>Hours Played</h4><span>154 H 14 Mins</span></li>
-                  <li><h4>Currently</h4><span>Playable</span></li>
-                  <li><div class="main-border-button"><a href="iframe.html?url=/storage/ag/g/fortnight">Play</a></div></li>
-                </ul>
-              </div>
+            <div class="game-card">
+                <img src="https://via.placeholder.com/250x150/228B22/FFFFFF?text=Game+3" alt="Game 3">
+                <h3>Game 3</h3>
+                <p>Unleash your inner hero and conquer.</p>
             </div>
-            <div class="col-lg-12">
-              <div class="main-button">
-                <a href="g.html">View Games</a>
-              </div>
-            </div>
-          </div>
-          <!-- ***** Gaming Library End ***** -->
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-<div id="container-1f9ef1ea03eb9743ae2feb0b3f839a92"></div>
-  <footer>
-    <footer class="footer">
-  	 <div class="footer-container">
-  	 	<div class="footer-row">
-  	 		<div class="footer-col">
-  	 			<h4>company</h4>
-  	 			<ul>
-  	 				<li><a href="pages/footer/about">about us</a></li>
-  	 				<li><a href="pages/footer/news">news</a></li>
-  	 				<li><a href="pages/footer/legal">privacy policy</a></li>
-  	 				<li><a href="pages/footer/dmca">dmca takedown</a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>get help</h4>
-  	 			<ul>
-  	 				<li><a href="pages/footer/faq">FAQ</a></li>
-  	 				<li><a href="pages/footer/status">status</a></li>
-  	 				<li><a href="pages/footer/team">developers</a></li>
-  	 				<li><a href="pages/footer/contact">contact</a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>pages</h4>
-  	 			<ul>
-  	 				<li><a href="index.html">home</a></li>
-  	 				<li><a href="g.html">games</a></li>
-  	 				<li><a href="a.html">apps</a></li>
-					<li><a href="p.html">proxy</a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>follow us</h4>
-  	 			<div class="social-links">
-  	 				<a href="https://discord.gg/arcgZTV9zX"><i class="fab fa-discord"></i></a>
-  	 				<a href="https://twitter.com/PeteZahGames"><i class="fab fa-twitter"></i></a>
-  	 				<a href="#"><i class="fab fa-instagram"></i></a>
-  	 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
-  	 			</div>
-  	 		</div>
-  	 	</div>
-  	 </div>
-  </footer>
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright © 2025 <a href="https://bio.petezahgames.com">PeteZah Games</a> Company. All rights reserved. 
-        </div>
-      </div>
-    </div>
-  </footer>
-<div id="container-1f9ef1ea03eb9743ae2feb0b3f839a92"></div>
-  
-	<!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="storage/vendor/jquery/jquery.min.js"></script>
-  <script src="storage/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <!-- Other Scripts -->
-  <script src="storage/assets/js/particles.js"></script>
-  <script src="storage/assets/js/index.js"></script>
-  <script src="storage/assets/js/isotope.min.js"></script>
-  <script src="storage/assets/js/owl-carousel.js"></script>
-  <script src="storage/assets/js/tabs.js"></script>
-  <script src="storage/assets/js/popup.js"></script>
-  <script src="storage/assets/js/custom.js"></script>
-  <script src="storage/assets/js/extra.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="storage/assets/js/login.js"></script>
-  <script async="async" data-cfasync="false" src="//pl25832426.effectiveratecpm.com/1f9ef1ea03eb9743ae2feb0b3f839a92/invoke.js"></script>
-  
-	  
-<script>
-	
-  
-	
-$(document).ready(function () {
-  const announcementBanner = $("#announcement-banner");
-  const announcementClose = $("#announcement-close");
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider img');
+        const slider = document.getElementById('slider');
 
-  const announcementClosedKey = "announcementClosed";
-  const announcementClosedTimeKey = "announcementClosedTime";
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
 
-  const isAnnouncementClosed = localStorage.getItem(announcementClosedKey);
-  const announcementClosedUntil = localStorage.getItem(announcementClosedTimeKey);
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
 
-  const now = new Date().getTime();
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
 
-  if (!isAnnouncementClosed || (announcementClosedUntil && now > announcementClosedUntil)) {
-    announcementBanner.fadeIn();
-  }
-
-  announcementClose.click(function () {
-    announcementBanner.fadeOut();
-    localStorage.setItem(announcementClosedKey, "true");
-
-    const thirtyMinutesFromNow = now + 30 * 60 * 1000;
-    localStorage.setItem(announcementClosedTimeKey, thirtyMinutesFromNow);
-  });
-
-  $(document).ready(function () {
-  // ... (rest of the code is the same)
-
-  if (!isAnnouncementClosed || (announcementClosedUntil && now > announcementClosedUntil)) {
-    announcementBanner.fadeIn(1000); // Fade in over 1 second
-  }
-
-  // ... (rest of the code is the same)
-});
-
-  $("#uv-form").submit(async function (event) {
-    event.preventDefault();
-    const input = $("#uv-address");
-    const url = input.val().trim();
-
-    try {
-      await navigator.serviceWorker.register("/szvy/sw.js", {
-        scope: __uv$config.prefix,
-      });
-
-      let finalUrl = url;
-      if (!isUrl(url)) {
-        finalUrl = "https://www.google.com/search?hl=en-us&q=" + url;
-      } else if (!url.startsWith("https://") && !url.startsWith("http://")) {
-        finalUrl = "http://" + url;
-      }
-
-      sessionStorage.setItem("encodedUrl", __uv$config.encodeUrl(finalUrl));
-      window.location.href = "math.html";
-    } catch (error) {
-      console.error("Error registering service worker:", error);
-      // Handle the error appropriately, e.g., display an error message to the user.
-    }
-  });
-
-  function isUrl(val = "") {
-    return /^http(s?):\/\//.test(val) || (val.includes(".") && val.slice(0, 1) !== " ");
-  }
-}); 
-             
-</script>
-
-
-  </body>
-
+        // Automatically change slides every 3 seconds
+        setInterval(nextSlide, 3000);
+    </script>
+</body>
 </html>

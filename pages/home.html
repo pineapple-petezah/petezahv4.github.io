@@ -20,16 +20,6 @@
             overflow: hidden; /* Hide scrollbar */
         }
 
-        .container {
-            text-align: center;
-            width: 70%; /* Adjusted width to make container smaller */
-            max-width: 900px;
-            padding: 10px; /* Reduced padding */
-            background: #04041D; /* Updated container background color */
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
-        }
-
         h1 {
             font-size: 28px;
             font-weight: 600;
@@ -38,12 +28,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+            width: 100%;
+            text-align: center;
         }
 
         .image-shuffler {
             display: flex;
             align-items: center;
-            width: 100%;
+            width: 70%; /* Adjusted width */
             max-width: 900px;
             border-radius: 12px;
             overflow: hidden;
@@ -124,48 +116,46 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Featured Games</h1>
-        <div class="image-shuffler">
-            <button id="prev-btn" class="arrow">&lt;</button>
-            <div class="image-wrapper">
-                <div class="image-container">
-                    <div class="image-box">
-                        <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
-                        <div class="caption">Smashy Road</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
-                        <div class="caption">Ragdoll Simulator</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
-                        <div class="caption">Slope</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
-                        <div class="caption">Slither.io</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image">
-                        <div class="caption">Race Survival</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
-                        <div class="caption">Polytrack</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
-                        <div class="caption">Brawl Stars</div>
-                    </div>
-                    <div class="image-box">
-                        <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
-                        <div class="caption">YoHoHo!</div>
-                    </div>
+    <h1>Featured Games</h1>
+    <div class="image-shuffler">
+        <button id="prev-btn" class="arrow">&lt;</button>
+        <div class="image-wrapper">
+            <div class="image-container">
+                <div class="image-box">
+                    <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
+                    <div class="caption">Smashy Road</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
+                    <div class="caption">Ragdoll Simulator</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
+                    <div class="caption">Slope</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
+                    <div class="caption">Slither.io</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image">
+                    <div class="caption">Race Survival</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
+                    <div class="caption">Polytrack</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
+                    <div class="caption">Brawl Stars</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
+                    <div class="caption">YoHoHo!</div>
                 </div>
             </div>
-            <button id="next-btn" class="arrow">&gt;</button>
         </div>
+        <button id="next-btn" class="arrow">&gt;</button>
     </div>
 
     <script>

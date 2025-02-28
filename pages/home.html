@@ -67,25 +67,28 @@
     </div>
 
     <script>
-        const imageContainer = document.querySelector('.image-container');
+const imageContainer = document.querySelector('.image-container');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const images = document.querySelectorAll('.image');
 let counter = 0;
-const imageWidth = images[0].clientWidth; // Width of one image
+// Wait for images to load before getting their width
+window.addEventListener('load', function() {
+  const imageWidth = images[0].clientWidth; // Width of one image
 
-nextBtn.addEventListener('click', () => {
-    if (counter < images.length - 4) {
-        counter++;
-        imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
-    }
-});
+  nextBtn.addEventListener('click', () => {
+      if (counter < images.length - 4) {
+          counter++;
+          imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+      }
+  });
 
-prevBtn.addEventListener('click', () => {
-    if (counter > 0) {
-        counter--;
-        imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
-    }
+  prevBtn.addEventListener('click', () => {
+      if (counter > 0) {
+          counter--;
+          imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+      }
+  });
 });
     </script>
 </body>

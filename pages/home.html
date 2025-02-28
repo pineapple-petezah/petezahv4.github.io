@@ -21,9 +21,9 @@
         }
 
         h1 {
-            font-size: 28px;
+            font-size: 22px; /* Reduced font size */
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 16px; /* Reduced bottom margin */
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -35,8 +35,8 @@
         .image-shuffler {
             display: flex;
             align-items: center;
-            width: 90%; /* Increased width */
-            max-width: 1200px; /* Increased max-width */
+            width: 60%; /* Scaled down width */
+            max-width: 800px; /* Scaled down max-width */
             border-radius: 12px;
             overflow: hidden;
             background-color: #1e1e2d; /* Slightly lighter background for images */
@@ -67,10 +67,10 @@
         }
 
         .image {
-            width: 180px; /* Adjusted width */
-            height: 120px; /* Height stays the same */
+            width: 120px; /* Reduced image width */
+            height: 80px; /* Reduced image height */
             object-fit: cover;
-            margin-right: 12px;
+            margin-right: 8px; /* Reduced margin */
             border-radius: 8px;
             border: 3px solid #ffffff; /* White border to match the theme */
             box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2); /* Softer shadow */
@@ -85,12 +85,12 @@
         .caption {
             width: 100%;
             text-align: center;
-            font-size: 14px;
+            font-size: 12px; /* Reduced font size */
             font-weight: 600;
             letter-spacing: 0.5px;
             background: linear-gradient(45deg, rgba(10, 29, 55, 0.9), rgba(40, 40, 40, 0.8));
             color: #ffffff;
-            padding: 8px 0;
+            padding: 6px 0; /* Reduced padding */
             border-radius: 0 0 8px 8px;
             box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
             transition: opacity 0.3s ease-in-out;
@@ -99,8 +99,8 @@
         .arrow {
             background-color: #2a3c5f; /* Darker shade of blue */
             border: none;
-            padding: 14px 20px;
-            font-size: 1.5em;
+            padding: 12px 18px; /* Reduced padding */
+            font-size: 1.2em; /* Reduced font size */
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s;
             color: white;
@@ -164,7 +164,7 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
-            const imageWidth = 192; /* Adjusted image width to 192px */
+            const imageWidth = 128; /* Adjusted image width */
             const totalImages = images.length;
             let counter = 0;
 

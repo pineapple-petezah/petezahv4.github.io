@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Shuffler</title>
+    <title>Fixed Size Image Shuffler</title>
     <style>
         body {
             display: flex;
@@ -11,14 +11,14 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0; /* Light background */
+            background-color: #f0f0f0;
         }
 
         .image-shuffler {
             display: flex;
             align-items: center;
             width: 80%;
-            max-width: 1200px;
+            max-width: 800px; /* Fixed max width */
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -38,15 +38,17 @@
         }
 
         .image {
-            width: 25%;
-            height: auto;
-            object-fit: cover;
+            width: 180px; /* Fixed width */
+            height: 120px; /* Fixed height */
+            object-fit: cover; /* Ensures images fill the area without distortion */
+            margin-right: 10px; /* Space between images */
+            border-radius: 5px; /* Slight rounding for a polished look */
         }
 
         .arrow {
             background-color: #e0e0e0;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 15px;
             font-size: 1.5em;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -84,13 +86,9 @@
             const images = document.querySelectorAll('.image');
             const visibleImages = 4; // Number of images visible at a time
             let counter = 0;
-
-            function updateImageWidth() {
-                return document.querySelector('.image').clientWidth;
-            }
+            const imageWidth = 190; // Fixed width (180px image + 10px margin)
 
             function moveImages() {
-                const imageWidth = updateImageWidth();
                 imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
             }
 

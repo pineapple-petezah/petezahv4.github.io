@@ -4,7 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Shuffler</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .image-shuffler {
+    display: flex;
+    align-items: center;
+    width: 500px; /* Adjust as needed */
+    margin: 20px auto;
+    overflow: hidden; /* Hide overflowing images */
+}
+
+.image-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    white-space: nowrap; /* Prevent images from wrapping */
+    width: 100%; /* Take full width of parent */
+}
+
+.image {
+    width: 100%; /* Make images fill container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the whole image fits, but keeps aspect ratio */
+    flex-shrink: 0; /* Prevent images from shrinking */
+}
+
+.arrow {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+    </style>
 </head>
 <body>
     <div class="image-shuffler">
@@ -21,6 +51,29 @@
             </div>
         <button id="next-btn" class="arrow">&gt;</button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const imageContainer = document.querySelector('.image-container');
+const images = document.querySelectorAll('.image');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+let currentIndex = 0;
+const imageWidth = images[0].clientWidth; // Get width of one image
+
+function updateImageContainer() {
+    imageContainer.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+}
+
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImageContainer();
+});
+
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImageContainer();
+});
+    </script>
 </body>
 </html>

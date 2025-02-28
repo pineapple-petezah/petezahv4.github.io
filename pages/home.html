@@ -13,10 +13,10 @@
             align-items: flex-start; /* Align to top of the screen */
             height: 100vh;
             margin: 0;
-            background-color: #151A2D; /* Background color */
+            background-color: #0A1D37; /* Dark blue background */
             color: white;
             font-family: 'Poppins', sans-serif;
-            padding: 20px 0; /* Added some padding to avoid touching the top */
+            padding: 20px 0; /* Added padding to avoid touching the top */
             overflow: hidden; /* Hide scrollbar */
         }
 
@@ -24,10 +24,10 @@
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 20px;
-            color: #fff;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
             width: 100%;
             text-align: center;
         }
@@ -39,10 +39,10 @@
             max-width: 1200px; /* Increased max-width */
             border-radius: 12px;
             overflow: hidden;
-            background-color: #1e1e1e;
+            background-color: #1e1e2d; /* Slightly lighter background for images */
             padding: 14px;
             position: relative;
-            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
             margin: 0 auto;
         }
 
@@ -67,13 +67,13 @@
         }
 
         .image {
-            width: 180px; /* Reduced width */
+            width: 180px; /* Adjusted width */
             height: 120px; /* Height stays the same */
             object-fit: cover;
             margin-right: 12px;
             border-radius: 8px;
-            border: 3px solid #888;
-            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.3);
+            border: 3px solid #ffffff; /* White border to match the theme */
+            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2); /* Softer shadow */
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -88,16 +88,16 @@
             font-size: 14px;
             font-weight: 600;
             letter-spacing: 0.5px;
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.85), rgba(40, 40, 40, 0.9));
-            color: #fff;
+            background: linear-gradient(45deg, rgba(10, 29, 55, 0.9), rgba(40, 40, 40, 0.8));
+            color: #ffffff;
             padding: 8px 0;
             border-radius: 0 0 8px 8px;
-            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
             transition: opacity 0.3s ease-in-out;
         }
 
         .arrow {
-            background-color: #333;
+            background-color: #2a3c5f; /* Darker shade of blue */
             border: none;
             padding: 14px 20px;
             font-size: 1.5em;
@@ -109,7 +109,7 @@
         }
 
         .arrow:hover {
-            background-color: #555;
+            background-color: #3c5b8e; /* Slightly lighter blue on hover */
             transform: scale(1.1);
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
         }

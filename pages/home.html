@@ -105,6 +105,7 @@
         <button id="prev-btn" class="arrow">&lt;</button>
         <div class="image-wrapper">
             <div class="image-container">
+                <!-- Images will be dynamically duplicated for seamless looping -->
                 <div class="image-box">
                     <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
                     <div class="caption">Smashy Road</div>
@@ -145,12 +146,26 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const imageContainer = document.querySelector('.image-container');
+            const images = document.querySelectorAll('.image-box');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
-            const images = document.querySelectorAll('.image-box');
+
+            const imageWidth = 195; // 180px image + margin
             const totalImages = images.length;
             let counter = 0;
-            const imageWidth = 195; // 180px image + margin + border width
+
+            // Clone first and last few images for seamless transition
+            for (let i = 0; i < 4; i++) {
+                const firstClone = images[i].cloneNode(true);
+                const lastClone = images[totalImages - 1 - i].cloneNode(true);
+                imageContainer.appendChild(firstClone);
+                imageContainer.insertBefore(lastClone, imageContainer.firstChild);
+            }
+
+            // Adjust for the clones
+            const fullImageSet = document.querySelectorAll('.image-box');
+            imageContainer.style.transform = `translateX(-${imageWidth * 4}px)`;
+            counter = 4;
 
             function moveImages() {
                 imageContainer.style.transition = "transform 0.5s ease-in-out";
@@ -158,38 +173,30 @@
             }
 
             nextBtn.addEventListener('click', () => {
-                if (counter >= totalImages - 4) {
-                    counter = 0;
-                    imageContainer.style.transition = "none";
-                    imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+                counter++;
+                moveImages();
 
+                if (counter >= totalImages + 4) {
                     setTimeout(() => {
-                        counter++;
+                        imageContainer.style.transition = "none";
+                        counter = 4;
                         moveImages();
-                    }, 50);
-                } else {
-                    counter++;
-                    moveImages();
+                    }, 500);
                 }
             });
 
             prevBtn.addEventListener('click', () => {
-                if (counter <= 0) {
-                    counter = totalImages - 4;
-                    imageContainer.style.transition = "none";
-                    imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+                counter--;
+                moveImages();
 
+                if (counter <= 0) {
                     setTimeout(() => {
-                        counter--;
+                        imageContainer.style.transition = "none";
+                        counter = totalImages;
                         moveImages();
-                    }, 50);
-                } else {
-                    counter--;
-                    moveImages();
+                    }, 500);
                 }
             });
-
-            window.addEventListener('resize', moveImages);
         });
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Size Image Shuffler</title>
+    <title>Looping Image Shuffler</title>
     <style>
         body {
             display: flex;
@@ -18,7 +18,7 @@
             display: flex;
             align-items: center;
             width: 80%;
-            max-width: 800px; /* Fixed max width */
+            max-width: 800px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -38,11 +38,11 @@
         }
 
         .image {
-            width: 180px; /* Fixed width */
-            height: 120px; /* Fixed height */
-            object-fit: cover; /* Ensures images fill the area without distortion */
-            margin-right: 10px; /* Space between images */
-            border-radius: 5px; /* Slight rounding for a polished look */
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 5px;
         }
 
         .arrow {
@@ -65,6 +65,7 @@
         <button id="prev-btn" class="arrow">&lt;</button>
         <div class="image-wrapper">
             <div class="image-container">
+                <!-- Duplicate images for seamless looping -->
                 <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
                 <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
                 <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
@@ -73,6 +74,12 @@
                 <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
                 <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
                 <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
+                
+                <!-- Cloned images for smooth looping -->
+                <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
+                <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
+                <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
+                <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
             </div>
         </div>
         <button id="next-btn" class="arrow">&gt;</button>
@@ -84,23 +91,47 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const images = document.querySelectorAll('.image');
-            const visibleImages = 4; // Number of images visible at a time
+            const visibleImages = 4;
+            const totalImages = images.length / 2; // Since we duplicated images for looping
             let counter = 0;
-            const imageWidth = 190; // Fixed width (180px image + 10px margin)
+            const imageWidth = 190; // 180px image + 10px margin
 
             function moveImages() {
+                imageContainer.style.transition = "transform 0.5s ease-in-out";
                 imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
             }
 
             nextBtn.addEventListener('click', () => {
-                if (counter < images.length - visibleImages) {
+                if (counter >= totalImages) {
+                    // Instantly reset to the first set of images for seamless looping
+                    counter = 0;
+                    imageContainer.style.transition = "none"; 
+                    imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+                    
+                    // Small delay before resuming normal animation
+                    setTimeout(() => {
+                        counter++;
+                        moveImages();
+                    }, 50);
+                } else {
                     counter++;
                     moveImages();
                 }
             });
 
             prevBtn.addEventListener('click', () => {
-                if (counter > 0) {
+                if (counter <= 0) {
+                    // Instantly move to the duplicate set at the end for smooth looping
+                    counter = totalImages;
+                    imageContainer.style.transition = "none"; 
+                    imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+
+                    // Small delay before resuming normal animation
+                    setTimeout(() => {
+                        counter--;
+                        moveImages();
+                    }, 50);
+                } else {
                     counter--;
                     moveImages();
                 }

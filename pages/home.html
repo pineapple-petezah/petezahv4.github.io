@@ -5,34 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Shuffler</title>
     <style>
-        .image-shuffler {
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Light background */
+}
+
+.image-shuffler {
     display: flex;
     align-items: center;
-    width: 500px; /* Adjust as needed */
-    margin: 20px auto;
-    overflow: hidden; /* Hide overflowing images */
+    width: 80%; /* Adjust width as needed */
+    max-width: 1200px; /* Maximum width for larger screens */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: white; /* White container */
 }
 
 .image-container {
     display: flex;
-    transition: transform 0.5s ease;
-    white-space: nowrap; /* Prevent images from wrapping */
-    width: 100%; /* Take full width of parent */
+    transition: transform 0.5s ease-in-out;
 }
 
 .image {
-    width: 100%; /* Make images fill container */
+    width: 25%; /* 4 images in a row */
     height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure the whole image fits, but keeps aspect ratio */
-    flex-shrink: 0; /* Prevent images from shrinking */
+    object-fit: cover; /* Fill the space without distorting */
 }
 
 .arrow {
-    background-color: #f0f0f0;
+    background-color: #e0e0e0; /* Light gray button */
     border: none;
-    padding: 10px 15px;
-    font-size: 20px;
+    padding: 10px 20px;
+    font-size: 1.5em;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.arrow:hover {
+    background-color: #d0d0d0; /* Darker gray on hover */
 }
     </style>
 </head>
@@ -54,25 +68,24 @@
 
     <script>
         const imageContainer = document.querySelector('.image-container');
-const images = document.querySelectorAll('.image');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
-
-let currentIndex = 0;
-const imageWidth = images[0].clientWidth; // Get width of one image
-
-function updateImageContainer() {
-    imageContainer.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
-}
+const images = document.querySelectorAll('.image');
+let counter = 0;
+const imageWidth = images[0].clientWidth; // Width of one image
 
 nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImageContainer();
+    if (counter < images.length - 4) {
+        counter++;
+        imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+    }
 });
 
 prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImageContainer();
+    if (counter > 0) {
+        counter--;
+        imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+    }
 });
     </script>
 </body>

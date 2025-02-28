@@ -114,9 +114,61 @@
             transform: scale(1.1);
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
         }
+
+        /* Styling for the left side text and button */
+        .welcome-section {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+        }
+
+        .welcome-section h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            font-weight: 400;
+            color: #dcdcdc;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background-color: #3c5b8e;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
+        }
+
+        .start-btn:hover {
+            background-color: #2a3c5f;
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
+        }
     </style>
 </head>
 <body>
+    <!-- Left side welcome message and button -->
+    <div class="welcome-section">
+        <h2>Welcome to PeteZah Games</h2>
+        <p>The next gen gaming site.</p>
+        <button class="start-btn" onclick="startGaming()">Start Gaming</button>
+    </div>
+
     <div class="image-shuffler">
         <button id="prev-btn" class="arrow">&lt;</button>
         <div class="image-wrapper">
@@ -159,6 +211,11 @@
     </div>
 
     <script>
+        function startGaming() {
+            alert('Let\'s Start Gaming!');
+            // You can replace this with actual redirection or game launching logic
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             const imageContainer = document.querySelector('.image-container');
             const images = document.querySelectorAll('.image-box');

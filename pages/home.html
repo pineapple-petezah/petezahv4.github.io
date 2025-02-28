@@ -10,20 +10,20 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top of the screen */
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
-            background-color: #0A1D37; /* Dark blue background */
+            background-color: #0A1D37;
             color: white;
             font-family: 'Poppins', sans-serif;
-            padding: 20px 0; /* Added padding to avoid touching the top */
-            overflow: hidden; /* Hide scrollbar */
+            padding: 20px 0;
+            overflow: hidden;
         }
 
         h1 {
-            font-size: 22px; /* Reduced font size */
+            font-size: 22px;
             font-weight: 600;
-            margin-bottom: 16px; /* Reduced bottom margin */
+            margin-bottom: 16px;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -35,11 +35,11 @@
         .image-shuffler {
             display: flex;
             align-items: center;
-            width: 60%; /* Scaled down width */
-            max-width: 800px; /* Scaled down max-width */
+            width: 60%;
+            max-width: 800px;
             border-radius: 12px;
             overflow: hidden;
-            background-color: #1e1e2d; /* Slightly lighter background for images */
+            background-color: #1e1e2d;
             padding: 14px;
             position: relative;
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
@@ -67,40 +67,41 @@
         }
 
         .image {
-            width: 120px; /* Reduced image width */
-            height: 80px; /* Reduced image height */
+            width: 120px;
+            height: 80px;
             object-fit: cover;
-            margin-right: 8px; /* Reduced margin */
+            margin-right: 8px;
             border-radius: 8px;
-            border: 3px solid #ffffff; /* White border to match the theme */
-            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2); /* Softer shadow */
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 3px solid #ffffff;
+            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
         }
 
-        .image:hover {
+        .image:hover, .image.glow {
             transform: scale(1.08);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+            filter: brightness(1.2);
         }
 
         .caption {
             width: 100%;
             text-align: center;
-            font-size: 12px; /* Reduced font size */
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.5px;
             background: linear-gradient(45deg, rgba(10, 29, 55, 0.9), rgba(40, 40, 40, 0.8));
             color: #ffffff;
-            padding: 6px 0; /* Reduced padding */
+            padding: 6px 0;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
             transition: opacity 0.3s ease-in-out;
         }
 
         .arrow {
-            background-color: #2a3c5f; /* Darker shade of blue */
+            background-color: #2a3c5f;
             border: none;
-            padding: 12px 18px; /* Reduced padding */
-            font-size: 1.2em; /* Reduced font size */
+            padding: 12px 18px;
+            font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s;
             color: white;
@@ -109,7 +110,7 @@
         }
 
         .arrow:hover {
-            background-color: #3c5b8e; /* Slightly lighter blue on hover */
+            background-color: #3c5b8e;
             transform: scale(1.1);
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
         }
@@ -164,7 +165,7 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
-            const imageWidth = 128; /* Adjusted image width */
+            const imageWidth = 128;
             const totalImages = images.length;
             let counter = 0;
 
@@ -183,6 +184,25 @@
                 imageContainer.style.transition = "transform 0.5s ease-in-out";
                 imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
             }
+
+            // Automatic image hover effect (glow)
+            function glowNextImage() {
+                const nextImage = document.querySelectorAll('.image-box')[counter];
+                nextImage.querySelector('img').classList.add('glow');
+
+                setTimeout(() => {
+                    nextImage.querySelector('img').classList.remove('glow');
+                }, 1000); // Glow lasts for 1 second
+            }
+
+            // Set interval to trigger glow effect every 5 seconds
+            setInterval(() => {
+                counter++;
+                if (counter >= totalImages) {
+                    counter = 0; // Loop back to the first image
+                }
+                glowNextImage();
+            }, 5000); // Change image every 5 seconds
 
             nextBtn.addEventListener('click', () => {
                 counter++;

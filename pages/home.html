@@ -13,18 +13,19 @@
             align-items: flex-start; /* Align to top of the screen */
             height: 100vh;
             margin: 0;
-            background-color: #151A2D; /* Updated background color */
+            background-color: #151A2D; /* Background color */
             color: white;
             font-family: 'Poppins', sans-serif;
             padding: 20px 0; /* Added some padding to avoid touching the top */
+            overflow: hidden; /* Hide scrollbar */
         }
 
         .container {
             text-align: center;
-            width: 90%;
-            max-width: 1000px;
-            padding: 20px;
-            background: #1a1a1a;
+            width: 70%; /* Adjusted width to make container smaller */
+            max-width: 900px;
+            padding: 10px; /* Reduced padding */
+            background: #04041D; /* Updated container background color */
             border-radius: 12px;
             box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
         }
@@ -42,7 +43,7 @@
         .image-shuffler {
             display: flex;
             align-items: center;
-            width: 85%;
+            width: 100%;
             max-width: 900px;
             border-radius: 12px;
             overflow: hidden;

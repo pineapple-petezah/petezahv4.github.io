@@ -35,8 +35,8 @@
         .image-shuffler {
             display: flex;
             align-items: center;
-            width: 70%; /* Adjusted width */
-            max-width: 900px;
+            width: 90%; /* Increased width */
+            max-width: 1200px; /* Increased max-width */
             border-radius: 12px;
             overflow: hidden;
             background-color: #1e1e1e;
@@ -67,8 +67,8 @@
         }
 
         .image {
-            width: 180px;
-            height: 120px;
+            width: 250px; /* Further increased width */
+            height: 120px; /* Reduced height */
             object-fit: cover;
             margin-right: 12px;
             border-radius: 8px;
@@ -164,7 +164,7 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
-            const imageWidth = 195;
+            const imageWidth = 260; /* Increased width */
             const totalImages = images.length;
             let counter = 0;
 

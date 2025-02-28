@@ -164,7 +164,19 @@
 <body>
     <!-- Left side welcome message and button -->
     <div class="welcome-section">
-        <h2>Welcome to PeteZah Games</h2>
+        <h2>
+				Welcome to 
+			        <br>
+				<span style="cursor: text; background: linear-gradient(to right, #40e0d0, #0096FF, #40e0d0);  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+					<span
+						class="typewrite"
+						data-period="2000"
+						data-type='[ "Pete Zah Games.","beautiful.","vibrant.", "prosperous.", "welcoming.", "peaceful.","stable.","thriving.","amazing.","resilient.","friendly.","flourishing.","sustainable."]'
+					>
+						<span class="wrap"></span>
+					</span>
+				</span>
+			</h2>
         <p>The next gen gaming site.</p>
         <button class="start-btn" onclick="startGaming()">Start Gaming</button>
     </div>
@@ -285,6 +297,67 @@
                 }
             });
         });
+
+        
+class TxtType {
+	constructor(el, toRotate, period) {
+		this.toRotate = toRotate;
+		this.el = el;
+		this.loopNum = 0;
+		this.period = parseInt(period, 10) || 2000;
+		this.txt = '';
+		this.tick();
+		this.isDeleting = false;
+	}
+
+	tick() {
+		const i = this.loopNum % this.toRotate.length;
+		const fullTxt = this.toRotate[i];
+
+		if (this.isDeleting) {
+			this.txt = fullTxt.substring(0, this.txt.length - 1);
+		} else {
+			this.txt = fullTxt.substring(0, this.txt.length + 1);
+		}
+
+		this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+		let delta = 200 - Math.random() * 100;
+
+		if (this.isDeleting) {
+			delta /= 2;
+		}
+
+		if (!this.isDeleting && this.txt === fullTxt) {
+			delta = this.period;
+			this.isDeleting = true;
+		} else if (this.isDeleting && this.txt === '') {
+			this.isDeleting = false;
+			this.loopNum++;
+			delta = 500;
+		}
+
+		setTimeout(() => this.tick(), delta);
+	}
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+	const elements = document.getElementsByClassName('typewrite');
+	for (let i = 0; i < elements.length; i++) {
+		const toRotate = elements[i].getAttribute('data-type');
+		const period = elements[i].getAttribute('data-period');
+		if (toRotate) {
+			new TxtType(elements[i], JSON.parse(toRotate), period);
+		}
+	}
+
+	// INJECT CSS
+	const css = document.createElement('style');
+	css.type = 'text/css';
+	css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
+	document.body.appendChild(css);
+});
+
     </script>
 </body>
 </html>

@@ -3,89 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeteZah | Home</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #151A2D;; 
-            color: #fff; 
-            font-family: sans-serif;
-            height: 100vh; 
-        }
-
-        .image-slider {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap; /* Prevent images from wrapping */
-            position: relative; /* For absolute positioning of images */
-            height: 200px; /* Adjust height as needed */
-        }
-
-        .image-slider img {
-            height: 100%; /* Make images fit the slider height */
-            object-fit: contain; /* Prevent image distortion */
-            display: inline-block; /* Display images horizontally */
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%; /* Adjust width as needed */
-        }
-
-        h1 {
-            color: #bb86fc; /* Highlight color */
-        }
-
-        p {
-            line-height: 1.6;
-        }
-
-    </style>
+    <title>Image Shuffler</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="image-slider">
-        <img src="/storage/images/main/smashy.jpg" alt="Game 1">
-        <img src="/storage/images/main/ragdoll.jpg" alt="Game 2">
-        <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Game 3">
-        <img src="/storage/images/main/slitherio.jpg" alt="Game 4">
-        <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Game 5">
-        <img src="/storage/ag/g/polytrack/splash.png" alt="Game 6">
-        <img src="/storage/images/main/brawlstars1.jpg" alt="Game 7">
-        <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Game 8">
-        <img src="/storage/ag/g/slope2/splash.png" alt="Game 9">
-        <img src="/storage/images/main/stickmanhook.jpg" alt="Game 10">
+    <div class="image-shuffler">
+        <button id="prev-btn" class="arrow">&lt;</button>
+        <div class="image-container">
+            <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
+            <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
+            <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
+            <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
+            <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image">
+            <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
+            <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
+            <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
+            </div>
+        <button id="next-btn" class="arrow">&gt;</button>
     </div>
-
-    <div class="content">
-        <h1>Welcome to the Gaming Zone!</h1>
-        <p>Explore the latest games, news, and community events. Join us in the ultimate gaming experience!</p>
-        <p>Check out our featured games in the slider above!</p>
-    </div>
-
-    <script>
-        const slider = document.querySelector('.image-slider');
-        const images = document.querySelectorAll('.image-slider img');
-        let counter = 0;
-        const imageWidth = images[0].clientWidth;
-
-        function slide() {
-            counter++;
-            if (counter >= images.length) {
-                counter = 0;
-            }
-            slider.style.transform = `translateX(-${counter * imageWidth}px)`;
-        }
-
-        setInterval(slide, 3000); // Change image every 3 seconds
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>

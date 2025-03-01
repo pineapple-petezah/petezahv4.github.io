@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Image Shuffler</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #0A1D37;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
+            width: 100%;
+            text-align: center;
+        }
+
+        .image-shuffler {
+            display: flex;
+            align-items: center;
+            width: 60%;
+            max-width: 800px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1e1e2d;
+            padding: 14px;
+            position: relative;
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+            margin: 0 auto;
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .image-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: max-content;
+            align-items: center;
+        }
+
+        .image-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .image {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 8px;
+            border-radius: 8px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+        }
+
+        .image:hover, .image.glow {
+            transform: scale(1.08);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+            filter: brightness(1.2);
+        }
+
+        .caption {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: linear-gradient(45deg, rgba(10, 29, 55, 0.9), rgba(40, 40, 40, 0.8));
+            color: #ffffff;
+            padding: 6px 0;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .arrow {
+            background-color: #2a3c5f;
+            border: none;
+            padding: 12px 18px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
+        }
+
+        .arrow:hover {
+            background-color: #3c5b8e;
+            transform: scale(1.1);
+            box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Styling for the left side text and button */
+        .welcome-section {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+        }
+
+        .welcome-section h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            font-weight: 400;
+            color: #dcdcdc;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background-color: #3c5b8e;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
+        }
+
+        .start-btn:hover {
+            background-color: #2a3c5f;
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
+        }
+
+        .image-shuffler {
+  width: 100%; /* Make width responsive */
+  max-width: 300px; /* Set maximum width */
+  height: auto; 
+  max-height: 300px; 
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 5px solid #000;
+  margin-right: 50px; 
+  margin-left: auto; 
+}
+
+.image-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.image-slide.active {
+  opacity: 1;
+}
+
+.image-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.image-title {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.main-banner .row {
+            display: flex; 
+            align-items: center; 
+        }
+row {
+    z-index: 1;
+}
+
+        .main-banner .col-lg-7 {
+            flex: 1; 
+        }
+
+        .image-shuffler {
+            width: 300px;
+            height: 300px;
+            margin-left: 20px; 
+        }
+
+        @media (max-width: 992px) {
+            .main-banner .row {
+                flex-direction: column; 
+                align-items: center;
+            }
+            .image-shuffler {
+                margin-left: 0;
+                margin-top: 20px; 
+								margin: 20px auto; 
+                float: none; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left side welcome message and button -->
+    <div class="welcome-section">
+        <h2>
+				Welcome to 
+			        <br>
+				<span style="cursor: text; background: linear-gradient(to right, #40e0d0, #0096FF, #40e0d0);  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+					<span
+						class="typewrite"
+						data-period="2000"
+						data-type='[ "Pete Zah Games.","beautiful.","vibrant.", "prosperous.", "welcoming.", "peaceful.","stable.","thriving.","amazing.","resilient.","friendly.","flourishing.","sustainable."]'
+					>
+						<span class="wrap"></span>
+					</span>
+				</span>
+			</h2>
+        <p>The next gen gaming site.</p>
+        <button class="start-btn" onclick="startGaming()">Start Gaming</button>
+    </div>
+
+    <div class="right-shuffler">
+			    <div class="image-shuffler" style="margin-right: 50px;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> 
+  			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/slope/">
+    			        <img src="storage/ag/g/slope/IMG_5256.jpeg" alt="Slope"> 
+    			        <div class="image-title">Slope</div>
+			      </a></div>
+  			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/ragdoll-archers/">
+    			        <img src="/storage/images/main/ragdoll.jpg" alt="Ragdoll Archers">
+    			        <div class="image-title">Ragdoll Archers</div>
+			      </a> </div>
+  			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/racesurvival/">
+    			        <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Race Survival">
+    			       <div class="image-title">Race Survival</div>
+			      </a></div>
+			    </div>
+		    </div>
+
+    <div class="image-shuffler">
+        <button id="prev-btn" class="arrow">&lt;</button>
+        <div class="image-wrapper">
+            <div class="image-container">
+                <div class="image-box">
+                    <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
+                    <div class="caption">Smashy Road</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
+                    <div class="caption">Ragdoll Simulator</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
+                    <div class="caption">Slope</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
+                    <div class="caption">Slither.io</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image">
+                    <div class="caption">Race Survival</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image">
+                    <div class="caption">Polytrack</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image">
+                    <div class="caption">Brawl Stars</div>
+                </div>
+                <div class="image-box">
+                    <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image">
+                    <div class="caption">YoHoHo!</div>
+                </div>
+            </div>
+        </div>
+        <button id="next-btn" class="arrow">&gt;</button>
+    </div>
+
+    <script>
+        function startGaming() {
+            alert('Let\'s Start Gaming!');
+            // You can replace this with actual redirection or game launching logic
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const imageContainer = document.querySelector('.image-container');
+            const images = document.querySelectorAll('.image-box');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            const imageWidth = 128;
+            const totalImages = images.length;
+            let counter = 0;
+
+            for (let i = 0; i < 4; i++) {
+                const firstClone = images[i].cloneNode(true);
+                const lastClone = images[totalImages - 1 - i].cloneNode(true);
+                imageContainer.appendChild(firstClone);
+                imageContainer.insertBefore(lastClone, imageContainer.firstChild);
+            }
+
+            const fullImageSet = document.querySelectorAll('.image-box');
+            imageContainer.style.transform = `translateX(-${imageWidth * 4}px)`;
+            counter = 4;
+
+            function moveImages() {
+                imageContainer.style.transition = "transform 0.5s ease-in-out";
+                imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
+            }
+
+            // Automatic image hover effect (glow)
+            function glowNextImage() {
+                const nextImage = document.querySelectorAll('.image-box')[counter];
+                nextImage.querySelector('.image').classList.add('glow');
+            }
+
+            function removeGlow() {
+                const currentImage = document.querySelectorAll('.image-box')[counter];
+                currentImage.querySelector('.image').classList.remove('glow');
+            }
+
+            nextBtn.addEventListener('click', () => {
+                removeGlow();
+                counter++;
+                moveImages();
+                glowNextImage();
+                if (counter >= totalImages + 4) {
+                    setTimeout(() => {
+                        imageContainer.style.transition = "none";
+                        counter = 4;
+                        moveImages();
+                    }, 500);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                removeGlow();
+                counter--;
+                moveImages();
+                if (counter <= 0) {
+                    setTimeout(() => {
+                        imageContainer.style.transition = "none";
+                        counter = totalImages;
+                        moveImages();
+                    }, 500);
+                }
+            });
+        });
+
+	
+class TxtType {
+	constructor(el, toRotate, period) {
+		this.toRotate = toRotate;
+		this.el = el;
+		this.loopNum = 0;
+		this.period = parseInt(period, 10) || 2000;
+		this.txt = '';
+		this.tick();
+		this.isDeleting = false;
+	}
+
+	tick() {
+		const i = this.loopNum % this.toRotate.length;
+		const fullTxt = this.toRotate[i];
+
+		if (this.isDeleting) {
+			this.txt = fullTxt.substring(0, this.txt.length - 1);
+		} else {
+			this.txt = fullTxt.substring(0, this.txt.length + 1);
+		}
+
+		this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+		let delta = 200 - Math.random() * 100;
+
+		if (this.isDeleting) {
+			delta /= 2;
+		}
+
+		if (!this.isDeleting && this.txt === fullTxt) {
+			delta = this.period;
+			this.isDeleting = true;
+		} else if (this.isDeleting && this.txt === '') {
+			this.isDeleting = false;
+			this.loopNum++;
+			delta = 500;
+		}
+
+		setTimeout(() => this.tick(), delta);
+	}
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+	const elements = document.getElementsByClassName('typewrite');
+	for (let i = 0; i < elements.length; i++) {
+		const toRotate = elements[i].getAttribute('data-type');
+		const period = elements[i].getAttribute('data-period');
+		if (toRotate) {
+			new TxtType(elements[i], JSON.parse(toRotate), period);
+		}
+	}
+
+	// INJECT CSS
+	const css = document.createElement('style');
+	css.type = 'text/css';
+	css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
+	document.body.appendChild(css);
+});
+
+      
+const slides = document.querySelectorAll('.image-slide');
+let currentSlide = 0;
+
+// Show the first image immediately
+slides[currentSlide].classList.add('active');
+
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 3000);
+
+// Set the slope image as the default
+const slopeImage = document.querySelector('.image-slide img[src="/storage/ag/g/slope/IMG_5256.jpeg"]');
+if (slopeImage) {
+  slopeImage.parentElement.classList.add('active');
+}
+
+
+    </script>
+</body>
+</html>

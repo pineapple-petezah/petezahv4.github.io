@@ -171,20 +171,36 @@
 .large-image-container {
     position: absolute;
     top: 60%; /* Moved down slightly */
-    right: 200px; /* Moved 400px to the left */
+    right: 400px; /* Moved 400px to the left */
     transform: translateY(-50%);
     text-align: center;
     z-index: 5;
     padding: 20px;
+    border-radius: 12px; /* Rounded corners for the container */
+    background: rgba(0, 0, 0, 0.5); /* Slight dark background for contrast */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Soft shadow for the container */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transition for smooth animation */
+}
+
+.large-image-container:hover {
+    transform: translateY(-50%) scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); /* Stronger shadow on hover */
 }
 
 .large-image {
     width: 267px; /* 400px reduced by one-third (400px * 2/3 = 267px) */
     height: auto;
-    border: 5px solid #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+    border: 5px solid #ffffff; /* White border around the image */
+    border-radius: 12px; /* Rounded corners for the image */
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3); /* Light shadow around the image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
 }
+
+.large-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6); /* Lighter, more prominent shadow on hover */
+}
+
 
 
         .large-image-caption {

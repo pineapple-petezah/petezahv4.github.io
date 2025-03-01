@@ -39,6 +39,7 @@ body, html {
     padding: 12px 20px;
     transition: transform 0.5s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    border-radius: 15px 15px 0 0; /* Rounded top corners */
 }
 
 .tab {
@@ -49,21 +50,24 @@ body, html {
     cursor: pointer;
     background-color: #1e2a47;
     border-right: 1px solid #444;
-    transition: background-color 0.3s ease-in-out;
-    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    border-radius: 12px;
     flex-shrink: 1;
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-right: 8px; /* Space between tabs */
 }
 
 .tab.active {
     background-color: #0d1426; /* Darker blue when active */
     color: #fff;
+    transform: scale(1.05); /* Slight zoom effect on active tab */
 }
 
 .tab:hover {
     background-color: #2b3c5d; /* Lighter blue on hover */
+    transform: scale(1.03); /* Hover zoom effect */
 }
 
 .tab .close-button {
@@ -85,7 +89,7 @@ body, html {
     border: none;
     outline: none;
     font-size: 22px;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -104,6 +108,7 @@ body, html {
     border-bottom: 2px solid #fff;
     transition: transform 0.5s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 0 0 15px 15px; /* Rounded bottom corners for navbar */
 }
 
 .navbar-left {
@@ -132,27 +137,30 @@ body, html {
     background-color: #0e192e; /* Darker blue for the search bar */
     border: 2px solid #fff;
     overflow: hidden;
-    height: 40px;
+    height: 45px;
     margin-left: 20px;
 }
 
 .search-bar input {
     flex-grow: 1;
-    padding: 10px;
+    padding: 12px 18px;
     border: none;
     background-color: transparent;
     color: #ccc;
     font-size: 16px;
+    border-radius: 25px 0 0 25px; /* Rounded left side */
+    transition: background-color 0.3s ease-in-out;
 }
 
 .search-bar input:focus {
     outline: none;
+    background-color: #1e2a47; /* Slight color change on focus */
 }
 
 .search-bar button {
     background-color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 16px;
     color: #1e2a47; /* Dark blue for button text */
     cursor: pointer;
@@ -174,7 +182,7 @@ body, html {
     flex-grow: 1;
     overflow: hidden;
     position: relative;
-    height: calc(100% - 80px); /* Increased iframe height space */
+    height: calc(100% - 100px); /* Increased iframe height space */
     background-color: #1e2a47; /* Dark blue background */
 }
 
@@ -183,12 +191,14 @@ iframe {
     height: 100%;
     border: none;
     display: none;
-    border-radius: 10px; /* Rounded corners for iframe */
+    border-radius: 15px; /* Rounded corners for iframe */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow around iframe */
+    transition: transform 0.3s ease-in-out;
 }
 
 iframe.active {
     display: block;
+    transform: scale(1.02); /* Smooth zoom-in effect on active iframe */
 }
 
 .hide-button {
@@ -223,6 +233,7 @@ iframe.active {
 .show-navbar-button i {
     color: #FFD700; /* Gold color for the show button */
 }
+
     </style>
 </head>
 <body>

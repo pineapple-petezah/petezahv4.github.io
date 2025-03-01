@@ -15,173 +15,211 @@
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-        }
-        body, html {
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .tabs {
-            display: flex;
-            align-items: center;
-            background-color: #222;
-            border-bottom: 2px solid #fff;
-            overflow: hidden;
-            white-space: nowrap;
-            transition: transform 0.5s ease-in-out;
-        }
-        .tab {
-            display: flex;
-            align-items: center;
-            padding: 5px 10px;
-            color: #ccc;
-            cursor: pointer;
-            position: relative;
-            background-color: #333;
-            border-right: 1px solid #555;
-            transition: background-color 0.3s;
-            flex-shrink: 1;
-            max-width: 150px;
-            overflow: hidden;
-            border-radius: 5px;
-            text-overflow: ellipsis;
-        }
-        .tab.active {
-            background-color: #444;
-            color: #fff;
-        }
-        .tab:hover {
-            background-color: #555;
-        }
-        .tab .close-button {
-            margin-left: 5px;
-            color: #ccc;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .tab .close-button:hover {
-            color: #262626;
-        }
-        .add-tab-button {
-            padding: 10px;
-            cursor: pointer;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            outline: none;
-            font-size: 20px;
-        }
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #333;
-            padding: 10px;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 2px solid #fff;
-            transition: transform 0.5s ease-in-out;
-        }
-        .navbar-left {
-            display: flex;
-            gap: 10px;
-        }
-        .navbar button {
-            background: transparent;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        .navbar button:hover {
-            color: #fff;
-        }
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            border-radius: 25px;
-            background-color: #000;
-            border: 2px solid #fff;
-            overflow: hidden;
-            height: 30px;
-          margin-left: 20px;
-        }
-        .search-bar input {
-            flex-grow: 1;
-            padding: 10px;
-            border: none;
-            background-color: transparent;
-            color: #ccc;
-            font-size: 16px;
-        }
-        .search-bar input:focus {
-            outline: none;
-        }
-        .search-bar button {
-            background-color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #000;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            border-radius: 0 25px 25px 0;
-        }
-        .search-bar button i {
-            margin-left: 5px;
-        }
-        .content-wrapper {
-            flex-grow: 1;
-            overflow: hidden;
-            position: relative;
-            height: 100%;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-        iframe.active {
-            display: block;
-        }
-        .hide-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: transparent;
-            border: none;
-            font-size: 30px;
-            color: #fff;
-            cursor: pointer;
-            z-index: 1001;
-        }
-	.navbar.hidden, .tabs.hidden {
-	    transform: translateY(-200%);
-        }
-        .show-navbar-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: transparent;
-            border: none;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            display: none;
-            z-index: 2000;
-        }
-        .show-navbar-button i {
-            color: gold;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e2a47; /* Dark blue background */
+    color: #fff; /* White text color */
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+    background-color: #162347; /* Dark blue background for tabs */
+    border-bottom: 2px solid #fff;
+    padding: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #ccc;
+    cursor: pointer;
+    background-color: #1e2a47;
+    border-right: 1px solid #444;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 5px;
+    flex-shrink: 1;
+    max-width: 200px; /* Increase tab width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tab.active {
+    background-color: #0d1426; /* Darker blue when active */
+    color: #fff;
+}
+
+.tab:hover {
+    background-color: #2b3c5d; /* Slightly lighter blue on hover */
+}
+
+.tab .close-button {
+    margin-left: 10px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tab .close-button:hover {
+    color: #f5f5f5; /* Slightly brighter close button */
+}
+
+.add-tab-button {
+    padding: 12px;
+    cursor: pointer;
+    background-color: #162347;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-tab-button:hover {
+    background-color: #2b3c5d;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #162347;
+    padding: 15px 25px;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid #fff;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar-left {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar button:hover {
+    color: #f5f5f5; /* Lighter white on hover */
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    background-color: #0e192e; /* Darker blue for the search bar */
+    border: 2px solid #fff;
+    overflow: hidden;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    color: #ccc;
+    font-size: 16px;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar button {
+    background-color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #1e2a47; /* Dark blue for button text */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 0 25px 25px 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-bar button:hover {
+    background-color: #2b3c5d; /* Lighter blue when hovering */
+}
+
+.search-bar button i {
+    margin-left: 5px;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    background-color: #1e2a47; /* Dark blue background */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+}
+
+iframe.active {
+    display: block;
+}
+
+.hide-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.navbar.hidden, .tabs.hidden {
+    transform: translateY(-200%);
+}
+
+.show-navbar-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: none;
+    z-index: 2000;
+}
+
+.show-navbar-button i {
+    color: #FFD700; /* Gold color for the show button */
+}
+
     </style>
 </head>
 <body>

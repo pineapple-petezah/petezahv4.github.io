@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Image Shuffler</title>
+    <title>PeteZah | Home</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -94,6 +95,14 @@
             padding: 6px 0;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
+            transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .image-box:hover .caption {
+            opacity: 1;
+            visibility: visible;
             transition: opacity 0.3s ease-in-out;
         }
 
@@ -115,7 +124,6 @@
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
         }
 
-        /* Styling for the left side text and button */
         .welcome-section {
             position: absolute;
             top: 50%;
@@ -162,7 +170,6 @@
     </style>
 </head>
 <body>
-    <!-- Left side welcome message and button -->
     <div class="welcome-section">
         <h2>
 				Welcome to 
@@ -225,7 +232,6 @@
     <script>
         function startGaming() {
             alert('Let\'s Start Gaming!');
-            // You can replace this with actual redirection or game launching logic
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -254,7 +260,6 @@
                 imageContainer.style.transform = `translateX(-${counter * imageWidth}px)`;
             }
 
-            // Automatic image hover effect (glow)
             function glowNextImage() {
                 const nextImage = document.querySelectorAll('.image-box')[counter];
                 nextImage.querySelector('.image').classList.add('glow');
@@ -293,66 +298,63 @@
             });
         });
 
-	
-class TxtType {
-	constructor(el, toRotate, period) {
-		this.toRotate = toRotate;
-		this.el = el;
-		this.loopNum = 0;
-		this.period = parseInt(period, 10) || 2000;
-		this.txt = '';
-		this.tick();
-		this.isDeleting = false;
-	}
+        class TxtType {
+            constructor(el, toRotate, period) {
+                this.toRotate = toRotate;
+                this.el = el;
+                this.loopNum = 0;
+                this.period = parseInt(period, 10) || 2000;
+                this.txt = '';
+                this.tick();
+                this.isDeleting = false;
+            }
 
-	tick() {
-		const i = this.loopNum % this.toRotate.length;
-		const fullTxt = this.toRotate[i];
+            tick() {
+                const i = this.loopNum % this.toRotate.length;
+                const fullTxt = this.toRotate[i];
 
-		if (this.isDeleting) {
-			this.txt = fullTxt.substring(0, this.txt.length - 1);
-		} else {
-			this.txt = fullTxt.substring(0, this.txt.length + 1);
-		}
+                if (this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
 
-		this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+                this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
 
-		let delta = 200 - Math.random() * 100;
+                let delta = 200 - Math.random() * 100;
 
-		if (this.isDeleting) {
-			delta /= 2;
-		}
+                if (this.isDeleting) {
+                    delta /= 2;
+                }
 
-		if (!this.isDeleting && this.txt === fullTxt) {
-			delta = this.period;
-			this.isDeleting = true;
-		} else if (this.isDeleting && this.txt === '') {
-			this.isDeleting = false;
-			this.loopNum++;
-			delta = 500;
-		}
+                if (!this.isDeleting && this.txt === fullTxt) {
+                    delta = this.period;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.loopNum++;
+                    delta = 500;
+                }
 
-		setTimeout(() => this.tick(), delta);
-	}
-}
+                setTimeout(() => this.tick(), delta);
+            }
+        }
 
-document.addEventListener('DOMContentLoaded', function () {
-	const elements = document.getElementsByClassName('typewrite');
-	for (let i = 0; i < elements.length; i++) {
-		const toRotate = elements[i].getAttribute('data-type');
-		const period = elements[i].getAttribute('data-period');
-		if (toRotate) {
-			new TxtType(elements[i], JSON.parse(toRotate), period);
-		}
-	}
+        document.addEventListener('DOMContentLoaded', function () {
+            const elements = document.getElementsByClassName('typewrite');
+            for (let i = 0; i < elements.length; i++) {
+                const toRotate = elements[i].getAttribute('data-type');
+                const period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
 
-	// INJECT CSS
-	const css = document.createElement('style');
-	css.type = 'text/css';
-	css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
-	document.body.appendChild(css);
-});
-
+            const css = document.createElement('style');
+            css.type = 'text/css';
+            css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
+            document.body.appendChild(css);
+        });
     </script>
 </body>
 </html>

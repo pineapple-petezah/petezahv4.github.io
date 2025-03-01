@@ -14,7 +14,7 @@
     <meta name="keywords" content="Pete Zah Games, the next gen gaming site">
 
     <style>
-        * {
+    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -36,7 +36,7 @@ body, html {
     align-items: center;
     background-color: #0a1324; /* Even darker blue for tabs */
     border-bottom: 2px solid #fff;
-    padding: 6px 18px; /* Smaller padding to reduce height */
+    padding: 4px 12px; /* Halved padding to reduce height */
     transition: transform 0.5s ease-in-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
     border-radius: 12px 12px 0 0; /* Rounded top corners */
@@ -45,7 +45,7 @@ body, html {
 .tab {
     display: flex;
     align-items: center;
-    padding: 8px 14px; /* Smaller padding for the tabs */
+    padding: 4px 10px; /* Halved padding for the tabs */
     color: #ccc;
     cursor: pointer;
     background-color: #0a1324;
@@ -82,13 +82,13 @@ body, html {
 }
 
 .add-tab-button {
-    padding: 8px 14px; /* Smaller padding */
+    padding: 4px 10px; /* Halved padding */
     cursor: pointer;
     background-color: #0a1324;
     color: #fff;
     border: none;
     outline: none;
-    font-size: 22px;
+    font-size: 20px;
     border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
 }
@@ -102,7 +102,7 @@ body, html {
     align-items: center;
     justify-content: space-between;
     background-color: #0a1324; /* Dark blue for navbar */
-    padding: 10px 20px; /* Smaller padding to reduce height */
+    padding: 6px 16px; /* Halved padding to reduce height */
     width: 100%;
     z-index: 1000;
     border-bottom: 2px solid #fff;
@@ -113,7 +113,7 @@ body, html {
 
 .navbar-left {
     display: flex;
-    gap: 18px;
+    gap: 14px;
 }
 
 .navbar button {
@@ -121,7 +121,7 @@ body, html {
     border: none;
     color: #fff;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px; /* Slightly smaller icons */
     transition: color 0.3s ease-in-out;
 }
 
@@ -137,13 +137,13 @@ body, html {
     background-color: #0e192e; /* Darker blue for the search bar */
     border: 2px solid #fff;
     overflow: hidden;
-    height: 40px;
+    height: 35px; /* Halved height */
     margin-left: 20px;
 }
 
 .search-bar input {
     flex-grow: 1;
-    padding: 10px 16px;
+    padding: 8px 12px; /* Reduced padding */
     border: none;
     background-color: transparent;
     color: #ccc;
@@ -160,8 +160,8 @@ body, html {
 .search-bar button {
     background-color: #fff;
     border: none;
-    padding: 10px 18px;
-    font-size: 16px;
+    padding: 8px 14px; /* Reduced padding */
+    font-size: 14px; /* Slightly smaller text */
     color: #1e2a47; /* Dark blue for button text */
     cursor: pointer;
     display: flex;
@@ -182,7 +182,7 @@ body, html {
     flex-grow: 1;
     overflow: hidden;
     position: relative;
-    height: calc(100% - 120px); /* Increased content space by reducing the tab container height */
+    height: calc(100% - 80px); /* Increased content space by halving the tab and navbar height */
     background-color: #0d1a2b; /* Darker blue background */
 }
 
@@ -233,7 +233,6 @@ iframe.active {
 .show-navbar-button i {
     color: #FFD700; /* Gold color for the show button */
 }
-
     </style>
 </head>
 <body>

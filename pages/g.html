@@ -34,67 +34,76 @@
     <style>
         body {
     display: flex;
-    flex-direction: column;  /* Changed to column layout */
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #0A1D37;
+    background-color: #0A1D37;  /* Dark Blue background */
     color: white;
     font-family: 'Poppins', sans-serif;
-    padding: 20px 0;
+    padding: 0;
+    overflow-x: hidden;  /* Removes horizontal scroll */
+    overflow-y: scroll;  /* Keeps vertical scroll */
+    scroll-behavior: smooth;  /* Smooth scrolling effect */
 }
 
+/* Sticky Search Bar */
 .search-container {
     text-align: center;
-    margin-bottom: 20px;  /* This ensures some spacing below the search bar */
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background-color: #0A1D37;  /* Keep consistent dark blue background */
+    padding: 10px 0;
+    z-index: 1000;  /* Ensure it's always on top */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Add a small shadow for a floating effect */
 }
 
 .search-container input {
     font-family: "Nunito", serif;
-    width: 40vw;  /* Adjusted width for better appearance */
-    padding: 10px;
-    font-size: 16px;
-    border: none;
+    width: 40vw;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: 2px solid #fff;  /* Skinny white border */
     color: #fff;
     background: #141414;
     border-radius: 50px;
+    transition: 0.3s;
 }
 
+.search-container input:focus {
+    background: #333;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    border-color: #0066cc;  /* Light blue focus border */
+}
+
+/* Game Container */
 .game-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding-top: 20px;  /* Adjusted for spacing from search bar */
+    gap: 30px;
+    padding-top: 20px;
 }
 
-
-
-#search {
-    width: 40vw;
-    padding: 10px;
-    background-color: #141414;
-    border-radius: 50px;
-    border: none;
-    color: white;
-}
-
-
+/* Image Item Styles */
 .image-item {
     position: relative;
-    width: 250px;  /* Increased the width for a bigger look */
-    height: 220px; /* Increased height for better proportion */
+    width: 250px;  /* Slightly larger image items */
+    height: 220px;
     overflow: hidden;
     transition: transform 0.4s ease, box-shadow 0.3s ease;
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Added a shadow for depth */
+    border-radius: 10px;  /* Slightly less rounded corners */
     background-color: #222;
+    border: 2px solid #fff;  /* Skinny white border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);  /* Subtle shadow for depth */
 }
 
 .image-item:hover {
-    transform: scale(1.1); /* Slight zoom effect on hover */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Bigger shadow for hover effect */
+    transform: scale(1.05);  /* Slight zoom effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);  /* Bigger shadow on hover */
 }
 
 .image-item a {
@@ -103,44 +112,48 @@
     height: 100%;
     text-decoration: none;
     color: inherit;
-    border-radius: 20px; /* Rounded link area to match the container */
+    border-radius: 10px;
 }
 
 .image-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 10px;  /* Matching rounded corners */
     transition: transform 0.3s ease-in-out;
 }
 
 .image-item img:hover {
-    transform: scale(1.1); /* Slight zoom effect on image hover */
+    transform: scale(1.1);  /* Slight zoom effect on image hover */
 }
 
+/* Label Styles */
 .label {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for label */
+    background-color: rgba(0, 0, 0, 0.6);  /* Dark overlay for label */
     color: white;
     text-align: center;
     padding: 10px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     font-weight: bold;
     font-size: 16px;
 }
 
 .image-item:hover .label {
-    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover for label */
+    background-color: rgba(0, 0, 0, 0.8);  /* Darker on hover */
 }
 
-/* Additional styles to modernize the layout */
+/* General Layout & Spacing */
 .game-container {
-    gap: 30px; /* More space between items */
+    gap: 30px;  /* More space between image items */
+    padding-top: 80px;  /* Adjusted top padding to give space for sticky search bar */
 }
+
+
 
 
 .appImage {

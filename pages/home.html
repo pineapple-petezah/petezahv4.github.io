@@ -32,7 +32,14 @@
             text-align: center;
         }
 
-        /* Existing styles for the left image slider */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            position: relative;
+        }
+
+        /* Existing image slider styling */
         .image-shuffler {
             display: flex;
             align-items: center;
@@ -44,16 +51,11 @@
             padding: 14px;
             position: relative;
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
-            margin: 0 auto;
         }
 
-        /* New styles for the right-middle image slider */
+        /* New right slider styling */
         .right-slider {
-            position: absolute;
-            top: 50%;
-            right: 10%;
-            transform: translateY(-50%);
-            width: 350px;
+            width: 35%;
             height: 250px;
             background-color: #1e1e2d;
             border-radius: 12px;
@@ -61,7 +63,9 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         .right-slider img {
@@ -108,6 +112,7 @@
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
         }
+
     </style>
 </head>
 <body>
@@ -125,33 +130,47 @@
         <button class="start-btn" onclick="startGaming()">Start Gaming</button>
     </div>
 
-    <div class="image-shuffler">
-        <button id="prev-btn" class="arrow">&lt;</button>
-        <div class="image-wrapper">
-            <div class="image-container">
-                <div class="image-box">
-                    <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
-                    <div class="caption">Smashy Road</div>
+    <div class="container">
+        <!-- Left Image Shuffler -->
+        <div class="image-shuffler">
+            <button id="prev-btn" class="arrow">&lt;</button>
+            <div class="image-wrapper">
+                <div class="image-container">
+                    <div class="image-box">
+                        <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image">
+                        <div class="caption">Smashy Road</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
+                        <div class="caption">Ragdoll Simulator</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image">
+                        <div class="caption">Slope</div>
+                    </div>
+                    <div class="image-box">
+                        <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image">
+                        <div class="caption">Slither.io</div>
+                    </div>
                 </div>
-                <div class="image-box">
-                    <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image">
-                    <div class="caption">Ragdoll Simulator</div>
-                </div>
-                <!-- Other images here -->
             </div>
+            <button id="next-btn" class="arrow">&gt;</button>
         </div>
-        <button id="next-btn" class="arrow">&gt;</button>
-    </div>
 
-    <!-- Right-side Image Slider -->
-    <div class="right-slider">
-        <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="slider-image">
-        <div class="caption">Smashy Road</div>
+        <!-- Right Image Slider -->
+        <div class="right-slider">
+            <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="slider-image">
+            <div class="caption">Smashy Road</div>
+        </div>
     </div>
 
     <script>
-        // JavaScript for the existing image slider
+        function startGaming() {
+            alert('Let\'s Start Gaming!');
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
+            // Left image shuffler functionality
             const imageContainer = document.querySelector('.image-container');
             const images = document.querySelectorAll('.image-box');
             const prevBtn = document.getElementById('prev-btn');
@@ -168,7 +187,6 @@
                 imageContainer.insertBefore(lastClone, imageContainer.firstChild);
             }
 
-            const fullImageSet = document.querySelectorAll('.image-box');
             imageContainer.style.transform = `translateX(-${imageWidth * 4}px)`;
             counter = 4;
 
@@ -202,12 +220,12 @@
             });
         });
 
-        // JavaScript for the right-side slider
+        // Right image slider functionality
         let rightSliderIndex = 0;
         const rightSliderImages = [
             { src: "/storage/images/main/smashy.jpg", caption: "Smashy Road" },
             { src: "/storage/images/main/ragdoll.jpg", caption: "Ragdoll Simulator" },
-            // Add more images and captions
+            // Add more images and captions here
         ];
 
         function updateRightSlider() {

@@ -30,7 +30,7 @@
             align-items: flex-start;
             height: 100vh;
             margin: 0;
-            background-color: #0A1D37; 
+            background-color: #0A1D37; /* Dark Blue Background */
             color: white;
             font-family: 'Poppins', sans-serif;
             padding: 20px 0;
@@ -42,14 +42,17 @@
             flex-direction: column;
             align-items: center;
             margin: 0;
+            width: 80vw; /* Ensures the container has consistent width */
         }
 
         .iframe-container {
-            border-radius: 10px; /* Slightly smaller radius for modern look */
-            width: 80vw; /* Adjusted to give a more balanced view */
-            height: 80vh;
+            border-radius: 15px; /* More pronounced rounded corners for a sleek look */
+            width: 100%;
+            height: 75vh;
             overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Larger shadow for the iframe container */
+            border: 3px solid #ffffff; /* White border for the iframe container */
+            background-color: #0A1D37; /* Dark Blue background to match the theme */
         }
 
         iframe {
@@ -57,25 +60,27 @@
             height: 100%;
             background-color: #fff;
             border: none;
+            border-radius: 15px; /* Ensures the iframe content also has rounded corners */
         }
 
         .controls {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            width: 80vw; /* Adjusted width */
-            height: 5vh; /* Slightly taller for better usability */
+            width: 100%;
+            height: 6vh; /* Adjusted for better spacing */
             background-color: #0A1D37; /* Matching Dark Blue */
-            border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Soft shadow for separation */
+            border-radius: 0 0 15px 15px; /* Rounded corners only at the bottom */
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.4); /* Slight shadow to separate from iframe */
             padding: 0 20px;
+            border-top: 2px solid #ffffff; /* Subtle white border at the top of the control bar */
         }
 
         .icon {
             color: #fff;
             margin-right: 20px;
             cursor: pointer;
-            font-size: 20px; /* Slightly bigger icons for better visibility */
+            font-size: 22px; /* Slightly bigger icons for better visibility */
             transition: transform 0.2s ease; /* Smooth hover effect */
         }
 
@@ -147,8 +152,8 @@
 
             script.onload = function() {
                 new Crate({
-                    server: '1272664240175448208', 
-                    channel: '1272664509156298773' 
+                    server: '1337108365591187640', 
+                    channel: '1345454451904745673' 
                 });
             };
         });

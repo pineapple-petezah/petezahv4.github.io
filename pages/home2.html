@@ -160,66 +160,6 @@
             transform: scale(1.05);
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
         }
-
-	/* Position image scrambler to the right and center vertically */
-        .image-scrambler-container {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 250px;
-        }
-
-        .image-scrambler {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .image-box {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 3px solid #ffffff;
-            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-        }
-
-        .image-box:hover {
-            transform: scale(1.08);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
-            filter: brightness(1.2);
-        }
-
-        .button-container {
-            display: flex;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .arrow {
-            background-color: #2a3c5f;
-            border: none;
-            padding: 12px 18px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s;
-            color: white;
-            border-radius: 6px;
-            box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
-        }
-
-        .arrow:hover {
-            background-color: #3c5b8e;
-            transform: scale(1.1);
-            box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
-        }
     </style>
 </head>
 <body>
@@ -282,26 +222,6 @@
         </div>
         <button id="next-btn" class="arrow">&gt;</button>
     </div>
-
-    div class="image-scrambler-container">
-        <div class="image-scrambler">
-            <img src="/storage/images/main/smashy.jpg" alt="Image 1" class="image-box">
-            <img src="/storage/images/main/ragdoll.jpg" alt="Image 2" class="image-box">
-            <img src="/storage/ag/g/slope/IMG_5256.jpeg" alt="Image 3" class="image-box">
-            <img src="/storage/images/main/slitherio.jpg" alt="Image 4" class="image-box">
-            <img src="/storage/ag/g/racesurvival/logo.jpeg" alt="Image 5" class="image-box">
-            <img src="/storage/ag/g/polytrack/splash.png" alt="Image 6" class="image-box">
-            <img src="/storage/images/main/brawlstars1.jpg" alt="Image 7" class="image-box">
-            <img src="/storage/ag/g/yohoho/IMG_5302.jpeg" alt="Image 8" class="image-box">
-        </div>
-        
-        <!-- Buttons to scramble images -->
-        <div class="button-container">
-            <button id="prev-btn" class="arrow">&lt;</button>
-            <button id="next-btn" class="arrow">&gt;</button>
-        </div>
-    </div>
-
 
     <script>
         function startGaming() {
@@ -433,36 +353,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
 	document.body.appendChild(css);
 });
-
-	    document.addEventListener("DOMContentLoaded", function () {
-            const imageContainer = document.querySelector('.image-scrambler');
-            const images = document.querySelectorAll('.image-box');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            let shuffledImages = Array.from(images);
-            let currentIndex = 0;
-
-            function shuffleImages() {
-                shuffledImages = shuffledImages.sort(() => Math.random() - 0.5);
-                imageContainer.innerHTML = '';
-                shuffledImages.forEach(img => imageContainer.appendChild(img));
-            }
-
-            // Button event listeners to shuffle images
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % shuffledImages.length;
-                shuffleImages();
-            });
-
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + shuffledImages.length) % shuffledImages.length;
-                shuffleImages();
-            });
-
-            // Initial scramble on load
-            shuffleImages();
-        });
 
     </script>
 </body>

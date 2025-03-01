@@ -167,48 +167,51 @@
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
         }
 
-        .large-image-container {
-            position: absolute;
-            top: 60%;
-            right: 400px;
-            transform: translateY(-50%);
-            text-align: center;
-            z-index: 5;
-            padding: 20px;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
+        /* New Styles for the Large Image */
+.large-image-container {
+    position: absolute;
+    top: 60%; /* Moved down slightly */
+    right: 400px; /* Moved 400px to the left */
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 5;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    width: 80%; /* Reduced container width by 1/5 */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
-        .large-image-container:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-        }
+.large-image-container:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
 
-        .large-image {
-            width: 267px;
-            height: auto;
-            border: 5px solid #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.large-image {
+    height: 200px; /* Fixed height for the image */
+    width: auto; /* Maintain aspect ratio based on the fixed height */
+    border: 5px solid #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .large-image:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
-        }
+.large-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
+}
 
-        .large-image-caption {
-            margin-top: 10px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 18px;
-            background: rgba(10, 29, 55, 0.8);
-            padding: 8px;
-            border-radius: 8px;
-        }
+.large-image-caption {
+    margin-top: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    background: rgba(10, 29, 55, 0.8);
+    padding: 8px;
+    border-radius: 8px;
+}
+
     </style>
 </head>
 <body>

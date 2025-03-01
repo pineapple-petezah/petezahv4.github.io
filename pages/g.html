@@ -32,7 +32,7 @@
 			content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah"
 		/>
     <style>
-        body {
+body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -43,7 +43,12 @@
     color: white;
     font-family: 'Poppins', sans-serif;
     padding: 0;
-    overflow: hidden;  /* Completely remove the scrollbars */
+    overflow: auto;  /* Enable scrolling */
+}
+
+/* Hide scrollbar but allow scrolling */
+body::-webkit-scrollbar {
+    display: none;  /* Hide scrollbar */
 }
 
 /* Fixed Search Bar */

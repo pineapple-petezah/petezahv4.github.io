@@ -161,7 +161,7 @@
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
         }
 
-        .image-shuffler {
+        .rightimage-shuffler {
   width: 100%; /* Make width responsive */
   max-width: 300px; /* Set maximum width */
   height: auto; 
@@ -216,7 +216,7 @@ row {
             flex: 1; 
         }
 
-        .image-shuffler {
+        .rightimage-shuffler {
             width: 300px;
             height: 300px;
             margin-left: 20px; 
@@ -227,13 +227,19 @@ row {
                 flex-direction: column; 
                 align-items: center;
             }
-            .image-shuffler {
+            .rightimage-shuffler {
                 margin-left: 0;
                 margin-top: 20px; 
-								margin: 20px auto; 
+		margin: 20px auto; 
                 float: none; 
             }
         }
+
+	.right-shuffler {
+	     display: flex; 
+ 	     align-items: center; 
+  	     justify-content: flex-end; 
+	}
     </style>
 </head>
 <body>
@@ -257,7 +263,7 @@ row {
     </div>
 
     <div class="right-shuffler">
-			    <div class="image-shuffler" style="margin-right: 50px;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> 
+			    <div class="rightimage-shuffler" style="margin-right: 50px;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"> 
   			      <div class="image-slide"> <a href="iframe.html?url=/storage/ag/g/slope/">
     			        <img src="storage/ag/g/slope/IMG_5256.jpeg" alt="Slope"> 
     			        <div class="image-title">Slope</div>

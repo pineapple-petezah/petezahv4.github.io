@@ -167,41 +167,38 @@
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
         }
 
-/* New Styles for the Large Image */
-.large-image-container {
-    position: absolute;
-    top: 60%; /* Moved down slightly */
-    right: 400px; /* Moved 400px to the left */
-    transform: translateY(-50%);
-    text-align: center;
-    z-index: 5;
-    padding: 20px;
-    border-radius: 12px; /* Rounded corners for the container */
-    background: rgba(0, 0, 0, 0.5); /* Slight dark background for contrast */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Soft shadow for the container */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transition for smooth animation */
-}
+        .large-image-container {
+            position: absolute;
+            top: 60%;
+            right: 400px;
+            transform: translateY(-50%);
+            text-align: center;
+            z-index: 5;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-.large-image-container:hover {
-    transform: translateY(-50%) scale(1.05); /* Slight zoom effect on hover */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); /* Stronger shadow on hover */
-}
+        .large-image-container:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
 
-.large-image {
-    width: 267px; /* 400px reduced by one-third (400px * 2/3 = 267px) */
-    height: auto;
-    border: 5px solid #ffffff; /* White border around the image */
-    border-radius: 12px; /* Rounded corners for the image */
-    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3); /* Light shadow around the image */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
-}
+        .large-image {
+            width: 267px;
+            height: auto;
+            border: 5px solid #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.large-image:hover {
-    transform: scale(1.1); /* Slight zoom effect on hover */
-    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6); /* Lighter, more prominent shadow on hover */
-}
-
-
+        .large-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
+        }
 
         .large-image-caption {
             margin-top: 10px;
@@ -235,8 +232,8 @@
 
     <!-- Large Image Container -->
     <div class="large-image-container">
-        <img src="/storage/images/main/smashy.jpg" alt="Large Image" class="large-image">
-        <div class="large-image-caption">Smashy Road</div>
+        <img src="/storage/images/main/smashy.jpg" alt="Large Image" class="large-image" id="large-image">
+        <div class="large-image-caption" id="large-image-caption">Smashy Road</div>
     </div>
 
     <div class="image-shuffler">
@@ -348,6 +345,35 @@
                 }
             });
         });
+
+	const images = [
+            { src: '/storage/images/main/smashy.jpg', caption: 'Smashy Road' },
+            { src: '/storage/images/main/ragdoll.jpg', caption: 'Ragdoll Simulator' },
+            { src: '/storage/ag/g/slope/IMG_5256.jpeg', caption: 'Slope' },
+            { src: '/storage/images/main/slitherio.jpg', caption: 'Slither.io' },
+            { src: '/storage/ag/g/racesurvival/logo.jpeg', caption: 'Race Survival' },
+            { src: '/storage/ag/g/polytrack/splash.png', caption: 'Polytrack' },
+            { src: '/storage/images/main/brawlstars1.jpg', caption: 'Brawl Stars' },
+            { src: '/storage/ag/g/yohoho/IMG_5302.jpeg', caption: 'YoHoHo!' }
+        ];
+
+        let currentIndex = 0; // To keep track of the current image index
+
+        // Get the image and caption elements
+        const imageElement = document.getElementById('large-image');
+        const captionElement = document.getElementById('large-image-caption');
+
+        // Function to change the image and caption
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length; // Loop back to the start when reaching the end
+            const currentImage = images[currentIndex];
+            imageElement.src = currentImage.src;
+            captionElement.textContent = currentImage.caption;
+        }
+
+        // Change the image and caption every 3 seconds
+        setInterval(changeImage, 3000);
+    </script>
     </script>
 </body>
 </html>

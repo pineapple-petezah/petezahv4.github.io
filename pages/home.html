@@ -167,6 +167,51 @@
             transform: scale(1.05);
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
         }
+
+        /* New Styles for the Large Image */
+.large-image-container {
+    position: absolute;
+    top: 60%; /* Moved down slightly */
+    right: 200px; /* Moved 400px to the left */
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 5;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.large-image-container:hover {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.large-image {
+    height: 200px; /* Fixed height for the image */
+    width: auto; /* Maintain aspect ratio based on the fixed height */
+    border: 5px solid #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.large-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.6);
+}
+
+.large-image-caption {
+    margin-top: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    background: rgba(10, 29, 55, 0.8);
+    padding: 8px;
+    border-radius: 8px;
+}
+
     </style>
 </head>
 <body>
@@ -186,6 +231,12 @@
 			</h2>
         <p>Game on!</p>
         <button class="start-btn" onclick="startGaming()">Start Gaming</button>
+    </div>
+
+    <!-- Large Image Container -->
+    <div class="large-image-container">
+        <img src="/storage/images/main/smashy.jpg" alt="Large Image" class="large-image" id="large-image">
+        <div class="large-image-caption" id="large-image-caption">Smashy Road</div>
     </div>
 
     <div class="image-shuffler">
@@ -298,7 +349,33 @@
             });
         });
 
-        class TxtType {
+	const images = [
+            { src: '/storage/images/main/smashy.jpg', caption: 'Smashy Road' },
+            { src: '/storage/images/main/ragdoll.jpg', caption: 'Ragdoll Simulator' },
+            { src: '/storage/ag/g/slope/IMG_5256.jpeg', caption: 'Slope' },
+            { src: '/storage/images/main/slitherio.jpg', caption: 'Slither.io' },
+            { src: '/storage/images/main/brawlstars1.jpg', caption: 'Brawl Stars' },
+            { src: '/storage/ag/g/yohoho/IMG_5302.jpeg', caption: 'YoHoHo!' }
+        ];
+
+        let currentIndex = 0; // To keep track of the current image index
+
+        // Get the image and caption elements
+        const imageElement = document.getElementById('large-image');
+        const captionElement = document.getElementById('large-image-caption');
+
+        // Function to change the image and caption
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length; // Loop back to the start when reaching the end
+            const currentImage = images[currentIndex];
+            imageElement.src = currentImage.src;
+            captionElement.textContent = currentImage.caption;
+        }
+
+        // Change the image and caption every 3 seconds
+        setInterval(changeImage, 3000);
+
+	class TxtType {
             constructor(el, toRotate, period) {
                 this.toRotate = toRotate;
                 this.el = el;

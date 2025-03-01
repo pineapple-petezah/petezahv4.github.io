@@ -1,6 +1,3 @@
-Certainly! Here is your original code without any modifications, just as you provided it:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -259,4 +256,42 @@ Certainly! Here is your original code without any modifications, just as you pro
 
             // Automatic image hover effect (glow)
             function glowNextImage() {
-                const nextImage = document.querySelectorAll
+                const nextImage = document.querySelectorAll('.image-box')[counter];
+                nextImage.querySelector('.image').classList.add('glow');
+            }
+
+            function removeGlow() {
+                const currentImage = document.querySelectorAll('.image-box')[counter];
+                currentImage.querySelector('.image').classList.remove('glow');
+            }
+
+            nextBtn.addEventListener('click', () => {
+                removeGlow();
+                counter++;
+                moveImages();
+                glowNextImage();
+                if (counter >= totalImages + 4) {
+                    setTimeout(() => {
+                        imageContainer.style.transition = "none";
+                        counter = 4;
+                        moveImages();
+                    }, 500);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                removeGlow();
+                counter--;
+                moveImages();
+                if (counter <= 0) {
+                    setTimeout(() => {
+                        imageContainer.style.transition = "none";
+                        counter = totalImages;
+                        moveImages();
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

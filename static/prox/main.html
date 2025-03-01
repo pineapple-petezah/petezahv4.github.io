@@ -36,7 +36,7 @@ body, html {
     align-items: center;
     background-color: #162347; /* Dark blue background for tabs */
     border-bottom: 2px solid #fff;
-    padding: 12px 20px;
+    padding: 8px 20px; /* Reduced padding to decrease height */
     transition: transform 0.5s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
     border-radius: 15px 15px 0 0; /* Rounded top corners */
@@ -45,7 +45,7 @@ body, html {
 .tab {
     display: flex;
     align-items: center;
-    padding: 12px 18px;
+    padding: 10px 16px; /* Slightly reduced padding for tabs */
     color: #ccc;
     cursor: pointer;
     background-color: #1e2a47;
@@ -82,7 +82,7 @@ body, html {
 }
 
 .add-tab-button {
-    padding: 12px 18px;
+    padding: 10px 16px; /* Slightly reduced padding */
     cursor: pointer;
     background-color: #162347;
     color: #fff;
@@ -182,7 +182,7 @@ body, html {
     flex-grow: 1;
     overflow: hidden;
     position: relative;
-    height: calc(100% - 100px); /* Increased iframe height space */
+    height: calc(100% - 120px); /* Increased content space by reducing the tab container height */
     background-color: #1e2a47; /* Dark blue background */
 }
 

@@ -27,31 +27,31 @@ body, html {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: #1e2a47; /* Dark blue background */
+    background-color: #0d1a2b; /* Darker blue background */
     color: #fff; /* White text color */
 }
 
 .tabs {
     display: flex;
     align-items: center;
-    background-color: #162347; /* Dark blue background for tabs */
+    background-color: #0a1324; /* Even darker blue for tabs */
     border-bottom: 2px solid #fff;
-    padding: 8px 20px; /* Reduced padding to decrease height */
+    padding: 6px 18px; /* Smaller padding to reduce height */
     transition: transform 0.5s ease-in-out;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    border-radius: 15px 15px 0 0; /* Rounded top corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    border-radius: 12px 12px 0 0; /* Rounded top corners */
 }
 
 .tab {
     display: flex;
     align-items: center;
-    padding: 10px 16px; /* Slightly reduced padding for tabs */
+    padding: 8px 14px; /* Smaller padding for the tabs */
     color: #ccc;
     cursor: pointer;
-    background-color: #1e2a47;
+    background-color: #0a1324;
     border-right: 1px solid #444;
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    border-radius: 12px;
+    border-radius: 10px;
     flex-shrink: 1;
     max-width: 200px;
     overflow: hidden;
@@ -60,21 +60,21 @@ body, html {
 }
 
 .tab.active {
-    background-color: #0d1426; /* Darker blue when active */
+    background-color: #0a1020; /* Darker blue when active */
     color: #fff;
     transform: scale(1.05); /* Slight zoom effect on active tab */
 }
 
 .tab:hover {
-    background-color: #2b3c5d; /* Lighter blue on hover */
+    background-color: #1b2c42; /* Lighter blue on hover */
     transform: scale(1.03); /* Hover zoom effect */
 }
 
 .tab .close-button {
-    margin-left: 12px;
+    margin-left: 10px;
     color: #ccc;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .tab .close-button:hover {
@@ -82,38 +82,38 @@ body, html {
 }
 
 .add-tab-button {
-    padding: 10px 16px; /* Slightly reduced padding */
+    padding: 8px 14px; /* Smaller padding */
     cursor: pointer;
-    background-color: #162347;
+    background-color: #0a1324;
     color: #fff;
     border: none;
     outline: none;
     font-size: 22px;
-    border-radius: 12px;
+    border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
 }
 
 .add-tab-button:hover {
-    background-color: #2b3c5d;
+    background-color: #1b2c42;
 }
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #162347;
-    padding: 15px 25px;
+    background-color: #0a1324; /* Dark blue for navbar */
+    padding: 10px 20px; /* Smaller padding to reduce height */
     width: 100%;
     z-index: 1000;
     border-bottom: 2px solid #fff;
     transition: transform 0.5s ease-in-out;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    border-radius: 0 0 15px 15px; /* Rounded bottom corners for navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Dark shadow for navbar */
+    border-radius: 0 0 12px 12px; /* Rounded bottom corners for navbar */
 }
 
 .navbar-left {
     display: flex;
-    gap: 20px;
+    gap: 18px;
 }
 
 .navbar button {
@@ -137,13 +137,13 @@ body, html {
     background-color: #0e192e; /* Darker blue for the search bar */
     border: 2px solid #fff;
     overflow: hidden;
-    height: 45px;
+    height: 40px;
     margin-left: 20px;
 }
 
 .search-bar input {
     flex-grow: 1;
-    padding: 12px 18px;
+    padding: 10px 16px;
     border: none;
     background-color: transparent;
     color: #ccc;
@@ -160,7 +160,7 @@ body, html {
 .search-bar button {
     background-color: #fff;
     border: none;
-    padding: 12px 20px;
+    padding: 10px 18px;
     font-size: 16px;
     color: #1e2a47; /* Dark blue for button text */
     cursor: pointer;
@@ -183,7 +183,7 @@ body, html {
     overflow: hidden;
     position: relative;
     height: calc(100% - 120px); /* Increased content space by reducing the tab container height */
-    background-color: #1e2a47; /* Dark blue background */
+    background-color: #0d1a2b; /* Darker blue background */
 }
 
 iframe {

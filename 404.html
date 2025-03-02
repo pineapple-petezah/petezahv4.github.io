@@ -33,10 +33,11 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #0d1f33, #2f3a58);
+            background: linear-gradient(135deg, #1c2b4d, #0e1427); /* Darker blue gradient */
             color: white;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
+            animation: bgAnimation 10s infinite alternate;
         }
 
         /* Container for centered content */
@@ -45,29 +46,31 @@
             max-width: 700px;
             width: 100%;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid #fff;
-            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 3px solid #ffffff;
+            border-radius: 20px;
             backdrop-filter: blur(15px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.6);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out forwards;
         }
 
         .content:hover {
             transform: scale(1.05);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.8);
         }
 
         /* Heading style */
         h1 {
             font-size: 120px;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 20px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            animation: fadeInUp 1s ease-out;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            animation: textGlow 2s ease-in-out infinite alternate;
         }
 
         /* Description text */
@@ -75,7 +78,9 @@
             font-size: 22px;
             margin-bottom: 30px;
             color: #d1d1d1;
-            animation: fadeInUp 1.2s ease-out;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInText 1.8s 0.3s ease-out forwards;
         }
 
         /* Button styles */
@@ -83,45 +88,57 @@
             background-color: #00bcd4;
             color: white;
             font-size: 18px;
-            padding: 15px 30px;
+            padding: 18px 36px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
             letter-spacing: 1px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             border: 2px solid #00bcd4;
+            animation: buttonPulse 1.5s ease-in-out infinite;
         }
 
         button:hover {
-            background-color: #03a9f4;
-            transform: translateY(-5px);
+            background-color: #0288d1;
+            transform: translateY(-6px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
         }
 
         button:active {
-            transform: translateY(2px);
-            background-color: #0288d1;
+            transform: translateY(3px);
+            background-color: #01579b;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* Pulse effect for the button */
-        @keyframes pulse {
+        /* Button pulse effect */
+        @keyframes buttonPulse {
             0% {
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.05);
+                transform: scale(1.1);
             }
             100% {
                 transform: scale(1);
             }
         }
 
-        button {
-            animation: pulse 2s ease-in-out infinite;
+        /* Text glow animation */
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 1);
+            }
+            100% {
+                text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.8);
+            }
         }
 
-        /* Fade-in animation for elements */
+        /* Fade-in and scale-up animation for content */
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
@@ -130,6 +147,29 @@
             100% {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        /* Fade-in animation for text */
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Background Animation */
+        @keyframes bgAnimation {
+            0% {
+                background: linear-gradient(135deg, #1c2b4d, #0e1427);
+            }
+            50% {
+                background: linear-gradient(135deg, #182f44, #08182a);
+            }
+            100% {
+                background: linear-gradient(135deg, #1c2b4d, #0e1427);
             }
         }
     </style>
@@ -141,7 +181,7 @@
     <!-- 404 Content -->
     <div class="content">
         <h1>404</h1>
-        <p>It seems you ended up here! Click below to refresh the page and fix the proxy.</p>
+        <p>It looks like you're lost in space! Click below to fix the proxy and get back on track.</p>
         <button onclick="window.location.reload();">Fix Proxy</button>
     </div>
 

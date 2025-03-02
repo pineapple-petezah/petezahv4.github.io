@@ -41,26 +41,33 @@
 
         .settings-container {
             background-color: #1e1e2d;
-            border-radius: 12px;
+            border-radius: 16px;
             width: 100%;
-            max-width: 600px;
-            padding: 24px;
+            max-width: 1100px;
+            padding: 30px;
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
             overflow-y: auto;
             height: 90vh;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
         }
 
         .settings-container h1 {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 600;
             margin-bottom: 20px;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
             text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
+            width: 100%;
         }
 
         .section {
+            width: 48%;
+            min-width: 300px;
             margin-bottom: 30px;
         }
 
@@ -82,11 +89,11 @@
         .settings-container input[type="text"],
         .settings-container input[type="file"],
         .settings-container input[type="color"] {
-            padding: 10px;
-            width: calc(100% - 22px);
-            margin: 6px 0;
+            padding: 12px;
+            width: 100%;
+            margin: 8px 0;
             border: 2px solid #3c5b8e;
-            border-radius: 8px;
+            border-radius: 12px;
             background-color: #2a3c5f;
             color: white;
             font-size: 14px;
@@ -97,6 +104,7 @@
         .settings-container input[type="file"]:focus,
         .settings-container input[type="color"]:focus {
             border-color: #5b6e8e;
+            outline: none;
         }
 
         .checkbox-container {
@@ -116,7 +124,7 @@
             background-color: #3c5b8e;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
             margin-top: 10px;
@@ -147,8 +155,15 @@
             margin-bottom: 40px;
         }
 
-        .section button {
-            width: 100%;
+        /* Styling for larger screens */
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 20px;
+            }
+
+            .section {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -177,8 +192,6 @@
                 </div>
             </div>
         </div>
-
-        <hr>
 
         <!-- Site Title and Logo Section -->
         <div class="section">

@@ -86,52 +86,61 @@
             align-items: center;
         }
 
-        .image-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            text-align: center;
-        }
+        /* Hide the caption by default and only show it on hover */
+.image-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
 
-        .image {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            margin-right: 8px;
-            border-radius: 8px;
-            border: 3px solid #ffffff;
-            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-        }
+/* The image will cover the caption */
+.image {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 8px;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+}
 
-        .image:hover, .image.glow {
-            transform: scale(1.08);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
-            filter: brightness(1.2);
-        }
+/* Hover effect on the image */
+.image:hover, .image.glow {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+    filter: brightness(1.2);
+}
 
-        .caption {
-            width: 100%;
-            text-align: center;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            background: linear-gradient(45deg, rgba(10, 29, 55, 0.9), rgba(40, 40, 40, 0.8));
-            color: #ffffff;
-            padding: 6px 0;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
-            transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;
-            opacity: 0;
-            visibility: hidden;
-        }
+/* Initially hide the caption */
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: linear-gradient(45deg, rgba(10, 29, 55, 0.9), rgba(40, 40, 40, 0.8));
+    color: #ffffff;
+    padding: 6px 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 3px 8px rgba(255, 255, 255, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;
+}
 
-        .image-box:hover .caption {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.3s ease-in-out;
-        }
+/* Show the caption when hovering over the image */
+.image-box:hover .caption {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out;
+}
+
 
         .arrow {
             background-color: #2a3c5f;

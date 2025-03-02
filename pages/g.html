@@ -53,58 +53,31 @@ body::-webkit-scrollbar {
     display: none;  /* Hide scrollbar */
 }
 
-/* Center the search bar horizontally */
+/* Fixed Search Bar */
 .search-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the search bar both vertically and horizontally */
-    background-color: #0A1D37;
+    position: fixed;  /* Keeps the search bar fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0A1D37;  /* Dark blue background */
     padding: 15px 0;
     text-align: center;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    z-index: 1000;  /* Ensure it's always on top */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);  /* Shadow effect on the search bar */
 }
 
-/* Position the random game button on the left side */
-.random-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;  /* Align the button to the left of the screen */
-    height: 35px;
-    padding: 0 20px;
-    background-color: #0066cc;
-    color: white;
-    font-weight: bold;
-    font-family: 'DM Sans';
-    border-radius: 10px;
-    border: 0;
-    cursor: pointer;
-    transition: 0.3s all ease-in-out;
-}
-
-.random-btn:hover {
-    background-color: #005bb5;
-}
-
-.random-btn:active {
-    background-color: #004999;
-}
-
-/* Ensures input field and button are centered and aligned properly */
+/* Search Bar Input */
 .search-container input {
+    font-family: "Nunito", serif;
     width: 40vw;
     padding: 12px 20px;
     font-size: 18px;
-    border: 2px solid #fff;
+    border: 2px solid #fff;  /* Skinny white border */
     color: #fff;
     background: #141414;
     border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Shadow on the input field */
 }
 
 .search-container input:focus {
@@ -187,6 +160,8 @@ body::-webkit-scrollbar {
 .game-container {
     gap: 30px;  /* More space between image items */
 }
+
+
 
 .appImage {
 	opacity: 0;
@@ -400,7 +375,8 @@ body::-webkit-scrollbar {
 	margin-right: -35px;
 }
 
-/* Image Item Styles */
+
+
 .image-item {
     position: relative;
     width: 200px;
@@ -439,7 +415,7 @@ body::-webkit-scrollbar {
     padding: 5px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-}
+}        
 </style>
 
 </style>
@@ -447,8 +423,10 @@ body::-webkit-scrollbar {
     </style>
 </head>
 <body>
-            <div class="search-container">
+	<!-- Game items here 
 	<button class="randomBtn" onclick="randomGame()">Random Game</button>
+	-->
+            <div class="search-container">
         <input type="text" id="search-games" placeholder="Search for YOUR Favorite Game....." onkeyup="filterItems()">
     </div>
 	<div class="game-container" id="imageContainer" ">

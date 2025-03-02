@@ -257,3 +257,8 @@
                 opacity: 0;
             }
         }
+
+        .sidebar-nav .nav-link.active {
+    color: #151A2D;
+    background: #fff;
+}

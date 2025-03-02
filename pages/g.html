@@ -261,39 +261,6 @@ body::-webkit-scrollbar {
 	font-size: 30px;
 }
 
-.randomBtn {
-	height: 35px;
-	padding: 0 20px;
-	text-wrap: nowrap;
-	background-color: var(--random-btn-background-color);
-	border-radius: 10px;
-	border: 0;
-	text-align: center;
-	outline: #ffffff17 1px solid;
-	user-select: none;
-	cursor: pointer;
-	margin-left: auto;
-	margin-right: auto;
-	position: absolute;
-	width: 140px;
-	margin-left: -13em;
-	font-weight: 200;
-	color: #868686;
-	font-family: 'DM Sans';
-	transition: 0.3s all ease-in-out;
-	animation: fade-in-left 1s;
-	display: flex;
-	align-items: center;
-}
-
-.randomBtn:hover {
-	background-color: var(--random-btn-hover-background-color);
-	outline: var(--border-color) 1px solid;
-}
-
-.randomBtn:active {
-	background-color: var(--random-btn-active-background-color);
-}
 
 .gameSearchInput,
 .appsSearchInput,
@@ -416,6 +383,25 @@ body::-webkit-scrollbar {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }        
+
+	    .randomBtn {
+  position: fixed; /* Fixes the button in place */
+  top: 10px; /* Distance from the top of the screen */
+  left: 10px; /* Distance from the left of the screen */
+  z-index: 9999; /* Ensures the button stays on top of other elements */
+  padding: 10px 20px; /* Adds some padding for a better look */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Removes border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Button text size */
+  cursor: pointer; /* Cursor changes to a pointer when hovered */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.randomBtn:hover {
+  background-color: #0056b3; /* Changes background on hover */
+}
 </style>
 
 </style>
@@ -423,9 +409,9 @@ body::-webkit-scrollbar {
     </style>
 </head>
 <body>
-	<!-- Game items here 
+
 	<button class="randomBtn" onclick="randomGame()">Random Game</button>
-	-->
+
             <div class="search-container">
         <input type="text" id="search-games" placeholder="Search for YOUR Favorite Game....." onkeyup="filterItems()">
     </div>

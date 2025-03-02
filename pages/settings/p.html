@@ -31,7 +31,7 @@
         }
 
         .profile-container {
-            background-color: #112e48; /* Dark blue container */
+            background-color: #0A1D37; /* Deep blue container */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             padding: 50px;
@@ -56,7 +56,7 @@
         }
 
         .profile-container h2:hover {
-            color: #4CAF50;
+            color: #ffffff;
             cursor: pointer;
         }
 
@@ -71,6 +71,7 @@
             border-radius: 50%;
             object-fit: cover;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         .profile-image:hover img {
@@ -107,20 +108,28 @@
             resize: none;
         }
 
+        /* Updated Modern Button Style */
         .save-button {
-            background-color: #4CAF50;
+            background: linear-gradient(45deg, #2f8ff7, #3d6ae7); /* Modern gradient button */
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
+            padding: 16px 32px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 18px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .save-button:hover {
-            background-color: #45a049;
-            transform: scale(1.05); /* Hover effect for button */
+            background: linear-gradient(45deg, #3d6ae7, #2f8ff7); /* Reversed gradient on hover */
+            transform: scale(1.05); /* Button zoom effect */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .save-button:active {
+            transform: scale(0.98); /* Button pressed effect */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -128,6 +137,7 @@
             margin-top: 30px;
             font-size: 14px;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
         }
 
         footer p:hover {

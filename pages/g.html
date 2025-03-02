@@ -51,31 +51,55 @@ body::-webkit-scrollbar {
     display: none;  /* Hide scrollbar */
 }
 
-/* Fixed Search Bar */
+/* Position the random game button next to the search bar */
 .search-container {
-    position: fixed;  /* Keeps the search bar fixed at the top */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #0A1D37;  /* Dark blue background */
+    background-color: #0A1D37;
     padding: 15px 0;
     text-align: center;
-    z-index: 1000;  /* Ensure it's always on top */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);  /* Shadow effect on the search bar */
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-/* Search Bar Input */
+/* Random Game Button */
+.random-btn {
+    height: 35px;
+    padding: 0 20px;
+    background-color: #0066cc;
+    color: white;
+    font-weight: bold;
+    font-family: 'DM Sans';
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+
+.random-btn:hover {
+    background-color: #005bb5;
+}
+
+.random-btn:active {
+    background-color: #004999;
+}
+
+/* Ensures input field and button are centered and aligned properly */
 .search-container input {
-    font-family: "Nunito", serif;
     width: 40vw;
     padding: 12px 20px;
     font-size: 18px;
-    border: 2px solid #fff;  /* Skinny white border */
+    border: 2px solid #fff;
     color: #fff;
     background: #141414;
     border-radius: 50px;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Shadow on the input field */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .search-container input:focus {
@@ -159,32 +183,6 @@ body::-webkit-scrollbar {
     gap: 30px;  /* More space between image items */
 }
 
-	    .randomBtn {
-            height: 35px;
-            padding: 0 20px;
-            background-color: #0066cc;
-            border-radius: 10px;
-            border: 0;
-            text-align: center;
-            outline: #ffffff17 1px solid;
-            user-select: none;
-            cursor: pointer;
-            margin-left: 20px;
-            font-weight: 200;
-            color: white;
-            font-family: 'DM Sans';
-            transition: 0.3s all ease-in-out;
-            display: flex;
-            align-items: center;
-        }
-
-        .randomBtn:hover {
-            background-color: #0044cc;
-        }
-
-        .randomBtn:active {
-            background-color: #0033cc;
-        }
 
 
 .appImage {

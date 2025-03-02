@@ -612,8 +612,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const ipAddressElement = document.getElementById('ip-address');
     const fpsElement = document.getElementById('fps');
-    let lastFrameTime = performance.now();
+    let frameCount = 0;
     let fps = 0;
+    let lastUpdateTime = performance.now();
 
     // Fetch the user's IP address using a public API
     fetch('https://api.ipify.org?format=json')
@@ -626,19 +627,29 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error fetching IP address:", err);
         });
 
-    // Calculate FPS every 1 second
+    // Calculate FPS continuously on every frame
     function calculateFPS() {
+        frameCount++;
         const now = performance.now();
-        const delta = now - lastFrameTime;
-        fps = Math.round(1000 / delta);
-        fpsElement.textContent = `FPS: ${fps}`;
-        lastFrameTime = now;
+        const deltaTime = now - lastUpdateTime;
+
+        // If 1 second has passed, update the FPS display
+        if (deltaTime >= 1000) {
+            fps = frameCount;  // Set FPS as the number of frames in the last second
+            fpsElement.textContent = `FPS: ${fps}`; // Update the display
+
+            // Reset for the next second
+            frameCount = 0;
+            lastUpdateTime = now;
+        }
+
+        // Call requestAnimationFrame to calculate FPS on the next frame
+        requestAnimationFrame(calculateFPS);
     }
 
-    // Update FPS every 1 second
-    setInterval(calculateFPS, 1000); // Run FPS calculation every 1000ms (1 second)
+    // Start the FPS calculation
+    requestAnimationFrame(calculateFPS);
 });
-
 
     </script>
 </body>

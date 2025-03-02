@@ -219,6 +219,7 @@
             height: 100%;
             border: none;
 	    z-index: 5;
+	    border-radius: 16px;
            }
 
 	@import url('https://fonts.googleapis.com/css2?family=Bobby+Jones+Soft&display=swap');

@@ -3,25 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Page</title>
-  <link rel="icon" href="favicon.png">
+  <title>My Modern Page</title>
+  <link rel="icon" href="favicon.png" id="favicon">
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
-    .container { max-width: 100%; width: 100%; padding: 20px; box-sizing: border-box; }
-    .partner-logos { display: flex; justify-content: space-around; padding: 20px; }
-    .partner-logo { width: 100px; height: auto; margin: 10px; }
-    .legal-section { text-align: center; font-size: 14px; margin-top: 30px; padding: 20px; }
-    .legal-section a { text-decoration: none; color: #333; }
-    .toc { position: fixed; top: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.1); padding: 10px; border-radius: 8px; }
-    .toc ul { list-style: none; padding: 0; }
-    .toc a { text-decoration: none; display: block; padding: 5px 0; color: #000; }
-    .settings button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
-    .settings button:hover { background-color: #45a049; }
-    #settings-content { margin-top: 20px; padding: 15px; background-color: #f4f4f4; border-radius: 8px; }
+    /* General reset and layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Table of Contents (TOC) styling */
+    .toc {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      width: 200px;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+      font-size: 16px;
+    }
+
+    .toc a {
+      color: #333;
+      text-decoration: none;
+      padding: 8px 0;
+      display: block;
+    }
+
+    .toc a:hover {
+      background-color: #ddd;
+      border-radius: 4px;
+    }
+
+    /* Partner logos section */
+    .partner-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .partner-logo {
+      max-width: 120px;
+      max-height: 60px;
+      margin: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .partner-logo:hover {
+      transform: scale(1.1);
+    }
+
+    /* Legal section */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+      border-top: 1px solid #ccc;
+    }
+
+    footer a {
+      color: #00aaff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Settings Section */
+    .settings {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .settings h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .settings button {
+      padding: 12px 20px;
+      background-color: #0066cc;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .settings button:hover {
+      background-color: #005bb5;
+    }
+
+    .settings label {
+      display: block;
+      font-size: 16px;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .settings input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .toc {
+        width: 150px;
+      }
+
+      .partner-logos {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .settings {
+        width: 90%;
+      }
+    }
+
   </style>
 </head>
 <body>
-  <!-- Table of Contents -->
+
+  <!-- Table of Contents (TOC) -->
   <nav class="toc">
     <ul>
       <li><a href="#section1">Section 1</a></li>
@@ -30,55 +170,63 @@
     </ul>
   </nav>
 
-  <!-- Partner Logos -->
-  <div class="partner-logos">
-    <img src="logo1.png" alt="Partner 1" class="partner-logo">
-    <img src="logo2.png" alt="Partner 2" class="partner-logo">
-    <img src="logo3.png" alt="Partner 3" class="partner-logo">
-  </div>
-
-  <!-- Sections -->
-  <div id="section1">Section 1 Content</div>
-  <div id="section2">Section 2 Content</div>
-  <div id="section3">Section 3 Content</div>
-
-  <!-- Legal Section -->
-  <footer class="legal-section">
-    <p>© 2025 Your Company. All rights reserved.</p>
-    <p><a href="privacy-policy.html" target="_blank">Privacy Policy</a></p>
-  </footer>
-
-  <!-- Settings Section -->
-  <div class="settings">
-    <button onclick="toggleSettings()">Toggle Settings</button>
-    <div id="settings-content" style="display:none;">
-      <label for="setting1">Setting 1</label>
-      <input type="checkbox" id="setting1">
-      <label for="setting2">Setting 2</label>
-      <input type="checkbox" id="setting2">
+  <div class="container">
+    <!-- Partner Logos Section -->
+    <div class="partner-logos">
+      <img src="logo1.png" alt="Partner 1" class="partner-logo">
+      <img src="logo2.png" alt="Partner 2" class="partner-logo">
+      <img src="logo3.png" alt="Partner 3" class="partner-logo">
     </div>
+
+    <!-- Content Sections -->
+    <div id="section1" style="margin-top: 80px;">Section 1 Content</div>
+    <div id="section2">Section 2 Content</div>
+    <div id="section3">Section 3 Content</div>
+
+    <!-- Settings Section -->
+    <div class="settings">
+      <h3>Settings</h3>
+      <button onclick="toggleSettings()">Toggle Settings</button>
+      <div id="settings-content" style="display:none;">
+        <label for="setting1"><input type="checkbox" id="setting1"> Setting 1</label>
+        <label for="setting2"><input type="checkbox" id="setting2"> Setting 2</label>
+      </div>
+    </div>
+
+    <!-- Legal Section -->
+    <footer>
+      <p>© 2025 Your Company. All rights reserved.</p>
+      <p><a href="privacy-policy.html" target="_blank">Privacy Policy</a></p>
+    </footer>
   </div>
 
-  <!-- JavaScript for functionalities -->
+  <!-- JavaScript for functionality -->
   <script>
+    // Toggle Settings Functionality
     function toggleSettings() {
       var settingsContent = document.getElementById('settings-content');
       settingsContent.style.display = (settingsContent.style.display === 'none') ? 'block' : 'none';
     }
 
+    // Change the Favicon dynamically
     function changeFavicon() {
       var link = document.createElement('link');
       link.rel = 'icon';
       link.type = 'image/png';
-      link.href = 'new-favicon.png'; 
+      link.href = 'new-favicon.png'; // Path to your new favicon
       document.getElementsByTagName('head')[0].appendChild(link);
     }
 
+    // Change the Page Title dynamically
+    document.title = "Your New Page Title";
+
+    // Cloaking Redirect to an empty page
     function redirectToBlank() {
       window.open('https://example.com', '_blank').document.write('');
     }
 
-    changeFavicon(); // Change favicon when needed
+    // Call functions on load
+    changeFavicon();
   </script>
 </body>
 </html>

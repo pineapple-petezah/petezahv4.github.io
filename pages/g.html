@@ -159,6 +159,32 @@ body::-webkit-scrollbar {
     gap: 30px;  /* More space between image items */
 }
 
+	    .randomBtn {
+            height: 35px;
+            padding: 0 20px;
+            background-color: #0066cc;
+            border-radius: 10px;
+            border: 0;
+            text-align: center;
+            outline: #ffffff17 1px solid;
+            user-select: none;
+            cursor: pointer;
+            margin-left: 20px;
+            font-weight: 200;
+            color: white;
+            font-family: 'DM Sans';
+            transition: 0.3s all ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .randomBtn:hover {
+            background-color: #0044cc;
+        }
+
+        .randomBtn:active {
+            background-color: #0033cc;
+        }
 
 
 .appImage {
@@ -419,7 +445,8 @@ body::-webkit-scrollbar {
 <body>
             <div class="search-container">
         <input type="text" id="search-games" placeholder="Search for YOUR Favorite Game....." onkeyup="filterItems()">
-            </div>
+        <button class="randomBtn" onclick="randomGame()">Random Game</button>
+    </div>
 	<div class="game-container" id="imageContainer" ">
         <!-- Game items here -->
 		<div class="image-item" data-label="request games">
@@ -1396,16 +1423,23 @@ body::-webkit-scrollbar {
         
 
 document.addEventListener('DOMContentLoaded', () => {
-    function filterItems() {
-        const searchInput = document.getElementById('search-games').value.toLowerCase();
-        document.querySelectorAll('.image-item').forEach(item => {
-            const label = item.dataset.label.toLowerCase();
-            item.style.display = label.includes(searchInput) ? '' : 'none';
-        });
-    }
+            function filterItems() {
+                const searchInput = document.getElementById('search-games').value.toLowerCase();
+                document.querySelectorAll('.image-item').forEach(item => {
+                    const label = item.dataset.label.toLowerCase();
+                    item.style.display = label.includes(searchInput) ? '' : 'none';
+                });
+            }
 
-    document.getElementById('search-games').addEventListener('input', filterItems);
-});
+            document.getElementById('search-games').addEventListener('input', filterItems);
+        });
+
+        function randomGame() {
+            const games = document.querySelectorAll('.image-item');
+            const randomIndex = Math.floor(Math.random() * games.length);
+            const randomGame = games[randomIndex].querySelector('a').href;
+            window.location.href = randomGame;  // Redirect to the random game
+        }
 
     </script>
 </body>

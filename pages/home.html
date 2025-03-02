@@ -313,32 +313,33 @@
     left: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
     z-index: 999;
-    font-size: 14px;
-    width: 200px;
+    font-size: 12px; /* Smaller font size */
+    width: 180px; /* Smaller width */
 }
 
 .info-box p {
-    margin: 5px 0;
-    font-size: 14px;
+    margin: 4px 0;
+    font-size: 12px; /* Match smaller font size */
 }
 
-.discord-btn-br {
+.discord-btn-two {
     display: block;
     background-color: #7289da;
-    padding: 8px;
+    padding: 6px;
     color: white;
     text-decoration: none;
     border-radius: 6px;
-    margin-top: 10px;
+    margin-top: 8px;
     text-align: center;
     transition: background-color 0.3s ease;
+    font-size: 12px; /* Smaller font size */
 }
 
-.discord-btn2-br:hover {
+.discord-btn-two:hover {
     background-color: #5b6e8e;
 }
 
@@ -420,12 +421,13 @@
     </div>
 </div>
 
-	<!-- Info Box -->
+<!-- Info Box -->
 <div id="info-box" class="info-box">
     <p id="ip-address">IP: Loading...</p>
     <p id="fps">FPS: Calculating...</p>
-    <a href="https://discord.com" target="_blank" class="discord-btn-br">Join Discord</a>
+    <a href="https://discord.gg/arcgZTV9zX" target="_blank" class="discord-btn-two">Join Discord</a>
 </div>
+
 
 
 
@@ -607,7 +609,7 @@
     checkPopup();
 });
 
-	    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const ipAddressElement = document.getElementById('ip-address');
     const fpsElement = document.getElementById('fps');
     let lastFrameTime = performance.now();
@@ -624,19 +626,17 @@
             console.error("Error fetching IP address:", err);
         });
 
-    // Calculate the FPS
+    // Calculate FPS every 1 second
     function calculateFPS() {
         const now = performance.now();
         const delta = now - lastFrameTime;
         fps = Math.round(1000 / delta);
         fpsElement.textContent = `FPS: ${fps}`;
         lastFrameTime = now;
-
-        requestAnimationFrame(calculateFPS); // Continue calculating FPS
     }
 
-    // Start FPS calculation
-    calculateFPS();
+    // Update FPS every 1 second
+    setInterval(calculateFPS, 1000); // Run FPS calculation every 1000ms (1 second)
 });
 
 

@@ -33,7 +33,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            background: linear-gradient(135deg, #0d1f33, #2f3a58);
             color: white;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
@@ -46,34 +46,41 @@
             width: 100%;
             padding: 40px;
             background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #fff;
             border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .content:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
         }
 
         /* Heading style */
         h1 {
-            font-size: 100px;
+            font-size: 120px;
             font-weight: 700;
             margin-bottom: 20px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: #fff;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
             animation: fadeInUp 1s ease-out;
         }
 
         /* Description text */
         p {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 30px;
-            color: #ddd;
+            color: #d1d1d1;
             animation: fadeInUp 1.2s ease-out;
         }
 
         /* Button styles */
         button {
-            background-color: #007bff;
+            background-color: #00bcd4;
             color: white;
             font-size: 18px;
             padding: 15px 30px;
@@ -81,22 +88,23 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
             font-weight: bold;
             letter-spacing: 1px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #00bcd4;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #03a9f4;
             transform: translateY(-5px);
         }
 
         button:active {
             transform: translateY(2px);
-            background-color: #004085;
+            background-color: #0288d1;
         }
 
-        /* Button pulse effect */
+        /* Pulse effect for the button */
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -133,7 +141,7 @@
     <!-- 404 Content -->
     <div class="content">
         <h1>404</h1>
-        <p>Your probably here because of the proxy so click below to fix it!</p>
+        <p>It seems you ended up here! Click below to refresh the page and fix the proxy.</p>
         <button onclick="window.location.reload();">Fix Proxy</button>
     </div>
 

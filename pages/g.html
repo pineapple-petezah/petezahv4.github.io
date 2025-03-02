@@ -51,21 +51,18 @@ body::-webkit-scrollbar {
     display: none;  /* Hide scrollbar */
 }
 
-/* Position the random game button next to the search bar */
+/* Position the random game button next to the search bar, aligned to the left */
 .search-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: #0A1D37;
-    padding: 15px 0;
-    text-align: center;
+    padding: 15px 20px;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
 }
 
 /* Random Game Button */
@@ -80,6 +77,7 @@ body::-webkit-scrollbar {
     border: 0;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
+    margin-right: 20px; /* Added margin-right to create space between the button and search bar */
 }
 
 .random-btn:hover {
@@ -89,6 +87,7 @@ body::-webkit-scrollbar {
 .random-btn:active {
     background-color: #004999;
 }
+
 
 /* Ensures input field and button are centered and aligned properly */
 .search-container input {

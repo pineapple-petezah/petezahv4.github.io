@@ -48,27 +48,43 @@
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
             height: 90vh;
+        }
+
+        /* Tabs container */
+        .tabs {
             display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: space-between;
-        }
-
-        .settings-container h1 {
-            font-size: 26px;
-            font-weight: 600;
+            justify-content: flex-start;
+            gap: 20px;
             margin-bottom: 20px;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
-            width: 100%;
+            border-bottom: 2px solid #3c5b8e;
         }
 
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #2a3c5f;
+            border-radius: 8px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab:hover {
+            background-color: #3c5b8e;
+        }
+
+        .tab.active {
+            background-color: #3c5b8e;
+        }
+
+        /* Content sections */
         .section {
-            width: 48%;
-            min-width: 300px;
-            margin-bottom: 30px;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
         }
 
         .section h2 {
@@ -151,10 +167,6 @@
             margin: 20px 0;
         }
 
-        .section-space {
-            margin-bottom: 40px;
-        }
-
         /* Styling for larger screens */
         @media (max-width: 768px) {
             .settings-container {
@@ -171,8 +183,15 @@
     <div class="settings-container">
         <h1>Settings</h1>
 
-        <!-- Toggle Settings Section -->
-        <div class="section">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="cloaking">Cloaking</button>
+            <button class="tab" data-tab="account">Account</button>
+            <button class="tab" data-tab="appearance">Appearance</button>
+        </div>
+
+        <!-- Cloaking Section -->
+        <div class="section active" id="cloaking">
             <h2>Functionality Toggles</h2>
             <div class="checkbox-container">
                 <div>
@@ -186,9 +205,9 @@
             </div>
         </div>
 
-        <!-- Site Title and Logo Section -->
-        <div class="section">
-            <h2>Site Title & Logo</h2>
+        <!-- Account Section -->
+        <div class="section" id="account">
+            <h2>Account Settings</h2>
             <label for="siteTitle">Set Site Title:</label>
             <input type="text" id="siteTitle" placeholder="Enter site title" />
 
@@ -198,29 +217,46 @@
             <button id="saveSettings">Save Title & Favicon</button>
         </div>
 
-        <hr>
+        <!-- Appearance Section -->
+        <div class="section" id="appearance">
+            <h2>Appearance Settings</h2>
+            <label for="backgroundColor">Background Color:</label>
+            <input type="color" id="backgroundColor" />
 
-        <!-- Panic Button Settings Section -->
-        <div class="section">
-            <h2>Panic Button Settings</h2>
-            <label for="panicKey">Set Panic Button Key:</label>
-            <input type="text" id="panicKey" placeholder="Enter key (e.g., F1)" />
-
-            <label for="panicUrl">Set Panic Button URL:</label>
-            <input type="text" id="panicUrl" placeholder="Enter URL to redirect to" />
-
-            <button id="savePanicButtonSettings">Save Panic Button Settings</button>
+            <button id="saveAppearance">Save Appearance Settings</button>
         </div>
 
         <hr>
 
-        <!-- Reset Buttons Section -->
-        <div class="section section-space">
+        <!-- Reset Section -->
+        <div class="section">
             <button id="resetSettings" class="reset-button">Reset Tab Name and Icon</button>
             <button id="resetPanicButtonSettings" class="reset-button">Reset Panic Button Settings</button>
         </div>
     </div>
 
+    <script>
+        // Handle Tab Switching
+        const tabs = document.querySelectorAll('.tab');
+        const sections = document.querySelectorAll('.section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+
+                // Hide all sections
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Show the clicked section
+                document.getElementById(tabName).classList.add('active');
+
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+    </script>
     <script>
     const beforeUnloadToggle = document.getElementById('beforeUnloadToggle');
     const autocloakToggle = document.getElementById('autocloakToggle');

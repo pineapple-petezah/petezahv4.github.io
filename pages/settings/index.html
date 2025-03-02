@@ -1,184 +1,84 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	  		        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SHE360M0YP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SHE360M0YP');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
-     crossorigin="anonymous"></script>
-
-    
-
-    <title>PeteZah | Settings</title>
-    <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
-
-
-    <meta
-			name="description"
-			content="Pete Zah, game on"
-		/>
-		<meta
-			name="keywords"
-			content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah"
-		/>
-  </head>
-    <style>
-.settings-section {
-    background-color: #1e1e2d;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-    width: 300px;
-    margin: 20px auto;
-}
-
-h1 {
-    font-size: 24px;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.setting-option {
-    margin-bottom: 15px;
-}
-
-.setting-option label {
-    color: white;
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.setting-option input,
-.setting-option button {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: #2a3c5f;
-    color: white;
-    font-size: 14px;
-}
-
-.setting-option button {
-    background-color: #3c5b8e;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.setting-option button:hover {
-    background-color: #2a3c5f;
-}
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Page</title>
+  <link rel="icon" href="favicon.png">
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
+    .container { max-width: 100%; width: 100%; padding: 20px; box-sizing: border-box; }
+    .partner-logos { display: flex; justify-content: space-around; padding: 20px; }
+    .partner-logo { width: 100px; height: auto; margin: 10px; }
+    .legal-section { text-align: center; font-size: 14px; margin-top: 30px; padding: 20px; }
+    .legal-section a { text-decoration: none; color: #333; }
+    .toc { position: fixed; top: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.1); padding: 10px; border-radius: 8px; }
+    .toc ul { list-style: none; padding: 0; }
+    .toc a { text-decoration: none; display: block; padding: 5px 0; color: #000; }
+    .settings button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    .settings button:hover { background-color: #45a049; }
+    #settings-content { margin-top: 20px; padding: 15px; background-color: #f4f4f4; border-radius: 8px; }
+  </style>
 </head>
 <body>
-    <div class="settings-section">
-    <h1>Settings</h1>
-    <div class="setting-option">
-        <label for="partners-page">Partners Page URL:</label>
-        <input type="url" id="partners-page" placeholder="Enter URL for partners page">
+  <!-- Table of Contents -->
+  <nav class="toc">
+    <ul>
+      <li><a href="#section1">Section 1</a></li>
+      <li><a href="#section2">Section 2</a></li>
+      <li><a href="#section3">Section 3</a></li>
+    </ul>
+  </nav>
+
+  <!-- Partner Logos -->
+  <div class="partner-logos">
+    <img src="logo1.png" alt="Partner 1" class="partner-logo">
+    <img src="logo2.png" alt="Partner 2" class="partner-logo">
+    <img src="logo3.png" alt="Partner 3" class="partner-logo">
+  </div>
+
+  <!-- Sections -->
+  <div id="section1">Section 1 Content</div>
+  <div id="section2">Section 2 Content</div>
+  <div id="section3">Section 3 Content</div>
+
+  <!-- Legal Section -->
+  <footer class="legal-section">
+    <p>© 2025 Your Company. All rights reserved.</p>
+    <p><a href="privacy-policy.html" target="_blank">Privacy Policy</a></p>
+  </footer>
+
+  <!-- Settings Section -->
+  <div class="settings">
+    <button onclick="toggleSettings()">Toggle Settings</button>
+    <div id="settings-content" style="display:none;">
+      <label for="setting1">Setting 1</label>
+      <input type="checkbox" id="setting1">
+      <label for="setting2">Setting 2</label>
+      <input type="checkbox" id="setting2">
     </div>
+  </div>
 
-    <div class="setting-option">
-        <label for="privacy-policy">Privacy Policy Link:</label>
-        <input type="url" id="privacy-policy" placeholder="Enter Privacy Policy URL">
-    </div>
-
-    <div class="setting-option">
-        <button id="cloak-button">Open Website in Cloaked Window</button>
-    </div>
-
-    <div class="setting-option">
-        <label for="favicon">Change Favicon:</label>
-        <input type="file" id="favicon" accept="image/x-icon">
-    </div>
-
-    <div class="setting-option">
-        <label for="page-title">Change Page Title:</label>
-        <input type="text" id="page-title" placeholder="Enter new page title">
-    </div>
-
-    <div class="setting-option">
-        <label for="panic-key">Set Panic Key (Press to Hide):</label>
-        <input type="text" id="panic-key" placeholder="Enter panic key">
-    </div>
-</div>
-
-
-    <script>
-       document.addEventListener('DOMContentLoaded', function () {
-    // Cloak button functionality
-    document.getElementById('cloak-button').addEventListener('click', function () {
-        window.open(window.location.href, '_blank');
-    });
-
-    // Change favicon
-    document.getElementById('favicon').addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                const link = document.createElement('link');
-                link.rel = 'icon';
-                link.type = 'image/x-icon';
-                link.href = reader.result;
-                document.head.appendChild(link);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // Change page title
-    document.getElementById('page-title').addEventListener('input', function (e) {
-        document.title = e.target.value;
-    });
-
-    // Panic key functionality
-    let panicKey = '';
-    document.getElementById('panic-key').addEventListener('input', function (e) {
-        panicKey = e.target.value;
-    });
-
-    window.addEventListener('keydown', function (e) {
-        if (e.key === panicKey) {
-            document.body.style.display = 'none'; // Hide the page on panic key press
-        }
-    });
-
-    // Load saved settings from localStorage (if available)
-    const savedPartnersPage = localStorage.getItem('partners-page');
-    if (savedPartnersPage) {
-        document.getElementById('partners-page').value = savedPartnersPage;
+  <!-- JavaScript for functionalities -->
+  <script>
+    function toggleSettings() {
+      var settingsContent = document.getElementById('settings-content');
+      settingsContent.style.display = (settingsContent.style.display === 'none') ? 'block' : 'none';
     }
 
-    const savedPrivacyPolicy = localStorage.getItem('privacy-policy');
-    if (savedPrivacyPolicy) {
-        document.getElementById('privacy-policy').value = savedPrivacyPolicy;
+    function changeFavicon() {
+      var link = document.createElement('link');
+      link.rel = 'icon';
+      link.type = 'image/png';
+      link.href = 'new-favicon.png'; 
+      document.getElementsByTagName('head')[0].appendChild(link);
     }
-    
-    // Save settings on change
-    document.getElementById('partners-page').addEventListener('input', function (e) {
-        localStorage.setItem('partners-page', e.target.value);
-    });
 
-    document.getElementById('privacy-policy').addEventListener('input', function (e) {
-        localStorage.setItem('privacy-policy', e.target.value);
-    });
-});
+    function redirectToBlank() {
+      window.open('https://example.com', '_blank').document.write('');
+    }
 
-    </script>
+    changeFavicon(); // Change favicon when needed
+  </script>
 </body>
 </html>
-

@@ -1,4 +1,3 @@
-
 const sidebar = document.querySelector(".sidebar");
 const sidebarToggler = document.querySelector(".sidebar-toggler");
 const menuToggler = document.querySelector(".menu-toggler");
@@ -99,6 +98,11 @@ document.addEventListener('DOMContentLoaded', function () {
     css.type = 'text/css';
     css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
     document.body.appendChild(css);
+
+    // Make the Home nav item active by default
+    if (navLinks.length > 0) {
+        navLinks[0].classList.add('active'); // Add active class to the first link (Home)
+    }
 });
 
 // Add this part to handle the active nav item

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PeteZah | Profile</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Additional CSS Files -->
     <style>
@@ -16,8 +19,8 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1c2b3a; /* Dark blue background */
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d1a2b; /* Darker blue background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,31 +31,50 @@
         }
 
         .profile-container {
-            background-color: #2a3d58; /* Dark blue container */
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            width: 800px;
+            background-color: #112e48; /* Dark blue container */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            width: 850px;
             max-width: 100%;
             text-align: center;
             color: white;
+            transition: all 0.3s ease;
+        }
+
+        .profile-container:hover {
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
         }
 
         .profile-container h2 {
-            font-size: 30px;
+            font-size: 36px;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .profile-container h2:hover {
+            color: #4CAF50;
+            cursor: pointer;
         }
 
         .profile-image {
             margin-bottom: 30px;
+            transition: transform 0.3s ease;
         }
 
         .profile-image img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             cursor: pointer;
+        }
+
+        .profile-image:hover img {
+            transform: scale(1.1); /* Hover animation for image */
         }
 
         input[type="file"] {
@@ -60,18 +82,24 @@
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .input-group input, .bio-textarea {
             width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-            margin-bottom: 15px;
-            background-color: #1e2a3f; /* Dark background for input fields */
+            padding: 14px;
+            border-radius: 8px;
+            border: 2px solid #1f2c3a; /* Darker border */
+            font-size: 18px;
+            margin-bottom: 20px;
+            background-color: #0d1a2b; /* Dark background */
             color: white;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus, .bio-textarea:focus {
+            border-color: #4CAF50; /* Highlight border color */
+            outline: none;
         }
 
         .bio-textarea {
@@ -83,26 +111,28 @@
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
+            padding: 15px 30px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .save-button:hover {
             background-color: #45a049;
+            transform: scale(1.05); /* Hover effect for button */
         }
 
         footer {
             color: #ddd;
             margin-top: 30px;
             font-size: 14px;
+            letter-spacing: 1px;
         }
 
-        .profile-container input:focus,
-        .bio-textarea:focus {
-            outline: none;
-            border-color: #4CAF50;
+        footer p:hover {
+            color: #4CAF50; /* Hover effect for footer */
+            cursor: pointer;
         }
 
     </style>

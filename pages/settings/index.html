@@ -45,7 +45,7 @@
             width: 100%;
             max-width: 1100px;
             padding: 30px;
-            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
             height: 90vh;
             display: flex;
@@ -171,13 +171,6 @@
     <div class="settings-container">
         <h1>Settings</h1>
 
-        <!-- Background Color Section -->
-        <div class="section">
-            <h2>Background Settings</h2>
-            <label for="backgroundColorPicker">Select Background Color:</label>
-            <input type="color" id="backgroundColorPicker">
-        </div>
-
         <!-- Toggle Settings Section -->
         <div class="section">
             <h2>Functionality Toggles</h2>
@@ -227,7 +220,6 @@
             <button id="resetPanicButtonSettings" class="reset-button">Reset Panic Button Settings</button>
         </div>
     </div>
-
 
     <script>
     const beforeUnloadToggle = document.getElementById('beforeUnloadToggle');

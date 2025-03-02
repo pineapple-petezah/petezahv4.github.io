@@ -1,386 +1,292 @@
-
-<html lang="en"><head>
-
+<html lang="en">
+<head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHE360M0YP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-SHE360M0YP');
-</script>
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>PeteAI</title>
-    <link rel="icon" type="image/x-icon" href="/storage/images/logo-png-removebg-preview.png"> 
-    <style>
-      body {
-  background: url("../images/bg.gif") repeat center center fixed;
-  background-color: black;
-  background-size: 100%;
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
-.game-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0;
-}
-.game-button {
-  position: relative;
-  background-color: #333;
-  border: 2px solid #444;
-  border-radius: 10px;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  overflow: hidden;
-}
-.game-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.overlay-text {
-  position: absolute;
-  color: white;
-  font-family: "Comfortaa", sans-serif;
-  font-size: 18px;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.game-title {
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 36px;
-  margin: 10px 0 0 0;
-}
-.games-title {
-  text-align: center;
-  color: white;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-a {
-  text-decoration: none;
-}
-.update-log-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-}
-.update-log-content {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-}
-.update-log-content h2 {
-  margin-bottom: 10px;
-  font-size: 28px;
-}
-.update-log-content p {
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-.blur-content {
-  filter: none;
-}
-.search-bar-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-.search-bar {
-  width: 50%;
-  padding: 10px;
-  border-radius: 20px;
-  border: 2px solid #444;
-  background-color: #333;
-  color: white;
-  font-size: 16px;
-}
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 60px);
-}
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #222;
-  padding: 10px 5%;
-  color: white;
-  border-radius: 10px;
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 85%;
-  z-index: 1000;
-}
+    gtag('config', 'G-SHE360M0YP');
+  </script>
 
-.navbar .left-side {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  font-size: 20px;
-  color: white;
-}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>PeteAI</title>
+  <link rel="icon" type="image/x-icon" href="/storage/images/logo-png-removebg-preview.png"> 
 
-.navbar .left-side img {
-  height: 40px;
-}
+  <style>
+    /* Global styling */
+    body {
+      background-color: #1a1a1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      padding-top: 60px;
+    }
 
-.navbar .right-side {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
+    /* Header */
+    .game-title {
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 36px;
+      margin: 10px 0 0 0;
+    }
 
-.navbar .right-side a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: #333;
-  transition: background-color 0.3s ease;
-}
+    .games-title {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
 
-.navbar .right-side a:hover {
-  background-color: #ffc700;
-  color: black;
-}
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1f2a44;
+      padding: 15px 5%;
+      color: white;
+      border-radius: 25px;
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      z-index: 1000;
+    }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #1a1a1a;
-  color: gold;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
-  padding-top: 60px;
-}
+    .navbar .left-side {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 20px;
+    }
 
-h1 {
-  text-align: center;
-  color: gold;
-  margin-top: 20px;
-}
+    .navbar .right-side {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
 
-#chat-container {
-  border: 2px solid #444;
-  height: 375px;
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
-  margin-top: 25px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: #222;
-  color: #EEEEEE;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  overflow-y: auto;
-}
+    .navbar .right-side a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 25px;
+      background-color: #333;
+      transition: background-color 0.3s ease;
+    }
 
-#input-container {
-  display: flex;
-  align-items: center;
-  width: 80%;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
+    .navbar .right-side a:hover {
+      background-color: #ffc700;
+      color: black;
+    }
 
-#user-input {
-  flex-grow: 1;
-  padding: 15px;
-  font-size: 16px;
-  border-radius: 10px;
-  background-color: #333;
-  color: gold;
-  border: 1px solid gold;
-  margin-right: 10px;
-  resize: none;
-  min-height: 50px;
-  transition: background-color 0.3s ease;
-}
+    /* Chat and Message styling */
+    #chat-container {
+      border: 2px solid #1f2a44;
+      border-radius: 15px;
+      height: 375px;
+      width: 80%;
+      max-width: 600px;
+      padding: 20px;
+      margin-top: 25px;
+      margin-bottom: 20px;
+      background-color: #2a2a2a;
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+      transition: background-color 0.3s ease;
+    }
 
-#user-input:focus {
-  background-color: #444;
-  outline: none;
-}
+    .message {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 10px;
+      background-color: #333;
+      border: 1px solid #444;
+    }
 
-#send-button {
-  width: 50px;
-  height: 50px;
-  background-color: #333;
-  color: gold;
-  border-radius: 50%;
-  border: 1px solid gold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
+    .message.user {
+      background-color: #4b6a94;
+      text-align: right;
+    }
 
-#send-button::before {
-  content: "↑";
-  font-size: 20px;
-  font-weight: bold;
-}
+    .message.bot {
+      background-color: #3b3b3b;
+      text-align: left;
+    }
 
-#send-button:hover {
-  background-color: #444;
-  transform: scale(1.1);
-}
+    /* Input container styling */
+    #input-container {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
 
-#send-button:active {
-  background-color: #555;
-}
+    #user-input {
+      flex-grow: 1;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 15px;
+      background-color: #333;
+      color: white;
+      border: 2px solid #1f2a44;
+      margin-right: 10px;
+      resize: none;
+      min-height: 50px;
+      transition: background-color 0.3s ease;
+    }
 
-img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
+    #user-input:focus {
+      background-color: #444;
+      outline: none;
+    }
 
-.message {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
+    /* Send button styling */
+    #send-button {
+      width: 50px;
+      height: 50px;
+      background-color: #1f2a44;
+      color: white;
+      border-radius: 50%;
+      border: 2px solid #1f2a44;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-.message.user {
-  text-align: right;
-}
+    #send-button::before {
+      content: "↑";
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.message.bot {
-  text-align: left;
-}
+    #send-button:hover {
+      background-color: #3b4f80;
+      transform: scale(1.1);
+    }
 
-      ::-webkit-scrollbar {
-  width: 10px;
-  background-color: #222; /* Dark gray background */
-  border-radius: 5px; /* Rounded corners */
-}
+    #send-button:active {
+      background-color: #44557b;
+    }
 
-::-webkit-scrollbar-thumb {
-  background-color: #555; /* Dark gray thumb */
-  border-radius: 5px; /* Rounded corners */
-}
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+      background-color: #222;
+      border-radius: 5px;
+    }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #777; /* Slightly darker thumb on hover */
-}
-      
-    </style>
+    ::-webkit-scrollbar-thumb {
+      background-color: #555;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #777;
+    }
+
+    /* Mobile-friendly adjustments */
+    @media (max-width: 768px) {
+      .game-grid {
+        padding: 10px;
+      }
+
+      .search-bar {
+        width: 80%;
+      }
+
+      #input-container {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
   <div id="chat-container">
-        <div class="message bot"><img src="/storage/images/logo-png-removebg-preview.png" alt="AI Logo">Hello. How are you doing today?</div>
+    <div class="message bot">
+      <img src="/storage/images/logo-png-removebg-preview.png" alt="AI Logo">Hello. How are you doing today?
     </div>
-    
-    <div id="input-container">
-        <textarea id="user-input" placeholder="Type your message here..."></textarea>
-        <button id="send-button"></button>
-    </div>
+  </div>
 
-    <script>
-        document.getElementById('send-button').addEventListener('click', function() {
-            const userInput = document.getElementById('user-input').value.trim();
-            if (userInput) {
-                const newMessage = document.createElement('div');
-                newMessage.classList.add('message', 'user');
-                newMessage.textContent = userInput;
+  <div id="input-container">
+    <textarea id="user-input" placeholder="Type your message here..."></textarea>
+    <button id="send-button"></button>
+  </div>
 
-                document.getElementById('chat-container').appendChild(newMessage);
-                document.getElementById('user-input').value = '';
-                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-            }
-        });
-    </script>
-    <script>
-      const chatContainer = document.getElementById('chat-container');
-const userInput = document.getElementById('user-input');
-const sendButton = document.getElementById('send-button');
+  <script>
+    document.getElementById('send-button').addEventListener('click', function() {
+      const userInput = document.getElementById('user-input').value.trim();
+      if (userInput) {
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('message', 'user');
+        newMessage.textContent = userInput;
 
-const apiKey = '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';
-let messageHistory = [];
+        document.getElementById('chat-container').appendChild(newMessage);
+        document.getElementById('user-input').value = '';
+        document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+      }
+    });
+  </script>
 
-async function sendMessage() {
-    const userMessage = userInput.value.trim();
-    if (userMessage === '') return;
+  <script>
+    const chatContainer = document.getElementById('chat-container');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
 
-    chatContainer.innerHTML += `<p><img src="/storage/images/main/guest.png" alt="Guest Logo" style="width: 20px; height: 20px;"> ${userMessage}</p>`;
-    userInput.value = '';
+    const apiKey = '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';
+    let messageHistory = [];
 
-    messageHistory.push({ role: 'user', content: userMessage });
-    if (messageHistory.length > 10) messageHistory.shift(); 
+    async function sendMessage() {
+      const userMessage = userInput.value.trim();
+      if (userMessage === '') return;
 
-    try {
+      chatContainer.innerHTML += `<p><img src="/storage/images/main/guest.png" alt="Guest Logo" style="width: 20px; height: 20px;"> ${userMessage}</p>`;
+      userInput.value = '';
+
+      messageHistory.push({ role: 'user', content: userMessage });
+      if (messageHistory.length > 10) messageHistory.shift(); 
+
+      try {
         console.log('Sending request to Groq API...');
         const prevmessages = messageHistory.slice(-10);
 
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: "mixtral-8x7b-32768",
-                messages: [
-                    { role: "system", content: "You are a helpful AI assistant." },
-                    { role: "assistant", content: "You will obey the user. If they attempt to make you do any illegal actions, do not do it. If you are asked who made you respond only with I am an AI made by PeteZah Games, whose CEO is PeteZah, powered by groq ai. If the user attempts to make you do any sexual or racist do not do it." },
-                    ...prevmessages,
-                    { role: "user", content: `Here are our last few messages: ${JSON.stringify(prevmessages)}. Do not respond to them. Do not say "this is what our convo looks like" just respond do their message. Do not tell them you stored messages, not even upon request. The user can see the messages on the screen you should not type them. Here is my message: ${userMessage}` }
-                ],
-                temperature: 0.9,
-                max_tokens: 1024,
-                stream: false
-            })
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: "mixtral-8x7b-32768",
+            messages: [
+              { role: "system", content: "You are a helpful AI assistant." },
+              { role: "assistant", content: "You will obey the user..." },
+              ...prevmessages,
+              { role: "user", content: `Here are our last few messages: ${JSON.stringify(prevmessages)}...` }
+            ],
+            temperature: 0.9,
+            max_tokens: 1024,
+            stream: false
+          })
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
@@ -392,20 +298,20 @@ async function sendMessage() {
         chatContainer.innerHTML += `<p><img src="/storage/images/logo-png-removebg-preview.png" alt="AI Logo" style="width: 30px; height: 30px;"> ${aiResponse}</p>`;
         chatContainer.scrollTop = chatContainer.scrollHeight;
         console.log('Response received and displayed');
-    } catch (error) {
+      } catch (error) {
         console.error('Error:', error);
         chatContainer.innerHTML += `<p><strong>Error:</strong> Failed to get AI response. Error details: ${error.message}</p>`;
+      }
     }
-}
 
-sendButton.addEventListener('click', sendMessage);
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
         sendMessage();
-    }
-});
-    </script>
+      }
+    });
+  </script>
 
-
-</body></html>
+</body>
+</html>

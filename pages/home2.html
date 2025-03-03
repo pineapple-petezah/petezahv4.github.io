@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,28 +34,27 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    margin: 0;
-    background-color: #0A1D37;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    padding: 20px 0;
-    overflow: hidden;
-}
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #0A1D37;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px 0;
+            overflow: hidden;
+        }
 
-/* God Rays Background */
-.god-rays {
+	.god-rays {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 550px;
-    --stripes: repeating-linear-gradient( 100deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 7%, transparent 10%, transparent 12%, rgba(255, 255, 255, 0.8) 16% );
-    --rays: repeating-linear-gradient( 100deg, rgba(0, 0, 50, 0.9) 10%, rgba(0, 0, 60, 0.9) 15%, rgba(0, 0, 70, 0.9) 20%, rgba(0, 0, 80, 0.9) 25%, rgba(0, 0, 90, 0.9) 30% );
+    --stripes: repeating-linear-gradient( 100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16% );
+    --rays: repeating-linear-gradient( 100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30% );
     background-image: var(--stripes), var(--rays);
     background-size: 300%, 200%;
     background-position: 50% 50%, 50% 50%;
@@ -78,54 +76,47 @@ body {
     mix-blend-mode: difference;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-@keyframes god-rays {
-    0% {
-        background-position: 0 0, 0 0;
-    }
-    100% {
-        background-position: 100% 100%, 100% 100%;
-    }
-}
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
+            width: 100%;
+            text-align: center;
+        }
 
-/* Header Styling */
-h1 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
-    width: 100%;
-    text-align: center;
-}
+        .image-shuffler {
+            display: flex;
+            align-items: center;
+            width: 60%;
+            max-width: 800px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1e1e2d;
+            padding: 14px;
+            position: relative;
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+            margin: 0 auto;
+	    border: 1px solid white;
+        }
 
-/* Image Shuffler */
-.image-shuffler {
-    display: flex;
-    align-items: center;
-    width: 60%;
-    max-width: 800px;
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: #1e1e2d;
-    padding: 14px;
-    position: relative;
-    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
-    margin: 0 auto;
-    border: 1px solid white;
-}
+        .image-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
 
-/* Image Box */
+        .image-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: max-content;
+            align-items: center;
+        }
+
+        /* Hide the caption by default and only show it on hover */
 .image-box {
     display: flex;
     flex-direction: column;
@@ -135,6 +126,7 @@ h1 {
     cursor: pointer;
 }
 
+/* The image will cover the caption */
 .image {
     width: 120px;
     height: 80px;
@@ -146,13 +138,14 @@ h1 {
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
+/* Hover effect on the image */
 .image:hover, .image.glow {
     transform: scale(1.08);
     box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
     filter: brightness(1.2);
 }
 
-/* Caption Styling */
+/* Initially hide the caption */
 .caption {
     position: absolute;
     bottom: 0;
@@ -172,82 +165,81 @@ h1 {
     transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;
 }
 
+/* Show the caption when hovering over the image */
 .image-box:hover .caption {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s ease-in-out;
 }
 
-/* Arrow Styling */
-.arrow {
-    background-color: #2a3c5f;
-    border: none;
-    padding: 12px 18px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-    color: white;
-    border-radius: 6px;
-    box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
-}
 
-.arrow:hover {
-    background-color: #3c5b8e;
-    transform: scale(1.1);
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
-}
+        .arrow {
+            background-color: #2a3c5f;
+            border: none;
+            padding: 12px 18px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
+        }
 
-/* Welcome Section */
-.welcome-section {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    color: white;
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-    z-index: 10;
-}
+        .arrow:hover {
+            background-color: #3c5b8e;
+            transform: scale(1.1);
+            box-shadow: 0 5px 12px rgba(255, 255, 255, 0.5);
+        }
 
-.welcome-section h2 {
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #ffffff;
-    text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-}
+        .welcome-section {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+        }
 
-.welcome-section p {
-    font-size: 18px;
-    font-weight: 400;
-    color: #dcdcdc;
-    margin-bottom: 20px;
-}
+        .welcome-section h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
 
-/* Start Button */
-.start-btn {
-    background-color: #3c5b8e;
-    padding: 12px 24px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
-}
+        .welcome-section p {
+            font-size: 18px;
+            font-weight: 400;
+            color: #dcdcdc;
+            margin-bottom: 20px;
+        }
 
-.start-btn:hover {
-    background-color: #2a3c5f;
-    transform: scale(1.05);
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
-}
+        .start-btn {
+            background-color: #3c5b8e;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 3px 7px rgba(255, 255, 255, 0.3);
+        }
 
-/* Large Image */
+        .start-btn:hover {
+            background-color: #2a3c5f;
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
+        }
+
+        /* New Styles for the Large Image */
 .large-image-container {
     position: absolute;
-    top: 60%;
-    right: 200px;
+    top: 60%; /* Moved down slightly */
+    right: 200px; /* Moved 400px to the left */
     transform: translateY(-50%);
     text-align: center;
     z-index: 5;
@@ -264,8 +256,8 @@ h1 {
 }
 
 .large-image {
-    height: 200px;
-    width: auto;
+    height: 200px; /* Fixed height for the image */
+    width: auto; /* Maintain aspect ratio based on the fixed height */
     border: 5px solid #ffffff;
     border-radius: 12px;
     box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
@@ -384,9 +376,7 @@ h1 {
     </style>
 </head>
 <body>
-
-  <div class="god-rays"></div>
-  
+	<div class="god-rays"></div>
     <div class="welcome-section">
         <h2>
 				Welcome to 

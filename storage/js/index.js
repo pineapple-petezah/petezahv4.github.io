@@ -103,6 +103,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (navLinks.length > 0) {
         navLinks[0].classList.add('active'); // Add active class to the first link (Home)
     }
+
+    // On page load, restore the last visited iframe src if it exists
+    const savedSrc = localStorage.getItem('iframeSrc');
+    if (savedSrc) {
+        mainFrame.src = savedSrc;
+        updateActiveNavLink(savedSrc);
+    }
 });
 
 // Add this part to handle the active nav item
@@ -112,12 +119,30 @@ navLinks.forEach(link => {
         const src = link.getAttribute('data-src');
         if (src) {
             mainFrame.src = src;
+
+            // Save the iframe src to localStorage for persistence
+            localStorage.setItem('iframeSrc', src);
+
+            // Update active class on nav links based on iframe src
+            updateActiveNavLink(src);
         }
-
-        // Remove active class from all links
-        navLinks.forEach(navLink => navLink.classList.remove('active'));
-
-        // Add active class to the clicked link
-        link.classList.add('active');
     });
+});
+
+function updateActiveNavLink(src) {
+    // Remove active class from all links
+    navLinks.forEach(navLink => navLink.classList.remove('active'));
+
+    // Add active class to the link whose data-src matches the iframe src
+    const activeLink = [...navLinks].find(link => link.getAttribute('data-src') === src);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
+// Listen for changes to the iframe src and persist it
+mainFrame.addEventListener('load', () => {
+    const currentSrc = mainFrame.src;
+    localStorage.setItem('iframeSrc', currentSrc);
+    updateActiveNavLink(currentSrc);
 });

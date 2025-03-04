@@ -41,7 +41,6 @@ window.addEventListener("resize", () => {
     }
 });
 
-// (For the typewriter effect)
 class TxtType {
     constructor(el, toRotate, period) {
         this.toRotate = toRotate;
@@ -94,21 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // INJECT CSS for typewriter effect
+    // INJECT CSS
     const css = document.createElement('style');
     css.type = 'text/css';
     css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
     document.body.appendChild(css);
 
-    // On page load, restore the last visited iframe src if it exists
-    const savedSrc = localStorage.getItem('iframeSrc');
-    if (savedSrc) {
-        mainFrame.src = savedSrc;
-        updateActiveNavLink(savedSrc); // Set active link based on saved src
+    // Make the Home nav item active by default
+    if (navLinks.length > 0) {
+        navLinks[0].classList.add('active'); // Add active class to the first link (Home)
     }
-
-    // Make sure to mark the active icon if the current iframe's src is the same as the icon's data-src
-    updateActiveNavLink(mainFrame.src);
 });
 
 // Add this part to handle the active nav item
@@ -118,31 +112,12 @@ navLinks.forEach(link => {
         const src = link.getAttribute('data-src');
         if (src) {
             mainFrame.src = src;
-
-            // Save the iframe src to localStorage for persistence
-            localStorage.setItem('iframeSrc', src);
-
-            // Update active class on nav links based on iframe src
-            updateActiveNavLink(src);
         }
+
+        // Remove active class from all links
+        navLinks.forEach(navLink => navLink.classList.remove('active'));
+
+        // Add active class to the clicked link
+        link.classList.add('active');
     });
-});
-
-// This function will update the active state of the navigation icons based on the iframe src
-function updateActiveNavLink(src) {
-    // Remove active class from all links
-    navLinks.forEach(navLink => navLink.classList.remove('active'));
-
-    // Add active class to the link whose data-src matches the iframe src
-    const activeLink = [...navLinks].find(link => link.getAttribute('data-src') === src);
-    if (activeLink) {
-        activeLink.classList.add('active');
-    }
-}
-
-// Listen for changes to the iframe src and persist it
-mainFrame.addEventListener('load', () => {
-    const currentSrc = mainFrame.src;
-    localStorage.setItem('iframeSrc', currentSrc);
-    updateActiveNavLink(currentSrc); // Update active link when iframe src changes
 });

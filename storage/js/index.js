@@ -146,3 +146,12 @@ mainFrame.addEventListener('load', () => {
     localStorage.setItem('iframeSrc', currentSrc);
     updateActiveNavLink(currentSrc);
 });
+
+// Check and update the active state of the nav links on page load, based on iframe's current src
+function updateNavLinkStateFromIframe() {
+    const currentSrc = mainFrame.src.split('?')[0]; // Remove query params for matching
+    updateActiveNavLink(currentSrc);
+}
+
+// Call this function on page load to set the active link based on the iframe's src
+updateNavLinkStateFromIframe();

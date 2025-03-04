@@ -41,6 +41,7 @@ window.addEventListener("resize", () => {
     }
 });
 
+// (For the typewriter effect)
 class TxtType {
     constructor(el, toRotate, period) {
         this.toRotate = toRotate;
@@ -93,23 +94,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // INJECT CSS
+    // INJECT CSS for typewriter effect
     const css = document.createElement('style');
     css.type = 'text/css';
     css.innerHTML = '.typewrite > .wrap { border-right: 0.06em solid #a04cff}';
     document.body.appendChild(css);
 
-    // Make the Home nav item active by default
-    if (navLinks.length > 0) {
-        navLinks[0].classList.add('active'); // Add active class to the first link (Home)
-    }
-
     // On page load, restore the last visited iframe src if it exists
     const savedSrc = localStorage.getItem('iframeSrc');
     if (savedSrc) {
         mainFrame.src = savedSrc;
-        updateActiveNavLink(savedSrc);
+        updateActiveNavLink(savedSrc); // Set active link based on saved src
     }
+
+    // Make sure to mark the active icon if the current iframe's src is the same as the icon's data-src
+    updateActiveNavLink(mainFrame.src);
 });
 
 // Add this part to handle the active nav item
@@ -129,6 +128,7 @@ navLinks.forEach(link => {
     });
 });
 
+// This function will update the active state of the navigation icons based on the iframe src
 function updateActiveNavLink(src) {
     // Remove active class from all links
     navLinks.forEach(navLink => navLink.classList.remove('active'));
@@ -144,14 +144,5 @@ function updateActiveNavLink(src) {
 mainFrame.addEventListener('load', () => {
     const currentSrc = mainFrame.src;
     localStorage.setItem('iframeSrc', currentSrc);
-    updateActiveNavLink(currentSrc);
+    updateActiveNavLink(currentSrc); // Update active link when iframe src changes
 });
-
-// Check and update the active state of the nav links on page load, based on iframe's current src
-function updateNavLinkStateFromIframe() {
-    const currentSrc = mainFrame.src.split('?')[0]; // Remove query params for matching
-    updateActiveNavLink(currentSrc);
-}
-
-// Call this function on page load to set the active link based on the iframe's src
-updateNavLinkStateFromIframe();

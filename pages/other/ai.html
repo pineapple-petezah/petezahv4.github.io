@@ -7,14 +7,14 @@
     gtag('config', 'G-SHE360M0YP');
   </script>
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <title>PeteAI</title>
   <link rel="icon" type="image/x-icon" href="/storage/images/logo-png-removebg-preview.png"> 
 <style>
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #17223b 0%, #263859 100%);
-  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #1a1b41 0%, #2a2e6b 100%);
+  color: #e2e8f0;
   margin: 0;
   padding: 0;
   display: flex;
@@ -23,64 +23,77 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   padding-top: 60px;
+  overflow-x: hidden;
 }
 
 h1 {
   text-align: center;
-  color: #e0e7ff;
+  color: #dbe2ff;
   margin-top: 20px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #chat-container {
   height: 70vh;
   width: 90%;
-  max-width: 1000px;
-  padding: 25px;
-  margin: 25px 0;
-  border-radius: 12px;
-  background-color: #263859;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 1100px;
+  padding: 30px;
+  margin: 30px 0;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #2a2e6b 0%, #373b8a 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+#chat-container:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 #input-container {
   display: flex;
   align-items: center;
   width: 90%;
-  max-width: 1000px;
-  margin-bottom: 30px;
-  background: linear-gradient(90deg, #364f6b 0%, #3e5f8a 100%);
-  border-radius: 12px;
+  max-width: 1100px;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #373b8a 0%, #4a4eb2 100%);
+  border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+#input-container:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 #user-input {
   flex-grow: 1;
-  padding: 12px 16px;
+  padding: 14px 18px;
   font-size: 16px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #e0e7ff;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
   border: none;
   margin-right: 12px;
   resize: none;
-  min-height: 36px;
+  min-height: 40px;
+  font-weight: 400;
   transition: all 0.3s ease;
 }
 
 #user-input:focus {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
   outline: none;
-  box-shadow: 0 0 8px rgba(81, 111, 255, 0.3);
 }
 
 #send-button {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(45deg, #516fff, #728cff);
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
   color: #ffffff;
   border-radius: 50%;
   border: none;
@@ -88,54 +101,69 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(81, 111, 255, 0.3);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
 
 #send-button::before {
   content: "↑";
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 #send-button:hover {
-  background: linear-gradient(45deg, #4159d1, #627bff);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(81, 111, 255, 0.4);
+  background: linear-gradient(45deg, #5b59e8, #7e4ee5);
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.6);
 }
 
 #send-button:active {
-  transform: scale(0.95);
+  transform: scale(0.92);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
 }
 
 img {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   vertical-align: middle;
   border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.1);
 }
 
 .message {
-  padding: 12px 18px;
-  margin: 12px 0;
+  padding: 14px 20px;
+  margin: 14px 0;
   border-radius: 12px;
   max-width: 75%;
   line-height: 1.6;
   display: flex;
   align-items: center;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* User message - right aligned */
 .message.user {
-  background: linear-gradient(45deg, #516fff, #728cff);
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
   margin-left: auto;
   flex-direction: row-reverse;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 /* Bot message - left aligned */
 .message.bot {
-  background: linear-gradient(45deg, #2d3748, #4a5568);
+  background: linear-gradient(45deg, #334155, #475569);
   margin-right: auto;
+  box-shadow: 0 4px 12px rgba(51, 65, 85, 0.2);
 }
 
 .message img {
@@ -148,38 +176,39 @@ img {
 }
 
 .message:hover {
-  filter: brightness(1.05);
-  transition: filter 0.2s ease;
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#516fff, #728cff);
-  border-radius: 10px;
+  background: linear-gradient(#6366f1, #8b5cf6);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#4159d1, #627bff);
+  background: linear-gradient(#5b59e8, #7e4ee5);
 }
 
 .navbar {
-  background: linear-gradient(90deg, #263859 0%, #364f6b 100%);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(90deg, #2a2e6b 0%, #373b8a 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .navbar .right-side a {
-  background: linear-gradient(45deg, #516fff, #728cff);
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
   color: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .navbar .right-side a:hover {
-  background: linear-gradient(45deg, #4159d1, #627bff);
+  background: linear-gradient(45deg, #5b59e8, #7e4ee5);
 }
 </style>
 </head>

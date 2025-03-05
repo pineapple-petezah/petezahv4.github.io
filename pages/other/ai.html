@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="/storage/images/logo-png-removebg-preview.png"> 
 <style>
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif; /* Switched to Segoe UI for a ChatGPT-like feel */
   background-color: #1e2a44; /* Dark blue background */
   color: #ffffff; /* White text */
   margin: 0;
@@ -27,90 +27,89 @@ body {
   min-height: 100vh;
   padding-top: 60px;
   background: linear-gradient(135deg, #1e2a44 0%, #2c3e50 100%); /* Full-page gradient */
-  background-size: cover; /* Ensures it covers the entire page */
+  background-size: cover;
 }
-
-/* Removed GIF entirely */
 
 h1 {
   text-align: center;
   color: #ffffff;
   margin-top: 20px;
-  font-weight: 300;
-  letter-spacing: 1px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
 }
 
 #chat-container {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 70vh; /* Adjusted to take up more vertical space */
-  width: 90%; /* Nearly full width */
-  max-width: 900px; /* Slightly wider max-width */
-  padding: 20px;
+  border: none; /* Removed border for a cleaner look */
+  height: 70vh;
+  width: 90%;
+  max-width: 1000px; /* Wider like ChatGPT */
+  padding: 25px;
   margin-top: 25px;
-  margin-bottom: 20px;
-  border-radius: 15px;
-  background-color: rgba(30, 42, 68, 0.95); /* Semi-transparent dark blue */
+  margin-bottom: 25px;
+  border-radius: 20px; /* More rounded edges */
+  background-color: #2c3e50; /* Solid dark blue for simplicity */
   color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Softer, deeper shadow */
   overflow-y: auto;
-  backdrop-filter: blur(5px); /* Modern glassmorphism effect */
 }
 
 #input-container {
   display: flex;
   align-items: center;
-  width: 90%; /* Matches chat container width */
-  max-width: 900px;
-  margin-bottom: 20px;
+  width: 90%;
+  max-width: 1000px;
+  margin-bottom: 30px;
+  background-color: #34495e; /* ChatGPT-inspired input bar */
+  border-radius: 20px; /* More rounded */
+  padding: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #user-input {
   flex-grow: 1;
   padding: 15px;
   font-size: 16px;
-  border-radius: 12px;
-  background-color: #2c3e50; /* Darker blue input */
+  border-radius: 15px; /* More rounded */
+  background-color: transparent; /* Blends with input container */
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none; /* No border for a seamless look */
   margin-right: 15px;
   resize: none;
-  min-height: 60px;
+  min-height: 40px; /* Slightly shorter like ChatGPT */
   transition: all 0.3s ease;
   font-family: 'Segoe UI', sans-serif;
 }
 
 #user-input:focus {
-  background-color: #34495e;
-  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
   outline: none;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 #send-button {
-  width: 50px;
-  height: 50px;
-  background-color: #3498db; /* Bright blue button */
+  width: 45px;
+  height: 45px;
+  background-color: #3498db; /* Bright blue */
   color: #ffffff;
-  border-radius: 50%;
+  border-radius: 50%; /* Fully circular */
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 #send-button::before {
   content: "↑";
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 #send-button:hover {
   background-color: #2980b9;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #send-button:active {
@@ -123,59 +122,62 @@ img {
   height: 30px;
   margin-right: 10px;
   vertical-align: middle;
+  border-radius: 50%; /* Rounded avatars like ChatGPT */
 }
 
 .message {
-  padding: 12px 15px;
-  margin: 8px 0;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  transition: background-color 0.2s ease;
-  max-width: 70%; /* Limits message width for better alignment */
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 15px; /* More rounded edges */
+  max-width: 80%; /* Slightly wider messages */
+  line-height: 1.5; /* Better readability */
 }
 
-/* User message aligned to the right */
+/* User message aligned and text-aligned to the right */
 .message.user {
-  text-align: right;
-  background-color: rgba(52, 152, 219, 0.2); /* Light blue for user messages */
-  margin-left: auto; /* Pushes it to the right */
+  text-align: right; /* Text aligned right */
+  background-color: #3498db; /* Bright blue for user messages */
+  margin-left: auto; /* Pushes to the right */
+  color: #ffffff;
 }
 
-/* Bot message aligned to the left */
+/* Bot message aligned and text-aligned to the left */
 .message.bot {
-  text-align: left;
-  background-color: rgba(255, 255, 255, 0.1);
-  margin-right: auto; /* Keeps it to the left */
+  text-align: left; /* Text aligned left */
+  background-color: #34495e; /* Darker blue-gray for AI responses */
+  margin-right: auto; /* Pushes to the left */
+  color: #ffffff;
 }
 
 .message:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  filter: brightness(1.1); /* Subtle hover effect */
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px; /* Thinner scrollbar like ChatGPT */
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px; /* More rounded */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Navbar updates for consistency */
 .navbar {
   background-color: #2c3e50;
-  border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px; /* More rounded */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .navbar .right-side a {
   background-color: #3498db;
   color: #ffffff;
+  border-radius: 10px; /* More rounded */
 }
 
 .navbar .right-side a:hover {

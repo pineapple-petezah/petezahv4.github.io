@@ -124,6 +124,46 @@ iframe {
     margin-right: 0; /* Remove extra margin from last icon */
 }
 
+        .fullscreen-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .fullscreen-bar.hidden {
+            transform: translateY(100%);
+        }
+
+        .fullscreen-bar button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .fullscreen-bar button:hover {
+            transform: scale(1.1);
+        }
+
+        .game-name {
+            font-size: 14px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -139,6 +179,12 @@ iframe {
             <i class="fa-solid fa-comment icon" id="whysofeinious-button"></i>
             <i class="fa-solid fa-pager icon" id="openIframeSource"></i>
         </div>
+    </div>
+
+    <div class="fullscreen-bar" id="fullscreenBar" style="display: none;">
+        <span class="game-name" id="gameName"></span>
+        <button onclick="exitFullscreen()">Exit Fullscreen</button>
+        <button onclick="toggleBar()" id="toggleBarBtn">Hide Bar</button>
     </div>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
@@ -211,6 +257,59 @@ iframe {
             link.href = iframeSrc;
             link.target = '_blank';
             link.click();
+        });
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('myIframe');
+            const fullscreenBar = document.getElementById('fullscreenBar');
+            const gameNameSpan = document.getElementById('gameName');
+            
+            if (!document.fullscreenElement) {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) {
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) {
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) {
+                    iframe.msRequestFullscreen();
+                }
+                
+                // Show bar and set game name when entering fullscreen
+                fullscreenBar.style.display = 'flex';
+                const url = new URL(iframe.src);
+                const gameName = url.pathname.split('/').pop() || 'Unknown Game';
+                gameNameSpan.textContent = `Playing: ${gameName}`;
+            }
+        }
+
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        function toggleBar() {
+            const bar = document.getElementById('fullscreenBar');
+            const toggleBtn = document.getElementById('toggleBarBtn');
+            bar.classList.toggle('hidden');
+            toggleBtn.textContent = bar.classList.contains('hidden') ? 'Show Bar' : 'Hide Bar';
+        }
+
+        // Hide bar when exiting fullscreen
+        document.addEventListener('fullscreenchange', function() {
+            const fullscreenBar = document.getElementById('fullscreenBar');
+            if (!document.fullscreenElement) {
+                fullscreenBar.style.display = 'none';
+                fullscreenBar.classList.remove('hidden');
+                document.getElementById('toggleBarBtn').textContent = 'Hide Bar';
+            }
         });
     </script>
 </body>

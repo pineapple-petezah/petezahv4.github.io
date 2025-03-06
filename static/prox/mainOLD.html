@@ -99,7 +99,6 @@
     .navbar {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         background-color: #0a1324;
         padding: 6px 16px;
         width: 100%;
@@ -113,11 +112,13 @@
     .navbar-left {
         display: flex;
         gap: 14px;
+        flex-shrink: 0;
     }
 
     .navbar-right {
         display: flex;
         gap: 14px;
+        flex-shrink: 0;
     }
 
     .navbar button {
@@ -134,7 +135,7 @@
     }
 
     .search-bar {
-        position: relative;
+        flex-grow: 1;
         display: flex;
         align-items: center;
         border-radius: 25px;
@@ -142,8 +143,7 @@
         border: 2px solid #fff;
         overflow: hidden;
         height: 35px;
-        width: 50%;
-        margin: 0 auto;
+        margin: 0 10px; /* Add some spacing between icons and search bar */
     }
 
     .search-bar input {

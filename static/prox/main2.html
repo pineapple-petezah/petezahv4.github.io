@@ -25,48 +25,48 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        background-color: #0d1a2b;
-        color: #e8eaed;
+        background-color: #0a1324;
+        color: #d1d5db;
     }
 
     .tabs {
         display: flex;
         align-items: center;
-        background-color: #1e2a47;
-        padding: 8px 12px;
-        border-bottom: 1px solid #334155;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        background-color: #172554;
+        padding: 4px 8px;
+        border-bottom: 1px solid #1e3a8a;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .tab {
         display: flex;
         align-items: center;
-        padding: 10px 24px;
-        color: #94a3b8;
+        padding: 6px 28px;
+        color: #93c5fd;
         cursor: pointer;
-        background-color: #1e2a47;
-        border-radius: 16px 16px 0 0;
+        background-color: #172554;
+        border-radius: 20px 20px 0 0;
         margin-right: 6px;
         transition: all 0.2s ease;
-        max-width: 300px;
+        max-width: 350px;
         overflow: hidden;
         text-overflow: ellipsis;
-        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
+        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
     }
 
     .tab.active {
-        background-color: #0d1a2b;
+        background-color: #0a1324;
         color: #fff;
-        box-shadow: inset 0 -2px 0 #1a73e8;
+        box-shadow: inset 0 -2px 0 #2563eb;
     }
 
     .tab:hover:not(.active) {
-        background-color: #2b3c5d;
+        background-color: #1e3a8a;
     }
 
     .tab .close-button {
         margin-left: 12px;
-        color: #94a3b8;
+        color: #93c5fd;
         cursor: pointer;
         font-size: 14px;
         opacity: 0;
@@ -82,18 +82,18 @@
     }
 
     .add-tab-button {
-        padding: 8px 12px;
+        padding: 6px 10px;
         cursor: pointer;
         background-color: transparent;
-        color: #94a3b8;
+        color: #93c5fd;
         border: none;
-        font-size: 18px;
+        font-size: 16px;
         border-radius: 50%;
         transition: all 0.2s ease;
     }
 
     .add-tab-button:hover {
-        background-color: #2b3c5d;
+        background-color: #1e3a8a;
         color: #fff;
     }
 
@@ -101,8 +101,8 @@
         display: flex;
         align-items: center;
         padding: 10px 16px;
-        background-color: #1e2a47;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        background-color: #172554;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .navbar-left {
@@ -114,7 +114,7 @@
     .navbar button {
         background: transparent;
         border: none;
-        color: #94a3b8;
+        color: #93c5fd;
         cursor: pointer;
         font-size: 18px;
         padding: 8px;
@@ -123,7 +123,7 @@
     }
 
     .navbar button:hover {
-        background-color: #2b3c5d;
+        background-color: #1e3a8a;
         color: #fff;
     }
 
@@ -131,17 +131,17 @@
         flex-grow: 1;
         display: flex;
         align-items: center;
-        background-color: #2b3c5d;
+        background-color: #1e3a8a;
         border-radius: 24px;
         padding: 6px 12px;
         max-width: 800px;
         margin: 0 auto;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         transition: all 0.2s ease;
     }
 
     .search-bar:hover {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.35);
     }
 
     .search-bar input {
@@ -149,7 +149,7 @@
         padding: 8px 12px;
         border: none;
         background-color: transparent;
-        color: #e8eaed;
+        color: #d1d5db;
         font-size: 16px;
         outline: none;
     }
@@ -158,14 +158,14 @@
         background: transparent;
         border: none;
         padding: 8px 14px;
-        color: #1a73e8;
+        color: #2563eb;
         cursor: pointer;
         border-radius: 50%;
         transition: all 0.2s ease;
     }
 
     .search-bar button:hover {
-        background-color: #3b5178;
+        background-color: #3b82f6;
         color: #fff;
     }
 
@@ -173,7 +173,7 @@
         flex-grow: 1;
         overflow: hidden;
         position: relative;
-        background-color: #0d1a2b;
+        background-color: #0a1324;
     }
 
     iframe {
@@ -197,7 +197,7 @@
     .bookmarks-btn {
         background: transparent;
         border: none;
-        color: #94a3b8;
+        color: #93c5fd;
         cursor: pointer;
         font-size: 18px;
         padding: 8px;
@@ -205,32 +205,46 @@
     }
 
     .bookmarks-btn:hover {
-        background-color: #2b3c5d;
+        background-color: #1e3a8a;
         color: #fff;
     }
 
     .bookmarks-content {
         display: none;
         position: absolute;
-        background-color: #1e2a47;
-        min-width: 200px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        background-color: #172554;
+        min-width: 250px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         z-index: 1;
-        border-radius: 8px;
+        border-radius: 12px;
         left: 0;
         top: 100%;
+        padding: 8px 0;
     }
 
     .bookmarks-content a {
-        color: #e8eaed;
+        color: #d1d5db;
         padding: 8px 16px;
         text-decoration: none;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         transition: background-color 0.2s ease;
     }
 
     .bookmarks-content a:hover {
-        background-color: #2b3c5d;
+        background-color: #1e3a8a;
+    }
+
+    .bookmarks-content .remove-bookmark {
+        color: #93c5fd;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    .bookmarks-content .remove-bookmark:hover {
+        color: #fff;
     }
 
     .bookmarks-dropdown:hover .bookmarks-content {
@@ -336,7 +350,7 @@
     function updateTabName(iframe, tabElement) {
         iframe.onload = () => {
             const title = iframe.contentDocument ? iframe.contentDocument.title : 'New Tab';
-            tabElement.textContent = title.substring(0, 25);
+            tabElement.textContent = title.substring(0, 30);
             tabElement.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
         };
     }
@@ -384,8 +398,9 @@
         event.preventDefault();
         const iframe = document.querySelector('.tab-iframe.active');
         const url = iframe.src;
-        const title = document.querySelector('.tab.active').textContent.replace('×', '').trim();
-        
+        const title = prompt('Enter bookmark title:', document.querySelector('.tab.active').textContent.replace('×', '').trim());
+        if (!title) return;
+
         let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
         if (!bookmarks.some(b => b.url === url)) {
             bookmarks.push({ title, url });
@@ -401,20 +416,17 @@
         const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
         bookmarks.forEach((bookmark, index) => {
             const a = document.createElement('a');
-            a.href = bookmark.url;
+            a.href = '#';
             a.textContent = bookmark.title;
             a.onclick = (e) => {
                 e.preventDefault();
-                const iframe = document.querySelector('.tab-iframe.active');
-                iframe.src = bookmark.url;
-                const activeTab = document.querySelector('.tab.active');
-                activeTab.textContent = bookmark.title;
-                activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+                const searchInput = document.getElementById('search-input');
+                searchInput.value = bookmark.url;
+                search();
             };
             const removeBtn = document.createElement('span');
-            removeBtn.textContent = ' ×';
-            removeBtn.style.cursor = 'pointer';
-            removeBtn.style.marginLeft = '8px';
+            removeBtn.textContent = '×';
+            removeBtn.className = 'remove-bookmark';
             removeBtn.onclick = (e) => {
                 e.stopPropagation();
                 removeBookmark(index);

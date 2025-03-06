@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,224 +14,223 @@
 
     <style>
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-    font-weight: 500;
-}
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+        font-weight: 500;
+    }
 
-body, html {
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #0d1a2b; /* Darker blue background */
-    color: #fff; /* White text color */
-}
+    body, html {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #0d1a2b;
+        color: #fff;
+    }
 
-.tabs {
-    display: flex;
-    align-items: center;
-    background-color: #0a1324; /* Even darker blue for tabs */
-    border-bottom: 2px solid #fff;
-    padding: 4px 12px; /* Halved padding to reduce height */
-    transition: transform 0.5s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
-    border-radius: 12px 12px 0 0; /* Rounded top corners */
-}
+    .tabs {
+        display: flex;
+        align-items: center;
+        background-color: #0a1324;
+        border-bottom: 2px solid #fff;
+        padding: 4px 12px;
+        transition: transform 0.5s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border-radius: 12px 12px 0 0;
+    }
 
-.tab {
-    display: flex;
-    align-items: center;
-    padding: 4px 10px; /* Halved padding for the tabs */
-    color: #ccc;
-    cursor: pointer;
-    background-color: #0a1324;
-    border-right: 1px solid #444;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    border-radius: 10px;
-    flex-shrink: 1;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 8px; /* Space between tabs */
-}
+    .tab {
+        display: flex;
+        align-items: center;
+        padding: 4px 10px;
+        color: #ccc;
+        cursor: pointer;
+        background-color: #0a1324;
+        border-right: 1px solid #444;
+        transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        border-radius: 10px;
+        flex-shrink: 1;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 8px;
+    }
 
-.tab.active {
-    background-color: #0a1020; /* Darker blue when active */
-    color: #fff;
-    transform: scale(1.05); /* Slight zoom effect on active tab */
-}
+    .tab.active {
+        background-color: #0a1020;
+        color: #fff;
+        transform: scale(1.05);
+    }
 
-.tab:hover {
-    background-color: #1b2c42; /* Lighter blue on hover */
-    transform: scale(1.03); /* Hover zoom effect */
-}
+    .tab:hover {
+        background-color: #1b2c42;
+        transform: scale(1.03);
+    }
 
-.tab .close-button {
-    margin-left: 10px;
-    color: #ccc;
-    cursor: pointer;
-    font-size: 14px;
-}
+    .tab .close-button {
+        margin-left: 10px;
+        color: #ccc;
+        cursor: pointer;
+        font-size: 14px;
+    }
 
-.tab .close-button:hover {
-    color: #f5f5f5; /* Slightly brighter close button */
-}
+    .tab .close-button:hover {
+        color: #f5f5f5;
+    }
 
-.add-tab-button {
-    padding: 4px 10px; /* Halved padding */
-    cursor: pointer;
-    background-color: #0a1324;
-    color: #fff;
-    border: none;
-    outline: none;
-    font-size: 20px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease-in-out;
-}
+    .add-tab-button {
+        padding: 4px 10px;
+        cursor: pointer;
+        background-color: #0a1324;
+        color: #fff;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease-in-out;
+    }
 
-.add-tab-button:hover {
-    background-color: #1b2c42;
-}
+    .add-tab-button:hover {
+        background-color: #1b2c42;
+    }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0a1324; /* Dark blue for navbar */
-    padding: 6px 16px; /* Halved padding to reduce height */
-    width: 100%;
-    z-index: 1000;
-    border-bottom: 2px solid #fff;
-    transition: transform 0.5s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Dark shadow for navbar */
-    border-radius: 0 0 12px 12px; /* Rounded bottom corners for navbar */
-}
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #0a1324;
+        padding: 6px 16px;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 2px solid #fff;
+        transition: transform 0.5s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 0 0 12px 12px;
+    }
 
-.navbar-left {
-    display: flex;
-    gap: 14px;
-}
+    .navbar-left {
+        display: flex;
+        gap: 14px;
+    }
 
-.navbar button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px; /* Slightly smaller icons */
-    transition: color 0.3s ease-in-out;
-}
+    .navbar-right {
+        display: flex;
+        gap: 14px;
+    }
 
-.navbar button:hover {
-    color: #f5f5f5; /* Lighter white on hover */
-}
+    .navbar button {
+        background: transparent;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        transition: color 0.3s ease-in-out;
+    }
 
-.search-bar {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    border-radius: 25px;
-    background-color: #0e192e; /* Darker blue for the search bar */
-    border: 2px solid #fff;
-    overflow: hidden;
-    height: 35px; /* Halved height */
-    margin-left: 20px;
-}
+    .navbar button:hover {
+        color: #f5f5f5;
+    }
 
-.search-bar input {
-    flex-grow: 1;
-    padding: 8px 12px; /* Reduced padding */
-    border: none;
-    background-color: transparent;
-    color: #ccc;
-    font-size: 16px;
-    border-radius: 25px 0 0 25px; /* Rounded left side */
-    transition: background-color 0.3s ease-in-out;
-}
+    .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 25px;
+        background-color: #0e192e;
+        border: 2px solid #fff;
+        overflow: hidden;
+        height: 35px;
+        width: 50%;
+        margin: 0 auto;
+    }
 
-.search-bar input:focus {
-    outline: none;
-    background-color: #1e2a47; /* Slight color change on focus */
-}
+    .search-bar input {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: none;
+        background-color: transparent;
+        color: #ccc;
+        font-size: 16px;
+        border-radius: 25px 0 0 25px;
+        transition: background-color 0.3s ease-in-out;
+    }
 
-.search-bar button {
-    background-color: #fff;
-    border: none;
-    padding: 8px 14px; /* Reduced padding */
-    font-size: 14px; /* Slightly smaller text */
-    color: #1e2a47; /* Dark blue for button text */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: 0 25px 25px 0;
-    transition: background-color 0.3s ease-in-out;
-}
+    .search-bar input:focus {
+        outline: none;
+        background-color: #1e2a47;
+    }
 
-.search-bar button:hover {
-    background-color: #2b3c5d; /* Lighter blue when hovering */
-}
+    .search-bar button {
+        background: transparent;
+        border: none;
+        padding: 8px 12px;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 0 25px 25px 0;
+        transition: color 0.3s ease-in-out;
+    }
 
-.search-bar button i {
-    margin-left: 5px;
-}
+    .search-bar button:hover {
+        color: #f5f5f5;
+    }
 
-.content-wrapper {
-    flex-grow: 1;
-    overflow: hidden;
-    position: relative;
-    height: calc(100% - 80px); /* Increased content space by halving the tab and navbar height */
-    background-color: #0d1a2b; /* Darker blue background */
-}
+    .content-wrapper {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+        height: calc(100% - 80px);
+        background-color: #0d1a2b;
+    }
 
-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: none;
-    border-radius: 15px; /* Rounded corners for iframe */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow around iframe */
-    transition: transform 0.3s ease-in-out;
-}
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease-in-out;
+    }
 
-iframe.active {
-    display: block;
-    transform: scale(1.02); /* Smooth zoom-in effect on active iframe */
-}
+    iframe.active {
+        display: block;
+        transform: scale(1.02);
+    }
 
-.hide-button {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    border: none;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1001;
-}
+    .hide-button {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background-color: transparent;
+        border: none;
+        font-size: 30px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1001;
+    }
 
-.navbar.hidden, .tabs.hidden {
-    transform: translateY(-200%);
-}
+    .navbar.hidden, .tabs.hidden {
+        transform: translateY(-200%);
+    }
 
-.show-navbar-button {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    border: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    display: none;
-    z-index: 2000;
-}
+    .show-navbar-button {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background-color: transparent;
+        border: none;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        display: none;
+        z-index: 2000;
+    }
 
-.show-navbar-button i {
-    color: #FFD700; /* Gold color for the show button */
-}
+    .show-navbar-button i {
+        color: #FFD700;
+    }
     </style>
 </head>
 <body>
@@ -255,6 +252,14 @@ iframe.active {
             <button onclick="document.querySelector('.tab-iframe.active').contentWindow.location.reload()">
                 <i class="fas fa-redo"></i>
             </button>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search or enter a URL" onkeydown="if(event.key === 'Enter') search()">
+            <button onclick="search()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="navbar-right">
             <button onclick="inspect()">
                 <i class="fa fa-code"></i>
             </button>
@@ -263,12 +268,6 @@ iframe.active {
             </button>
             <button onclick="settings()">
                 <i class="fa fa-cog"></i>
-            </button>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search or enter a URL" onkeydown="if(event.key === 'Enter') search()">
-            <button onclick="search()">
-                SEARCH <i class="fas fa-search"></i>
             </button>
         </div>
     </div>
@@ -303,6 +302,7 @@ iframe.active {
         iframe.id = `iframe-${tabCount}`;
         iframe.src = '/static/index.html';
         document.getElementById('content-wrapper').appendChild(iframe);
+        selectTab(newTab); // Automatically switch to the new tab
         resizeTabs();
     }
 
@@ -310,14 +310,18 @@ iframe.active {
         event.stopPropagation();
         const tab = closeButton.parentElement;
         const tabsContainer = document.getElementById('tabs');
+        const tabIndex = [...tabsContainer.children].indexOf(tab);
         if (tab.classList.contains('active')) {
             const nextTab = tab.nextElementSibling || tab.previousElementSibling;
             if (nextTab && nextTab.classList.contains('tab')) {
                 selectTab(nextTab);
+            } else if (!nextTab) {
+                // If no tabs remain, create a new one
+                addTab();
             }
         }
         tabsContainer.removeChild(tab);
-        const iframe = document.getElementById(`iframe-${tabCount}`);
+        const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
         document.getElementById('content-wrapper').removeChild(iframe);
         tabCount--;
         resizeTabs();
@@ -347,38 +351,38 @@ iframe.active {
     }
 
     function home() {
- 	   const iframe = document.querySelector('.tab-iframe.active');
-	    iframe.src = '/static/index';
-	    const activeTab = document.querySelector('.tab.active');
-		activeTab.textContent = 'New Tab';
-		activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = '/static/index';
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.textContent = 'New Tab';
+        activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
     }
 
-	function settings() {
- 	   const iframe = document.querySelector('.tab-iframe.active');
-	    iframe.src = '/static/prox/settings';
-	    const activeTab = document.querySelector('.tab.active');
-		activeTab.textContent = 'Settings';
-		activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
-}
+    function settings() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = '/static/prox/settings';
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.textContent = 'Settings';
+        activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+    }
 
-	function toggleFullscreen() {
-		const iframe = document.querySelector('.tab-iframe.active');
-		if (iframe.requestFullscreen) {
-		iframe.requestFullscreen();
-			} else if (iframe.mozRequestFullScreen) {
-		iframe.mozRequestFullScreen();
-			} else if (iframe.webkitRequestFullscreen) {
-		iframe.webkitRequestFullscreen();
-			} else if (iframe.msRequestFullscreen) {
-		iframe.msRequestFullscreen();
-	}
-}
+    function toggleFullscreen() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) {
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) {
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+            iframe.msRequestFullscreen();
+        }
+    }
 
     function inspect() {
-window.location.href = "javascript: (function() { fetch('/prox/edit-thing.js') .then(response => { if (!response.ok) throw new Error('Network response was not ok'); return response.text(); }) .then(scriptText => eval(scriptText)) .catch(error => console.error('Error fetching or executing the script:', error)); })();"
+        window.location.href = "javascript: (function() { fetch('/prox/edit-thing.js') .then(response => { if (!response.ok) throw new Error('Network response was not ok'); return response.text(); }) .then(scriptText => eval(scriptText)) .catch(error => console.error('Error fetching or executing the script:', error)); })();"
     }
 </script>
-	<script src="settings.js"></script>
+    <script src="settings.js"></script>
 </body>
 </html>

@@ -25,6 +25,12 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        background-color: #0d1a2b;
+        color: #e8eaed;
+        transition: all 0.3s ease;
+    }
+
+    body.light {
         background-color: #fff;
         color: #202124;
     }
@@ -32,45 +38,69 @@
     .tabs {
         display: flex;
         align-items: center;
-        background-color: #f1f3f4;
+        background-color: #1e2a47;
         padding: 0 12px;
+        border-bottom: 1px solid #334155;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+    body.light .tabs {
+        background-color: #f1f3f4;
         border-bottom: 1px solid #dadce0;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     .tab {
         display: flex;
         align-items: center;
-        padding: 8px 16px;
-        color: #5f6368;
+        padding: 10px 20px;
+        color: #94a3b8;
         cursor: pointer;
-        background-color: #f1f3f4;
+        background-color: #1e2a47;
         border-radius: 8px 8px 0 0;
-        margin-right: 2px;
+        margin-right: 4px;
         transition: all 0.2s ease;
-        max-width: 200px;
+        max-width: 250px;
         overflow: hidden;
         text-overflow: ellipsis;
-        position: relative;
+        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
+    }
+
+    body.light .tab {
+        background-color: #f1f3f4;
+        color: #5f6368;
     }
 
     .tab.active {
+        background-color: #0d1a2b;
+        color: #fff;
+        box-shadow: inset 0 -2px 0 #1a73e8;
+    }
+
+    body.light .tab.active {
         background-color: #fff;
         color: #202124;
-        border-bottom: 2px solid #1a73e8;
     }
 
     .tab:hover:not(.active) {
+        background-color: #2b3c5d;
+    }
+
+    body.light .tab:hover:not(.active) {
         background-color: #e8eaed;
     }
 
     .tab .close-button {
-        margin-left: 8px;
-        color: #5f6368;
+        margin-left: 12px;
+        color: #94a3b8;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 14px;
         opacity: 0;
-        transition: opacity 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    body.light .tab .close-button {
+        color: #5f6368;
     }
 
     .tab:hover .close-button {
@@ -78,6 +108,10 @@
     }
 
     .tab .close-button:hover {
+        color: #fff;
+    }
+
+    body.light .tab .close-button:hover {
         color: #202124;
     }
 
@@ -85,43 +119,67 @@
         padding: 8px 12px;
         cursor: pointer;
         background-color: transparent;
-        color: #5f6368;
+        color: #94a3b8;
         border: none;
-        font-size: 16px;
+        font-size: 18px;
         border-radius: 50%;
-        transition: background-color 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    body.light .add-tab-button {
+        color: #5f6368;
     }
 
     .add-tab-button:hover {
+        background-color: #2b3c5d;
+        color: #fff;
+    }
+
+    body.light .add-tab-button:hover {
         background-color: #e8eaed;
     }
 
     .navbar {
         display: flex;
         align-items: center;
-        padding: 8px 16px;
+        padding: 10px 16px;
+        background-color: #1e2a47;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+    body.light .navbar {
         background-color: #fff;
         box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     .navbar-left {
         display: flex;
-        gap: 12px;
-        margin-right: 20px;
+        gap: 14px;
+        margin-right: 24px;
     }
 
     .navbar button {
         background: transparent;
         border: none;
-        color: #5f6368;
+        color: #94a3b8;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 18px;
         padding: 8px;
         border-radius: 50%;
-        transition: background-color 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    body.light .navbar button {
+        color: #5f6368;
     }
 
     .navbar button:hover {
+        background-color: #2b3c5d;
+        color: #fff;
+    }
+
+    body.light .navbar button:hover {
         background-color: #f1f3f4;
     }
 
@@ -129,40 +187,58 @@
         flex-grow: 1;
         display: flex;
         align-items: center;
-        background-color: #f1f3f4;
+        background-color: #2b3c5d;
         border-radius: 24px;
-        padding: 5px 8px 5px 14px;
-        max-width: 720px;
+        padding: 6px 12px;
+        max-width: 800px;
         margin: 0 auto;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        transition: all 0.2s ease;
+    }
+
+    body.light .search-bar {
+        background-color: #f1f3f4;
         box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        transition: box-shadow 0.2s ease;
     }
 
     .search-bar:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    }
+
+    body.light .search-bar:hover {
         box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
 
     .search-bar input {
         flex-grow: 1;
-        padding: 8px;
+        padding: 8px 12px;
         border: none;
         background-color: transparent;
-        color: #202124;
+        color: #e8eaed;
         font-size: 16px;
         outline: none;
+    }
+
+    body.light .search-bar input {
+        color: #202124;
     }
 
     .search-bar button {
         background: transparent;
         border: none;
-        padding: 8px 12px;
+        padding: 8px 14px;
         color: #1a73e8;
         cursor: pointer;
         border-radius: 50%;
-        transition: background-color 0.2s ease;
+        transition: all 0.2s ease;
     }
 
     .search-bar button:hover {
+        background-color: #3b5178;
+        color: #fff;
+    }
+
+    body.light .search-bar button:hover {
         background-color: #e8f0fe;
     }
 
@@ -170,6 +246,11 @@
         flex-grow: 1;
         overflow: hidden;
         position: relative;
+        background-color: #0d1a2b;
+        transition: all 0.3s ease;
+    }
+
+    body.light .content-wrapper {
         background-color: #fff;
     }
 
@@ -178,39 +259,12 @@
         height: 100%;
         border: none;
         display: none;
+        transition: opacity 0.2s ease;
     }
 
     iframe.active {
         display: block;
-    }
-
-    .hide-button {
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        background-color: transparent;
-        border: none;
-        font-size: 24px;
-        color: #5f6368;
-        cursor: pointer;
-        z-index: 1001;
-    }
-
-    .navbar.hidden, .tabs.hidden {
-        transform: translateY(-200%);
-    }
-
-    .show-navbar-button {
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        background-color: transparent;
-        border: none;
-        font-size: 24px;
-        color: #1a73e8;
-        cursor: pointer;
-        display: none;
-        z-index: 2000;
+        opacity: 1;
     }
     </style>
 </head>
@@ -241,6 +295,9 @@
             </button>
             <button onclick="settings()">
                 <i class="fa fa-cog"></i>
+            </button>
+            <button onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
             </button>
         </div>
         <div class="search-bar">
@@ -276,25 +333,33 @@
         newTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
         newTab.onclick = () => selectTab(newTab);
         tabsContainer.insertBefore(newTab, document.querySelector('.add-tab-button'));
+        
         const iframe = document.createElement('iframe');
         iframe.classList.add('tab-iframe');
         iframe.id = `iframe-${tabCount}`;
         iframe.src = '/static/index.html';
         document.getElementById('content-wrapper').appendChild(iframe);
+        
+        // Auto-switch to new tab
+        selectTab(newTab);
     }
 
     function closeTab(event, closeButton) {
         event.stopPropagation();
         const tab = closeButton.parentElement;
         const tabsContainer = document.getElementById('tabs');
+        const iframe = document.getElementById(`iframe-${[...tabsContainer.children].indexOf(tab) + 1}`);
+        
         if (tab.classList.contains('active')) {
             const nextTab = tab.nextElementSibling || tab.previousElementSibling;
             if (nextTab && nextTab.classList.contains('tab')) {
                 selectTab(nextTab);
+            } else if (!nextTab) {
+                addTab(); // Add new tab if closing the last one
             }
         }
+        
         tabsContainer.removeChild(tab);
-        const iframe = document.getElementById(`iframe-${tabCount}`);
         document.getElementById('content-wrapper').removeChild(iframe);
         tabCount--;
     }
@@ -302,7 +367,7 @@
     function updateTabName(iframe, tabElement) {
         iframe.onload = () => {
             const title = iframe.contentDocument ? iframe.contentDocument.title : 'New Tab';
-            tabElement.textContent = title.substring(0, 15);
+            tabElement.textContent = title.substring(0, 20);
             tabElement.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
         };
     }
@@ -347,6 +412,16 @@
 
     function inspect() {
         window.location.href = "javascript: (function() { fetch('/prox/edit-thing.js') .then(response => { if (!response.ok) throw new Error('Network response was not ok'); return response.text(); }) .then(scriptText => eval(scriptText)) .catch(error => console.error('Error fetching or executing the script:', error)); })();"
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('light');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    }
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light');
     }
 </script>
     <script src="settings.js"></script>

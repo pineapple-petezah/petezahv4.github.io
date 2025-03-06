@@ -8,7 +8,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-SHE360M0YP');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
@@ -25,104 +24,102 @@
     
     <style>
         body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #0A1D37; /* Dark Blue Background */
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    padding: 0;
-    overflow: hidden;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0A1D37;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            overflow: hidden;
+        }
 
-.god-rays {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 550px;
-    --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
-    --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
-    background-image: var(--stripes), var(--rays);
-    background-size: 300%, 200%;
-    background-position: 50% 50%, 50% 50%;
-    animation: fadeIn 2s ease;
-    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
+        .god-rays {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 550px;
+            --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+            --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
+            background-image: var(--stripes), var(--rays);
+            background-size: 300%, 200%;
+            background-position: 50% 50%, 50% 50%;
+            animation: fadeIn 2s ease;
+            mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-.god-rays::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--stripes), var(--rays);
-    background-size: 200%, 100%;
-    animation: god-rays 40s linear infinite;
-    background-attachment: fixed;
-    mix-blend-mode: difference;
-}
+        .god-rays::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--stripes), var(--rays);
+            background-size: 200%, 100%;
+            animation: god-rays 40s linear infinite;
+            background-attachment: fixed;
+            mix-blend-mode: difference;
+        }
 
-.container-iframe {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    width: 90vw; /* Slightly reduced to give breathing space around the iframe */
-    z-index: 99;
-}
+        .container-iframe {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            width: 90vw;
+            z-index: 99;
+        }
 
-.iframe-container {
-    border-radius: 20px; /* Modern rounded corners */
-    width: 100%;
-    height: 80vh; /* Adjusted for a larger iframe height */
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* Stronger shadow for more emphasis */
-    border: 4px solid #ffffff; /* White border to enhance visibility */
-    background-color: #0A1D37; /* Dark Blue background to match the theme */
-    transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
-}
+        .iframe-container {
+            border-radius: 20px;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            border: 4px solid #ffffff;
+            background-color: #0A1D37;
+            transition: transform 0.3s ease-in-out;
+        }
 
+        iframe {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+        }
 
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 8vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
+            padding: 0 30px;
+            border-top: 2px solid #ffffff;
+        }
 
-iframe {
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    border: none;
-    border-radius: 20px; /* Rounded corners for iframe content */
-}
+        .icon {
+            color: #fff;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
 
-.controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 8vh; /* Adjusted for a slightly larger control bar */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for control bar */
-    border-radius: 0 0 20px 20px; /* Rounded corners for the control bar */
-    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6); /* Deeper shadow for separation */
-    padding: 0 30px;
-    border-top: 2px solid #ffffff; /* Subtle white border at the top of the control bar */
-}
+        .icon:hover {
+            transform: scale(1.2);
+        }
 
-.icon {
-    color: #fff;
-    cursor: pointer;
-    font-size: 24px; /* Increased icon size for better visibility */
-    transition: transform 0.3s ease; /* Smooth hover effect */
-}
-
-.icon:hover {
-    transform: scale(1.2); /* More pronounced scale effect on hover */
-}
-
-.controls i:last-child {
-    margin-right: 0; /* Remove extra margin from last icon */
-}
+        .controls i:last-child {
+            margin-right: 0;
+        }
 
         .fullscreen-bar {
             position: fixed;
@@ -132,7 +129,7 @@ iframe {
             height: 40px;
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
@@ -189,7 +186,7 @@ iframe {
         </div>
     </div>
 
-    <div class="fullscreen-bar" id="fullscreenBar" style="display: none;">
+    <div class="fullscreen-bar" id="fullscreenBar">
         <span class="game-name" id="gameName"></span>
         <span class="fps-counter" id="fpsCounter">FPS: 0</span>
         <button onclick="exitFullscreen()"><i class="fas fa-compress icon"></i></button>
@@ -198,21 +195,23 @@ iframe {
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
      crossorigin="anonymous"></script>
-<!-- Iframe Ad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6640595376330309"
-     data-ad-slot="3791895609"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6640595376330309"
+         data-ad-slot="3791895609"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const url = urlParams.get('url');
         const iframe = document.getElementById('myIframe');
+        const fullscreenBar = document.getElementById('fullscreenBar');
+        const gameNameSpan = document.getElementById('gameName');
+        const toggleBarBtn = document.getElementById('toggleBarBtn');
 
         if (url) {
             iframe.src = url;
@@ -228,25 +227,19 @@ iframe {
         }
 
         function toggleFullscreen() {
-            const iframe = document.getElementById('myIframe');
-            const fullscreenBar = document.getElementById('fullscreenBar');
-            const gameNameSpan = document.getElementById('gameName');
-            
             if (!document.fullscreenElement) {
-                if (iframe.requestFullscreen) {
-                    iframe.requestFullscreen();
-                } else if (iframe.mozRequestFullScreen) {
-                    iframe.mozRequestFullScreen();
-                } else if (iframe.webkitRequestFullscreen) {
-                    iframe.webkitRequestFullscreen();
-                } else if (iframe.msRequestFullscreen) {
-                    iframe.msRequestFullscreen();
+                const container = document.querySelector('.container-iframe');
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.mozRequestFullScreen) {
+                    container.mozRequestFullScreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
                 }
-                
-                fullscreenBar.style.display = 'flex';
-                const url = new URL(iframe.src);
-                const gameName = url.pathname.split('/').pop() || 'Unknown Game';
-                gameNameSpan.textContent = `Playing: ${gameName}`;
+            } else {
+                exitFullscreen();
             }
         }
 
@@ -263,23 +256,28 @@ iframe {
         }
 
         function toggleBar() {
-            const bar = document.getElementById('fullscreenBar');
-            const toggleBtn = document.getElementById('toggleBarBtn');
-            bar.classList.toggle('hidden');
-            toggleBtn.textContent = bar.classList.contains('hidden') ? 'Show Bar' : 'Hide Bar';
+            fullscreenBar.classList.toggle('hidden');
+            toggleBarBtn.textContent = fullscreenBar.classList.contains('hidden') ? 'Show Bar' : 'Hide Bar';
         }
 
         function refreshIframe() {
-            const iframe = document.getElementById('myIframe');
             iframe.src = iframe.src;
         }
 
         document.addEventListener('fullscreenchange', function() {
-            const fullscreenBar = document.getElementById('fullscreenBar');
-            if (!document.fullscreenElement) {
+            if (document.fullscreenElement) {
+                fullscreenBar.style.display = 'flex';
+                try {
+                    const url = new URL(iframe.src);
+                    const gameName = url.pathname.split('/').pop() || 'Unknown Game';
+                    gameNameSpan.textContent = `Playing: ${gameName}`;
+                } catch (e) {
+                    gameNameSpan.textContent = 'Playing: Unknown Game';
+                }
+            } else {
                 fullscreenBar.style.display = 'none';
                 fullscreenBar.classList.remove('hidden');
-                document.getElementById('toggleBarBtn').textContent = 'Hide Bar';
+                toggleBarBtn.textContent = 'Hide Bar';
             }
         });
 
@@ -307,7 +305,6 @@ iframe {
 
         requestAnimationFrame(updateFPS);
 
-        // [Your remaining existing script content remains unchanged]
         document.getElementById('whysofeinious-button').addEventListener('click', function() {
             const script = document.createElement('script');
             script.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/crate@3';
@@ -324,13 +321,12 @@ iframe {
         });
 
         document.getElementById('openIframeSource').addEventListener('click', function() {
-            var iframeSrc = document.getElementById('myIframe').src;
-            var link = document.createElement('a');
+            const iframeSrc = document.getElementById('myIframe').src;
+            const link = document.createElement('a');
             link.href = iframeSrc;
             link.target = '_blank';
             link.click();
         });
     </script>
-
 </body>
 </html>

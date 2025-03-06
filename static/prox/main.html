@@ -10,230 +10,250 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta property="og:title" content="Pete Zah | Prօxy">
     <meta property="og:description" content="Prօxy">
-    <meta property="og:image" content="storage/images/logo-png-removebg-preview.pngsroom.png">
+    <meta property="og:image" content="/storage/images/logo-png-removebg-preview.pngsroom.png">
     <meta name="keywords" content="Pete Zah Games, the next gen gaming site">
 
     <style>
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-    font-weight: 500;
-}
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
 
-body, html {
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #0d1a2b; /* Darker blue background */
-    color: #fff; /* White text color */
-}
+    body, html {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, #030b17 0%, #1a2a44 100%);
+        color: #ffffff;
+    }
 
-.tabs {
-    display: flex;
-    align-items: center;
-    background-color: #0a1324; /* Even darker blue for tabs */
-    border-bottom: 2px solid #fff;
-    padding: 4px 12px; /* Halved padding to reduce height */
-    transition: transform 0.5s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
-    border-radius: 12px 12px 0 0; /* Rounded top corners */
-}
+    .tabs {
+        display: flex;
+        align-items: center;
+        background-color: #0d1a38;
+        padding: 4px 8px;
+        border-bottom: 1px solid #ffffff;
+        border-radius: 8px 8px 0 0;
+    }
 
-.tab {
-    display: flex;
-    align-items: center;
-    padding: 4px 10px; /* Halved padding for the tabs */
-    color: #ccc;
-    cursor: pointer;
-    background-color: #0a1324;
-    border-right: 1px solid #444;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    border-radius: 10px;
-    flex-shrink: 1;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 8px; /* Space between tabs */
-}
+    .tab {
+        display: flex;
+        align-items: center;
+        padding: 6px 28px;
+        color: #93c5fd;
+        cursor: pointer;
+        background: linear-gradient(145deg, #0d1a38, #152a5e);
+        border-radius: 12px;
+        margin: 2px 6px 2px 0;
+        transition: all 0.2s ease;
+        max-width: 350px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.1);
+    }
 
-.tab.active {
-    background-color: #0a1020; /* Darker blue when active */
-    color: #fff;
-    transform: scale(1.05); /* Slight zoom effect on active tab */
-}
+    .tab.active {
+        background: linear-gradient(145deg, #030b17, #0a1324);
+        color: #ffffff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 0 0 1px #2563eb;
+    }
 
-.tab:hover {
-    background-color: #1b2c42; /* Lighter blue on hover */
-    transform: scale(1.03); /* Hover zoom effect */
-}
+    .tab:hover:not(.active) {
+        background: linear-gradient(145deg, #152a5e, #1e3a8a);
+        transform: translateY(-1px);
+    }
 
-.tab .close-button {
-    margin-left: 10px;
-    color: #ccc;
-    cursor: pointer;
-    font-size: 14px;
-}
+    .tab .close-button {
+        margin-left: 12px;
+        color: #93c5fd;
+        cursor: pointer;
+        font-size: 14px;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
 
-.tab .close-button:hover {
-    color: #f5f5f5; /* Slightly brighter close button */
-}
+    .tab:hover .close-button {
+        opacity: 1;
+    }
 
-.add-tab-button {
-    padding: 4px 10px; /* Halved padding */
-    cursor: pointer;
-    background-color: #0a1324;
-    color: #fff;
-    border: none;
-    outline: none;
-    font-size: 20px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease-in-out;
-}
+    .tab .close-button:hover {
+        color: #fff;
+    }
 
-.add-tab-button:hover {
-    background-color: #1b2c42;
-}
+    .add-tab-button {
+        padding: 6px 10px;
+        cursor: pointer;
+        background-color: transparent;
+        color: #93c5fd;
+        border: none;
+        font-size: 16px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        margin-left: 4px;
+    }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0a1324; /* Dark blue for navbar */
-    padding: 6px 16px; /* Halved padding to reduce height */
-    width: 100%;
-    z-index: 1000;
-    border-bottom: 2px solid #fff;
-    transition: transform 0.5s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Dark shadow for navbar */
-    border-radius: 0 0 12px 12px; /* Rounded bottom corners for navbar */
-}
+    .add-tab-button:hover {
+        background-color: #152a5e;
+        color: #fff;
+    }
 
-.navbar-left {
-    display: flex;
-    gap: 14px;
-}
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 12px;
+        background-color: #0d1a38;
+        border-bottom: 1px solid #ffffff;
+        height: 40px;
+    }
 
-.navbar button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px; /* Slightly smaller icons */
-    transition: color 0.3s ease-in-out;
-}
+    .navbar-left, .navbar-right {
+        display: flex;
+        gap: 12px;
+    }
 
-.navbar button:hover {
-    color: #f5f5f5; /* Lighter white on hover */
-}
+    .navbar button {
+        background: transparent;
+        border: none;
+        color: #93c5fd;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 6px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
 
-.search-bar {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    border-radius: 25px;
-    background-color: #0e192e; /* Darker blue for the search bar */
-    border: 2px solid #fff;
-    overflow: hidden;
-    height: 35px; /* Halved height */
-    margin-left: 20px;
-}
+    .navbar button:hover {
+        background-color: #152a5e;
+        color: #fff;
+    }
 
-.search-bar input {
-    flex-grow: 1;
-    padding: 8px 12px; /* Reduced padding */
-    border: none;
-    background-color: transparent;
-    color: #ccc;
-    font-size: 16px;
-    border-radius: 25px 0 0 25px; /* Rounded left side */
-    transition: background-color 0.3s ease-in-out;
-}
+    .search-bar {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        background-color: #152a5e;
+        border-radius: 20px;
+        padding: 4px 10px;
+        margin: 0 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        transition: all 0.2s ease;
+    }
 
-.search-bar input:focus {
-    outline: none;
-    background-color: #1e2a47; /* Slight color change on focus */
-}
+    .search-bar:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+    }
 
-.search-bar button {
-    background-color: #fff;
-    border: none;
-    padding: 8px 14px; /* Reduced padding */
-    font-size: 14px; /* Slightly smaller text */
-    color: #1e2a47; /* Dark blue for button text */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: 0 25px 25px 0;
-    transition: background-color 0.3s ease-in-out;
-}
+    .search-bar input {
+        flex-grow: 1;
+        padding: 6px 10px;
+        border: none;
+        background-color: transparent;
+        color: #ffffff;
+        font-size: 14px;
+        outline: none;
+    }
 
-.search-bar button:hover {
-    background-color: #2b3c5d; /* Lighter blue when hovering */
-}
+    .search-bar button {
+        background: transparent;
+        border: none;
+        padding: 6px 12px;
+        color: #2563eb;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
 
-.search-bar button i {
-    margin-left: 5px;
-}
+    .search-bar button:hover {
+        background-color: #3b82f6;
+        color: #fff;
+    }
 
-.content-wrapper {
-    flex-grow: 1;
-    overflow: hidden;
-    position: relative;
-    height: calc(100% - 80px); /* Increased content space by halving the tab and navbar height */
-    background-color: #0d1a2b; /* Darker blue background */
-}
+    .content-wrapper {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, #0a1324 0%, #152a5e 100%);
+    }
 
-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: none;
-    border-radius: 15px; /* Rounded corners for iframe */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow around iframe */
-    transition: transform 0.3s ease-in-out;
-}
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: none;
+        transition: opacity 0.2s ease;
+    }
 
-iframe.active {
-    display: block;
-    transform: scale(1.02); /* Smooth zoom-in effect on active iframe */
-}
+    iframe.active {
+        display: block;
+        opacity: 1;
+    }
 
-.hide-button {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    border: none;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1001;
-}
+    .bookmarks-dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-.navbar.hidden, .tabs.hidden {
-    transform: translateY(-200%);
-}
+    .bookmarks-btn {
+        background: transparent;
+        border: none;
+        color: #93c5fd;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 6px;
+        border-radius: 50%;
+    }
 
-.show-navbar-button {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    border: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    display: none;
-    z-index: 2000;
-}
+    .bookmarks-btn:hover {
+        background-color: #152a5e;
+        color: #fff;
+    }
 
-.show-navbar-button i {
-    color: #FFD700; /* Gold color for the show button */
-}
-    </style>
+    .bookmarks-content {
+        display: none;
+        position: absolute;
+        background-color: #0d1a38;
+        min-width: 300px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        z-index: 1;
+        border-radius: 12px;
+        right: 0;
+        top: 100%;
+        padding: 8px 0;
+    }
+
+    .bookmarks-content a {
+        color: #ffffff;
+        padding: 8px 16px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.2s ease;
+    }
+
+    .bookmarks-content a:hover {
+        background-color: #152a5e;
+    }
+
+    .bookmarks-content .remove-bookmark {
+        color: #93c5fd;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    .bookmarks-content .remove-bookmark:hover {
+        color: #fff;
+    }
+
+    .bookmarks-dropdown:hover .bookmarks-content {
+        display: block;
+    }
+</style>
 </head>
 <body>
     <div class="tabs" id="tabs">
@@ -254,21 +274,26 @@ iframe.active {
             <button onclick="document.querySelector('.tab-iframe.active').contentWindow.location.reload()">
                 <i class="fas fa-redo"></i>
             </button>
-            <button onclick="inspect()">
-                <i class="fa fa-code"></i>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search Google or type a URL" onkeydown="if(event.key === 'Enter') search()">
+            <button onclick="search()">
+                <i class="fas fa-search"></i>
             </button>
+        </div>
+        <div class="navbar-right">
             <button onclick="toggleFullscreen()">
                 <i class="fas fa-expand"></i>
             </button>
             <button onclick="settings()">
                 <i class="fa fa-cog"></i>
             </button>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search or enter a URL" onkeydown="if(event.key === 'Enter') search()">
-            <button onclick="search()">
-                SEARCH <i class="fas fa-search"></i>
-            </button>
+            <div class="bookmarks-dropdown">
+                <button class="bookmarks-btn"><i class="fas fa-bookmark"></i></button>
+                <div class="bookmarks-content" id="bookmarksList">
+                    <a href="#" onclick="addBookmark(event)">Add Bookmark</a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="content-wrapper" id="content-wrapper">
@@ -297,41 +322,40 @@ iframe.active {
         newTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
         newTab.onclick = () => selectTab(newTab);
         tabsContainer.insertBefore(newTab, document.querySelector('.add-tab-button'));
+        
         const iframe = document.createElement('iframe');
         iframe.classList.add('tab-iframe');
         iframe.id = `iframe-${tabCount}`;
         iframe.src = '/static/index.html';
         document.getElementById('content-wrapper').appendChild(iframe);
-        resizeTabs();
+        
+        selectTab(newTab);
     }
 
     function closeTab(event, closeButton) {
         event.stopPropagation();
         const tab = closeButton.parentElement;
         const tabsContainer = document.getElementById('tabs');
+        const iframe = document.getElementById(`iframe-${[...tabsContainer.children].indexOf(tab) + 1}`);
+        
         if (tab.classList.contains('active')) {
             const nextTab = tab.nextElementSibling || tab.previousElementSibling;
             if (nextTab && nextTab.classList.contains('tab')) {
                 selectTab(nextTab);
+            } else if (!nextTab) {
+                addTab();
             }
         }
+        
         tabsContainer.removeChild(tab);
-        const iframe = document.getElementById(`iframe-${tabCount}`);
         document.getElementById('content-wrapper').removeChild(iframe);
         tabCount--;
-        resizeTabs();
-    }
-
-    function resizeTabs() {
-        const tabs = document.querySelectorAll('.tab');
-        const tabWidth = Math.min(500, 450 / tabs.length + '%');
-        tabs.forEach(tab => tab.style.maxWidth = tabWidth);
     }
 
     function updateTabName(iframe, tabElement) {
         iframe.onload = () => {
             const title = iframe.contentDocument ? iframe.contentDocument.title : 'New Tab';
-            tabElement.textContent = title.substring(0, 10);
+            tabElement.textContent = title.substring(0, 30);
             tabElement.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
         };
     }
@@ -346,38 +370,88 @@ iframe.active {
     }
 
     function home() {
- 	   const iframe = document.querySelector('.tab-iframe.active');
-	    iframe.src = '/static/index';
-	    const activeTab = document.querySelector('.tab.active');
-		activeTab.textContent = 'New Tab';
-		activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = '/static/index';
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.textContent = 'New Tab';
+        activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
     }
 
-	function settings() {
- 	   const iframe = document.querySelector('.tab-iframe.active');
-	    iframe.src = '/static/prox/settings';
-	    const activeTab = document.querySelector('.tab.active');
-		activeTab.textContent = 'Settings';
-		activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
-}
-
-	function toggleFullscreen() {
-		const iframe = document.querySelector('.tab-iframe.active');
-		if (iframe.requestFullscreen) {
-		iframe.requestFullscreen();
-			} else if (iframe.mozRequestFullScreen) {
-		iframe.mozRequestFullScreen();
-			} else if (iframe.webkitRequestFullscreen) {
-		iframe.webkitRequestFullscreen();
-			} else if (iframe.msRequestFullscreen) {
-		iframe.msRequestFullscreen();
-	}
-}
-
-    function inspect() {
-window.location.href = "javascript: (function() { fetch('/prox/edit-thing.js') .then(response => { if (!response.ok) throw new Error('Network response was not ok'); return response.text(); }) .then(scriptText => eval(scriptText)) .catch(error => console.error('Error fetching or executing the script:', error)); })();"
+    function settings() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = '/static/prox/settings';
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.textContent = 'Settings';
+        activeTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
     }
+
+    function toggleFullscreen() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) {
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) {
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+            iframe.msRequestFullscreen();
+        }
+    }
+
+    // Bookmark System
+    function addBookmark(event) {
+        event.preventDefault();
+        const url = prompt('Enter bookmark URL:');
+        if (!url) return;
+        const title = prompt('Enter bookmark title:') || 'Untitled';
+        
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        if (!bookmarks.some(b => b.url === url)) {
+            bookmarks.push({ title, url });
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            updateBookmarksList();
+        }
+    }
+
+    function updateBookmarksList() {
+        const bookmarksList = document.getElementById('bookmarksList');
+        bookmarksList.innerHTML = '<a href="#" onclick="addBookmark(event)">Add Bookmark</a>';
+        
+        const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        bookmarks.forEach((bookmark, index) => {
+            const a = document.createElement('a');
+            a.href = '#';
+            a.textContent = bookmark.title;
+            a.onclick = (e) => {
+                e.preventDefault();
+                const searchInput = document.getElementById('search-input');
+                searchInput.value = bookmark.url;
+                search();
+            };
+            const removeBtn = document.createElement('span');
+            removeBtn.textContent = '×';
+            removeBtn.className = 'remove-bookmark';
+            removeBtn.onclick = (e) => {
+                e.stopPropagation();
+                removeBookmark(index);
+            };
+            a.appendChild(removeBtn);
+            bookmarksList.appendChild(a);
+        });
+    }
+
+    function removeBookmark(index) {
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        bookmarks.splice(index, 1);
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        updateBookmarksList();
+    }
+
+    // Load bookmarks on page load
+    window.onload = () => {
+        updateBookmarksList();
+    };
 </script>
-	<script src="settings.js"></script>
+    <script src="settings.js"></script>
 </body>
 </html>

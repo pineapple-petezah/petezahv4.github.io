@@ -101,7 +101,7 @@
             width: 100%;
             height: 8vh;
             background: linear-gradient(145deg, #0A1D37, #020C1B); /* Gradient from dark blue to very dark blue */
-            border-radius: 20px; /* Fully rounded container */
+            border-radius: 20px;
             box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
             padding: 0 30px;
             border: 2px solid white; /* Slim white border around the controls */
@@ -120,8 +120,8 @@
             margin-right: 15px;
         }
 
-        .heart-button:hover {
-            color: red; /* Red color when hovered */
+        .heart-button.hearted {
+            color: red; /* Heart stays red once clicked */
         }
 
         .fps-counter {
@@ -130,7 +130,7 @@
             background-color: rgba(255, 255, 255, 0.2);
             padding: 5px 10px;
             border-radius: 12px;
-            margin-right: 20px; /* Margin to give space between FPS and the next icon */
+            margin-right: 20px;
         }
 
         .control-icons {
@@ -142,7 +142,7 @@
             color: #fff;
             cursor: pointer;
             font-size: 24px;
-            margin-left: 20px; /* Increased space between icons */
+            margin-left: 40px; /* Doubled space between right controls */
             transition: transform 0.3s ease;
         }
 
@@ -167,10 +167,12 @@
             <img src="/storage/images/logo-png-removebg-preview.png" alt="Logo" class="logo">
             
             <!-- Heart button -->
-            <i class="fas fa-heart heart-button"></i>
+            <i class="fas fa-heart heart-button" id="heartButton"></i>
             
             <!-- FPS counter -->
-            <div class="fps-counter">FPS: 60</div>
+            <div class="fps-counter">
+                <p id="fps">FPS: Calculating...</p>
+            </div>
             
             <!-- Other controls -->
             <div class="control-icons">
@@ -253,6 +255,45 @@
             link.target = '_blank';
             link.click();
         });
+
+        // Persistent heart button state
+        const heartButton = document.getElementById('heartButton');
+        if (localStorage.getItem('heartState') === 'hearted') {
+            heartButton.classList.add('hearted');
+        }
+
+        heartButton.addEventListener('click', function() {
+            heartButton.classList.toggle('hearted');
+            if (heartButton.classList.contains('hearted')) {
+                localStorage.setItem('heartState', 'hearted');
+            } else {
+                localStorage.removeItem('heartState');
+            }
+        });
+
+         function calculateFPS() {
+        frameCount++;
+        const now = performance.now();
+        const deltaTime = now - lastUpdateTime;
+
+        // If 1 second has passed, update the FPS display
+        if (deltaTime >= 1000) {
+            fps = frameCount;  // Set FPS as the number of frames in the last second
+            fpsElement.textContent = `FPS: ${fps}`; // Update the display
+
+            // Reset for the next second
+            frameCount = 0;
+            lastUpdateTime = now;
+        }
+
+        // Call requestAnimationFrame to calculate FPS on the next frame
+        requestAnimationFrame(calculateFPS);
+    }
+
+    // Start the FPS calculation
+    requestAnimationFrame(calculateFPS);
+});
+
     </script>
 </body>
 </html>

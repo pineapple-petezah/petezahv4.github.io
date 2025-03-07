@@ -101,10 +101,10 @@
             width: 100%;
             height: 8vh;
             background: linear-gradient(145deg, #0A1D37, #020C1B); /* Gradient from dark blue to very dark blue */
-            border-radius: 0 0 20px 20px;
+            border-radius: 20px; /* Fully rounded container */
             box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
             padding: 0 30px;
-            border-top: 2px solid #ffffff;
+            border: 2px solid white; /* Slim white border around the controls */
         }
 
         .logo {
@@ -117,6 +117,7 @@
             color: white;
             cursor: pointer;
             transition: color 0.3s ease;
+            margin-right: 15px;
         }
 
         .heart-button:hover {
@@ -126,13 +127,22 @@
         .fps-counter {
             color: white;
             font-size: 18px;
-            margin-left: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 12px;
+            margin-right: 20px; /* Margin to give space between FPS and the next icon */
+        }
+
+        .control-icons {
+            display: flex;
+            align-items: center;
         }
 
         .icon {
             color: #fff;
             cursor: pointer;
             font-size: 24px;
+            margin-left: 20px; /* Increased space between icons */
             transition: transform 0.3s ease;
         }
 
@@ -164,10 +174,11 @@
             
             <!-- Other controls -->
             <div class="control-icons">
-                <i class="fas fa-expand icon" onclick="toggleFullscreen()"></i>
                 <i class="fas fa-sync icon" onclick="refreshIframe()"></i>
                 <i class="fa-solid fa-comment icon" id="whysofeinious-button"></i>
                 <i class="fa-solid fa-pager icon" id="openIframeSource"></i>
+                <!-- Fullscreen button as the last icon -->
+                <i class="fas fa-expand icon" onclick="toggleFullscreen()"></i>
             </div>
         </div>
     </div>

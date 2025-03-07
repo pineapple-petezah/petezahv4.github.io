@@ -71,7 +71,7 @@
             flex-direction: column;
             align-items: center;
             margin: 0;
-            width: 90vw;
+            width: 90vw; /* Slightly reduced to give breathing space around the iframe */
             z-index: 99;
         }
 
@@ -105,11 +105,12 @@
             box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
             padding: 0 30px;
             border: 2px solid white; /* Slim white border around the controls */
+            width: 90vw; /* Match the iframe width */
         }
 
         .logo {
             width: 40px; /* Logo size */
-            margin-right: 15px;
+            margin-right: 8px; /* Reduced spacing between the logo and other elements */
         }
 
         .heart-button {
@@ -117,7 +118,7 @@
             color: white;
             cursor: pointer;
             transition: color 0.3s ease;
-            margin-right: 15px;
+            margin-right: 8px; /* Reduced margin */
         }
 
         .heart-button.hearted {
@@ -130,7 +131,7 @@
             background-color: rgba(255, 255, 255, 0.2);
             padding: 5px 10px;
             border-radius: 12px;
-            margin-right: 20px;
+            margin-right: 20px; /* Reduced space between FPS and the rest of the controls */
         }
 
         .control-icons {

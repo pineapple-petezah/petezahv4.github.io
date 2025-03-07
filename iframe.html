@@ -25,134 +25,105 @@
     
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #0A1D37; /* Dark Blue Background */
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            padding: 0;
-            overflow: hidden;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #0A1D37; /* Dark Blue Background */
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    overflow: hidden;
+}
 
-        .god-rays {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 550px;
-            --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
-            --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
-            background-image: var(--stripes), var(--rays);
-            background-size: 300%, 200%;
-            background-position: 50% 50%, 50% 50%;
-            animation: fadeIn 2s ease;
-            mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
+.god-rays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 550px;
+    --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+    --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
+    background-image: var(--stripes), var(--rays);
+    background-size: 300%, 200%;
+    background-position: 50% 50%, 50% 50%;
+    animation: fadeIn 2s ease;
+    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
 
-        .god-rays::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: var(--stripes), var(--rays);
-            background-size: 200%, 100%;
-            animation: god-rays 40s linear infinite;
-            background-attachment: fixed;
-            mix-blend-mode: difference;
-        }
+.god-rays::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--stripes), var(--rays);
+    background-size: 200%, 100%;
+    animation: god-rays 40s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+}
 
-        .container-iframe {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            width: 90vw;
-            z-index: 99;
-        }
+.container-iframe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: 90vw; /* Slightly reduced to give breathing space around the iframe */
+    z-index: 99;
+}
 
-        .iframe-container {
-            border-radius: 20px;
-            width: 100%;
-            height: 80vh;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-            border: 4px solid #ffffff;
-            background-color: #0A1D37;
-            transition: transform 0.3s ease-in-out;
-        }
+.iframe-container {
+    border-radius: 20px; /* Modern rounded corners */
+    width: 100%;
+    height: 80vh; /* Adjusted for a larger iframe height */
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* Stronger shadow for more emphasis */
+    border: 4px solid #ffffff; /* White border to enhance visibility */
+    background-color: #0A1D37; /* Dark Blue background to match the theme */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
+}
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            border: none;
-            border-radius: 20px;
-        }
 
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 8vh;
-            background: linear-gradient(145deg, #0A1D37, #020C1B); /* Gradient from dark blue to very dark blue */
-            border-radius: 20px;
-            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
-            padding: 0 30px;
-            border: 2px solid white; /* Slim white border around the controls */
-        }
 
-        .logo {
-            width: 40px; /* Logo size */
-            margin-right: 15px;
-        }
+iframe {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: none;
+    border-radius: 20px; /* Rounded corners for iframe content */
+}
 
-        .heart-button {
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            margin-right: 15px;
-        }
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 8vh; /* Adjusted for a slightly larger control bar */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for control bar */
+    border-radius: 0 0 20px 20px; /* Rounded corners for the control bar */
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6); /* Deeper shadow for separation */
+    padding: 0 30px;
+    border-top: 2px solid #ffffff; /* Subtle white border at the top of the control bar */
+}
 
-        .heart-button.hearted {
-            color: red; /* Heart stays red once clicked */
-        }
+.icon {
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px; /* Increased icon size for better visibility */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
 
-        .fps-counter {
-            color: white;
-            font-size: 18px;
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 12px;
-            margin-right: 20px;
-        }
+.icon:hover {
+    transform: scale(1.2); /* More pronounced scale effect on hover */
+}
 
-        .control-icons {
-            display: flex;
-            align-items: center;
-        }
+.controls i:last-child {
+    margin-right: 0; /* Remove extra margin from last icon */
+}
 
-        .icon {
-            color: #fff;
-            cursor: pointer;
-            font-size: 24px;
-            margin-left: 40px; /* Doubled space between right controls */
-            transition: transform 0.3s ease;
-        }
-
-        .icon:hover {
-            transform: scale(1.2);
-        }
-
-        .controls i:last-child {
-            margin-right: 0;
-        }
     </style>
 </head>
 <body>
@@ -163,39 +134,25 @@
             <iframe sandbox="allow-scripts allow-pointer-lock allow-forms allow-same-origin allow-downloads" id="myIframe" src=""></iframe>
         </div>
         <div class="controls">
-            <!-- Logo on the left -->
-            <img src="/storage/images/logo-png-removebg-preview.png" alt="Logo" class="logo">
-            
-            <!-- Heart button -->
-            <i class="fas fa-heart heart-button" id="heartButton"></i>
-            
-            <!-- FPS counter -->
-            <div class="fps-counter">
-                <p id="fps">FPS: Calculating...</p>
-            </div>
-            
-            <!-- Other controls -->
-            <div class="control-icons">
-                <i class="fas fa-sync icon" onclick="refreshIframe()"></i>
-                <i class="fa-solid fa-comment icon" id="whysofeinious-button"></i>
-                <i class="fa-solid fa-pager icon" id="openIframeSource"></i>
-                <!-- Fullscreen button as the last icon -->
-                <i class="fas fa-expand icon" onclick="toggleFullscreen()"></i>
-            </div>
+            <i style="margin-left: 15px;" class="fas fa-expand icon" onclick="toggleFullscreen()"></i>
+            <i class="fas fa-sync icon" onclick="refreshIframe()"></i>
+            <i class="fa-solid fa-comment icon" id="whysofeinious-button"></i>
+            <i class="fa-solid fa-pager icon" id="openIframeSource"></i>
         </div>
     </div>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
      crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6640595376330309"
-         data-ad-slot="3791895609"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<!-- Iframe Ad -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6640595376330309"
+     data-ad-slot="3791895609"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -255,45 +212,6 @@
             link.target = '_blank';
             link.click();
         });
-
-        // Persistent heart button state
-        const heartButton = document.getElementById('heartButton');
-        if (localStorage.getItem('heartState') === 'hearted') {
-            heartButton.classList.add('hearted');
-        }
-
-        heartButton.addEventListener('click', function() {
-            heartButton.classList.toggle('hearted');
-            if (heartButton.classList.contains('hearted')) {
-                localStorage.setItem('heartState', 'hearted');
-            } else {
-                localStorage.removeItem('heartState');
-            }
-        });
-
-         function calculateFPS() {
-        frameCount++;
-        const now = performance.now();
-        const deltaTime = now - lastUpdateTime;
-
-        // If 1 second has passed, update the FPS display
-        if (deltaTime >= 1000) {
-            fps = frameCount;  // Set FPS as the number of frames in the last second
-            fpsElement.textContent = `FPS: ${fps}`; // Update the display
-
-            // Reset for the next second
-            frameCount = 0;
-            lastUpdateTime = now;
-        }
-
-        // Call requestAnimationFrame to calculate FPS on the next frame
-        requestAnimationFrame(calculateFPS);
-    }
-
-    // Start the FPS calculation
-    requestAnimationFrame(calculateFPS);
-});
-
     </script>
 </body>
 </html>

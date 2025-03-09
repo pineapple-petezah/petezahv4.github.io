@@ -357,21 +357,6 @@
     font-size: 12px;
 }
 
-#info-box p {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-#info-box p#battery-status::before {
-    content: "\1F50B"; /* Unicode for battery symbol */
-    margin-right: 5px;
-}
-
-#info-box p#time {
-    font-weight: bold;
-    margin-right: 15px;
-}
-
 .discord-btn-two {
     display: block;
     background-color: #3c5b8e;
@@ -470,8 +455,6 @@
 
 <!-- Info Box -->
 <div id="info-box" class="info-box">
-    <p id="time">Time: Loading...</p>
-    <p id="battery-status">Battery: Loading...</p>
     <p id="ip-address">IP: Loading...</p>
     <p id="fps">FPS: Calculating...</p>
     <a href="https://discord.gg/arcgZTV9zX" target="_blank" class="discord-btn-two">Join Discord</a>
@@ -700,25 +683,6 @@ document.addEventListener('DOMContentLoaded', function() {
     requestAnimationFrame(calculateFPS);
 });
 
-	    document.addEventListener("DOMContentLoaded", function () {
-    // Update time and battery info every second
-    setInterval(updateInfoBox, 1000);
-
-    function updateInfoBox() {
-        // Update time
-        const timeElement = document.getElementById('time');
-        const currentTime = new Date().toLocaleTimeString();
-        timeElement.textContent = `Time: ${currentTime}`;
-
-        // Update battery info
-        if (navigator.getBattery) {
-            navigator.getBattery().then(function(battery) {
-                const batteryStatus = document.getElementById('battery-status');
-                const batteryLevel = Math.round(battery.level * 100); // Get battery level percentage
-                batteryStatus.textContent = `Battery: ${batteryLevel}%`;
-            });
-        }
-    }
 
 
     </script>

@@ -98,13 +98,15 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 90vw; /* Match the iframe width */
+            width: 100%; /* Controls width matches iframe's width */
             height: 8vh;
             background: linear-gradient(145deg, #0A1D37, #020C1B); /* Gradient from dark blue to very dark blue */
             border-radius: 20px;
             box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
             padding: 0 30px;
             border: 2px solid white; /* Slim white border around the controls */
+            position: absolute;
+            bottom: 0;
         }
 
         .logo {

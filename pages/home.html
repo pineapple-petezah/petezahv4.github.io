@@ -455,10 +455,14 @@
 
 <!-- Info Box -->
 <div id="info-box" class="info-box">
-    <p id="ip-address">IP: Loading...</p>
-    <p id="fps">FPS: Calculating...</p>
-    <a href="https://discord.gg/arcgZTV9zX" target="_blank" class="discord-btn-two">Join Discord</a>
-</div>
+        <div class="time-battery-info">
+            <p id="time"></p>
+            <p id="battery-status"></p>
+        </div>
+        <p id="ip-address">IP: Loading...</p>
+        <p id="fps">FPS: Calculating...</p>
+        <a href="https://discord.gg/arcgZTV9zX" target="_blank" class="discord-btn-two">Join Discord</a>
+    </div>
 
 
 
@@ -684,7 +688,32 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Function to update the time
+        function updateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            document.getElementById('time').textContent = `Time: ${time}`;
+        }
 
+        // Function to update the battery status
+        function updateBatteryStatus() {
+            navigator.getBattery().then(function(battery) {
+                const batteryPercentage = Math.round(battery.level * 100);
+                const batteryIcon = batteryPercentage >= 20 ? '🔋' : '🔌'; // Battery icon
+                const batteryStatus = `Battery: ${batteryPercentage}% ${batteryIcon}`;
+                document.getElementById('battery-status').textContent = batteryStatus;
+            });
+        }
+
+        // Update the time every second
+        setInterval(updateTime, 1000);
+
+        // Update battery status every 30 seconds
+        setInterval(updateBatteryStatus, 30000);
+
+        // Initial load of time and battery status
+        updateTime();
+        updateBatteryStatus();
     </script>
 </body>
 </html>

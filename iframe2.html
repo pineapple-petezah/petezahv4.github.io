@@ -98,31 +98,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 100%;
+            width: 90vw; /* Match the iframe width */
             height: 8vh;
             background: linear-gradient(145deg, #0A1D37, #020C1B); /* Gradient from dark blue to very dark blue */
             border-radius: 20px;
             box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
             padding: 0 30px;
             border: 2px solid white; /* Slim white border around the controls */
-            width: 90vw; /* Match the iframe width */
         }
 
         .logo {
             width: 40px; /* Logo size */
             margin-right: 8px; /* Reduced spacing between the logo and other elements */
-        }
-
-        .heart-button {
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            margin-right: 8px; /* Reduced margin */
-        }
-
-        .heart-button.hearted {
-            color: red; /* Heart stays red once clicked */
+            cursor: pointer; /* Same cursor as controls */
         }
 
         .fps-counter {
@@ -131,7 +119,7 @@
             background-color: rgba(255, 255, 255, 0.2);
             padding: 5px 10px;
             border-radius: 12px;
-            margin-right: 20px; /* Reduced space between FPS and the rest of the controls */
+            margin-left: 40px; /* 40px to the right of the logo */
         }
 
         .control-icons {
@@ -166,9 +154,6 @@
         <div class="controls">
             <!-- Logo on the left -->
             <img src="/storage/images/logo-png-removebg-preview.png" alt="Logo" class="logo">
-            
-            <!-- Heart button -->
-            <i class="fas fa-heart heart-button" id="heartButton"></i>
             
             <!-- FPS counter -->
             <div class="fps-counter" id="fpsCounter">FPS: 0</div>
@@ -253,21 +238,6 @@
             link.href = iframeSrc;
             link.target = '_blank';
             link.click();
-        });
-
-        // Persistent heart button state
-        const heartButton = document.getElementById('heartButton');
-        if (localStorage.getItem('heartState') === 'hearted') {
-            heartButton.classList.add('hearted');
-        }
-
-        heartButton.addEventListener('click', function() {
-            heartButton.classList.toggle('hearted');
-            if (heartButton.classList.contains('hearted')) {
-                localStorage.setItem('heartState', 'hearted');
-            } else {
-                localStorage.removeItem('heartState');
-            }
         });
 
         // FPS Counter

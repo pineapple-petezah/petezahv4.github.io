@@ -22,6 +22,8 @@
     <title>PeteZah | Home</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 
     <meta
 			name="description"
@@ -339,40 +341,69 @@
 
 /* Info Box Styles */
 .info-box {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #1e1e2d;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-    z-index: 999;
-    font-size: 12px; 
-    width: 90px;
-}
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #1e1e2d;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+            z-index: 999;
+            font-size: 14px;
+            width: 320px; /* Increased width */
+        }
 
-.info-box p {
-    margin: 4px 0;
-    font-size: 12px;
-}
+        .info-box p {
+            margin: 4px 0;
+            font-size: 12px;
+        }
 
-.discord-btn-two {
-    display: block;
-    background-color: #3c5b8e;
-    padding: 6px;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    margin-top: 8px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    font-size: 12px; /* Smaller font size */
-}
+        .time-battery-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
 
-.discord-btn-two:hover {
-    background-color: #5b6e8e;
-}
+        .battery-bar {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .battery-bar .bar {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #ccc;
+            position: relative;
+            margin-left: 8px;
+        }
+
+        .battery-bar .bar span {
+            display: block;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .discord-btn-two {
+            display: block;
+            background-color: #3c5b8e;
+            padding: 6px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            font-size: 12px;
+        }
+
+        .discord-btn-two:hover {
+            background-color: #5b6e8e;
+        }
 
     </style>
 </head>
@@ -688,10 +719,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Function to update the time
+// Function to update the time (without seconds)
         function updateTime() {
             const now = new Date();
-            const time = now.toLocaleTimeString();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Only hour and minute
             document.getElementById('time').textContent = `Time: ${time}`;
         }
 
@@ -699,14 +730,28 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateBatteryStatus() {
             navigator.getBattery().then(function(battery) {
                 const batteryPercentage = Math.round(battery.level * 100);
-                const batteryIcon = batteryPercentage >= 20 ? '🔋' : '🔌'; // Battery icon
-                const batteryStatus = `Battery: ${batteryPercentage}% ${batteryIcon}`;
-                document.getElementById('battery-status').textContent = batteryStatus;
+                const batteryBar = document.createElement('span');
+                let barColor = '';
+                
+                // Set the color of the battery bar depending on the percentage
+                if (batteryPercentage >= 75) {
+                    barColor = '#4CAF50'; // Green
+                } else if (batteryPercentage >= 50) {
+                    barColor = '#FFEB3B'; // Yellow
+                } else if (batteryPercentage >= 25) {
+                    barColor = '#FF9800'; // Orange
+                } else {
+                    barColor = '#F44336'; // Red
+                }
+
+                const batteryBarContainer = document.getElementById('battery-status');
+                batteryBarContainer.innerHTML = `<div class="battery-bar"><div class="bar"><span style="width: ${batteryPercentage}% !important; background-color: ${barColor};"></span></div></div>`;
+                document.getElementById('battery-status').textContent = `Battery: ${batteryPercentage}%`;
             });
         }
 
-        // Update the time every second
-        setInterval(updateTime, 1000);
+        // Update the time every minute (no seconds)
+        setInterval(updateTime, 60000);
 
         // Update battery status every 30 seconds
         setInterval(updateBatteryStatus, 30000);

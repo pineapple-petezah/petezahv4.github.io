@@ -339,6 +339,16 @@ body::-webkit-scrollbar {
             <button id="saveSettings">Save Title & Favicon</button>
         </div>
 
+        <div class="section" id="panic">
+    <h2>Panic Button Settings</h2>
+    <p>Set a key and URL to quickly redirect.</p>
+    <label for="panicKey">Panic Key:</label>
+    <input type="text" id="panicKey" placeholder="Enter a key (e.g., `)" />
+    <label for="panicUrl">Panic URL:</label>
+    <input type="text" id="panicUrl" placeholder="Enter redirect URL" />
+    <button id="savePanicButtonSettings">Save Panic Settings</button>
+</div>
+
         <!-- Appearance Section -->
         <div class="section" id="appearance">
             <h2>Appearance Settings</h2>
@@ -475,216 +485,221 @@ body::-webkit-scrollbar {
         });
     </script>
     <script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Elements
     const beforeUnloadToggle = document.getElementById('beforeUnloadToggle');
     const autocloakToggle = document.getElementById('autocloakToggle');
+    const blockHeadersToggle = document.getElementById('blockHeadersToggle');
+    const disableRightClickToggle = document.getElementById('disableRightClickToggle');
     const siteTitleInput = document.getElementById('siteTitle');
     const siteLogoInput = document.getElementById('siteLogo');
-    const panicKeyInput = document.getElementById('panicKey');
-    const panicUrlInput = document.getElementById('panicUrl');
+    const backgroundColorPicker = document.getElementById('backgroundColor'); // Corrected ID
     const saveSettingsButton = document.getElementById('saveSettings');
-    const savePanicButtonSettingsButton = document.getElementById('savePanicButtonSettings');
+    const saveAppearanceButton = document.getElementById('saveAppearance');
     const resetSettingsButton = document.getElementById('resetSettings');
     const resetPanicButtonSettingsButton = document.getElementById('resetPanicButtonSettings');
 
+    // Note: Panic key and URL inputs are missing in the HTML; uncomment and add them if needed
+    // const panicKeyInput = document.getElementById('panicKey');
+    // const panicUrlInput = document.getElementById('panicUrl');
+    // const savePanicButtonSettingsButton = document.getElementById('savePanicButtonSettings');
+
+    // Load saved settings
     beforeUnloadToggle.checked = localStorage.getItem('beforeUnloadEnabled') === 'true';
     autocloakToggle.checked = localStorage.getItem('autocloakEnabled') === 'true';
+    blockHeadersToggle.checked = localStorage.getItem('blockHeadersEnabled') === 'true';
+    disableRightClickToggle.checked = localStorage.getItem('disableRightClickEnabled') === 'true';
     siteTitleInput.value = localStorage.getItem('siteTitle') || '';
-    panicKeyInput.value = localStorage.getItem('panicKey') || '';
-    panicUrlInput.value = localStorage.getItem('panicUrl') || '';
+    // panicKeyInput.value = localStorage.getItem('panicKey') || '';
+    // panicUrlInput.value = localStorage.getItem('panicUrl') || '';
+    const savedColor = localStorage.getItem('backgroundColor') || '#0A1D37';
+    backgroundColorPicker.value = savedColor;
+    document.body.style.backgroundColor = savedColor;
 
     const savedLogo = localStorage.getItem('siteLogo');
     if (savedLogo) {
-        const faviconLink = document.createElement('link');
+        const faviconLink = document.querySelector('link[rel="icon"]') || document.createElement('link');
         faviconLink.rel = 'icon';
         faviconLink.href = savedLogo;
-        document.head.appendChild(faviconLink);
+        if (!document.head.contains(faviconLink)) document.head.appendChild(faviconLink);
     }
 
-    saveSettingsButton.addEventListener('click', function() {
+    if (localStorage.getItem('siteTitle')) {
+        document.title = localStorage.getItem('siteTitle');
+    }
+
+    // Before Unload Toggle
+    const handleBeforeUnload = (e) => {
+        e.preventDefault();
+        e.returnValue = '';
+    };
+    if (beforeUnloadToggle.checked) {
+        window.addEventListener('beforeunload', handleBeforeUnload);
+    }
+    beforeUnloadToggle.addEventListener('change', () => {
+        localStorage.setItem('beforeUnloadEnabled', beforeUnloadToggle.checked);
+        if (beforeUnloadToggle.checked) {
+            window.addEventListener('beforeunload', handleBeforeUnload);
+        } else {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        }
+    });
+
+    // Autocloak Toggle
+    autocloakToggle.addEventListener('change', () => {
+        localStorage.setItem('autocloakEnabled', autocloakToggle.checked);
+        if (autocloakToggle.checked) {
+            const popup = window.open('about:blank', '_blank');
+            if (!popup || popup.closed) {
+                alert('Please allow popups for auto-about:blank to work.');
+            } else {
+                const siteTitle = localStorage.getItem('siteTitle') || 'Home';
+                const siteLogo = localStorage.getItem('siteLogo') || '/storage/images/logo-png-removebg-preview.png';
+                popup.document.title = siteTitle;
+
+                const favicon = popup.document.createElement('link');
+                favicon.rel = 'icon';
+                favicon.href = siteLogo;
+                popup.document.head.appendChild(favicon);
+
+                const iframe = popup.document.createElement('iframe');
+                iframe.src = window.location.href;
+                iframe.style.width = '100vw';
+                iframe.style.height = '100vh';
+                iframe.style.border = 'none';
+                popup.document.body.style.margin = '0';
+                popup.document.body.appendChild(iframe);
+
+                const panicUrl = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
+                window.location.href = panicUrl;
+            }
+        }
+    });
+
+    // Block Headers Toggle (placeholder functionality)
+    blockHeadersToggle.addEventListener('change', () => {
+        localStorage.setItem('blockHeadersEnabled', blockHeadersToggle.checked);
+        // Add logic to block headers if needed (e.g., modifying fetch/XHR requests)
+        console.log('Block Headers:', blockHeadersToggle.checked);
+    });
+
+    // Disable Right Click Toggle
+    const handleRightClick = (e) => e.preventDefault();
+    if (disableRightClickToggle.checked) {
+        document.addEventListener('contextmenu', handleRightClick);
+    }
+    disableRightClickToggle.addEventListener('change', () => {
+        localStorage.setItem('disableRightClickEnabled', disableRightClickToggle.checked);
+        if (disableRightClickToggle.checked) {
+            document.addEventListener('contextmenu', handleRightClick);
+        } else {
+            document.removeEventListener('contextmenu', handleRightClick);
+        }
+    });
+
+    // Save Settings (Title & Favicon)
+    saveSettingsButton.addEventListener('click', () => {
         const siteTitle = siteTitleInput.value;
         const siteLogoFile = siteLogoInput.files[0];
 
         if (siteTitle) {
             localStorage.setItem('siteTitle', siteTitle);
+            document.title = siteTitle;
         }
 
         if (siteLogoFile) {
             const reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = (event) => {
                 const logoUrl = event.target.result;
                 localStorage.setItem('siteLogo', logoUrl);
-                const faviconLink = document.createElement('link');
+                const faviconLink = document.querySelector('link[rel="icon"]') || document.createElement('link');
                 faviconLink.rel = 'icon';
                 faviconLink.href = logoUrl;
-                document.head.appendChild(faviconLink);
+                if (!document.head.contains(faviconLink)) document.head.appendChild(faviconLink);
             };
             reader.readAsDataURL(siteLogoFile);
         }
     });
 
-    savePanicButtonSettingsButton.addEventListener('click', function() {
-        const panicKey = panicKeyInput.value;
-        const panicUrl = panicUrlInput.value;
-
-        if (panicKey) {
-            localStorage.setItem('panicKey', panicKey);
-        }
-
-        if (panicUrl) {
-            localStorage.setItem('panicUrl', panicUrl);
-        }
+    // Save Appearance (Background Color)
+    saveAppearanceButton.addEventListener('click', () => {
+        const color = backgroundColorPicker.value;
+        localStorage.setItem('backgroundColor', color);
+        document.body.style.backgroundColor = color;
     });
 
-    resetSettingsButton.addEventListener('click', function() {
+    backgroundColorPicker.addEventListener('input', () => {
+        document.body.style.backgroundColor = backgroundColorPicker.value;
+    });
+
+    // Reset Settings
+    resetSettingsButton.addEventListener('click', () => {
         localStorage.removeItem('siteTitle');
         localStorage.removeItem('siteLogo');
-        document.title = 'Home';
-        const defaultFaviconLink = document.querySelector('link[rel="icon"]');
-        if (defaultFaviconLink) {
-            defaultFaviconLink.href = 'https://raw.githubusercontent.com/voucan/voucan.github.io/refs/heads/main/googleclassroom.png';
-        }
+        localStorage.removeItem('backgroundColor');
+        document.title = 'PeteZah | Settings';
+        const faviconLink = document.querySelector('link[rel="icon"]');
+        if (faviconLink) faviconLink.href = '/storage/images/logo-png-removebg-preview.png';
+        document.body.style.backgroundColor = '#0A1D37';
+        backgroundColorPicker.value = '#0A1D37';
     });
 
-    resetPanicButtonSettingsButton.addEventListener('click', function() {
+    // Reset Panic Button Settings (assuming inputs are added)
+    resetPanicButtonSettingsButton.addEventListener('click', () => {
         localStorage.removeItem('panicKey');
         localStorage.removeItem('panicUrl');
+        // panicKeyInput.value = '';
+        // panicUrlInput.value = '';
     });
 
-    beforeUnloadToggle.addEventListener('change', function() {
-        localStorage.setItem('beforeUnloadEnabled', beforeUnloadToggle.checked);
-        if (beforeUnloadToggle.checked) {
-            window.addEventListener('beforeunload', function(e) {
-                e.preventDefault();
-                e.returnValue = '';
-            });
-        } else {
-            window.removeEventListener('beforeunload', function(e) {
-                e.preventDefault();
-                e.returnValue = '';
-            });
-        }
-    });
-
-    autocloakToggle.addEventListener('change', function() {
-        localStorage.setItem('autocloakEnabled', autocloakToggle.checked);
-        if (autocloakToggle.checked) {
-            const newTab = window.open('about:blank', '_blank');
-            if (newTab) {
-                const iframe = document.createElement('iframe');
-                iframe.src = '/';
-                iframe.style.width = '100vw';
-                iframe.style.height = '100vh';
-                iframe.style.border = 'none';
-                newTab.document.body.style.margin = '0';
-                newTab.document.body.appendChild(iframe);
-            }
-            const panicUrl = localStorage.getItem('panicUrl') || "https://classroom.google.com";
-            window.location.href = panicUrl;
-        }
-    });
-
-    if (beforeUnloadToggle.checked) {
-        window.addEventListener('beforeunload', function(e) {
-            e.preventDefault();
-            e.returnValue = '';
-        });
-    }
-
-    window.addEventListener('keydown', function(event) {
+    // Panic Key Listener (uncomment if panic inputs are added)
+    /*
+    window.addEventListener('keydown', (event) => {
         const panicKey = localStorage.getItem('panicKey');
         const panicUrl = localStorage.getItem('panicUrl');
-
-        if (event.key === panicKey && panicUrl) {
+        if (panicKey && panicUrl && event.key === panicKey) {
             window.location.href = panicUrl;
         }
     });
-</script>
-<script>
-    var storedColor = localStorage.getItem('backgroundColor') || '#0A1D37';
-    document.body.style.backgroundColor = storedColor;
+    */
 
-    var colorPicker = document.getElementById('backgroundColorPicker');
-    colorPicker.value = storedColor;
-
-    colorPicker.addEventListener('input', function () {
-        document.body.style.backgroundColor = colorPicker.value;
-        localStorage.setItem('backgroundColor', colorPicker.value);
-    });
-
-  
-const beforeUnloadEnabled = localStorage.getItem('beforeUnloadEnabled') === 'true';
-if (beforeUnloadEnabled) {
-    window.addEventListener('beforeunload', function (e) {
-        e.preventDefault();
-        e.returnValue = '';
-    });
-}
-
-const savedTitle = localStorage.getItem('siteTitle');
-if (savedTitle) {
-    document.title = savedTitle;
-}
-
-const savedLogo = localStorage.getItem('siteLogo');
-if (savedLogo) {
-    const logoElement = document.querySelector('link[rel="icon"]'); 
-    if (logoElement) {
-        logoElement.href = savedLogo;
+    // Autocloak on page load (if enabled and not in iframe)
+    let inFrame;
+    try {
+        inFrame = window !== window.top;
+    } catch (e) {
+        inFrame = true;
     }
-}
 
-const panicKey = localStorage.getItem('panicKey');
-const panicUrl = localStorage.getItem('panicUrl');
-if (panicKey && panicUrl) {
-    window.addEventListener('keydown', function (event) {
-        if (event.key === panicKey) {
+    if (!inFrame && !navigator.userAgent.includes('Firefox') && autocloakToggle.checked) {
+        const popup = window.open('about:blank', '_blank');
+        if (!popup || popup.closed) {
+            alert('Please allow popups for auto-about:blank to work.');
+        } else {
+            const siteTitle = localStorage.getItem('siteTitle') || 'Home';
+            const siteLogo = localStorage.getItem('siteLogo') || '/storage/images/logo-png-removebg-preview.png';
+            popup.document.title = siteTitle;
+
+            const favicon = popup.document.createElement('link');
+            favicon.rel = 'icon';
+            favicon.href = siteLogo;
+            popup.document.head.appendChild(favicon);
+
+            const iframe = popup.document.createElement('iframe');
+            iframe.src = window.location.href;
+            iframe.style.width = '100vw';
+            iframe.style.height = '100vh';
+            iframe.style.border = 'none';
+            popup.document.body.style.margin = '0';
+            popup.document.body.appendChild(iframe);
+
+            const panicUrl = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
             window.location.href = panicUrl;
         }
-    });
-}
-
-let inFrame;
-
-try {
-  inFrame = window !== top;
-} catch (e) {
-  inFrame = true;
-}
-
-if (
-  !inFrame &&
-  !navigator.userAgent.includes("Firefox") &&
-  localStorage.getItem("autocloakEnabled") === "true"
-) {
-  const popup = open("about:blank", "_blank");
-  if (!popup || popup.closed) {
-    alert(
-      "Please enable popups for auto-about:blank to work correctly. Keep in mind some games may not work correctly in about:blank."
-    );
-  } else {
-    const siteTitle = localStorage.getItem('siteTitle') || "Home";
-    const siteLogo = localStorage.getItem('siteLogo') || "/storage/images/googleclassroom.png";
-
-    popup.document.title = siteTitle;
-
-    const favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.href = siteLogo;
-    popup.document.head.appendChild(favicon);
-
-    const iframe = document.createElement('iframe');
-    iframe.src = '#';
-    iframe.style.width = '100vw';
-    iframe.style.height = '100vh';
-    iframe.style.border = 'none';
-    popup.document.body.style.margin = '0';
-    popup.document.body.appendChild(iframe);
-
-    const panicUrl = localStorage.getItem('panicUrl') || "https://classroom.google.com";
-    window.location.href = panicUrl;
-  }
-}
-
+    }
+});
+</script>
 </script>
 </body>
 </html>

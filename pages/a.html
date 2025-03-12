@@ -20,7 +20,7 @@
 
     
 
-    <title>PeteZah | Games</title>
+    <title>PeteZah | Apps</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
 
 
@@ -139,29 +139,60 @@ body::-webkit-scrollbar {
     transition: transform 0.3s;
 }
 
-.image-item:nth-child(3n+1) {
-    animation-delay: 0.2s; /* Delay for each new row */
-}
-
-.image-item:nth-child(3n+2) {
-    animation-delay: 0.4s; /* Delay for each new row */
-}
-
-.image-item:nth-child(3n+3) {
-    animation-delay: 0.6s; /* Delay for each new row */
-}
-
+/* Fade-in animation for the images */
 @keyframes fade-in {
-    0% {
-        opacity: 0;
-        transform: translateX(-30px); /* Start from the left */
-    }
-    100% {
+    to {
         opacity: 1;
-        transform: translateX(0); /* End at the original position */
     }
 }
 
+/* Apply staggered fade-in based on row */
+.game-container .row {
+    display: flex;
+    gap: 30px;
+    opacity: 0;
+    animation: row-fade-in 1s forwards;
+}
+
+/* Fade-in animation for each row */
+@keyframes row-fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply staggered animation delay to each row */
+.game-container .row:nth-child(1) {
+    animation-delay: 0s;
+}
+.game-container .row:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.game-container .row:nth-child(3) {
+    animation-delay: 0.6s;
+}
+.game-container .row:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+/* Ensure all image items within the row fade in one after the other */
+.game-container .row .image-item {
+    opacity: 0;
+    animation: fade-in 1s forwards;
+}
+
+.game-container .row .image-item:nth-child(1) {
+    animation-delay: 0s;
+}
+.game-container .row .image-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.game-container .row .image-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+.game-container .row .image-item:nth-child(4) {
+    animation-delay: 0.3s;
+}
 
 .image-item:hover {
     transform: scale(1.05);  /* Slight zoom effect on hover */

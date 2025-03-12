@@ -131,12 +131,32 @@ body::-webkit-scrollbar {
     width: 250px;  /* Slightly larger image items */
     height: 220px;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.3s ease;
     border-radius: 10px;  /* Slightly less rounded corners */
     background-color: #222;
     border: 2px solid #fff;  /* Skinny white border */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);  /* Deeper shadow for a more modern look */
+    transform: translateX(-100px);
+    animation: fadeInFromSides 1s forwards;
 }
+
+	    .image-item:nth-child(even) {
+            animation-delay: 0.3s; /* Delay for even items */
+        }
+
+        .image-item:nth-child(odd) {
+            animation-delay: 0.6s; /* Delay for odd items */
+        }
+
+        @keyframes fadeInFromSides {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
 .image-item:hover {
     transform: scale(1.05);  /* Slight zoom effect on hover */

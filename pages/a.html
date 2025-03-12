@@ -135,28 +135,33 @@ body::-webkit-scrollbar {
     background-color: #222;
     border: 2px solid #fff;  /* Skinny white border */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);  /* Deeper shadow for a more modern look */
-    transform: translateX(-100px);
-    animation: fadeInFromSides 1s forwards;
+    animation: fade-in 1s forwards;  /* Apply fade-in animation */
+    transition: transform 0.3s;
 }
 
-	    .image-item:nth-child(even) {
-            animation-delay: 0.3s; /* Delay for even items */
-        }
+.image-item:nth-child(3n+1) {
+    animation-delay: 0.2s; /* Delay for each new row */
+}
 
-        .image-item:nth-child(odd) {
-            animation-delay: 0.6s; /* Delay for odd items */
-        }
+.image-item:nth-child(3n+2) {
+    animation-delay: 0.4s; /* Delay for each new row */
+}
 
-        @keyframes fadeInFromSides {
-            0% {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+.image-item:nth-child(3n+3) {
+    animation-delay: 0.6s; /* Delay for each new row */
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px); /* Start from the left */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* End at the original position */
+    }
+}
+
 
 .image-item:hover {
     transform: scale(1.05);  /* Slight zoom effect on hover */

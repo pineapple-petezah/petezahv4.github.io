@@ -3,139 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Link Generator</title>
-
-  <!-- Include Firebase SDKs -->
+  <title>Firebase Static Website</title>
+  
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-
-  <!-- Styling -->
+  
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #001f3d; /* Dark blue background */
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white; /* White text color */
-    }
-
-    .container {
-      background-color: #003366; /* Darker blue background for the form */
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      width: 350px;
-      text-align: center;
-    }
-
-    h1 {
-      color: #ffffff;
-      margin-bottom: 20px;
-    }
-
-    button {
-      background-color: #005f99; /* Darker blue button */
+      background-color: #1d3557;
       color: white;
-      border: 1px solid #ffffff; /* White border */
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #006bb3; /* Slightly lighter blue on hover */
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    input[type="text"] {
-      padding: 12px;
-      font-size: 14px;
-      border: 1px solid #ffffff; /* White border */
-      border-radius: 5px;
-      width: 100%;
-      background-color: #003366; /* Same blue as form */
-      color: white; /* White text inside the input */
-    }
-
-    input[type="text"]:focus {
-      outline: none;
-      border-color: #006bb3; /* Light blue border on focus */
-    }
-
-    #successMessage {
-      color: #4CAF50; /* Green color for success */
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    #errorMessage {
-      color: #ff3333; /* Red color for errors */
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .sign-in-message {
-      color: #ffffff;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .form-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
+  <h1>Firebase Static Website</h1>
 
-  <div class="container">
-    <h1>Firebase Link Generator</h1>
-    
-    <!-- Sign-in Button (for Google Authentication) -->
-    <button id="signInBtn">Sign in with Google</button>
-
-    <!-- Form to input Firebase link -->
-    <div id="formContainer" class="form-container" style="display: none;">
-      <form id="linkForm">
-        <label for="firebaseLink">Enter Firebase Link:</label>
-        <input type="text" id="firebaseLink" placeholder="Enter your Firebase link" required />
-        <button type="submit">Submit Link</button>
-      </form>
-
-      <p id="successMessage" style="display: none;">Link submitted successfully!</p>
-      <p id="errorMessage" style="display: none;">Please sign in to submit a link.</p>
-    </div>
-
-    <!-- Sign-in message for unauthenticated users -->
-    <p id="signInMessage" class="sign-in-message" style="display: none;">Please sign in to create a Firebase link.</p>
+  <!-- Firebase Sign In Button -->
+  <button id="signInBtn">Sign in with Google</button>
+  
+  <!-- Form to Input Firebase Link -->
+  <div id="formContainer" style="display: none;">
+    <form id="linkForm">
+      <label for="firebaseLink">Enter Firebase Link:</label>
+      <input type="text" id="firebaseLink" placeholder="Enter Firebase link" required />
+      <button type="submit">Submit Link</button>
+    </form>
+    <p id="successMessage" style="display: none;">Link submitted successfully!</p>
+    <p id="errorMessage" style="display: none;">Please sign in to submit a link.</p>
   </div>
+  
+  <p id="signInMessage" style="display: none;">Please sign in to create a Firebase link.</p>
 
   <script>
-    // Firebase config
+    // Firebase config (your Firebase credentials)
     const firebaseConfig = {
-  apiKey: "AIzaSyBgORqRqPo2zw4qaybzxlJ6kPJHk_XcWa4",
-  authDomain: "petezah-mothership.firebaseapp.com",
-  projectId: "petezah-mothership",
-  storageBucket: "petezah-mothership.firebasestorage.app",
-  messagingSenderId: "658647996820",
-  appId: "1:658647996820:web:4ad90970f032dd65b7d781",
-  measurementId: "G-YBKYNTWVNR"
-};
-
+      apiKey: "AIzaSyBgORqRqPo2zw4qaybzxlJ6kPJHk_XcWa4",
+      authDomain: "petezah-mothership.firebaseapp.com",
+      projectId: "petezah-mothership",
+      storageBucket: "petezah-mothership.firebasestorage.app",
+      messagingSenderId: "658647996820",
+      appId: "1:658647996820:web:4ad90970f032dd65b7d781",
+      measurementId: "G-YBKYNTWVNR"
+    };
+    
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore(app);
@@ -144,63 +59,50 @@
     // Google Sign-In provider
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    // Handle Sign-In with Google
+    // Sign-in with Google
     document.getElementById('signInBtn').addEventListener('click', () => {
       auth.signInWithPopup(provider).then((result) => {
         const user = result.user;
         console.log('User signed in: ', user);
-
-        // Hide Sign-In button and show the form after sign-in
         document.getElementById('signInBtn').style.display = 'none';
         document.getElementById('formContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
         document.getElementById('signInMessage').style.display = 'none';
       }).catch((error) => {
         console.error('Error signing in: ', error);
       });
     });
 
-    // Handle form submission
-    document.getElementById('linkForm').addEventListener('submit', async function (e) {
+    // Form submission
+    document.getElementById('linkForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      // Get the link from input
       const link = document.getElementById('firebaseLink').value;
-
+      
       try {
-        // Save the link to Firestore
         await db.collection('firebaseLinks').add({
           url: link,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp() // Add timestamp for sorting
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        // Show success message
         document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('firebaseLink').value = ''; // Clear the input field
+        document.getElementById('firebaseLink').value = ''; // Clear input
       } catch (error) {
-        console.error("Error submitting link: ", error);
-        alert("Error submitting link. Please try again.");
+        console.error('Error submitting link: ', error);
+        alert('Error submitting link');
       }
     });
 
-    // Check if the user is already signed in
+    // Check for signed-in user
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log('User is signed in: ', user);
-        // Hide the sign-in button and show the form
         document.getElementById('signInBtn').style.display = 'none';
         document.getElementById('formContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
         document.getElementById('signInMessage').style.display = 'none';
       } else {
-        console.log('No user signed in');
-        // Show the sign-in button and hide the form
         document.getElementById('signInBtn').style.display = 'block';
         document.getElementById('formContainer').style.display = 'none';
         document.getElementById('signInMessage').style.display = 'block';
       }
     });
   </script>
-
 </body>
 </html>

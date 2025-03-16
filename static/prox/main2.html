@@ -17,7 +17,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
-            font-weight: 400; /* Lighter weight for a modern feel */
+            font-weight: 400;
         }
 
         body, html {
@@ -25,95 +25,111 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            background-color: #121212; /* Darker, Hypertabs-like background */
-            color: #e0e0e0;
+            background-color: #0d0d0d; /* Darker Hypertabs-like background */
+            color: #d0d0d0;
         }
 
         .tabs {
             display: flex;
             align-items: center;
-            background-color: #1e1e1e; /* Slightly lighter than body */
-            padding: 6px 8px;
-            border-bottom: 1px solid #2a2a2a;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            background-color: #1a1a1a;
+            padding: 4px 6px;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             overflow-x: auto;
         }
 
         .tab {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 6px 14px;
-            color: #b0b0b0;
+            padding: 6px 12px 6px 16px;
+            color: #a0a0a0;
             cursor: pointer;
-            background-color: #1e1e1e;
-            border-radius: 6px;
-            margin-right: 6px;
-            transition: all 0.2s ease; /* Smoother transitions */
-            max-width: 320px; /* Longer tabs like Hypertabs */
-            min-width: 160px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            margin-right: 4px;
+            transition: all 0.2s ease;
+            max-width: 340px;
+            min-width: 180px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .tab::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background-color: #404040; /* Vertical separators */
+        }
+
+        .tab:last-child::after {
+            display: none; /* No separator after the last tab */
         }
 
         .tab.active {
-            background-color: #2a2a2a;
+            background-color: #2e2e2e;
             color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
         }
 
         .tab:hover {
-            background-color: #252525;
+            background-color: #242424;
             color: #ffffff;
         }
 
         .tab .close-button {
-            margin-left: 10px;
-            color: #b0b0b0;
-            font-size: 12px;
+            margin-left: auto; /* Pushes it to the right */
+            padding-left: 10px;
+            color: #a0a0a0;
+            font-size: 14px;
             cursor: pointer;
             transition: color 0.2s ease;
         }
 
         .tab .close-button:hover {
-            color: #ff5555; /* Subtle red for close button */
+            color: #ff4444;
         }
 
         .add-tab-button {
             padding: 6px 12px;
             cursor: pointer;
-            background-color: #1e1e1e;
-            color: #e0e0e0;
+            background-color: #1a1a1a;
+            color: #d0d0d0;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 18px;
             transition: all 0.2s ease;
         }
 
         .add-tab-button:hover {
-            background-color: #252525;
+            background-color: #242424;
         }
 
         .navbar {
             display: flex;
             align-items: center;
-            background-color: #1e1e1e;
+            background-color: #1a1a1a;
             padding: 6px 12px;
-            border-bottom: 1px solid #2a2a2a;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
         }
 
         .navbar-left, .navbar-right {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             flex-shrink: 0;
         }
 
         .navbar button {
             background: none;
             border: none;
-            color: #b0b0b0;
+            color: #a0a0a0;
             cursor: pointer;
             font-size: 16px;
             transition: color 0.2s ease;
@@ -127,11 +143,11 @@
             flex-grow: 1;
             display: flex;
             align-items: center;
-            background-color: #2a2a2a;
-            border-radius: 20px;
-            margin: 0 16px;
+            background-color: #2e2e2e;
+            border-radius: 24px;
+            margin: 0 14px;
             padding: 4px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .search-bar input {
@@ -139,14 +155,14 @@
             padding: 8px 12px;
             border: none;
             background: none;
-            color: #e0e0e0;
+            color: #d0d0d0;
             font-size: 14px;
             outline: none;
         }
 
         .search-bar button {
             padding: 8px;
-            color: #b0b0b0;
+            color: #a0a0a0;
         }
 
         .content-wrapper {
@@ -195,7 +211,7 @@
 
     <script>
         let tabCount = 1;
-        const proxyPrefix = "/static/embed#"; // Proxy prefix for URLs
+        const proxyPrefix = "https://petezahgames.com/static/embed.html#";
 
         function selectTab(tabElement) {
             const tabs = document.querySelectorAll('.tab');
@@ -206,7 +222,7 @@
             const tabIndex = [...tabElement.parentElement.children].indexOf(tabElement);
             const iframe = iframes[tabIndex];
             iframe.classList.add('active');
-            updateSearchBar(iframe); // Update URL bar on tab switch
+            updateSearchBar(iframe);
         }
 
         function addTab(url = "/static/index.html") {
@@ -245,17 +261,16 @@
         function updateTabName(iframe, tabElement) {
             iframe.onload = () => {
                 const title = iframe.contentDocument?.title || "New Tab";
-                tabElement.childNodes[0].textContent = title.substring(0, 30); // Slightly longer titles
-                updateSearchBar(iframe); // Ensure URL updates with title
+                tabElement.childNodes[0].textContent = title.substring(0, 30);
+                updateSearchBar(iframe);
             };
         }
 
         function getUnproxifiedUrl(proxifiedUrl) {
-            // Strip proxy prefix and return the original URL
             if (proxifiedUrl.startsWith(proxyPrefix)) {
                 return proxifiedUrl.replace(proxyPrefix, "");
             }
-            return proxifiedUrl; // Return as-is if no proxy prefix
+            return proxifiedUrl;
         }
 
         function search() {
@@ -264,7 +279,7 @@
             const iframe = document.querySelector('.tab-iframe.active');
             const url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
             iframe.src = `${proxyPrefix}${url}`;
-            document.getElementById('search-input').value = url; // Show un-proxified URL immediately
+            document.getElementById('search-input').value = url; // Show unproxified URL immediately
             const activeTab = document.querySelector('.tab.active');
             updateTabName(iframe, activeTab);
         }
@@ -272,7 +287,7 @@
         function goHome() {
             const iframe = document.querySelector('.tab-iframe.active');
             iframe.src = "/static/index.html";
-            document.getElementById('search-input').value = "/static/index.html"; // Reflect home URL
+            document.getElementById('search-input').value = "/static/index.html";
             const activeTab = document.querySelector('.tab.active');
             activeTab.childNodes[0].textContent = "New Tab";
         }
@@ -318,7 +333,6 @@
             };
         }
 
-        // Initial setup for the first tab
         const initialIframe = document.querySelector('.tab-iframe.active');
         const initialTab = document.querySelector('.tab.active');
         updateTabName(initialIframe, initialTab);

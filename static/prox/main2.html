@@ -12,180 +12,182 @@
     <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            font-weight: 400;
-        }
+        <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+    }
 
-        body, html {
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            background-color: #0a0f1a;
-            color: #d0d0d0;
-        }
+    body, html {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #05080f; /* Darker background */
+        color: #d0d0d0;
+    }
 
-        .tabs {
-            display: flex;
-            align-items: center;
-            background-color: #121929;
-            padding: 4px 6px;
-            border-bottom: 1px solid #1e2a44;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-            overflow-x: auto;
-        }
+    .tabs {
+        display: flex;
+        align-items: center;
+        background-color: #121929;
+        padding: 4px 6px;
+        border-bottom: 1px solid #1e2a44;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        overflow-x: auto;
+    }
 
-        .tab {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 12px 6px 16px;
-            color: #a0b0cc;
-            cursor: pointer;
-            background-color: #121929;
-            border-radius: 8px;
-            margin-right: 4px;
-            transition: all 0.2s ease;
-            max-width: 340px;
-            min-width: 180px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            position: relative;
-            border-bottom: 1px solid #1e2a44;
-        }
+    .tab {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 12px 6px 16px;
+        color: #a0b0cc;
+        cursor: pointer;
+        background-color: #121929;
+        border-radius: 8px;
+        margin-right: 4px;
+        transition: all 0.2s ease;
+        max-width: 340px;
+        min-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        border-bottom: 1px solid #1e2a44;
+    }
 
-        .tab:last-child {
-            border-bottom: none;
-        }
+    .tab:last-child {
+        border-bottom: none;
+    }
 
-        .tab.active {
-            background-color: #1e2a44;
-            color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        }
+    .tab.active {
+        background-color: #1e2a44;
+        color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
 
-        .tab:hover {
-            background-color: #182133;
-            color: #ffffff;
-        }
+    .tab:hover {
+        background-color: #182133;
+        color: #ffffff;
+    }
 
-        .tab .close-button {
-            margin-left: auto;
-            padding-left: 10px;
-            color: #a0b0cc;
-            font-size: 14px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
+    .tab .close-button {
+        margin-left: auto;
+        padding-left: 10px;
+        color: #a0b0cc;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
 
-        .tab .close-button:hover {
-            color: #ff4444;
-        }
+    .tab .close-button:hover {
+        color: #ff4444;
+    }
 
-        .add-tab-button {
-            padding: 6px 12px;
-            cursor: pointer;
-            background-color: #121929;
-            color: #d0d0d0;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: all 0.2s ease;
-        }
+    .add-tab-button {
+        padding: 6px 12px;
+        cursor: pointer;
+        background-color: #121929;
+        color: #d0d0d0;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        transition: all 0.2s ease;
+    }
 
-        .add-tab-button:hover {
-            background-color: #182133;
-        }
+    .add-tab-button:hover {
+        background-color: #182133;
+    }
 
-        .navbar {
-            display: flex;
-            align-items: center;
-            background-color: #121929;
-            padding: 4px 10px; /* Reduced padding from 6px 12px */
-            border-bottom: 1px solid #1e2a44;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-        }
+    .navbar {
+        display: flex;
+        align-items: center;
+        background-color: #121929;
+        padding: 4px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Frail white border */
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    }
 
-        .navbar-left, .navbar-right {
-            display: flex;
-            gap: 12px; /* Slightly reduced from 14px */
-            flex-shrink: 0;
-        }
+    .navbar-left, .navbar-right {
+        display: flex;
+        gap: 12px;
+        flex-shrink: 0;
+    }
 
-        .navbar button {
-            background: none;
-            border: none;
-            color: #a0b0cc;
-            cursor: pointer;
-            font-size: 14px; /* Reduced from 16px */
-            transition: color 0.2s ease;
-        }
+    .navbar button {
+        background: none;
+        border: none;
+        color: #a0b0cc;
+        cursor: pointer;
+        font-size: 14px;
+        transition: color 0.2s ease;
+    }
 
-        .navbar button:hover {
-            color: #ffffff;
-        }
+    .navbar button:hover {
+        color: #ffffff;
+    }
 
-        .search-container {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            background-color: #1e2a44;
-            border-radius: 20px; /* Slightly reduced from 24px */
-            margin: 0 12px; /* Slightly reduced from 14px */
-            padding: 2px; /* Reduced from 4px */
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+    .search-container {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        background-color: #1e2a44;
+        border-radius: 20px;
+        margin: 0 12px;
+        padding: 2px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
 
-        .search-container input {
-            flex-grow: 1;
-            padding: 6px 10px; /* Reduced from 8px 12px */
-            border: 1px solid #1e2a44;
-            background: #1e2a44;
-            color: #d0d0d0;
-            font-size: 13px; /* Reduced from 14px */
-            outline: none;
-            transition: all 0.2s ease;
-            border-radius: 20px; /* Match container */
-        }
+    .search-container input {
+        flex-grow: 1;
+        padding: 6px 10px;
+        border: 1px solid #1e2a44;
+        background: #1e2a44;
+        color: #d0d0d0;
+        font-size: 13px;
+        outline: none;
+        transition: all 0.2s ease;
+        border-radius: 20px;
+    }
 
-        .search-container input:hover {
-            background: #252f4a;
-        }
+    .search-container input:hover {
+        background: #252f4a;
+    }
 
-        .search-container input:focus {
-            background: #252f4a;
-            outline: none;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-            border-color: #0066cc;
-        }
+    .search-container input:focus {
+        background: #252f4a;
+        outline: none;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        border-color: #0066cc;
+    }
 
-        .search-container button {
-            padding: 6px; /* Reduced from 8px */
-            color: #a0b0cc;
-        }
+    .search-container button {
+        padding: 6px;
+        color: #a0b0cc;
+    }
 
-        .content-wrapper {
-            flex-grow: 1;
-            overflow: hidden;
-            position: relative;
-        }
+    .content-wrapper {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+    }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-            background-color: #ffffff;
-        }
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: none;
+        background-color: #ffffff;
+    }
 
-        iframe.active {
-            display: block;
-        }
+    iframe.active {
+        display: block;
+    }
+</style>
     </style>
 </head>
 <body>

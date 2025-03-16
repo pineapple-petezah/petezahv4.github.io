@@ -6,10 +6,10 @@
     <title>HyperZah | Proxy</title>
     <link rel="icon" href="storage/images/logo-png-removebg-preview.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <meta property="og:title" content="PeteZah | Proxy">
+    <meta property="og:title" content="HyperZah | Proxy">
     <meta property="og:description" content="Next-gen proxy browsing">
     <meta property="og:image" content="/storage/images/logo-png-removebg-preview.png">
-    <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
+    <meta name="keywords" content="HyperZah Proxy, bypass restrictions, web proxy">
 
     <style>
         * {
@@ -36,27 +36,30 @@
             padding: 8px;
             border-bottom: 1px solid #0f3460;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            overflow-x: auto;
         }
 
         .tab {
             display: flex;
             align-items: center;
-            padding: 6px 12px;
+            padding: 8px 16px;
             color: #a0a0a0;
             cursor: pointer;
             background-color: #16213e;
             border-radius: 8px;
-            margin-right: 6px;
+            margin-right: 8px;
             transition: all 0.3s ease;
-            max-width: 180px;
+            max-width: 300px; /* Longer tabs like Hypertabs */
+            min-width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .tab.active {
             background-color: #0f3460;
             color: #fff;
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .tab:hover {
@@ -64,9 +67,9 @@
         }
 
         .tab .close-button {
-            margin-left: 8px;
+            margin-left: 12px;
             color: #a0a0a0;
-            font-size: 12px;
+            font-size: 14px;
             cursor: pointer;
         }
 
@@ -75,13 +78,13 @@
         }
 
         .add-tab-button {
-            padding: 6px 12px;
+            padding: 8px 16px;
             cursor: pointer;
             background-color: #16213e;
             color: #fff;
             border: none;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 20px;
             transition: background-color 0.3s ease;
         }
 
@@ -100,7 +103,7 @@
 
         .navbar-left, .navbar-right {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             flex-shrink: 0;
         }
 
@@ -109,7 +112,7 @@
             border: none;
             color: #e0e0e0;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             transition: color 0.3s ease;
         }
 
@@ -122,23 +125,23 @@
             display: flex;
             align-items: center;
             background-color: #0f3460;
-            border-radius: 20px;
-            margin: 0 16px;
+            border-radius: 25px;
+            margin: 0 20px;
             padding: 4px;
         }
 
         .search-bar input {
             flex-grow: 1;
-            padding: 8px;
+            padding: 10px;
             border: none;
             background: none;
             color: #e0e0e0;
-            font-size: 14px;
+            font-size: 16px;
             outline: none;
         }
 
         .search-bar button {
-            padding: 8px;
+            padding: 10px;
             color: #e0e0e0;
         }
 
@@ -163,7 +166,7 @@
 </head>
 <body>
     <div class="tabs" id="tabs">
-        <div class="tab active" onclick="selectTab(this)">Home <span class="close-button" onclick="closeTab(event, this)">×</span></div>
+        <div class="tab active" onclick="selectTab(this)">New Tab <span class="close-button" onclick="closeTab(event, this)">×</span></div>
         <button class="add-tab-button" onclick="addTab()">+</button>
     </div>
     <div class="navbar" id="navbar">
@@ -174,20 +177,21 @@
             <button onclick="refresh()"><i class="fas fa-redo"></i></button>
         </div>
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Enter URL or search..." onkeydown="if(event.key === 'Enter') navigate()">
-            <button onclick="navigate()"><i class="fas fa-search"></i></button>
+            <input type="text" id="search-input" placeholder="Search or enter a URL" onkeydown="if(event.key === 'Enter') search()">
+            <button onclick="search()"><i class="fas fa-search"></i></button>
         </div>
         <div class="navbar-right">
             <button onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+            <button onclick="settings()"><i class="fa fa-cog"></i></button>
         </div>
     </div>
     <div class="content-wrapper" id="content-wrapper">
-        <iframe class="tab-iframe active" src="https://example.com" id="iframe-1"></iframe>
+        <iframe class="tab-iframe active" src="/static/index.html" id="iframe-1"></iframe>
     </div>
 
     <script>
         let tabCount = 1;
-        const proxyPrefix = "https://proxy.example.com/"; // Replace with actual proxy service URL
+        const proxyBase = "/static/embed#"; // Restore original proxy-like prefix
 
         function selectTab(tabElement) {
             const tabs = document.querySelectorAll('.tab');
@@ -201,7 +205,7 @@
             updateTabName(iframe, tabElement);
         }
 
-        function addTab(url = "https://example.com") {
+        function addTab(url = "/static/index.html") {
             tabCount++;
             const tabsContainer = document.getElementById('tabs');
             const newTab = document.createElement('div');
@@ -214,7 +218,7 @@
             const iframe = document.createElement('iframe');
             iframe.classList.add('tab-iframe');
             iframe.id = `iframe-${tabCount}`;
-            iframe.src = url.startsWith('http') ? `${proxyPrefix}${btoa(url)}` : url;
+            iframe.src = url;
             document.getElementById('content-wrapper').appendChild(iframe);
             selectTab(newTab);
         }
@@ -237,23 +241,24 @@
         function updateTabName(iframe, tabElement) {
             iframe.onload = () => {
                 const title = iframe.contentDocument?.title || "New Tab";
-                tabElement.childNodes[0].textContent = title.substring(0, 15);
+                tabElement.childNodes[0].textContent = title.substring(0, 25); // Longer title visibility
             };
         }
 
-        function navigate() {
+        function search() {
             const input = document.getElementById('search-input').value.trim();
             if (!input) return;
-            const url = input.match(/^https?:\/\//) ? input : `https://${input}`;
             const iframe = document.querySelector('.tab-iframe.active');
-            iframe.src = `${proxyPrefix}${btoa(url)}`;
+            const url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+            iframe.src = `${proxyBase}${url}`;
             updateSearchBar(iframe);
         }
 
         function goHome() {
             const iframe = document.querySelector('.tab-iframe.active');
-            iframe.src = "https://example.com";
-            updateSearchBar(iframe);
+            iframe.src = "/static/index.html";
+            const activeTab = document.querySelector('.tab.active');
+            activeTab.childNodes[0].textContent = "New Tab";
         }
 
         function goBack() {
@@ -273,6 +278,13 @@
             iframe.contentWindow.location.reload();
         }
 
+        function settings() {
+            const iframe = document.querySelector('.tab-iframe.active');
+            iframe.src = "/static/prox/settings";
+            const activeTab = document.querySelector('.tab.active');
+            activeTab.childNodes[0].textContent = "Settings";
+        }
+
         function toggleFullscreen() {
             const iframe = document.querySelector('.tab-iframe.active');
             if (!document.fullscreenElement) {
@@ -284,7 +296,7 @@
 
         function updateSearchBar(iframe) {
             iframe.onload = () => {
-                const url = atob(iframe.src.replace(proxyPrefix, ""));
+                const url = iframe.src.replace(proxyBase, "");
                 document.getElementById('search-input').value = url;
                 const activeTab = document.querySelector('.tab.active');
                 updateTabName(iframe, activeTab);

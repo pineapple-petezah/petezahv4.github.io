@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #1a2a6c; /* Dark blue background */
+            background-color: #0f1a38; /* Darker blue background */
             font-family: 'Arial', sans-serif;
             margin: 0;
             color: #ffffff; /* White text */
@@ -32,7 +32,7 @@
         }
 
         .settings-container h1 {
-            color: #ffffff; /* White text instead of gold */
+            color: #ffffff; /* White text */
             font-size: 24px;
             margin-bottom: 20px;
             font-weight: bold;
@@ -103,6 +103,26 @@
             border: 1px solid #4a5e94; /* Blue line */
             margin: 20px 0;
         }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 12px; /* Adjust width of scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #2a3b7c; /* Darker background for the track */
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #4a5e94; /* Blue thumb */
+            border-radius: 10px;
+            border: 3px solid #1a2a6c; /* Darker border around the thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #5d74b8; /* Lighter blue when hovered */
+        }
     </style>
 </head>
 <body>
@@ -149,144 +169,4 @@
     <script>
         // The JavaScript remains unchanged as it handles functionality, not styling
         const beforeUnloadToggle = document.getElementById('beforeUnloadToggle');
-        const autocloakToggle = document.getElementById('autocloakToggle');
-        const siteTitleInput = document.getElementById('siteTitle');
-        const siteLogoInput = document.getElementById('siteLogo');
-        const panicKeyInput = document.getElementById('panicKey');
-        const panicUrlInput = document.getElementById('panicUrl');
-        const saveSettingsButton = document.getElementById('saveSettings');
-        const savePanicButtonSettingsButton = document.getElementById('savePanicButtonSettings');
-        const resetSettingsButton = document.getElementById('resetSettings');
-        const resetPanicButtonSettingsButton = document.getElementById('resetPanicButtonSettings');
-
-        beforeUnloadToggle.checked = localStorage.getItem('beforeUnloadEnabled') === 'true';
-        autocloakToggle.checked = localStorage.getItem('autocloakEnabled') === 'true';
-        siteTitleInput.value = localStorage.getItem('siteTitle') || '';
-        panicKeyInput.value = localStorage.getItem('panicKey') || '';
-        panicUrlInput.value = localStorage.getItem('panicUrl') || '';
-
-        const savedLogo = localStorage.getItem('siteLogo');
-        if (savedLogo) {
-            const faviconLink = document.createElement('link');
-            faviconLink.rel = 'icon';
-            faviconLink.href = savedLogo;
-            document.head.appendChild(faviconLink);
-        }
-
-        saveSettingsButton.addEventListener('click', function() {
-            const siteTitle = siteTitleInput.value;
-            const siteLogoFile = siteLogoInput.files[0];
-
-            if (siteTitle) {
-                localStorage.setItem('siteTitle', siteTitle);
-            }
-
-            if (siteLogoFile) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const logoUrl = event.target.result;
-                    localStorage.setItem('siteLogo', logoUrl);
-                    const faviconLink = document.createElement('link');
-                    faviconLink.rel = 'icon';
-                    faviconLink.href = logoUrl;
-                    document.head.appendChild(faviconLink);
-                };
-                reader.readAsDataURL(siteLogoFile);
-            }
-        });
-
-        savePanicButtonSettingsButton.addEventListener('click', function() {
-            const panicKey = panicKeyInput.value;
-            const panicUrl = panicUrlInput.value;
-
-            if (panicKey) {
-                localStorage.setItem('panicKey', panicKey);
-            }
-
-            if (panicUrl) {
-                localStorage.setItem('panicUrl', panicUrl);
-            }
-        });
-
-        resetSettingsButton.addEventListener('click', function() {
-            localStorage.removeItem('siteTitle');
-            localStorage.removeItem('siteLogo');
-            document.title = 'Home';
-            const defaultFaviconLink = document.querySelector('link[rel="icon"]');
-            if (defaultFaviconLink) {
-                defaultFaviconLink.href = 'storage/images/logo-png-removebg-preview.png';
-            }
-        });
-
-        resetPanicButtonSettingsButton.addEventListener('click', function() {
-            localStorage.removeItem('panicKey');
-            localStorage.removeItem('panicUrl');
-        });
-
-        beforeUnloadToggle.addEventListener('change', function() {
-            localStorage.setItem('beforeUnloadEnabled', beforeUnloadToggle.checked);
-            if (beforeUnloadToggle.checked) {
-                window.addEventListener('beforeunload', function(e) {
-                    e.preventDefault();
-                    e.returnValue = '';
-                });
-            } else {
-                window.removeEventListener('beforeunload', function(e) {
-                    e.preventDefault();
-                    e.returnValue = '';
-                });
-            }
-        });
-
-        autocloakToggle.addEventListener('change', function() {
-            localStorage.setItem('autocloakEnabled', autocloakToggle.checked);
-            if (autocloakToggle.checked) {
-                window.onload = function() {
-                    const newTab = window.open('about:blank', '_blank');
-                    if (!newTab) {
-                        alert("Please enable popups to proceed.");
-                        return;
-                    }
-
-                    const siteTitle = localStorage.getItem('siteTitle') || "Home";
-                    const siteLogo = localStorage.getItem('siteLogo') || "storage/images/logo-png-removebg-preview.png";
-
-                    newTab.document.title = siteTitle;
-
-                    const favicon = document.createElement('link');
-                    favicon.rel = 'icon';
-                    favicon.href = siteLogo;
-                    newTab.document.head.appendChild(favicon);
-
-                    const iframe = document.createElement('iframe');
-                    iframe.src = '/';
-                    iframe.style.width = '100vw';
-                    iframe.style.height = '100vh';
-                    iframe.style.border = 'none';
-                    newTab.document.body.style.margin = '0';
-                    newTab.document.body.appendChild(iframe);
-
-                    const panicUrl = localStorage.getItem('panicUrl') || "https://lms.fcps.edu";
-                    window.location.href = panicUrl;
-                };
-            }
-        });
-
-        if (beforeUnloadToggle.checked) {
-            window.addEventListener('beforeunload', function(e) {
-                e.preventDefault();
-                e.returnValue = '';
-            });
-        }
-
-        window.addEventListener('keydown', function(event) {
-            const panicKey = localStorage.getItem('panicKey');
-            const panicUrl = localStorage.getItem('panicUrl');
-
-            if (event.key === panicKey && panicUrl) {
-                window.location.href = panicUrl;
-            }
-        });
-    </script>
-</body>
-</html>
+        const autocloakToggle = document.getElementById('autoc

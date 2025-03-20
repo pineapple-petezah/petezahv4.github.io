@@ -7,7 +7,7 @@
     <style>
         /* Global styles */
         body {
-            background-color: #111111; /* Dark background */
+            background-color: #0A1D37; /* Dark background */
             color: #f0f0f0; /* Text color */
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -33,12 +33,12 @@
             font-size: 3em;
             color: #00BFFF; /* Bright cyan */
             margin-bottom: 30px;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Button and Dropdown Styles */
         select, button {
-            background-color: #00BFFF; /* Cyan color for buttons */
+            background: linear-gradient(45deg, #00BFFF, #1E90FF); /* Gradient color for buttons */
             color: #fff;
             border: none;
             padding: 15px 30px;
@@ -48,13 +48,14 @@
             outline: none;
             width: 250px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         select:hover, button:hover {
-            background-color: #009ACD; /* Darker cyan on hover */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #1E90FF, #00BFFF);
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
 
         /* Link Container */
@@ -90,7 +91,6 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Light Mode links */
         body.light-mode .link-container a {
             background: linear-gradient(45deg, #00BFFF, #87CEFA); /* Light cyan gradient */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -102,31 +102,47 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* Particles */
-        .particles {
-            position: absolute;
+        /* God Rays Effect */
+        .god-rays {
+            position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 550px;
+            --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+            --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
+            background-image: var(--stripes), var(--rays);
+            background-size: 300%, 200%;
+            background-position: 50% 50%, 50% 50%;
+            animation: fadeIn 2s ease;
+            mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
             pointer-events: none;
             z-index: -1;
         }
 
-        .particle {
+        .god-rays::after {
+            content: "";
             position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.7);
-            opacity: 0.5;
-            animation: float 15s linear infinite;
+            inset: 0;
+            background-image: var(--stripes), var(--rays);
+            background-size: 200%, 100%;
+            animation: god-rays 40s linear infinite;
+            background-attachment: fixed;
+            mix-blend-mode: difference;
         }
 
-        @keyframes float {
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes god-rays {
             0% {
-                transform: translateY(0) translateX(0);
+                transform: translateX(0) translateY(0);
             }
             100% {
-                transform: translateY(-100vh) translateX(100vw);
+                transform: translateX(100vw) translateY(100vh);
             }
         }
 
@@ -174,19 +190,7 @@
     <!-- Light/Dark Mode Toggle Button -->
     <button class="toggle-btn" onclick="toggleMode()">Toggle Light/Dark Mode</button>
 
-    <div class="particles">
-        <script>
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = Math.random() * 100 + 'vh';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = 5 + Math.random() * 10 + 's';
-                document.body.appendChild(particle);
-            }
-        </script>
-    </div>
+    <div class="god-rays"></div>
 
     <script>
         const links = {

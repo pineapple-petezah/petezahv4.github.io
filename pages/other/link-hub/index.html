@@ -7,8 +7,8 @@
     <style>
         /* Global styles */
         body {
-            background: linear-gradient(135deg, #2e3b55, #1f2833, #1f4068); /* Dark gradient background */
-            color: #f0f0f0; /* Gentle white text */
+            background-color: #111111; /* Dark background */
+            color: #f0f0f0; /* Text color */
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
@@ -18,21 +18,29 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            transition: background 0.5s ease-in-out;
+            overflow: hidden;
+            position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Light mode */
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #1c1c1c;
         }
 
         h1 {
             font-size: 3em;
-            color: #A9C7F3; /* Light blue accent for the title */
+            color: #00BFFF; /* Bright cyan */
             margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* Button and Dropdown Styles */
-        select, button, .refresh-btn {
-            background: linear-gradient(135deg, #3a4c6b, #2e3b55); /* Dark gradient for buttons */
-            color: #f0f0f0;
-            border: 1px solid #3a4c6b;
+        select, button {
+            background-color: #00BFFF; /* Cyan color for buttons */
+            color: #fff;
+            border: none;
             padding: 15px 30px;
             font-size: 1.2em;
             border-radius: 30px;
@@ -41,18 +49,15 @@
             width: 250px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        select:hover, button:hover, .refresh-btn:hover {
-            background: linear-gradient(135deg, #2e3b55, #3a4c6b);
-            border-color: #A9C7F3;
-            transform: scale(1.05);
+        select:hover, button:hover {
+            background-color: #009ACD; /* Darker cyan on hover */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
-        select {
-            margin-bottom: 20px;
-        }
-
+        /* Link Container */
         .link-container {
             margin-top: 30px;
             display: flex;
@@ -60,11 +65,13 @@
             align-items: center;
             width: 80%;
             max-width: 600px;
+            position: relative;
+            z-index: 1;
         }
 
         .link-container a {
-            background: linear-gradient(135deg, #3a4c6b, #2e3b55); /* Gradient background for links */
-            color: #f0f0f0;
+            background: linear-gradient(45deg, #00BFFF, #1E90FF); /* Gradient background */
+            color: #fff;
             text-decoration: none;
             padding: 20px;
             margin: 10px 0;
@@ -73,48 +80,81 @@
             text-align: center;
             font-size: 1.2em;
             box-sizing: border-box;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .link-container a:hover {
-            background: linear-gradient(135deg, #2e3b55, #3a4c6b);
+            background: linear-gradient(45deg, #1E90FF, #00BFFF);
+            transform: translateY(-5px); /* Slight lift effect */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Light Mode links */
+        body.light-mode .link-container a {
+            background: linear-gradient(45deg, #00BFFF, #87CEFA); /* Light cyan gradient */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .link-container a:hover {
+            background: linear-gradient(45deg, #87CEFA, #00BFFF);
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .link-container a:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Dark/Light mode toggle */
-        .mode-toggle {
+        /* Particles */
+        .particles {
             position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            opacity: 0.5;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100vw);
+            }
+        }
+
+        /* Light/Dark Mode Toggle */
+        .toggle-btn {
+            position: fixed;
             top: 20px;
             right: 20px;
-            background: #A9C7F3;
-            color: #2e3b55;
-            border: none;
             padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 25px;
+            font-size: 1.2em;
+            background-color: #ff1493;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s ease, color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .mode-toggle:hover {
-            background: #3a4c6b;
-            color: #f0f0f0;
+        .toggle-btn:hover {
+            background-color: #ff69b4;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
-
     </style>
 </head>
 <body>
 
     <h1>PeteZah Link Hub</h1>
-
-    <button class="mode-toggle" onclick="toggleMode()">Toggle Dark/Light Mode</button>
 
     <div>
         <select id="linkCategory">
@@ -126,14 +166,29 @@
     </div>
 
     <button onclick="getRandomLink()">Give Me A Link</button>
-    <button class="refresh-btn" onclick="window.location.reload()">Refresh</button>
 
     <div class="link-container" id="linkList">
         <!-- The link will be shown here -->
     </div>
 
+    <!-- Light/Dark Mode Toggle Button -->
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Light/Dark Mode</button>
+
+    <div class="particles">
+        <script>
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = 5 + Math.random() * 10 + 's';
+                document.body.appendChild(particle);
+            }
+        </script>
+    </div>
+
     <script>
-        // Define the links
         const links = {
             domains: [
                 { name: "Main", url: "https://petezahgames.com" },
@@ -161,26 +216,26 @@
         function getRandomLink() {
             const category = document.getElementById('linkCategory').value;
             const categoryLinks = links[category];
-            
+
             if (categoryLinks) {
                 const randomLink = categoryLinks[Math.floor(Math.random() * categoryLinks.length)];
-                window.open(randomLink.url, "_blank");
+                displayLink(randomLink);
             }
         }
 
-        function toggleMode() {
-            const body = document.body;
-            const modeToggle = document.querySelector('.mode-toggle');
+        function displayLink(link) {
+            const linkContainer = document.getElementById('linkList');
+            linkContainer.innerHTML = '';  // Clear previous links
 
-            if (body.style.background.includes('#1f2833')) {
-                body.style.background = 'linear-gradient(135deg, #fff, #e3f2fd, #bbdefb)';
-                body.style.color = '#1f2833';
-                modeToggle.textContent = 'Switch to Dark Mode';
-            } else {
-                body.style.background = 'linear-gradient(135deg, #2e3b55, #1f2833, #1f4068)';
-                body.style.color = '#f0f0f0';
-                modeToggle.textContent = 'Switch to Light Mode';
-            }
+            const linkElement = document.createElement('a');
+            linkElement.href = link.url;
+            linkElement.target = "_blank";
+            linkElement.textContent = link.name;
+            linkContainer.appendChild(linkElement);
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
         }
     </script>
 

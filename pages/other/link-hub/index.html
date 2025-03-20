@@ -7,7 +7,7 @@
     <style>
         /* Global styles */
         body {
-            background-color: #1e2630; /* Dark blue background */
+            background: linear-gradient(135deg, #2e3b55, #1f2833, #1f4068); /* Dark gradient background */
             color: #f0f0f0; /* Gentle white text */
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -18,19 +18,21 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            transition: background 0.5s ease-in-out;
         }
 
         h1 {
             font-size: 3em;
             color: #A9C7F3; /* Light blue accent for the title */
             margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         /* Button and Dropdown Styles */
-        select, button {
-            background-color: #2e3b55; /* Darker blue for the dropdown */
+        select, button, .refresh-btn {
+            background: linear-gradient(135deg, #3a4c6b, #2e3b55); /* Dark gradient for buttons */
             color: #f0f0f0;
-            border: 1px solid #3a4c6b; /* Darker border */
+            border: 1px solid #3a4c6b;
             padding: 15px 30px;
             font-size: 1.2em;
             border-radius: 30px;
@@ -41,20 +43,16 @@
             transition: all 0.3s ease;
         }
 
-        select:hover, button:hover {
-            background-color: #3a4c6b; /* Slightly lighter blue on hover */
-            border-color: #A9C7F3; /* Light blue border on hover */
+        select:hover, button:hover, .refresh-btn:hover {
+            background: linear-gradient(135deg, #2e3b55, #3a4c6b);
+            border-color: #A9C7F3;
+            transform: scale(1.05);
         }
 
         select {
             margin-bottom: 20px;
         }
 
-        button {
-            margin-top: 20px;
-        }
-
-        /* Link Container */
         .link-container {
             margin-top: 30px;
             display: flex;
@@ -65,7 +63,7 @@
         }
 
         .link-container a {
-            background-color: #2e3b55; /* Dark blue for the links */
+            background: linear-gradient(135deg, #3a4c6b, #2e3b55); /* Gradient background for links */
             color: #f0f0f0;
             text-decoration: none;
             padding: 20px;
@@ -76,11 +74,38 @@
             font-size: 1.2em;
             box-sizing: border-box;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .link-container a:hover {
-            background-color: #3a4c6b; /* Slightly lighter blue on hover */
-            transform: translateY(-5px); /* Slight lift on hover */
+            background: linear-gradient(135deg, #2e3b55, #3a4c6b);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-container a:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark/Light mode toggle */
+        .mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #A9C7F3;
+            color: #2e3b55;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .mode-toggle:hover {
+            background: #3a4c6b;
+            color: #f0f0f0;
         }
 
     </style>
@@ -88,6 +113,8 @@
 <body>
 
     <h1>PeteZah Link Hub</h1>
+
+    <button class="mode-toggle" onclick="toggleMode()">Toggle Dark/Light Mode</button>
 
     <div>
         <select id="linkCategory">
@@ -99,6 +126,7 @@
     </div>
 
     <button onclick="getRandomLink()">Give Me A Link</button>
+    <button class="refresh-btn" onclick="window.location.reload()">Refresh</button>
 
     <div class="link-container" id="linkList">
         <!-- The link will be shown here -->
@@ -136,19 +164,23 @@
             
             if (categoryLinks) {
                 const randomLink = categoryLinks[Math.floor(Math.random() * categoryLinks.length)];
-                displayLink(randomLink);
+                window.open(randomLink.url, "_blank");
             }
         }
 
-        function displayLink(link) {
-            const linkContainer = document.getElementById('linkList');
-            linkContainer.innerHTML = '';  // Clear previous links
+        function toggleMode() {
+            const body = document.body;
+            const modeToggle = document.querySelector('.mode-toggle');
 
-            const linkElement = document.createElement('a');
-            linkElement.href = link.url;
-            linkElement.target = "_blank";
-            linkElement.textContent = link.name;
-            linkContainer.appendChild(linkElement);
+            if (body.style.background.includes('#1f2833')) {
+                body.style.background = 'linear-gradient(135deg, #fff, #e3f2fd, #bbdefb)';
+                body.style.color = '#1f2833';
+                modeToggle.textContent = 'Switch to Dark Mode';
+            } else {
+                body.style.background = 'linear-gradient(135deg, #2e3b55, #1f2833, #1f4068)';
+                body.style.color = '#f0f0f0';
+                modeToggle.textContent = 'Switch to Light Mode';
+            }
         }
     </script>
 

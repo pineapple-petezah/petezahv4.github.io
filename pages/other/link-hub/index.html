@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeteZah Link Hub</title>
     <style>
+        /* Global styles */
         body {
-            background-color: #121212;
-            color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            background-color: #1e2630; /* Dark blue background */
+            color: #f0f0f0; /* Gentle white text */
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,55 +17,80 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
-        h1 {
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
         }
-        select {
-            background-color: #333;
+
+        h1 {
+            font-size: 3em;
+            color: #A9C7F3; /* Light blue accent for the title */
+            margin-bottom: 30px;
+        }
+
+        /* Button and Dropdown Styles */
+        select, button {
+            background-color: #2e3b55; /* Darker blue for the dropdown */
             color: #f0f0f0;
-            border: 1px solid #555;
-            padding: 10px;
+            border: 1px solid #3a4c6b; /* Darker border */
+            padding: 15px 30px;
             font-size: 1.2em;
-            border-radius: 5px;
+            border-radius: 30px;
+            margin-top: 15px;
+            outline: none;
+            width: 250px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover, button:hover {
+            background-color: #3a4c6b; /* Slightly lighter blue on hover */
+            border-color: #A9C7F3; /* Light blue border on hover */
+        }
+
+        select {
             margin-bottom: 20px;
         }
+
+        button {
+            margin-top: 20px;
+        }
+
+        /* Link Container */
         .link-container {
+            margin-top: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
             width: 80%;
+            max-width: 600px;
         }
+
         .link-container a {
-            background-color: #333;
+            background-color: #2e3b55; /* Dark blue for the links */
             color: #f0f0f0;
             text-decoration: none;
-            padding: 15px;
+            padding: 20px;
             margin: 10px 0;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 15px;
             text-align: center;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
+
         .link-container a:hover {
-            background-color: #555;
+            background-color: #3a4c6b; /* Slightly lighter blue on hover */
+            transform: translateY(-5px); /* Slight lift on hover */
         }
-        .dropdown-container {
-            margin-top: 20px;
-        }
+
     </style>
 </head>
 <body>
 
     <h1>PeteZah Link Hub</h1>
 
-    <div class="dropdown-container">
-        <select id="linkCategory" onchange="filterLinks()">
-            <option value="all">All Links</option>
+    <div>
+        <select id="linkCategory">
             <option value="domains">Domain Links</option>
             <option value="firebase">Firebase Links</option>
             <option value="cloudflare">Cloudflare Links</option>
@@ -72,11 +98,14 @@
         </select>
     </div>
 
+    <button onclick="getRandomLink()">Give Me A Link</button>
+
     <div class="link-container" id="linkList">
-        <!-- Links will appear here dynamically -->
+        <!-- The link will be shown here -->
     </div>
 
     <script>
+        // Define the links
         const links = {
             domains: [
                 { name: "Main", url: "https://petezahgames.com" },
@@ -101,29 +130,26 @@
             ]
         };
 
-        function filterLinks() {
+        function getRandomLink() {
             const category = document.getElementById('linkCategory').value;
-            const linkContainer = document.getElementById('linkList');
-            linkContainer.innerHTML = '';
-
-            let linksToShow = [];
-            if (category === 'all') {
-                linksToShow = [...links.domains, ...links.firebase, ...links.cloudflare, ...links.fastly];
-            } else {
-                linksToShow = links[category] || [];
+            const categoryLinks = links[category];
+            
+            if (categoryLinks) {
+                const randomLink = categoryLinks[Math.floor(Math.random() * categoryLinks.length)];
+                displayLink(randomLink);
             }
-
-            linksToShow.forEach(link => {
-                const linkElement = document.createElement('a');
-                linkElement.href = link.url;
-                linkElement.target = "_blank";
-                linkElement.textContent = link.name;
-                linkContainer.appendChild(linkElement);
-            });
         }
 
-        // Initialize with all links
-        filterLinks();
+        function displayLink(link) {
+            const linkContainer = document.getElementById('linkList');
+            linkContainer.innerHTML = '';  // Clear previous links
+
+            const linkElement = document.createElement('a');
+            linkElement.href = link.url;
+            linkElement.target = "_blank";
+            linkElement.textContent = link.name;
+            linkContainer.appendChild(linkElement);
+        }
     </script>
 
 </body>

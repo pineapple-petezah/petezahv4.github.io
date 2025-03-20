@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -6,134 +7,111 @@
     <link rel="stylesheet" href="storage/assets/css/proxy2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Outfit:wght@100..900&display=swap');
+        
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Outfit:wght@100..900&display=swap');
 
-        body {
-            color: #fff;
-            background-color: #0A1D37;
-            text-align: center;
-            font-family: "Outfit", sans-serif;
-        }
+body {
+    color: #fff;
+    background-color: #0A1D37;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+}
 
-        .god-rays {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 550px;
-            --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
-            --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
-            background-image: var(--stripes), var(--rays);
-            background-size: 300%, 200%;
-            background-position: 50% 50%, 50% 50%;
-            animation: fadeIn 2s ease;
-            mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
+.god-rays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 550px;
+    --stripes: repeating-linear-gradient( 100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16% );
+    --rays: repeating-linear-gradient( 100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30% );
+    background-image: var(--stripes), var(--rays);
+    background-size: 300%, 200%;
+    background-position: 50% 50%, 50% 50%;
+    animation: fadeIn 2s ease;
+    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
 
-        #search-container {
-            margin-top: 5px;
-        }
+.god-rays::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--stripes), var(--rays);
+    background-size: 200%, 100%;
+    animation: god-rays 40s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+}
 
-        .search-bar-home {
-            padding: 20px;
-            width: 400px;
-            border: none;
-            background-color: #141414;
-            border-radius: 50px;
-            font-family: "Outfit", sans-serif;
-            outline: none;
-            margin: 0;
-            color: #fff;
-            transition: 0.3s;
-        }
+#search-container {
+    margin-top: 5px;
+}
 
-        .search-button {
-            padding: 20px 20px;
-            background-color: #141414;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 50px;
-            margin: 5px;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
-        }
+.search-bar-home {
+    padding: 20px;
+    width: 400px;
+    border: none;
+    background-color: #141414;
+    border-radius: 50px;
+    font-family: "Outfit", sans-serif;
+    outline: none;
+    margin: 0;
+    color: #fff;
+    transition: 0.3s;
+}
 
-        .search-button:hover {
-            background-color: #555;
-        }
+input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: none;
+    color: #fff;
+    background-color: #141414;
+    border-radius: 50px;
+}
 
-        /* Time Display Style */
-        #time {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            color: white;
-            font-family: "Outfit", sans-serif;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 10px;
-        }
+.search-button {
+    padding: 20px 20px;
+    background-color: #141414;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
 
-        /* Custom Link Images (Rectangular, Rounded) */
-        .bookmark-images a img {
-            width: 150px;
-            height: 90px;
-            border-radius: 15px;
-            transition: transform 0.3s;
-        }
+.search-button:hover {
+    background-color: #555;
+}
 
-        .bookmark-images a img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Popup for adding custom link */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background-color: #2b2b2b;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-        }
-
-        .popup input, .popup button {
-            margin: 10px;
-            padding: 10px;
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .popup button {
-            background-color: #141414;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .popup button:hover {
-            background-color: #555;
-        }
+/* Time Display Style */
+#time {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: white;
+    font-family: "Outfit", sans-serif;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
     </style>
 </head>
 <body>
     <div class="god-rays"></div>
-    <br><br><br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>Pete Prօxy</h1>
     <p id="dynamicParagraph">(TEXT)</p>
 
@@ -143,98 +121,56 @@
             <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
             <button class="search-button" onclick="submitSearch()">SEARCH <i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-    </div>
 
-    <div class="bookmark-images">
-        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <a href="/static/embed.html#https://tiktok.com">
-                <img src="/storage/ag/a/tiktok/IMG_5335.png" />
-            </a>
-            <a href="/static/embed.html#https://twitch.tv">
-                <img src="/storage/ag/a/twitch/IMG_5336.png" />
-            </a>
-            <a href="/static/embed.html#https://google.com">
-                <img src="/storage/ag/a/google/IMG_5324.webp" />
-            </a>
-            <a href="/static/embed.html#https://now.gg">
-                <img src="/storage/ag/a/nowgg/IMG_5325.png" />
-            </a>
-        </div>
-        <button onclick="openPopup()">Add Custom Link</button>
-    </div>
-
-    <!-- Custom Link Popup -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <h3>Add Custom Link</h3>
-            <input type="text" id="site-title" placeholder="Site Title" />
-            <input type="url" id="site-url" placeholder="Site URL" />
-            <input type="file" id="site-logo" accept="image/*" />
-            <button onclick="saveCustomLink()">Save</button>
-            <button onclick="closePopup()">Cancel</button>
+        <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
         </div>
     </div>
 
+    <div style="display: flex; justify-content: center; align-items: center; gap: 25px;">
+        <a href="/static/embed.html#https://tiktok.com" style="display: inline-block;">
+            <img src="/storage/ag/a/tiktok/IMG_5335.png" style="width: 70px; height: 70px; border-radius: 20%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="/static/embed.html#https://twitch.tv" style="display: inline-block;">
+            <img src="/storage/ag/a/twitch/IMG_5336.png" style="width: 70px; height: 70px; border-radius: 20%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="/static/embed.html#https://google.com" style="display: inline-block;">
+            <img src="/storage/ag/a/google/IMG_5324.webp" style="width: 70px; height: 70px; border-radius: 20%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="/static/embed.html#https://now.gg" style="display: inline-block;">
+            <img src="/storage/ag/a/nowgg/IMG_5325.png" style="width: 70px; height: 70px; border-radius: 20%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+    </div>
+
+    <!-- Time Display Element -->
     <div id="time"></div>
 
+    <script src="/static/uv/uv.bundle.js" defer></script>
+    <script src="/static/uv/uv.config.js" defer></script>
+    <script src="/static/register-sw.js" defer></script>
+    <script src="/static/search.js" defer></script>
+    <script src="/static/index.js" defer></script>
+
     <script>
-        // Show the popup for adding a custom link
-        function openPopup() {
-            document.getElementById('popup').style.display = 'flex';
+        const phrases = [
+            "Pete Zah best unblocked games ever!", 
+            "https://petezahgames.com", 
+            "Credits to Brunys and US4 for the proxy setup, brunysixlwork.github.io and voucan-us4.github.io:)", 
+            "just had a major update ¯\\_(ツ)_/¯", 
+            "Roblox should now work my eskibidi sigmets", 
+            "IVE EDGED TO Pete Zah -idkiguess",
+        ];
+
+        const paragraph = document.getElementById('dynamicParagraph');
+
+        function changeText() {
+            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+            paragraph.textContent = randomPhrase;
         }
 
-        // Close the popup
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        // Save the custom link and logo
-        function saveCustomLink() {
-            const title = document.getElementById('site-title').value;
-            const url = document.getElementById('site-url').value;
-            const logo = document.getElementById('site-logo').files[0];
-
-            if (title && url && logo) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const newBookmark = {
-                        title: title,
-                        url: url,
-                        logo: event.target.result
-                    };
-
-                    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-                    bookmarks.push(newBookmark);
-                    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-                    displayBookmarks();
-                    closePopup();
-                };
-                reader.readAsDataURL(logo);
-            }
-        }
-
-        // Display saved bookmarks
-        function displayBookmarks() {
-            const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-            const container = document.querySelector('.bookmark-images');
-            container.innerHTML = '';  // Clear existing bookmarks
-            bookmarks.forEach(bookmark => {
-                const a = document.createElement('a');
-                a.href = bookmark.url;
-                const img = document.createElement('img');
-                img.src = bookmark.logo;
-                img.style.width = '150px';
-                img.style.height = '90px';
-                img.style.borderRadius = '15px';
-                a.appendChild(img);
-                container.appendChild(a);
-            });
-        }
-
-        // Load saved bookmarks when the page loads
-        window.onload = function() {
-            displayBookmarks();
-        };
+        paragraph.addEventListener('click', changeText);
+        window.onload = changeText;
 
         // Function to update time
         function updateTime() {

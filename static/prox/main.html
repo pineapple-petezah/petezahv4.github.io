@@ -12,6 +12,7 @@
     <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
 
     <style>
+        <style>
     * {
         margin: 0;
         padding: 0;
@@ -186,6 +187,7 @@
     iframe.active {
         display: block;
     }
+</style>
     </style>
 </head>
 <body>
@@ -247,7 +249,7 @@
 
         const iframe = document.createElement('iframe');
         iframe.classList.add('tab-iframe');
-        iframe.id = `iframe-${tabCount}`;
+        iframe.id = iframe-${tabCount};
         iframe.src = url;
         document.getElementById('content-wrapper').appendChild(iframe);
         selectTab(newTab);
@@ -257,7 +259,7 @@
         event.stopPropagation();
         const tab = closeButton.parentElement;
         const tabIndex = [...tab.parentElement.children].indexOf(tab);
-        const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
+        const iframe = document.getElementById(iframe-${tabIndex + 1});
         
         // Remove tab from history
         tabHistory = tabHistory.filter(index => index !== tabIndex);
@@ -293,23 +295,11 @@
 
     function search() {
         const input = document.getElementById('search-input').value.trim();
+        if (!input) return;
         const iframe = document.querySelector('.tab-iframe.active');
-        let url = input;
-
-        if (!input || input === "/static/index.html" || input === "https://petezahgames.com/static/index.html") {
-            // Change search bar to petezah://newtab if the input is blank or specific URLs
-            document.getElementById('search-input').value = "petezah://newtab";
-            url = "petezah://newtab";
-        } else if (input === "/static/prox/settings" || input === "/static/prox/settings.html" || input === "https://petezahgames.com/static/prox/settings" || input === "https://petezahgames.com/static/prox/settings.html") {
-            // Change search bar to petezah://settings if the URL matches specific settings URLs
-            document.getElementById('search-input').value = "petezah://settings";
-            url = "petezah://settings";
-        } else {
-            url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
-            document.getElementById('search-input').value = url;
-        }
-
-        iframe.src = `${proxyPrefix}${url}`;
+        const url = input.startsWith('http') ? input : https://duckduckgo.com/?q=${encodeURIComponent(input)};
+        iframe.src = ${proxyPrefix}${url};
+        document.getElementById('search-input').value = url;
         const activeTab = document.querySelector('.tab.active');
         updateTabName(iframe, activeTab);
     }
@@ -358,13 +348,6 @@
         iframe.onload = () => {
             const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
             document.getElementById('search-input').value = unproxifiedUrl;
-
-            // Check and update the search bar based on URL
-            if (unproxifiedUrl === "/static/index.html" || unproxifiedUrl === "https://petezahgames.com/static/index.html") {
-                document.getElementById('search-input').value = "petezah://newtab";
-            } else if (unproxifiedUrl === "/static/prox/settings" || unproxifiedUrl === "/static/prox/settings.html" || unproxifiedUrl === "https://petezahgames.com/static/prox/settings" || unproxifiedUrl === "https://petezahgames.com/static/prox/settings.html") {
-                document.getElementById('search-input').value = "petezah://settings";
-            }
             const activeTab = document.querySelector('.tab.active');
             updateTabName(iframe, activeTab);
         };

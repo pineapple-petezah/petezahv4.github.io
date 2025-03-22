@@ -249,7 +249,7 @@
 
         const iframe = document.createElement('iframe');
         iframe.classList.add('tab-iframe');
-        iframe.id = iframe-${tabCount};
+        iframe.id = `iframe-${tabCount}`;
         iframe.src = url;
         document.getElementById('content-wrapper').appendChild(iframe);
         selectTab(newTab);
@@ -259,7 +259,7 @@
         event.stopPropagation();
         const tab = closeButton.parentElement;
         const tabIndex = [...tab.parentElement.children].indexOf(tab);
-        const iframe = document.getElementById(iframe-${tabIndex + 1});
+        const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
         
         // Remove tab from history
         tabHistory = tabHistory.filter(index => index !== tabIndex);
@@ -297,8 +297,8 @@
         const input = document.getElementById('search-input').value.trim();
         if (!input) return;
         const iframe = document.querySelector('.tab-iframe.active');
-        const url = input.startsWith('http') ? input : https://duckduckgo.com/?q=${encodeURIComponent(input)};
-        iframe.src = ${proxyPrefix}${url};
+        const url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+        iframe.src = `${proxyPrefix}${url}`;
         document.getElementById('search-input').value = url;
         const activeTab = document.querySelector('.tab.active');
         updateTabName(iframe, activeTab);

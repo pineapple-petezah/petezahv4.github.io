@@ -17,7 +17,7 @@
     }
 
     body {
-        background-color: #0A1D37;
+        background-color: #0A1D37; /* Set as requested */
         color: #FFFFFF;
         display: flex;
         justify-content: center;
@@ -42,15 +42,38 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at center, rgba(20, 40, 60, 0.2), rgba(10, 29, 55, 0.9));
-        animation: shimmer 10s infinite ease-in-out;
+        height: 550px;
+        --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+        --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
+        background-image: var(--stripes), var(--rays);
+        background-size: 300%, 200%;
+        background-position: 50% 50%, 50% 50%;
+        animation: fadeIn 2s ease;
+        mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+        -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+        pointer-events: none;
         z-index: -1;
     }
 
-    @keyframes shimmer {
-        0%, 100% { opacity: 0.6; transform: scale(1); }
-        50% { opacity: 0.9; transform: scale(1.01); }
+    .god-rays::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--stripes), var(--rays);
+        background-size: 200%, 100%;
+        animation: god-rays 40s linear infinite;
+        background-attachment: fixed;
+        mix-blend-mode: difference;
+    }
+
+    @keyframes god-rays {
+        0% { background-position: 0% 0%, 0% 0%; }
+        100% { background-position: 100% 100%, 200% 200%; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     .settings-container {
@@ -62,7 +85,7 @@
         padding: 25px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         display: grid;
-        grid-template-columns: 180px 1fr; /* Slightly smaller sidebar */
+        grid-template-columns: 180px 1fr;
         gap: 30px;
         height: 95vh;
         overflow: hidden;
@@ -73,11 +96,10 @@
         grid-column: 1 / -1;
         text-align: center;
         margin-bottom: 20px;
-        font-size: 2rem; /* Reduced size */
+        font-size: 2rem;
         font-weight: 600;
         color: #FFFFFF;
         text-shadow: 0 2px 5px rgba(60, 91, 142, 0.3);
-        animation: none; /* Removed animation for cleaner look */
     }
 
     .tabs {
@@ -98,7 +120,24 @@
         cursor: pointer;
         font-weight: 500;
         color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
         transition: all 0.3s ease;
+    }
+
+    .tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .tab:hover::before {
+        left: 100%;
     }
 
     .tab:hover, .tab.active {
@@ -112,7 +151,7 @@
         background: rgba(20, 45, 75, 0.2);
         border-radius: 15px;
         border: 1px solid rgba(255, 255, 255, 0.05);
-        height: 100%; /* Maximizes content area */
+        height: 100%;
         transition: all 0.3s ease;
     }
 
@@ -140,11 +179,6 @@
         background: rgba(15, 40, 71, 0.7);
         border-radius: 12px;
         animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
     }
 
     .section.active {
@@ -242,12 +276,31 @@
         color: #FFFFFF;
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 15px rgba(60, 91, 142, 0.3);
+    }
+
+    button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.6s ease;
+    }
+
+    button:hover::before {
+        left: 100%;
     }
 
     button:hover {
         background: linear-gradient(90deg, #2A3C5F, #3C5B8E);
-        transform: translateY(-3px);
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(60, 91, 142, 0.5);
     }
 
     .reset-button {
@@ -280,7 +333,24 @@
         border-radius: 8px;
         cursor: pointer;
         color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
         transition: all 0.3s ease;
+    }
+
+    .legal-tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .legal-tab:hover::before {
+        left: 100%;
     }
 
     .legal-tab:hover, .legal-tab.active {

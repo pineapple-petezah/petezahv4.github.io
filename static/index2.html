@@ -13,14 +13,14 @@
     body {
         color: #fff;
         background-color: #0A1D37;
-        text-align: center;
         font-family: "Outfit", sans-serif;
-        overflow: hidden; /* Hide overflow */
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
         height: 100vh;
         margin: 0;
+        overflow: hidden; /* Hide overflow */
     }
 
     .god-rays {
@@ -290,21 +290,21 @@
     <br>
     <br>
     <br>
-    <h1>Pete Prօxy</h1> <br>
-    <p id="dynamicParagraph">(TEXT)</p> <br>
+    <h1>Pete Prօxy</h1> 
+    <p id="dynamicParagraph">(TEXT)</p> 
 
     <div id="search-container">
         <form id="uv-form">
             <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden"/>
             <input id="uv-address" type="text" class="search-bar-home" placeholder="Search or enter a URL" />
             <button class="search-button" onclick="submitSearch()">SEARCH <i class="fa-solid fa-magnifying-glass"></i></button>
-        </form> <br>
+        </form> 
 
         <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
         </div>
-    </div>  <br>
+    </div>  
 
     <div class="pinned-icons" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
         <a href="/static/embed.html#https://tiktok.com" style="display: inline-block;">

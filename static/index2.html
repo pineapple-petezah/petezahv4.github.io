@@ -89,7 +89,6 @@
             background-color: #555;
         }
 
-        /* Time Display Style */
         #time {
             position: fixed;
             top: 10px;
@@ -102,42 +101,49 @@
             border-radius: 10px;
         }
 
-        /* Popup styles */
+        /* Updated popup styles */
         .popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #141414;
+            background-color: #0A1D37;
+            border: 2px solid white;
             padding: 20px;
             border-radius: 20px;
             z-index: 1000;
+            color: white;
         }
 
         .popup input[type="text"] {
             margin: 10px 0;
             width: 300px;
+            background-color: #141414;
+            border: 1px solid white;
+            color: white;
         }
 
         .popup input[type="file"] {
             margin: 10px 0;
             background-color: transparent;
             padding: 5px;
+            color: white;
         }
 
         .popup button {
             padding: 10px 20px;
-            background-color: #555;
-            border: none;
+            background-color: #141414;
+            border: 1px solid white;
             border-radius: 50px;
             color: white;
             cursor: pointer;
             margin: 5px;
+            transition: 0.3s ease-in-out;
         }
 
         .popup button:hover {
-            background-color: #777;
+            background-color: #555;
         }
     </style>
 </head>
@@ -177,7 +183,7 @@
         <a href="/static/embed.html#https://now.gg" style="display: inline-block;">
             <img src="/storage/ag/a/nowgg/IMG_5325.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         </a>
-        <a href="#" id="add-pin" style="display: inline-block;">
+        <a href="#" id="add-pin-btn" style="display: inline-block;">
             <img src="/storage/ag/a/add-pin.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         </a>
     </div>
@@ -187,8 +193,8 @@
         <h3 style="margin: 0 0 15px 0;">Add New Pin</h3>
         <input type="text" id="pin-url" placeholder="Enter URL (https:// required)">
         <input type="file" id="pin-image" accept="image/*">
-        <button onclick="addNewPin()">Add</button>
-        <button onclick="closePopup()">Cancel</button>
+        <button id="add-btn">Add</button>
+        <button id="cancel-btn">Cancel</button>
     </div>
 
     <!-- Time Display Element -->
@@ -220,7 +226,6 @@
         paragraph.addEventListener('click', changeText);
         window.onload = changeText;
 
-        // Function to update time
         function updateTime() {
             const timeElement = document.getElementById("time");
             const now = new Date();
@@ -230,16 +235,21 @@
             timeElement.textContent = `${hours}:${minutes}:${seconds}`;
         }
 
-        // Update time every second
         setInterval(updateTime, 1000);
 
-        // Add pin functionality
-        document.getElementById('add-pin').addEventListener('click', function(e) {
+        // Updated add pin functionality
+        const addPinBtn = document.getElementById('add-pin-btn');
+        const popup = document.getElementById('add-pin-popup');
+        const addBtn = document.getElementById('add-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+
+        addPinBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.getElementById('add-pin-popup').style.display = 'block';
+            popup.style.display = 'block';
         });
 
-        function addNewPin() {
+        addBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             const urlInput = document.getElementById('pin-url').value;
             const imageInput = document.getElementById('pin-image').files[0];
 
@@ -270,17 +280,20 @@
             reader.onload = function(e) {
                 img.src = e.target.result;
                 newPin.appendChild(img);
-                pinnedIcons.insertBefore(newPin, document.getElementById('add-pin').parentElement);
-                closePopup();
+                pinnedIcons.insertBefore(newPin, addPinBtn);
+                popup.style.display = 'none';
+                document.getElementById('pin-url').value = '';
+                document.getElementById('pin-image').value = '';
             };
             reader.readAsDataURL(imageInput);
-        }
+        });
 
-        function closePopup() {
-            document.getElementById('add-pin-popup').style.display = 'none';
+        cancelBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            popup.style.display = 'none';
             document.getElementById('pin-url').value = '';
             document.getElementById('pin-image').value = '';
-        }
+        });
     </script>
 </body>
 </html>

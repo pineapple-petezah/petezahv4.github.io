@@ -40,23 +40,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Utility Functions
     const applyGlobalSettings = () => {
-        // Apply title
         const savedTitle = localStorage.getItem('siteTitle');
-        if (savedTitle) {
-            document.title = savedTitle;
-        }
+        if (savedTitle) document.title = savedTitle;
 
-        // Apply favicon
         const savedLogo = localStorage.getItem('siteLogo');
-        if (savedLogo) {
-            updateFavicon(savedLogo);
+        if (savedLogo) updateFavicon(savedLogo);
+
+        const savedBackground = localStorage.getItem('backgroundColor');
+        if (savedBackground) document.body.style.backgroundColor = savedBackground;
+
+        // Apply anti-right click
+        if (localStorage.getItem('disableRightClick') === 'true') {
+            document.addEventListener('contextmenu', rightClickHandler);
+        } else {
+            document.removeEventListener('contextmenu', rightClickHandler);
         }
 
-        // Apply background color
-        const savedBackground = localStorage.getItem('backgroundColor');
-        if (savedBackground) {
-            document.body.style.backgroundColor = savedBackground;
+        // Apply anti-close
+        if (localStorage.getItem('beforeUnload') === 'true') {
+            window.addEventListener('beforeunload', beforeUnloadHandler);
+        } else {
+            window.removeEventListener('beforeunload', beforeUnloadHandler);
         }
+    };
+
+    const broadcastSettingsChange = () => {
+        // Notify all tabs/windows to reload
+        localStorage.setItem('settingsUpdated', Date.now().toString());
     };
 
     const loadSettings = () => {
@@ -110,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.document.head.appendChild(favicon);
 
         const iframe = popup.document.createElement('iframe');
-        iframe.src = '/index.html';
+        iframe.src = window.location.pathname;
         iframe.style.cssText = 'width: 100vw; height: 100vh; border: none;';
         popup.document.body.style.margin = '0';
         popup.document.body.appendChild(iframe);
@@ -118,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const autocloak = () => {
         openAboutBlank();
-        window.location.href = elements.panicUrl.value;
+        window.location.href = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
     };
 
     // Event Handlers
@@ -129,14 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rightClickHandler = (e) => e.preventDefault();
 
+    // Settings save handlers with broadcast
     if (elements.beforeUnloadToggle) {
         elements.beforeUnloadToggle.addEventListener('change', () => {
             localStorage.setItem('beforeUnload', elements.beforeUnloadToggle.checked);
-            if (elements.beforeUnloadToggle.checked) {
-                window.addEventListener('beforeunload', beforeUnloadHandler);
-            } else {
-                window.removeEventListener('beforeunload', beforeUnloadHandler);
-            }
+            applyGlobalSettings();
+            broadcastSettingsChange();
         });
     }
 
@@ -144,23 +152,22 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.autocloakToggle.addEventListener('change', () => {
             localStorage.setItem('autocloak', elements.autocloakToggle.checked);
             if (elements.autocloakToggle.checked) autocloak();
+            broadcastSettingsChange();
         });
     }
 
     if (elements.blockHeadersToggle) {
         elements.blockHeadersToggle.addEventListener('change', () => {
             localStorage.setItem('blockHeaders', elements.blockHeadersToggle.checked);
+            broadcastSettingsChange();
         });
     }
 
     if (elements.disableRightClickToggle) {
         elements.disableRightClickToggle.addEventListener('change', () => {
             localStorage.setItem('disableRightClick', elements.disableRightClickToggle.checked);
-            if (elements.disableRightClickToggle.checked) {
-                document.addEventListener('contextmenu', rightClickHandler);
-            } else {
-                document.removeEventListener('contextmenu', rightClickHandler);
-            }
+            applyGlobalSettings();
+            broadcastSettingsChange();
         });
     }
 
@@ -172,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('siteTitle', presets[preset].title);
                 localStorage.setItem('siteLogo', presets[preset].favicon);
                 applyGlobalSettings();
+                broadcastSettingsChange();
             }
         });
     }
@@ -186,10 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 reader.onload = (e) => {
                     localStorage.setItem('siteLogo', e.target.result);
                     applyGlobalSettings();
+                    broadcastSettingsChange();
                 };
                 reader.readAsDataURL(elements.siteLogo.files[0]);
             } else {
                 applyGlobalSettings();
+                broadcastSettingsChange();
             }
         });
     }
@@ -198,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.saveAppearance.addEventListener('click', () => {
             localStorage.setItem('backgroundColor', elements.backgroundColor.value);
             applyGlobalSettings();
+            broadcastSettingsChange();
         });
     }
 
@@ -211,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.savePanicSettings.addEventListener('click', () => {
             localStorage.setItem('panicKey', elements.panicKey.value);
             localStorage.setItem('panicUrl', elements.panicUrl.value);
+            broadcastSettingsChange();
         });
     }
 
@@ -218,22 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.resetSettings.addEventListener('click', () => {
             if (confirm('Are you sure you want to reset all settings to default?')) {
                 localStorage.clear();
-                if (elements.beforeUnloadToggle) elements.beforeUnloadToggle.checked = false;
-                if (elements.autocloakToggle) elements.autocloakToggle.checked = false;
-                if (elements.blockHeadersToggle) elements.blockHeadersToggle.checked = false;
-                if (elements.disableRightClickToggle) elements.disableRightClickToggle.checked = false;
-                if (elements.sitePreset) elements.sitePreset.value = 'custom';
-                if (elements.siteTitle) elements.siteTitle.value = '';
-                if (elements.panicKey) elements.panicKey.value = '';
-                if (elements.panicUrl) elements.panicUrl.value = 'https://classroom.google.com';
-                if (elements.backgroundColor) {
-                    elements.backgroundColor.value = '#0A1D37';
-                    document.body.style.backgroundColor = '#0A1D37';
-                }
-                updateFavicon('/storage/images/logo-png-removebg-preview.png');
-                document.title = 'PeteZah | Settings';
-                window.removeEventListener('beforeunload', beforeUnloadHandler);
-                document.removeEventListener('contextmenu', rightClickHandler);
+                loadSettings();
+                applyGlobalSettings();
+                broadcastSettingsChange();
             }
         });
     }
@@ -242,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.openAboutBlank.addEventListener('click', openAboutBlank);
     }
 
+    // Panic key handler (works globally)
     window.addEventListener('keydown', (e) => {
         const panicKey = localStorage.getItem('panicKey');
         const panicUrl = localStorage.getItem('panicUrl');
@@ -250,17 +250,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Listen for settings changes from other tabs
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'settingsUpdated') {
+            location.reload();
+        }
+    });
+
     // Initialization
     loadSettings();
     handleTabSwitch(elements.tabs, elements.sections, 'data-tab');
     handleTabSwitch(elements.legalTabs, elements.legalSections, 'data-legal');
-
-    if (elements.beforeUnloadToggle && elements.beforeUnloadToggle.checked) {
-        window.addEventListener('beforeunload', beforeUnloadHandler);
-    }
-    if (elements.disableRightClickToggle && elements.disableRightClickToggle.checked) {
-        document.addEventListener('contextmenu', rightClickHandler);
-    }
 
     const inIframe = window !== window.top;
     if (!inIframe && elements.autocloakToggle && elements.autocloakToggle.checked && !navigator.userAgent.includes('Firefox')) {

@@ -5,6 +5,7 @@
     <title>New Tab</title>
     <link rel="stylesheet" href="storage/assets/css/proxy2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Outfit:wght@100..900&display=swap');
 
@@ -101,49 +102,119 @@
             border-radius: 10px;
         }
 
-        /* Updated popup styles */
+        /* Modernized popup styles */
         .popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #0A1D37;
-            border: 2px solid white;
-            padding: 20px;
-            border-radius: 20px;
+            background: rgba(10, 29, 55, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
             z-index: 1000;
             color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: popupFadeIn 0.3s ease-out;
+            min-width: 350px;
+        }
+
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -45%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .popup h3 {
+            margin: 0 0 20px 0;
+            font-weight: 500;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .popup input[type="text"] {
             margin: 10px 0;
-            width: 300px;
-            background-color: #141414;
-            border: 1px solid white;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .popup input[type="text"]:focus {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+            outline: none;
         }
 
         .popup input[type="file"] {
-            margin: 10px 0;
-            background-color: transparent;
+            margin: 15px 0;
+            background: transparent;
             padding: 5px;
             color: white;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .popup input[type="file"]::-webkit-file-upload-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup input[type="file"]::-webkit-file-upload-button:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .popup button {
-            padding: 10px 20px;
-            background-color: #141414;
-            border: 1px solid white;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            border: none;
             border-radius: 50px;
             color: white;
             cursor: pointer;
             margin: 5px;
-            transition: 0.3s ease-in-out;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .popup button:hover {
-            background-color: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #b21f1f, #1a2a6c);
+        }
+
+        .add-pin-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .add-pin-btn:hover {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -183,14 +254,14 @@
         <a href="/static/embed.html#https://now.gg" style="display: inline-block;">
             <img src="/storage/ag/a/nowgg/IMG_5325.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         </a>
-        <a href="#" id="add-pin-btn" style="display: inline-block;">
-            <img src="/storage/ag/a/add-pin.png" style="width: 30px; height: 30px; border-radius: 50%; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        <a href="#" id="add-pin-btn" class="add-pin-btn">
+            <span class="material-icons" style="font-size: 20px;">add</span>
         </a>
     </div>
 
     <!-- Popup for adding new pin -->
     <div id="add-pin-popup" class="popup">
-        <h3 style="margin: 0 0 15px 0;">Add New Pin</h3>
+        <h3>Add New Pin</h3>
         <input type="text" id="pin-url" placeholder="Enter URL (https:// required)">
         <input type="file" id="pin-image" accept="image/*">
         <button id="add-btn">Add</button>

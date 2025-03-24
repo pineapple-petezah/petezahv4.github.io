@@ -82,11 +82,11 @@ body {
     border-radius: 20px;
     width: 95vw;
     max-width: 1800px;
-    padding: 25px;
+    padding: 20px; /* Reduced top padding */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.3);
     display: grid;
-    grid-template-columns: 140px 1fr; /* Reduced tabs width from 180px to 140px */
-    gap: 25px; /* Slightly reduced gap for more content space */
+    grid-template-columns: 200px 1fr; /* Increased tab width from 140px to 200px */
+    gap: 25px;
     height: 95vh;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -109,18 +109,19 @@ body {
 h1 {
     grid-column: 1 / -1;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.2rem; /* Slightly larger for emphasis */
+    margin-bottom: 10px; /* Reduced space below h1 */
+    font-size: 2.5rem; /* Larger font size */
     font-weight: 700;
     color: #FFFFFF;
-    text-shadow: 0 2px 6px rgba(60, 91, 142, 0.6);
+    text-shadow: 0 3px 8px rgba(60, 91, 142, 0.7), 0 0 15px rgba(255, 255, 255, 0.2); /* Enhanced glow effect */
+    letter-spacing: 1px; /* Added for style */
 }
 
 .tabs {
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Reduced gap for compactness */
-    padding: 12px; /* Slightly reduced padding */
+    gap: 10px; /* Slightly increased for better spacing */
+    padding: 15px;
     background: rgba(20, 40, 70, 0.15);
     border: 2px solid #08152A;
     border-radius: 15px;
@@ -128,18 +129,18 @@ h1 {
 }
 
 .tab {
-    padding: 8px 12px; /* Reduced padding for smaller tabs */
+    padding: 12px 18px; /* Increased padding for better shape */
     background: linear-gradient(90deg, #1A3559, #2A4366);
     border: 1px solid #0A1D37;
-    border-radius: 10px;
+    border-radius: 12px; /* Softer, more rounded shape */
     cursor: pointer;
     font-weight: 500;
-    font-size: 0.95rem; /* Slightly smaller text */
+    font-size: 1rem;
     color: #FFFFFF;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tab::before {
@@ -159,12 +160,12 @@ h1 {
 
 .tab:hover, .tab.active {
     background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
-    transform: translateX(4px); /* Slightly reduced movement */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .content {
-    padding: 30px; /* Increased padding for more content breathing room */
+    padding: 20px; /* Reduced top padding to bring content closer to top */
     overflow-y: auto;
     background: rgba(20, 45, 75, 0.25);
     border: 2px solid #08152A;
@@ -175,7 +176,7 @@ h1 {
 }
 
 .content::-webkit-scrollbar {
-    width: 10px; /* Slightly wider for better usability */
+    width: 10px;
 }
 
 .content::-webkit-scrollbar-track {
@@ -195,7 +196,7 @@ h1 {
 
 .section {
     display: none;
-    padding: 25px; /* Increased padding for content */
+    padding: 25px;
     background: rgba(15, 40, 71, 0.75);
     border: 2px solid #08152A;
     border-radius: 12px;
@@ -208,7 +209,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.9rem; /* Slightly larger */
+    font-size: 1.9rem;
     margin-bottom: 22px;
     color: #FFFFFF;
     font-weight: 600;
@@ -216,16 +217,16 @@ h2 {
 }
 
 p {
-    font-size: 1.15rem; /* Slightly larger for readability */
+    font-size: 1.15rem;
     color: #B0C2D4;
     margin-bottom: 25px;
-    line-height: 1.7; /* Improved readability */
+    line-height: 1.7;
 }
 
 label {
     font-weight: 500;
     color: #FFFFFF;
-    margin-bottom: 12px; /* Slightly more space */
+    margin-bottom: 12px;
     display: block;
 }
 
@@ -234,7 +235,7 @@ input[type="file"],
 input[type="color"],
 select {
     width: 100%;
-    padding: 14px 16px; /* Increased padding */
+    padding: 14px 16px;
     margin-bottom: 22px;
     border: 1px solid #0A1D37;
     border-radius: 8px;
@@ -256,7 +257,7 @@ select:focus {
 
 .checkbox-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted for more space */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 22px;
     margin-bottom: 25px;
 }
@@ -269,7 +270,7 @@ select:focus {
 
 input[type="checkbox"] {
     appearance: none;
-    width: 22px; /* Slightly larger */
+    width: 22px;
     height: 22px;
     border-radius: 6px;
     background: rgba(30, 60, 100, 0.9);
@@ -291,12 +292,12 @@ input[type="checkbox"]:checked::after {
     left: 50%;
     transform: translate(-50%, -50%);
     color: #FFFFFF;
-    font-size: 16px; /* Slightly larger */
+    font-size: 16px;
 }
 
 button {
     width: 100%;
-    padding: 16px; /* Increased padding */
+    padding: 16px;
     background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
     border: 1px solid #0A1D37;
     border-radius: 8px;
@@ -398,8 +399,8 @@ button:hover {
 }
 
 hr {
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible */
-    margin: 30px 0; /* More spacing */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 30px 0;
 }
 
 @media (max-width: 768px) {
@@ -417,8 +418,9 @@ hr {
     }
 
     .tab {
-        padding: 6px 10px; /* Smaller tabs on mobile */
-        font-size: 0.9rem;
+        padding: 8px 14px; /* Adjusted for mobile */
+        font-size: 0.95rem;
+        border-radius: 10px;
     }
 
     .tab:hover, .tab.active {
@@ -426,7 +428,12 @@ hr {
     }
 
     .content {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 8px;
     }
 }
 </style>

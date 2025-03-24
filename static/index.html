@@ -46,61 +46,80 @@
         mix-blend-mode: difference;
     }
 
+    h1 {
+        font-size: 3.5rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-top: 50px;
+        transition: color 0.3s ease-in-out;
+    }
+
+    h1:hover {
+        color: #3498db; /* Add a highlight effect on hover */
+    }
+
+    #dynamicParagraph {
+        font-size: 1.25rem;
+        color: #fff;
+        font-weight: 300;
+        letter-spacing: 1px;
+        transition: color 0.3s ease-in-out;
+    }
+
+    #dynamicParagraph:hover {
+        color: #3498db; /* Highlight color on hover for dynamic text */
+        cursor: pointer;
+    }
+
     #search-container {
-        margin-top: 5px;
+        margin-top: 20px;
     }
 
     .search-bar-home {
-        padding: 20px;
+        padding: 15px 20px;
         width: 400px;
-        border: none;
-        background-color: #141414;
+        border: 2px solid #fff;
+        background-color: #1d2b47;
         border-radius: 50px;
         font-family: "Outfit", sans-serif;
         outline: none;
-        margin: 0;
         color: #fff;
-        transition: 0.3s;
+        font-size: 16px;
+        transition: 0.3s ease-in-out;
     }
 
-    input {
-        width: 100%;
-        max-width: 400px;
-        padding: 10px 20px;
-        margin: 10px 0;
-        font-size: 16px;
-        border: none;
-        color: #fff;
-        background-color: #141414;
-        border-radius: 50px;
+    .search-bar-home::placeholder {
+        color: #bbb;
+    }
+
+    .search-bar-home:focus {
+        background-color: #2e3d5f; /* A subtle darker background when focused */
+        border-color: #3498db; /* Light blue border when focused */
+        box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
     }
 
     .search-button {
-        padding: 20px 20px;
-        background-color: #141414;
+        padding: 15px 30px;
+        background-color: #1d2b47;
         color: white;
         font-size: 16px;
-        border: none;
+        border: 2px solid #fff;
         border-radius: 50px;
-        margin: 5px;
+        margin: 10px 0;
         cursor: pointer;
         transition: 0.3s ease-in-out;
     }
 
     .search-button:hover {
-        background-color: #555;
+        background-color: #3498db;
+        border-color: #3498db;
     }
 
-    #time {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        font-size: 18px;
-        color: white;
-        font-family: "Outfit", sans-serif;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 5px 10px;
-        border-radius: 10px;
+    .desc {
+        margin-top: 10px;
+        color: #bbb;
     }
 
     /* Enhanced modern popup styles */
@@ -227,18 +246,18 @@
         background: #ffffff; /* Bright white background for contrast */
         border: 2px solid #0A1D37;
         border-radius: 50%;
-        color: #0A1D37; /* Dark blue icon color for visibility */
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        color: #0A1D37;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease, transform 0.3s ease;
     }
 
     .add-pin-btn:hover {
-        transform: scale(1.2);
-        background: #e0e0e0; /* Light gray on hover for feedback */
-        color: #0A1D37;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+        background: #0A1D37;
+        color: #fff;
+        transform: scale(1.1);
     }
+
 </style>
 </head>
 <body>

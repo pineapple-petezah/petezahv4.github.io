@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.document.head.appendChild(favicon);
 
         const iframe = popup.document.createElement('iframe');
-        iframe.src = window.location.pathname;
+        iframe.src = '/index.html'; // Changed from window.location.pathname to /index.html
         iframe.style.cssText = 'width: 100vw; height: 100vh; border: none;';
         popup.document.body.style.margin = '0';
         popup.document.body.appendChild(iframe);

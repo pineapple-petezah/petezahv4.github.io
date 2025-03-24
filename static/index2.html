@@ -58,7 +58,10 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         margin-bottom: 20px;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Light white border effect */
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.3); /* Light white shadow */
+        background: linear-gradient(45deg, #ffffff, #64a6e0); /* White to light blue gradient */
+        -webkit-background-clip: text;
+        color: transparent; /* Ensures the gradient is applied only to the text */
         transition: transform 0.3s ease-in-out;
     }
 
@@ -71,7 +74,10 @@
         font-size: 1.25rem;
         margin-top: 10px;
         font-weight: 300;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Light white border effect */
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1); /* Light white shadow */
+        background: linear-gradient(45deg, #ffffff, #64a6e0); /* White to light blue gradient */
+        -webkit-background-clip: text;
+        color: transparent; /* Ensures the gradient is applied only to the text */
         transition: color 0.3s ease-in-out;
     }
 
@@ -281,7 +287,6 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
     }
 </style>
-
 </head>
 <body>
     <div class="god-rays"></div>

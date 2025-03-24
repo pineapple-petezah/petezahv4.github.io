@@ -30,11 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         schoology: {
             title: 'Schoology',
-            favicon: 'https://www.schoology.com/sites/all/themes/schoology_theme/favicon.ico'
+            favicon: 'https://asset-cdn.schoology.com/sites/all/themes/schoology_theme/favicon.ico'
         },
         google: {
             title: 'Google',
             favicon: 'https://www.google.com/favicon.ico'
+        },
+        petezah: {
+            title: 'PeteZah',
+            favicon: '/storage/images/logo-png-removebg-preview.png'
         }
     };
 

@@ -104,118 +104,118 @@
 
         /* Modernized popup styles */
         .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #0A1D37; /* Matches your body background */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* White border with slight transparency */
+        padding: 25px;
+        border-radius: 20px;
+        z-index: 1000;
+        color: #fff;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                   inset 0 0 10px rgba(255, 255, 255, 0.05);
+        animation: popupFadeIn 0.3s ease-out;
+        min-width: 350px;
+        max-width: 400px;
+        backdrop-filter: blur(8px);
+    }
+
+    @keyframes popupFadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -40%);
+        }
+        to {
+            opacity: 1;
             transform: translate(-50%, -50%);
-            background: rgba(10, 29, 55, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 15px;
-            z-index: 1000;
-            color: white;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            animation: popupFadeIn 0.3s ease-out;
-            min-width: 350px;
         }
+    }
 
-        @keyframes popupFadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -45%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
+    .popup h3 {
+        margin: 0 0 20px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 0.5px;
+    }
 
-        .popup h3 {
-            margin: 0 0 20px 0;
-            font-weight: 500;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+    .popup input[type="text"] {
+        margin: 10px 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 12px 15px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        font-family: "Outfit", sans-serif;
+    }
 
-        .popup input[type="text"] {
-            margin: 10px 0;
-            width: 100%;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 12px 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
+    .popup input[type="text"]:focus {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        outline: none;
+    }
 
-        .popup input[type="text"]:focus {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
-            outline: none;
-        }
+    .popup input[type="file"] {
+        margin: 15px 0;
+        color: #fff;
+        width: 100%;
+        font-family: "Outfit", sans-serif;
+    }
 
-        .popup input[type="file"] {
-            margin: 15px 0;
-            background: transparent;
-            padding: 5px;
-            color: white;
-            width: 100%;
-            cursor: pointer;
-        }
+    .popup input[type="file"]::-webkit-file-upload-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-        .popup input[type="file"]::-webkit-file-upload-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    .popup input[type="file"]::-webkit-file-upload-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
 
-        .popup input[type="file"]::-webkit-file-upload-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+    .popup-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
 
-        .popup button {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            cursor: pointer;
-            margin: 5px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .popup button {
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+    }
 
-        .popup button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #b21f1f, #1a2a6c);
-        }
+    .popup button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-        .add-pin-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+    .popup button#add-btn {
+        background: linear-gradient(135deg, #ffffff, #e0e0e0);
+        color: #0A1D37;
+        border: none;
+    }
 
-        .add-pin-btn:hover {
-            transform: scale(1.2);
-            background: rgba(255, 255, 255, 0.2);
-        }
+    .popup button#add-btn:hover {
+        background: linear-gradient(135deg, #e0e0e0, #ffffff);
+    }
     </style>
 </head>
 <body>
@@ -264,8 +264,10 @@
         <h3>Add New Pin</h3>
         <input type="text" id="pin-url" placeholder="Enter URL (https:// required)">
         <input type="file" id="pin-image" accept="image/*">
-        <button id="add-btn">Add</button>
-        <button id="cancel-btn">Cancel</button>
+        <div class="popup-buttons">
+            <button id="cancel-btn">Cancel</button>
+            <button id="add-btn">Add</button>
+        </div>
     </div>
 
     <!-- Time Display Element -->
@@ -313,6 +315,41 @@
         const popup = document.getElementById('add-pin-popup');
         const addBtn = document.getElementById('add-btn');
         const cancelBtn = document.getElementById('cancel-btn');
+        const pinnedIcons = document.querySelector('.pinned-icons');
+
+        // Load saved pins from localStorage on page load
+        function loadSavedPins() {
+            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
+            savedPins.forEach(pin => {
+                createPinElement(pin.url, pin.image);
+            });
+        }
+
+        // Create pin element
+        function createPinElement(url, imageData) {
+            const newPin = document.createElement('a');
+            newPin.href = `/static/embed.html#${url}`;
+            newPin.style.display = 'inline-block';
+
+            const img = document.createElement('img');
+            img.src = imageData;
+            img.style.width = '30px';
+            img.style.height = '30px';
+            img.style.borderRadius = '50%';
+            img.style.transition = 'transform 0.3s';
+            img.onmouseover = function() { this.style.transform = 'scale(1.2)'; };
+            img.onmouseout = function() { this.style.transform = 'scale(1)'; };
+
+            newPin.appendChild(img);
+            pinnedIcons.insertBefore(newPin, addPinBtn);
+        }
+
+        // Save pin to localStorage
+        function savePin(url, imageData) {
+            const savedPins = JSON.parse(localStorage.getItem('pinnedBookmarks') || '[]');
+            savedPins.push({ url, image: imageData });
+            localStorage.setItem('pinnedBookmarks', JSON.stringify(savedPins));
+        }
 
         addPinBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -334,24 +371,11 @@
                 return;
             }
 
-            const pinnedIcons = document.querySelector('.pinned-icons');
-            const newPin = document.createElement('a');
-            newPin.href = `/static/embed.html#${urlInput}`;
-            newPin.style.display = 'inline-block';
-
-            const img = document.createElement('img');
-            img.style.width = '30px';
-            img.style.height = '30px';
-            img.style.borderRadius = '50%';
-            img.style.transition = 'transform 0.3s';
-            img.onmouseover = function() { this.style.transform = 'scale(1.2)'; };
-            img.onmouseout = function() { this.style.transform = 'scale(1)'; };
-
             const reader = new FileReader();
             reader.onload = function(e) {
-                img.src = e.target.result;
-                newPin.appendChild(img);
-                pinnedIcons.insertBefore(newPin, addPinBtn);
+                const imageData = e.target.result;
+                createPinElement(urlInput, imageData);
+                savePin(urlInput, imageData);
                 popup.style.display = 'none';
                 document.getElementById('pin-url').value = '';
                 document.getElementById('pin-image').value = '';
@@ -365,6 +389,9 @@
             document.getElementById('pin-url').value = '';
             document.getElementById('pin-image').value = '';
         });
+
+        // Load pins when page loads
+        window.addEventListener('load', loadSavedPins);
     </script>
 </body>
 </html>

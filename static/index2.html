@@ -15,7 +15,7 @@ body {
     background-color: #0A1D37;
     text-align: center;
     font-family: "Outfit", sans-serif;
-    overflow: hidden; /* Hide overflow */
+    overflow: hidden; /* Hide overflow for a clean design */
 }
 
 .god-rays {
@@ -24,8 +24,8 @@ body {
     left: 0;
     width: 100%;
     height: 550px;
-    --stripes: repeating-linear-gradient( 100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16% );
-    --rays: repeating-linear-gradient( 100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30% );
+    --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+    --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
     background-image: var(--stripes), var(--rays);
     background-size: 300%, 200%;
     background-position: 50% 50%, 50% 50%;
@@ -47,127 +47,100 @@ body {
     mix-blend-mode: difference;
 }
 
-/* h1 Styling */
 h1 {
-    font-family: "Kanit", sans-serif;
+    font-size: 3rem;
     font-weight: 700;
-    font-size: 4rem; /* Larger size for more impact */
-    color: #ffffff;
-    letter-spacing: 2px; /* Increased letter spacing */
-    text-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-    margin: 30px 0;
+    margin-top: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 h1:hover {
-    transform: scale(1.08); /* Slightly bigger on hover */
-    color: #ff6347; /* Change color on hover */
+    transform: scale(1.05);
+    color: #81c3d7; /* Light blue color */
 }
 
-/* Dynamic Paragraph */
 #dynamicParagraph {
-    font-family: "Outfit", sans-serif;
+    color: #fff;
+    font-size: 1.2rem;
     font-weight: 400;
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px 30px;
-    border-radius: 35px;
-    margin: 20px auto;
-    max-width: 650px;
-    transition: all 0.4s ease;
-    cursor: pointer;
+    margin-top: 10px;
+    transition: color 0.3s ease;
 }
 
 #dynamicParagraph:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ff6347; /* Add hover effect color change */
-    transform: scale(1.05);
+    color: #81c3d7;
 }
 
-/* Search Bar Styling */
+#search-container {
+    margin-top: 40px;
+}
+
 .search-bar-home {
-    padding: 14px 20px;
-    width: 100%;
-    max-width: 480px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(20, 20, 20, 0.8);
-    border-radius: 30px;
+    padding: 20px;
+    width: 400px;
+    border: 2px solid #81c3d7;
+    background-color: #141414;
+    border-radius: 50px;
     font-family: "Outfit", sans-serif;
-    font-size: 1.1rem;
-    color: #ffffff;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
 }
 
 .search-bar-home:focus {
-    background-color: rgba(30, 30, 30, 0.9);
-    border-color: #ff6347;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-    outline: none;
+    background-color: #1e1e1e;
+    border-color: #3b6b8c; /* Light blue border on focus */
 }
 
 .search-bar-home::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 300;
+    color: #b0b0b0;
 }
 
-/* Search Button */
 .search-button {
-    padding: 15px 25px;
-    background-color: #ff6347; /* Matching search button to the hover color */
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 30px;
+    padding: 20px 20px;
+    background-color: #81c3d7;
+    color: #fff;
+    font-size: 16px;
+    border: 2px solid #81c3d7;
+    border-radius: 50px;
+    margin-top: 10px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.search-button:hover {
-    background-color: #ff4500; /* Darker shade for hover */
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-button i {
     margin-left: 10px;
-    transition: transform 0.2s ease;
 }
 
-.search-button:hover i {
-    transform: rotate(15deg);
+.search-button:hover {
+    background-color: #68a3b7;
+    border-color: #68a3b7;
 }
 
-/* Pinned Icons Hover Effect */
-.pinned-icons a img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.search-button:active {
+    transform: translateY(2px);
 }
 
-.pinned-icons a img:hover {
-    transform: scale(1.2);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Time Display */
 #time {
     position: fixed;
     top: 10px;
     right: 10px;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     font-family: "Outfit", sans-serif;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 8px 15px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 
-/* Popup Styles */
+/* Enhanced popup styles */
 .popup {
     display: none;
     position: fixed;
@@ -176,7 +149,7 @@ h1:hover {
     transform: translate(-50%, -50%);
     background: #0A1D37;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
     z-index: 1000;
     color: #fff;
@@ -187,12 +160,66 @@ h1:hover {
     backdrop-filter: blur(8px);
 }
 
-/* Button Hover Effects */
+.popup h3 {
+    margin: 0 0 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.popup input[type="text"] {
+    margin: 10px 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: "Outfit", sans-serif;
+}
+
+.popup input[type="text"]:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.popup input[type="file"] {
+    margin: 15px 0;
+    color: #fff;
+    width: 100%;
+    font-family: "Outfit", sans-serif;
+}
+
+.popup input[type="file"]::-webkit-file-upload-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup input[type="file"]::-webkit-file-upload-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
 .popup button {
-    padding: 12px 20px;
+    padding: 10px 20px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
+    border-radius: 10px;
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -203,9 +230,42 @@ h1:hover {
 .popup button:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.popup button#add-btn {
+    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    color: #0A1D37;
+    border: none;
+}
+
+.popup button#add-btn:hover {
+    background: linear-gradient(135deg, #e0e0e0, #ffffff);
+}
+
+.add-pin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: #ffffff;
+    border: 2px solid #0A1D37;
+    border-radius: 50%;
+    color: #0A1D37;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-pin-btn:hover {
+    transform: scale(1.2);
+    background: #e0e0e0;
+    color: #0A1D37;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 </style>
+
 </head>
 <body>
     <div class="god-rays"></div>

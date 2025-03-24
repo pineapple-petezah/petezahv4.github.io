@@ -53,18 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedBackground = localStorage.getItem('backgroundColor');
         if (savedBackground) document.body.style.backgroundColor = savedBackground;
 
-        // Apply anti-right click
-        if (localStorage.getItem('disableRightClick') === 'true') {
-            document.addEventListener('contextmenu', rightClickHandler);
-        } else {
-            document.removeEventListener('contextmenu', rightClickHandler);
-        }
-
+        // Apply anti-right click globally
+        applyRightClickProtection();
+        
         // Apply anti-close
         if (localStorage.getItem('beforeUnload') === 'true') {
             window.addEventListener('beforeunload', beforeUnloadHandler);
         } else {
             window.removeEventListener('beforeunload', beforeUnloadHandler);
+        }
+    };
+
+    const applyRightClickProtection = () => {
+        // Always remove the handler first to avoid duplicate listeners
+        document.removeEventListener('contextmenu', rightClickHandler);
+        // Apply it if the setting is enabled
+        if (localStorage.getItem('disableRightClick') === 'true') {
+            document.addEventListener('contextmenu', rightClickHandler);
         }
     };
 
@@ -124,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.document.head.appendChild(favicon);
 
         const iframe = popup.document.createElement('iframe');
-        iframe.src = '/index.html'; // Changed from window.location.pathname to /index.html
+        iframe.src = '/index.html';
         iframe.style.cssText = 'width: 100vw; height: 100vh; border: none;';
         popup.document.body.style.margin = '0';
         popup.document.body.appendChild(iframe);
@@ -257,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for settings changes from other tabs
     window.addEventListener('storage', (e) => {
         if (e.key === 'settingsUpdated') {
+            applyRightClickProtection(); // Ensure right-click protection updates dynamically
             location.reload();
         }
     });
@@ -270,4 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!inIframe && elements.autocloakToggle && elements.autocloakToggle.checked && !navigator.userAgent.includes('Firefox')) {
         autocloak();
     }
+
+    // Ensure anti-right click is applied on page load for all pages
+    applyRightClickProtection();
 });

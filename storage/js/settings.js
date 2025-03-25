@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements (dynamically checked to work with any page).  This took FOREVER.
+    // DOM Elements (TOOK FOREVER)
     const elements = {
         tabs: document.querySelectorAll('.tab') || [],
         sections: document.querySelectorAll('.section') || [],
@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         siteLogo: document.getElementById('siteLogo'),
         themeSelect: document.getElementById('themeSelect'),
         backgroundColor: document.getElementById('backgroundColor'),
+        backgroundImage: document.getElementById('backgroundImage'), // New
+        removeBackgroundImage: document.getElementById('removeBackgroundImage'), // New
         panicKey: document.getElementById('panicKey'),
         panicUrl: document.getElementById('panicUrl'),
         saveSettings: document.getElementById('saveSettings'),
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         disableParticles: document.getElementById('disableParticles'),
     };
 
-    // Presets with matching favicons
+    // Presets with matching favicons (unchanged)
     const presets = {
         classroom: { title: 'Google Classroom', favicon: 'https://ssl.gstatic.com/classroom/favicon.ico' },
         schoology: { title: 'Schoology', favicon: 'https://asset-cdn.schoology.com/sites/all/themes/schoology_theme/favicon.ico' },
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         petezah: { title: 'PeteZah', favicon: '/storage/images/logo-png-removebg-preview.png' }
     };
 
-    // Themes
+    // Themes (unchanged)
     const themes = {
         'default': '#0A1D37',
         'swampy-green': '#236b3e',
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'blood-red': '#6e0307'
     };
 
-    // Utility Functions
+    // Utility Functions (updated to include background image handling)
     const applyGlobalSettings = () => {
         const savedTitle = localStorage.getItem('siteTitle');
         if (savedTitle) document.title = savedTitle;
@@ -51,8 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedLogo = localStorage.getItem('siteLogo');
         if (savedLogo) updateFavicon(savedLogo);
 
-        const savedBackground = localStorage.getItem('backgroundColor');
-        if (savedBackground) document.body.style.backgroundColor = savedBackground;
+        const savedBackgroundColor = localStorage.getItem('backgroundColor');
+        const savedBackgroundImage = localStorage.getItem('backgroundImage');
+        if (savedBackgroundImage) {
+            document.body.style.backgroundImage = `url(${savedBackgroundImage})`;
+            document.body.style.backgroundSize = 'cover'; // Optional: adjust as needed
+            document.body.style.backgroundRepeat = 'no-repeat'; // Optional: adjust as needed
+            document.body.style.backgroundPosition = 'center'; // Optional: adjust as needed
+        } else if (savedBackgroundColor) {
+            document.body.style.backgroundImage = 'none';
+            document.body.style.backgroundColor = savedBackgroundColor;
+        }
 
         applyRightClickProtection();
         applyParticleSettings();
@@ -75,17 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const particles = document.querySelectorAll('.particle');
         
         if (localStorage.getItem('disableParticles') === 'true') {
-            // Remove all particle containers and their contents
             particleContainers.forEach(container => {
-                if (container.parentNode) {
-                    container.parentNode.removeChild(container);
-                }
+                if (container.parentNode) container.parentNode.removeChild(container);
             });
-            // Remove all individual particle elements
             particles.forEach(particle => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
+                if (particle.parentNode) particle.parentNode.removeChild(particle);
             });
         }
     };
@@ -104,12 +109,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.panicUrl) elements.panicUrl.value = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
         if (elements.backgroundColor) {
             elements.backgroundColor.value = localStorage.getItem('backgroundColor') || '#0A1D37';
-            document.body.style.backgroundColor = elements.backgroundColor.value;
+            if (!localStorage.getItem('backgroundImage')) {
+                document.body.style.backgroundColor = elements.backgroundColor.value;
+            }
         }
         if (elements.themeSelect) {
             const savedTheme = localStorage.getItem('theme') || 'default';
             elements.themeSelect.value = savedTheme;
-            document.body.style.backgroundColor = themes[savedTheme];
+            if (!localStorage.getItem('backgroundImage')) {
+                document.body.style.backgroundColor = themes[savedTheme];
+            }
+        }
+        if (elements.backgroundImage && localStorage.getItem('backgroundImage')) {
+            document.body.style.backgroundImage = `url(${localStorage.getItem('backgroundImage')})`;
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundPosition = 'center';
         }
         if (elements.disableParticles) {
             const savedParticleState = localStorage.getItem('disableParticles') === 'true';
@@ -279,9 +294,11 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.themeSelect.addEventListener('change', () => {
             const theme = elements.themeSelect.value;
             localStorage.setItem('theme', theme);
-            document.body.style.backgroundColor = themes[theme];
-            elements.backgroundColor.value = themes[theme];
-            localStorage.setItem('backgroundColor', themes[theme]);
+            if (!localStorage.getItem('backgroundImage')) {
+                document.body.style.backgroundColor = themes[theme];
+                elements.backgroundColor.value = themes[theme];
+                localStorage.setItem('backgroundColor', themes[theme]);
+            }
             broadcastSettingsChange();
         });
     }
@@ -289,6 +306,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elements.saveAppearance) {
         elements.saveAppearance.addEventListener('click', () => {
             localStorage.setItem('backgroundColor', elements.backgroundColor.value);
+            if (elements.backgroundImage && elements.backgroundImage.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    localStorage.setItem('backgroundImage', e.target.result);
+                    applyGlobalSettings();
+                    broadcastSettingsChange();
+                };
+                reader.readAsDataURL(elements.backgroundImage.files[0]);
+            }
             if (elements.disableParticles) {
                 localStorage.setItem('disableParticles', elements.disableParticles.checked);
                 applyParticleSettings();
@@ -300,9 +326,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (elements.backgroundColor) {
         elements.backgroundColor.addEventListener('input', () => {
-            document.body.style.backgroundColor = elements.backgroundColor.value;
+            if (!localStorage.getItem('backgroundImage')) {
+                document.body.style.backgroundColor = elements.backgroundColor.value;
+            }
             localStorage.setItem('theme', 'custom'); // Reset theme to custom on manual color change
             if (elements.themeSelect) elements.themeSelect.value = 'default';
+        });
+    }
+
+    if (elements.backgroundImage) {
+        elements.backgroundImage.addEventListener('change', () => {
+            if (elements.backgroundImage.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.body.style.backgroundImage = `url(${e.target.result})`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundRepeat = 'no-repeat';
+                    document.body.style.backgroundPosition = 'center';
+                };
+                reader.readAsDataURL(elements.backgroundImage.files[0]);
+            }
+        });
+    }
+
+    if (elements.removeBackgroundImage) {
+        elements.removeBackgroundImage.addEventListener('click', () => {
+            localStorage.removeItem('backgroundImage');
+            document.body.style.backgroundImage = 'none';
+            document.body.style.backgroundColor = elements.backgroundColor.value || '#0A1D37';
+            broadcastSettingsChange();
         });
     }
 

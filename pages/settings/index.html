@@ -443,24 +443,41 @@
         }
     }
 
-        .partner-content {
+        .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.partner-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    background: rgba(20, 45, 75, 0.5);
+    border: 2px solid #08152A;
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 .partner-image {
-    max-width: 300px;
-    max-height: 200px;
+    max-width: 200px;
+    max-height: 150px;
     border-radius: 10px;
     border: 2px solid #08152A;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     object-fit: contain;
+    margin-bottom: 10px;
 }
 
-#partnerTitle {
-    font-size: 1.5rem;
+.partner-title {
+    font-size: 1.3rem;
     color: #FFFFFF;
     font-weight: 600;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
@@ -566,9 +583,42 @@
 
             <div class="section" id="partners">
                 <h2>Partners</h2>
-                <div class="partner-content">
-                    <img src="" alt="Partner Image" class="partner-image" id="partnerImage">
-                    <h3 id="partnerTitle">Partner Title</h3>
+                <div class="partners-grid">
+                    <!-- Example partner 1 -->
+                    <div class="partner-item">
+                        <img src="/storage/images/main/benrogo.png" alt="Benrogo" class="partner-image">
+                        <h3 class="partner-title">Benrogo</h3>
+                    </div>
+                    <!-- Example partner 2 -->
+                    <div class="partner-item">
+                        <img src="/storage/images/main/flage.png" alt="Camo" class="partner-image">
+                        <h3 class="partner-title">Camouflage</h3>
+                    </div>
+                    <!-- Add more partner-item blocks as needed -->
+                    <div class="partner-item">
+                        <img src="/storage/images/main/orbiton.webp" alt="Orbiton" class="partner-image">
+                        <h3 class="partner-title">Orbiton</h3>
+                    </div>
+                    <div class="partner-item">
+                        <img src="/storage/images/main/brunys.ico" alt="Brunys" class="partner-image">
+                        <h3 class="partner-title">Brunysixlwork</h3>
+                    </div>
+                    <div class="partner-item">
+                        <img src="/storage/images/main/ajh.webp" alt="AJH" class="partner-image">
+                        <h3 class="partner-title">AJH Vault</h3>
+                    </div>
+                    <div class="partner-item">
+                        <img src="/storage/images/main/vortex.png" alt="Vortex" class="partner-image">
+                        <h3 class="partner-title">Vortex</h3>
+                    </div>
+                    <div class="partner-item">
+                        <img src="/storage/images/main/marki.webp" alt="GL" class="partner-image">
+                        <h3 class="partner-title">GL Series</h3>
+                    </div>
+                    <div class="partner-item">
+                        <img src="/storage/images/main/lupine.webp" alt="Lupine" class="partner-image">
+                        <h3 class="partner-title">Lupinevault</h3>
+                    </div>
                 </div>
             </div>
 

@@ -484,6 +484,54 @@
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
+
+        /* Enhance the existing file input styling */
+input[type="file"] {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    border: 1px solid #0A1D37;
+    border-radius: 8px;
+    background: rgba(30, 60, 100, 0.9);
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the file input button specifically */
+input[type="file"]::-webkit-file-upload-button,
+input[type="file"]::file-selector-button {
+    background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
+    border: 1px solid #0A1D37;
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: #FFFFFF;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect for the button */
+input[type="file"]::-webkit-file-upload-button:hover,
+input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(90deg, #2A3C5F, #3C5B8E);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(60, 91, 142, 0.6);
+}
+
+/* Focus effect (optional) */
+input[type="file"]:focus::-webkit-file-upload-button,
+input[type="file"]:focus::file-selector-button {
+    outline: none;
+    background: linear-gradient(90deg, #4A6FA5, #5C83BA);
+}
+
+/* Ensure consistency across browsers */
+input[type="file"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
     </style>
 </head>
 <body>

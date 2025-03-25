@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements (dynamically checked to work with any page)
     const elements = {

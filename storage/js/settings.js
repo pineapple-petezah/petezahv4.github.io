@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         exportData: document.getElementById('exportData'),
         importData: document.getElementById('importData'),
         resetAllData: document.getElementById('resetAllData'),
+        disableParticles: document.getElementById('disableParticles'),
     };
 
     // Presets with matching favicons
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (savedBackground) document.body.style.backgroundColor = savedBackground;
 
         applyRightClickProtection();
+        applyParticleSettings();
         if (localStorage.getItem('beforeUnload') === 'true') {
             window.addEventListener('beforeunload', beforeUnloadHandler);
         } else {
@@ -65,6 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.removeEventListener('contextmenu', rightClickHandler);
         if (localStorage.getItem('disableRightClick') === 'true') {
             document.addEventListener('contextmenu', rightClickHandler);
+        }
+    };
+
+    const applyParticleSettings = () => {
+        const particles = document.querySelectorAll('.particle, .particles');
+        if (localStorage.getItem('disableParticles') === 'true') {
+            particles.forEach(particle => particle.style.display = 'none');
+        } else {
+            particles.forEach(particle => particle.style.display = '');
         }
     };
 
@@ -88,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'default';
             elements.themeSelect.value = savedTheme;
             document.body.style.backgroundColor = themes[savedTheme];
+        }
+        if (elements.disableParticles) {
+            elements.disableParticles.checked = localStorage.getItem('disableParticles') === 'true';
         }
         applyGlobalSettings();
     };
@@ -126,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         favicon.href = localStorage.getItem('siteLogo') || '/storage/images/logo-png-removebg-preview.png';
         popup.document.head.appendChild(favicon);
         const iframe = popup.document.createElement('iframe');
-        iframe.src = '/index.html';
+        iframe.src = '/index.html'; // Set back to /index.html as requested
         iframe.style.cssText = 'width: 100vw; height: 100vh; border: none;';
         popup.document.body.style.margin = '0';
         popup.document.body.appendChild(iframe);
@@ -262,6 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elements.saveAppearance) {
         elements.saveAppearance.addEventListener('click', () => {
             localStorage.setItem('backgroundColor', elements.backgroundColor.value);
+            if (elements.disableParticles) {
+                localStorage.setItem('disableParticles', elements.disableParticles.checked);
+            }
             applyGlobalSettings();
             broadcastSettingsChange();
         });
@@ -272,6 +289,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.backgroundColor = elements.backgroundColor.value;
             localStorage.setItem('theme', 'custom'); // Reset theme to custom on manual color change
             if (elements.themeSelect) elements.themeSelect.value = 'default';
+        });
+    }
+
+    if (elements.disableParticles) {
+        elements.disableParticles.addEventListener('change', () => {
+            localStorage.setItem('disableParticles', elements.disableParticles.checked);
+            applyParticleSettings();
+            broadcastSettingsChange();
         });
     }
 
@@ -336,4 +361,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     applyRightClickProtection();
+    applyParticleSettings();
 });

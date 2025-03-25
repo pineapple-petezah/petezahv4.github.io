@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         siteLogo: document.getElementById('siteLogo'),
         themeSelect: document.getElementById('themeSelect'),
         backgroundColor: document.getElementById('backgroundColor'),
-        backgroundImage: document.getElementById('backgroundImage'), // New
-        removeBackgroundImage: document.getElementById('removeBackgroundImage'), // New
+        backgroundImage: document.getElementById('backgroundImage'),
+        removeBackgroundImage: document.getElementById('removeBackgroundImage'),
         panicKey: document.getElementById('panicKey'),
         panicUrl: document.getElementById('panicUrl'),
         saveSettings: document.getElementById('saveSettings'),
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         disableParticles: document.getElementById('disableParticles'),
     };
 
-    // Presets with matching favicons (unchanged)
+    // Presets with matching favicons
     const presets = {
         classroom: { title: 'Google Classroom', favicon: 'https://ssl.gstatic.com/classroom/favicon.ico' },
         schoology: { title: 'Schoology', favicon: 'https://asset-cdn.schoology.com/sites/all/themes/schoology_theme/favicon.ico' },
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         petezah: { title: 'PeteZah', favicon: '/storage/images/logo-png-removebg-preview.png' }
     };
 
-    // Themes (unchanged)
+    // Themes
     const themes = {
         'default': '#0A1D37',
         'swampy-green': '#236b3e',
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'blood-red': '#6e0307'
     };
 
-    // Utility Functions (updated to include background image handling)
+    // Utility Functions
     const applyGlobalSettings = () => {
         const savedTitle = localStorage.getItem('siteTitle');
         if (savedTitle) document.title = savedTitle;
@@ -53,16 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedLogo = localStorage.getItem('siteLogo');
         if (savedLogo) updateFavicon(savedLogo);
 
+        // Apply background settings to body (affects all pages where script runs)
         const savedBackgroundColor = localStorage.getItem('backgroundColor');
         const savedBackgroundImage = localStorage.getItem('backgroundImage');
         if (savedBackgroundImage) {
             document.body.style.backgroundImage = `url(${savedBackgroundImage})`;
-            document.body.style.backgroundSize = 'cover'; // Optional: adjust as needed
-            document.body.style.backgroundRepeat = 'no-repeat'; // Optional: adjust as needed
-            document.body.style.backgroundPosition = 'center'; // Optional: adjust as needed
-        } else if (savedBackgroundColor) {
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundColor = ''; // Clear color if image is set
+        } else {
             document.body.style.backgroundImage = 'none';
-            document.body.style.backgroundColor = savedBackgroundColor;
+            document.body.style.backgroundColor = savedBackgroundColor || '#0A1D37';
         }
 
         applyRightClickProtection();
@@ -97,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const broadcastSettingsChange = () => {
         localStorage.setItem('settingsUpdated', Date.now().toString());
+        // Ensure all pages update by reapplying settings
+        applyGlobalSettings();
     };
 
     const loadSettings = () => {
@@ -131,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.disableParticles.checked = savedParticleState;
             applyParticleSettings();
         }
-        applyGlobalSettings();
+        applyGlobalSettings(); // Apply settings immediately on load
     };
 
     const updateFavicon = (url) => {
@@ -314,13 +318,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     broadcastSettingsChange();
                 };
                 reader.readAsDataURL(elements.backgroundImage.files[0]);
+            } else {
+                applyGlobalSettings();
+                broadcastSettingsChange();
             }
             if (elements.disableParticles) {
                 localStorage.setItem('disableParticles', elements.disableParticles.checked);
                 applyParticleSettings();
             }
-            applyGlobalSettings();
-            broadcastSettingsChange();
         });
     }
 
@@ -329,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!localStorage.getItem('backgroundImage')) {
                 document.body.style.backgroundColor = elements.backgroundColor.value;
             }
-            localStorage.setItem('theme', 'custom'); // Reset theme to custom on manual color change
+            localStorage.setItem('theme', 'custom');
             if (elements.themeSelect) elements.themeSelect.value = 'default';
         });
     }
@@ -343,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.style.backgroundSize = 'cover';
                     document.body.style.backgroundRepeat = 'no-repeat';
                     document.body.style.backgroundPosition = 'center';
+                    document.body.style.backgroundColor = ''; // Clear color when image is set
                 };
                 reader.readAsDataURL(elements.backgroundImage.files[0]);
             }
@@ -413,7 +419,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'settingsUpdated') {
             applyRightClickProtection();
             applyParticleSettings();
-            location.reload();
+            applyGlobalSettings(); // Ensure background updates on all pages
+            // Optional: Uncomment to force reload if needed
+            // location.reload();
         }
     });
 
@@ -429,4 +437,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyRightClickProtection();
     applyParticleSettings();
+    applyGlobalSettings(); // Ensure initial application on all pages
 });

@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Themes
     const themes = {
         'default': '#0A1D37',
-        'swampy-green': '#2E4A2E',
-        'royal-purple': '#4B2E5A',
-        'blood-red': '#5A1E1E'
+        'swampy-green': '#236b3e',
+        'royal-purple': '#591a5e',
+        'blood-red': '#6e0307'
     };
 
     // Utility Functions

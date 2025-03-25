@@ -442,6 +442,30 @@
             margin-bottom: 8px;
         }
     }
+
+        .partner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.partner-image {
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 10px;
+    border: 2px solid #08152A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+}
+
+#partnerTitle {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
     </style>
 </head>
 <body>
@@ -453,6 +477,7 @@
             <button class="tab" data-tab="account">Account</button>
             <button class="tab" data-tab="appearance">Appearance</button>
             <button class="tab" data-tab="panic">Panic Button</button>
+            <button class="tab" data-tab="partners">Partners</button>
             <button class="tab" data-tab="legal">Legal</button>
         </div>
 
@@ -537,6 +562,14 @@
                 <label for="panicUrl">Panic URL:</label>
                 <input type="text" id="panicUrl" placeholder="e.g., https://classroom.google.com">
                 <button id="savePanicSettings">Save Panic Settings</button>
+            </div>
+
+            <div class="section" id="partners">
+                <h2>Partners</h2>
+                <div class="partner-content">
+                    <img src="" alt="Partner Image" class="partner-image" id="partnerImage">
+                    <h3 id="partnerTitle">Partner Title</h3>
+                </div>
             </div>
 
             <!-- Legal Section -->

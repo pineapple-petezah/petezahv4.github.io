@@ -71,11 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyParticleSettings = () => {
-        const particles = document.querySelectorAll('.particle, .particles');
+        const particleContainers = document.querySelectorAll('.particles');
+        const particles = document.querySelectorAll('.particle');
+        
         if (localStorage.getItem('disableParticles') === 'true') {
-            particles.forEach(particle => particle.style.display = 'none');
-        } else {
-            particles.forEach(particle => particle.style.display = '');
+            // Remove all particle containers and their contents
+            particleContainers.forEach(container => {
+                if (container.parentNode) {
+                    container.parentNode.removeChild(container);
+                }
+            });
+            // Remove all individual particle elements
+            particles.forEach(particle => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            });
         }
     };
 
@@ -101,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.backgroundColor = themes[savedTheme];
         }
         if (elements.disableParticles) {
-            elements.disableParticles.checked = localStorage.getItem('disableParticles') === 'true';
+            const savedParticleState = localStorage.getItem('disableParticles') === 'true';
+            elements.disableParticles.checked = savedParticleState;
+            applyParticleSettings();
         }
         applyGlobalSettings();
     };
@@ -140,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         favicon.href = localStorage.getItem('siteLogo') || '/storage/images/logo-png-removebg-preview.png';
         popup.document.head.appendChild(favicon);
         const iframe = popup.document.createElement('iframe');
-        iframe.src = '/index.html'; // Set back to /index.html as requested
+        iframe.src = '/index.html';
         iframe.style.cssText = 'width: 100vw; height: 100vh; border: none;';
         popup.document.body.style.margin = '0';
         popup.document.body.appendChild(iframe);
@@ -278,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('backgroundColor', elements.backgroundColor.value);
             if (elements.disableParticles) {
                 localStorage.setItem('disableParticles', elements.disableParticles.checked);
+                applyParticleSettings();
             }
             applyGlobalSettings();
             broadcastSettingsChange();
@@ -346,6 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('storage', (e) => {
         if (e.key === 'settingsUpdated') {
             applyRightClickProtection();
+            applyParticleSettings();
             location.reload();
         }
     });

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,436 +10,441 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
     * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
 
-body {
-    background-color: #0A1D37;
-    color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow: hidden;
-    transition: background-color 0.5s ease;
-}
+    body {
+        background-color: #0A1D37;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        overflow: hidden;
+        transition: background-color 0.5s ease;
+    }
 
-body::-webkit-scrollbar {
-    display: none;
-}
+    body::-webkit-scrollbar {
+        display: none;
+    }
 
-body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+    body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
-.god-rays {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 550px;
-    --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
-    --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
-    background-image: var(--stripes), var(--rays);
-    background-size: 300%, 200%;
-    background-position: 50% 50%, 50% 50%;
-    animation: fadeIn 2s ease;
-    mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
+    .god-rays {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 550px;
+        --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+        --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
+        background-image: var(--stripes), var(--rays);
+        background-size: 300%, 200%;
+        background-position: 50% 50%, 50% 50%;
+        animation: fadeIn 2s ease;
+        mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+        -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+        pointer-events: none;
+        z-index: -1;
+    }
 
-.god-rays::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--stripes), var(--rays);
-    background-size: 200%, 100%;
-    animation: god-rays 40s linear infinite;
-    background-attachment: fixed;
-    mix-blend-mode: difference;
-}
+    .god-rays::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--stripes), var(--rays);
+        background-size: 200%, 100%;
+        animation: god-rays 40s linear infinite;
+        background-attachment: fixed;
+        mix-blend-mode: difference;
+    }
 
-@keyframes god-rays {
-    0% { background-position: 0% 0%, 0% 0%; }
-    100% { background-position: 100% 100%, 200% 200%; }
-}
+    @keyframes god-rays {
+        0% { background-position: 0% 0%, 0% 0%; }
+        100% { background-position: 100% 100%, 200% 200%; }
+    }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-.settings-container {
-    background: linear-gradient(145deg, rgba(15, 30, 55, 0.95), rgba(20, 45, 75, 0.95));
-    border: 2px solid #08152A;
-    border-radius: 20px;
-    width: 95vw;
-    max-width: 1800px;
-    padding: 20px; /* Reduced top padding */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.3);
-    display: grid;
-    grid-template-columns: 200px 1fr; /* Increased tab width from 140px to 200px */
-    gap: 25px;
-    height: 95vh;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.settings-container::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border: 1px solid #0A1D37;
-    border-radius: 22px;
-    pointer-events: none;
-    z-index: -1;
-}
-
-h1 {
-    grid-column: 1 / -1;
-    text-align: center;
-    margin-bottom: 10px; /* Reduced space below h1 */
-    font-size: 2.5rem; /* Larger font size */
-    font-weight: 700;
-    color: #FFFFFF;
-    text-shadow: 0 3px 8px rgba(60, 91, 142, 0.7), 0 0 15px rgba(255, 255, 255, 0.2); /* Enhanced glow effect */
-    letter-spacing: 1px; /* Added for style */
-}
-
-.tabs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Slightly increased for better spacing */
-    padding: 15px;
-    background: rgba(20, 40, 70, 0.15);
-    border: 2px solid #08152A;
-    border-radius: 15px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
-}
-
-.tab {
-    padding: 12px 18px; /* Increased padding for better shape */
-    background: linear-gradient(90deg, #1A3559, #2A4366);
-    border: 1px solid #0A1D37;
-    border-radius: 12px; /* Softer, more rounded shape */
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1rem;
-    color: #FFFFFF;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.tab::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: all 0.5s ease;
-}
-
-.tab:hover::before {
-    left: 100%;
-}
-
-.tab:hover, .tab.active {
-    background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.content {
-    padding: 20px; /* Reduced top padding to bring content closer to top */
-    overflow-y: auto;
-    background: rgba(20, 45, 75, 0.25);
-    border: 2px solid #08152A;
-    border-radius: 15px;
-    height: 100%;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.content::-webkit-scrollbar {
-    width: 10px;
-}
-
-.content::-webkit-scrollbar-track {
-    background: rgba(15, 40, 71, 0.4);
-    border-radius: 5px;
-}
-
-.content::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #4A6FA5, #3C5B8E);
-    border-radius: 5px;
-    border: 1px solid #0A1D37;
-}
-
-.content::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #5C83BA, #4A6FA5);
-}
-
-.section {
-    display: none;
-    padding: 25px;
-    background: rgba(15, 40, 71, 0.75);
-    border: 2px solid #08152A;
-    border-radius: 12px;
-    animation: fadeIn 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-.section.active {
-    display: block;
-}
-
-h2 {
-    font-size: 1.9rem;
-    margin-bottom: 22px;
-    color: #FFFFFF;
-    font-weight: 600;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-p {
-    font-size: 1.15rem;
-    color: #B0C2D4;
-    margin-bottom: 25px;
-    line-height: 1.7;
-}
-
-label {
-    font-weight: 500;
-    color: #FFFFFF;
-    margin-bottom: 12px;
-    display: block;
-}
-
-input[type="text"],
-input[type="file"],
-input[type="color"],
-select {
-    width: 100%;
-    padding: 14px 16px;
-    margin-bottom: 22px;
-    border: 1px solid #0A1D37;
-    border-radius: 8px;
-    background: rgba(30, 60, 100, 0.9);
-    color: #FFFFFF;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-input[type="text"]:focus,
-input[type="file"]:focus,
-input[type="color"]:focus,
-select:focus {
-    background: rgba(40, 80, 130, 0.9);
-    transform: scale(1.02);
-    outline: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.checkbox-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 22px;
-    margin-bottom: 25px;
-}
-
-.checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-input[type="checkbox"] {
-    appearance: none;
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    background: rgba(30, 60, 100, 0.9);
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
-    border: 1px solid #0A1D37;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-input[type="checkbox"]:checked {
-    background: linear-gradient(135deg, #3C5B8E, #4A6FA5);
-}
-
-input[type="checkbox"]:checked::after {
-    content: '✔';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #FFFFFF;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
-    border: 1px solid #0A1D37;
-    border-radius: 8px;
-    color: #FFFFFF;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(60, 91, 142, 0.4);
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: all 0.6s ease;
-}
-
-button:hover::before {
-    left: 100%;
-}
-
-button:hover {
-    background: linear-gradient(90deg, #2A3C5F, #3C5B8E);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(60, 91, 142, 0.6);
-}
-
-.reset-button {
-    background: linear-gradient(90deg, #D32F2F, #E64A4A);
-    border: 1px solid #8B1A1A;
-}
-
-.reset-button:hover {
-    background: linear-gradient(90deg, #B02323, #D32F2F);
-}
-
-.about-blank-button {
-    background: linear-gradient(90deg, #2A6F97, #4096C1);
-    border: 1px solid #1A3D5C;
-    margin-top: 20px;
-}
-
-.about-blank-button:hover {
-    background: linear-gradient(90deg, #1E506F, #2A6F97);
-}
-
-.legal-tabs {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.legal-tab {
-    padding: 10px 25px;
-    background: linear-gradient(90deg, #1A3559, #2A4366);
-    border: 1px solid #0A1D37;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #FFFFFF;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.legal-tab::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: all 0.5s ease;
-}
-
-.legal-tab:hover::before {
-    left: 100%;
-}
-
-.legal-tab:hover, .legal-tab.active {
-    background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.legal-section {
-    display: none;
-}
-
-.legal-section.active {
-    display: block;
-}
-
-hr {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    margin: 30px 0;
-}
-
-@media (max-width: 768px) {
     .settings-container {
-        grid-template-columns: 1fr;
-        padding: 15px;
-        height: auto;
+        background: linear-gradient(145deg, rgba(15, 30, 55, 0.95), rgba(20, 45, 75, 0.95));
+        border: 2px solid #08152A;
+        border-radius: 20px;
+        width: 95vw;
+        max-width: 1800px;
+        padding: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.3);
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 25px;
+        height: 95vh;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
     }
 
-    .tabs {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 10px;
-    }
-
-    .tab {
-        padding: 8px 14px; /* Adjusted for mobile */
-        font-size: 0.95rem;
-        border-radius: 10px;
-    }
-
-    .tab:hover, .tab.active {
-        transform: translateY(-3px);
-    }
-
-    .content {
-        padding: 15px;
+    .settings-container::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 1px solid #0A1D37;
+        border-radius: 22px;
+        pointer-events: none;
+        z-index: -1;
     }
 
     h1 {
-        font-size: 2rem;
-        margin-bottom: 8px;
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-shadow: 0 3px 8px rgba(60, 91, 142, 0.7), 0 0 15px rgba(255, 255, 255, 0.2);
+        letter-spacing: 1px;
     }
-}
-</style>
+
+    .tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+        background: rgba(20, 40, 70, 0.15);
+        border: 2px solid #08152A;
+        border-radius: 15px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .tab {
+        padding: 12px 18px;
+        background: linear-gradient(90deg, #1A3559, #2A4366);
+        border: 1px solid #0A1D37;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .tab:hover::before {
+        left: 100%;
+    }
+
+    .tab:hover, .tab.active {
+        background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .content {
+        padding: 20px;
+        overflow-y: auto;
+        background: rgba(20, 45, 75, 0.25);
+        border: 2px solid #08152A;
+        border-radius: 15px;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .content::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .content::-webkit-scrollbar-track {
+        background: rgba(15, 40, 71, 0.4);
+        border-radius: 5px;
+    }
+
+    .content::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #4A6FA5, #3C5B8E);
+        border-radius: 5px;
+        border: 1px solid #0A1D37;
+    }
+
+    .content::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #5C83BA, #4A6FA5);
+    }
+
+    .section {
+        display: none;
+        padding: 25px;
+        background: rgba(15, 40, 71, 0.75);
+        border: 2px solid #08152A;
+        border-radius: 12px;
+        animation: fadeIn 0.4s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .section.active {
+        display: block;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+        margin-bottom: 22px;
+        color: #FFFFFF;
+        font-weight: 600;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+        font-size: 1.15rem;
+        color: #B0C2D4;
+        margin-bottom: 25px;
+        line-height: 1.7;
+    }
+
+    label {
+        font-weight: 500;
+        color: #FFFFFF;
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    input[type="color"],
+    select {
+        width: 100%;
+        padding: 14px 16px;
+        margin-bottom: 22px;
+        border: 1px solid #0A1D37;
+        border-radius: 8px;
+        background: rgba(30, 60, 100, 0.9);
+        color: #FFFFFF;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="text"]:focus,
+    input[type="file"]:focus,
+    input[type="color"]:focus,
+    select:focus {
+        background: rgba(40, 80, 130, 0.9);
+        transform: scale(1.02);
+        outline: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .checkbox-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 22px;
+        margin-bottom: 25px;
+    }
+
+    .checkbox-container button {
+        width: auto;
+        padding: 10px 20px;
+        margin-right: 10px;
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: rgba(30, 60, 100, 0.9);
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        border: 1px solid #0A1D37;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="checkbox"]:checked {
+        background: linear-gradient(135deg, #3C5B8E, #4A6FA5);
+    }
+
+    input[type="checkbox"]:checked::after {
+        content: '✔';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
+        border: 1px solid #0A1D37;
+        border-radius: 8px;
+        color: #FFFFFF;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 15px rgba(60, 91, 142, 0.4);
+    }
+
+    button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+        transition: all 0.6s ease;
+    }
+
+    button:hover::before {
+        left: 100%;
+    }
+
+    button:hover {
+        background: linear-gradient(90deg, #2A3C5F, #3C5B8E);
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(60, 91, 142, 0.6);
+    }
+
+    .reset-button {
+        background: linear-gradient(90deg, #D32F2F, #E64A4A);
+        border: 1px solid #8B1A1A;
+    }
+
+    .reset-button:hover {
+        background: linear-gradient(90deg, #B02323, #D32F2F);
+    }
+
+    .about-blank-button {
+        background: linear-gradient(90deg, #2A6F97, #4096C1);
+        border: 1px solid #1A3D5C;
+        margin-top: 20px;
+    }
+
+    .about-blank-button:hover {
+        background: linear-gradient(90deg, #1E506F, #2A6F97);
+    }
+
+    .legal-tabs {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .legal-tab {
+        padding: 10px 25px;
+        background: linear-gradient(90deg, #1A3559, #2A4366);
+        border: 1px solid #0A1D37;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #FFFFFF;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .legal-tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .legal-tab:hover::before {
+        left: 100%;
+    }
+
+    .legal-tab:hover, .legal-tab.active {
+        background: linear-gradient(90deg, #3C5B8E, #4A6FA5);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .legal-section {
+        display: none;
+    }
+
+    .legal-section.active {
+        display: block;
+    }
+
+    hr {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        margin: 30px 0;
+    }
+
+    @media (max-width: 768px) {
+        .settings-container {
+            grid-template-columns: 1fr;
+            padding: 15px;
+            height: auto;
+        }
+
+        .tabs {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px;
+        }
+
+        .tab {
+            padding: 8px 14px;
+            font-size: 0.95rem;
+            border-radius: 10px;
+        }
+
+        .tab:hover, .tab.active {
+            transform: translateY(-3px);
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+    }
+    </style>
 </head>
 <body>
-    <!-- HTML content remains unchanged -->
     <div class="god-rays"></div>
     <div class="settings-container">
         <h1>Settings</h1>
@@ -451,7 +455,6 @@ hr {
             <button class="tab" data-tab="panic">Panic Button</button>
             <button class="tab" data-tab="legal">Legal</button>
         </div>
-       
 
         <div class="content">
             <!-- Cloaking Section -->
@@ -477,11 +480,8 @@ hr {
                     </div>
                 </div>
                 <button id="openAboutBlank" class="about-blank-button">Open About:blank</button>
-            </div>
-
-            <!-- Account Section -->
-            <div class="section" id="account">
-                <h2>Account Settings</h2>
+                <hr>
+                <h2>Tab Cloaking</h2>
                 <p>Customize your site title and favicon.</p>
                 <label for="sitePreset">Select Preset:</label>
                 <select id="sitePreset">
@@ -498,10 +498,31 @@ hr {
                 <button id="saveSettings">Save Settings</button>
             </div>
 
+            <!-- Account Section -->
+            <div class="section" id="account">
+                <h2>Account Settings</h2>
+                <p>Manage your account data.</p>
+                <label>Import/Export Data:</label>
+                <div class="checkbox-container">
+                    <button id="exportData">Export Data</button>
+                    <input type="file" id="importData" accept=".json">
+                </div>
+                <hr>
+                <label>Reset All Data:</label>
+                <button id="resetAllData" class="reset-button">Reset All Data</button>
+            </div>
+
             <!-- Appearance Section -->
             <div class="section" id="appearance">
                 <h2>Appearance</h2>
                 <p>Adjust the visual style of the site.</p>
+                <label for="themeSelect">Select Theme:</label>
+                <select id="themeSelect">
+                    <option value="default">Default</option>
+                    <option value="swampy-green">Swampy Green</option>
+                    <option value="royal-purple">Royal Purple</option>
+                    <option value="blood-red">Blood Red</option>
+                </select>
                 <label for="backgroundColor">Background Color:</label>
                 <input type="color" id="backgroundColor" value="#0A1D37">
                 <button id="saveAppearance">Save Appearance</button>
@@ -530,9 +551,8 @@ hr {
                     <h3>Privacy Policy</h3>
                     <p>Our privacy policy details will be displayed here...</p>
                     <h1>PRIVACY NOTICE</h1>
-    <p>Last updated November 26, 2024</p>
-
-    <p>This Privacy Notice for Pete Zah Games ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
+                    <p>Last updated November 26, 2024</p>
+                    <p>This Privacy Notice for Pete Zah Games ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
     <ul>
         <li>Visit our website at petezahgames.com, or any website of ours that links to this Privacy Notice</li>
         <li>Use Gaming site. Pete Zah Games</li>
@@ -793,11 +813,14 @@ hr {
 
     <h2>15. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
     <p>Based on the applicable laws of your country or state of residence in the US, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. To request to review, update, or delete your personal information, please fill out and submit a data subject access request.</p>
+               
+                    <!-- Privacy Policy content remains unchanged; truncated for brevity -->
                 </div>
                 <div class="legal-section" id="dmca">
                     <h3>DMCA</h3>
                     <p>DMCA notice details will be displayed here...</p>
                     <p>If you believe that any copyright infringement exists on the Site, please use the following process to notify us. We will act expeditiously to remove infringing material once informed. All claims of copyright infringement should be in writing and should be directed to: E-mail: contact@petezahgaes.com. Your notice must contain the following information: Your physical or electronic signature (as either the owner of an exclusive right that is allegedly infringed or as a person authorized to act on behalf of such owner). Identification of the copyrighted work claimed to have been infringed or, if multiple copyrighted works at a single online site are covered by a single claim, a representative list of such works at that online site. Identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled and information reasonably sufficient to permit us to locate the material. Information reasonably sufficient to permit us to contact you, such as an address, telephone number and, if available, an electronic mail address. A statement that you believe in good faith that use of the material in the manner complained of is not authorized by the copyright owner, its agent or the law. A statement that the information in the notice is accurate and that, under penalty of perjury, you are the owner of an exclusive right that is allegedly infringed or are authorized to act on behalf of such owner. Once Informed we will get the content off as soon as we can.</p>
+                    <!-- DMCA content remains unchanged; truncated for brevity -->
                 </div>
             </div>
 
@@ -808,8 +831,6 @@ hr {
                 <button id="resetSettings" class="reset-button">Reset All Settings</button>
             </div>
         </div>
-    </div>
-    
     </div>
     <script src="/storage/js/settings.js"></script>
 </body>

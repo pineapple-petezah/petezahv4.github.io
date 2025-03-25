@@ -445,8 +445,8 @@
 
         .partners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Reduced from 250px */
+    gap: 15px; /* Slightly smaller gap */
     padding: 10px;
 }
 
@@ -457,8 +457,9 @@
     background: rgba(20, 45, 75, 0.5);
     border: 2px solid #08152A;
     border-radius: 12px;
-    padding: 15px;
+    padding: 10px; /* Reduced from 15px */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Added cursor pointer */
 }
 
 .partner-item:hover {
@@ -467,17 +468,17 @@
 }
 
 .partner-image {
-    max-width: 200px;
-    max-height: 150px;
-    border-radius: 10px;
+    width: 100px; /* Fixed width for circular images */
+    height: 100px; /* Fixed height for circular images */
+    border-radius: 50%; /* Makes images circular */
     border: 2px solid #08152A;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    object-fit: contain;
+    object-fit: cover; /* Changed to cover to maintain aspect ratio */
     margin-bottom: 10px;
 }
 
 .partner-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem; /* Slightly smaller font */
     color: #FFFFFF;
     font-weight: 600;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
@@ -585,37 +586,37 @@
                 <h2>Partners</h2>
                 <div class="partners-grid">
                     <!-- Example partner 1 -->
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://benrogo.net';">
                         <img src="/storage/images/main/benrogo.png" alt="Benrogo" class="partner-image">
                         <h3 class="partner-title">Benrogo</h3>
                     </div>
                     <!-- Example partner 2 -->
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://benrogo.net';">
                         <img src="/storage/images/main/flage.png" alt="Camo" class="partner-image">
                         <h3 class="partner-title">Camouflage</h3>
                     </div>
                     <!-- Add more partner-item blocks as needed -->
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://sites.google.com/view/fatality-void';">
                         <img src="/storage/images/main/orbiton.webp" alt="Orbiton" class="partner-image">
                         <h3 class="partner-title">Orbiton</h3>
                     </div>
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://ixl.brunys.org';">
                         <img src="/storage/images/main/brunys.ico" alt="Brunys" class="partner-image">
                         <h3 class="partner-title">Brunysixlwork</h3>
                     </div>
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://ajhmath.org';">
                         <img src="/storage/images/main/ajh.webp" alt="AJH" class="partner-image">
                         <h3 class="partner-title">AJH Vault</h3>
                     </div>
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://vortexos.net';">
                         <img src="/storage/images/main/vortex.png" alt="Vortex" class="partner-image">
                         <h3 class="partner-title">Vortex</h3>
                     </div>
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://geometrylearningv3.neocities.org';">
                         <img src="/storage/images/main/marki.webp" alt="GL" class="partner-image">
                         <h3 class="partner-title">GL Series</h3>
                     </div>
-                    <div class="partner-item">
+                    <div class="partner-item" onclick="window.location='https://lupinevault.com';">
                         <img src="/storage/images/main/lupine.webp" alt="Lupine" class="partner-image">
                         <h3 class="partner-title">Lupinevault</h3>
                     </div>

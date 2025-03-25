@@ -1,10 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
+    // DOM Elements (dynamically checked to work with any page)
     const elements = {
-        tabs: document.querySelectorAll('.tab'),
-        sections: document.querySelectorAll('.section'),
-        legalTabs: document.querySelectorAll('.legal-tab'),
-        legalSections: document.querySelectorAll('.legal-section'),
+        tabs: document.querySelectorAll('.tab') || [],
+        sections: document.querySelectorAll('.section') || [],
+        legalTabs: document.querySelectorAll('.legal-tab') || [],
+        legalSections: document.querySelectorAll('.legal-section') || [],
         beforeUnloadToggle: document.getElementById('beforeUnloadToggle'),
         autocloakToggle: document.getElementById('autocloakToggle'),
         blockHeadersToggle: document.getElementById('blockHeadersToggle'),
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sitePreset: document.getElementById('sitePreset'),
         siteTitle: document.getElementById('siteTitle'),
         siteLogo: document.getElementById('siteLogo'),
+        themeSelect: document.getElementById('themeSelect'),
         backgroundColor: document.getElementById('backgroundColor'),
         panicKey: document.getElementById('panicKey'),
         panicUrl: document.getElementById('panicUrl'),
@@ -20,26 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
         savePanicSettings: document.getElementById('savePanicSettings'),
         resetSettings: document.getElementById('resetSettings'),
         openAboutBlank: document.getElementById('openAboutBlank'),
+        exportData: document.getElementById('exportData'),
+        importData: document.getElementById('importData'),
+        resetAllData: document.getElementById('resetAllData'),
     };
 
     // Presets with matching favicons
     const presets = {
-        classroom: {
-            title: 'Google Classroom',
-            favicon: 'https://ssl.gstatic.com/classroom/favicon.ico'
-        },
-        schoology: {
-            title: 'Schoology',
-            favicon: 'https://asset-cdn.schoology.com/sites/all/themes/schoology_theme/favicon.ico'
-        },
-        google: {
-            title: 'Google',
-            favicon: 'https://www.google.com/favicon.ico'
-        },
-        petezah: {
-            title: 'PeteZah',
-            favicon: '/storage/images/logo-png-removebg-preview.png'
-        }
+        classroom: { title: 'Google Classroom', favicon: 'https://ssl.gstatic.com/classroom/favicon.ico' },
+        schoology: { title: 'Schoology', favicon: 'https://asset-cdn.schoology.com/sites/all/themes/schoology_theme/favicon.ico' },
+        google: { title: 'Google', favicon: 'https://www.google.com/favicon.ico' },
+        petezah: { title: 'PeteZah', favicon: '/storage/images/logo-png-removebg-preview.png' }
+    };
+
+    // Themes
+    const themes = {
+        'default': '#0A1D37',
+        'swampy-green': '#2E4A2E',
+        'royal-purple': '#4B2E5A',
+        'blood-red': '#5A1E1E'
     };
 
     // Utility Functions
@@ -53,10 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedBackground = localStorage.getItem('backgroundColor');
         if (savedBackground) document.body.style.backgroundColor = savedBackground;
 
-        // Apply anti-right click globally
         applyRightClickProtection();
-        
-        // Apply anti-close
         if (localStorage.getItem('beforeUnload') === 'true') {
             window.addEventListener('beforeunload', beforeUnloadHandler);
         } else {
@@ -65,16 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyRightClickProtection = () => {
-        // Always remove the handler first to avoid duplicate listeners
         document.removeEventListener('contextmenu', rightClickHandler);
-        // Apply it if the setting is enabled
         if (localStorage.getItem('disableRightClick') === 'true') {
             document.addEventListener('contextmenu', rightClickHandler);
         }
     };
 
     const broadcastSettingsChange = () => {
-        // Notify all tabs/windows to reload
         localStorage.setItem('settingsUpdated', Date.now().toString());
     };
 
@@ -89,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.backgroundColor) {
             elements.backgroundColor.value = localStorage.getItem('backgroundColor') || '#0A1D37';
             document.body.style.backgroundColor = elements.backgroundColor.value;
+        }
+        if (elements.themeSelect) {
+            const savedTheme = localStorage.getItem('theme') || 'default';
+            elements.themeSelect.value = savedTheme;
+            document.body.style.backgroundColor = themes[savedTheme];
         }
         applyGlobalSettings();
     };
@@ -121,13 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please allow popups for about:blank to work.');
             return;
         }
-
         popup.document.title = localStorage.getItem('siteTitle') || 'Home';
         const favicon = popup.document.createElement('link');
         favicon.rel = 'icon';
         favicon.href = localStorage.getItem('siteLogo') || '/storage/images/logo-png-removebg-preview.png';
         popup.document.head.appendChild(favicon);
-
         const iframe = popup.document.createElement('iframe');
         iframe.src = '/index.html';
         iframe.style.cssText = 'width: 100vw; height: 100vh; border: none;';
@@ -140,6 +138,45 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
     };
 
+    const exportData = () => {
+        const data = { localStorage: { ...localStorage }, cookies: document.cookie };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'settings-export.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const importData = (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const data = JSON.parse(e.target.result);
+            localStorage.clear();
+            Object.keys(data.localStorage).forEach(key => localStorage.setItem(key, data.localStorage[key]));
+            document.cookie = data.cookies;
+            loadSettings();
+            applyGlobalSettings();
+            broadcastSettingsChange();
+        };
+        reader.readAsText(file);
+    };
+
+    const resetAllData = () => {
+        if (confirm('Are you sure you want to reset all data? This will clear all settings, cookies, and local storage.')) {
+            localStorage.clear();
+            document.cookie.split(';').forEach(cookie => {
+                document.cookie = cookie.split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+            });
+            loadSettings();
+            applyGlobalSettings();
+            broadcastSettingsChange();
+        }
+    };
+
     // Event Handlers
     const beforeUnloadHandler = (e) => {
         e.preventDefault();
@@ -148,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rightClickHandler = (e) => e.preventDefault();
 
-    // Settings save handlers with broadcast
     if (elements.beforeUnloadToggle) {
         elements.beforeUnloadToggle.addEventListener('change', () => {
             localStorage.setItem('beforeUnload', elements.beforeUnloadToggle.checked);
@@ -213,6 +249,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (elements.themeSelect) {
+        elements.themeSelect.addEventListener('change', () => {
+            const theme = elements.themeSelect.value;
+            localStorage.setItem('theme', theme);
+            document.body.style.backgroundColor = themes[theme];
+            elements.backgroundColor.value = themes[theme];
+            localStorage.setItem('backgroundColor', themes[theme]);
+            broadcastSettingsChange();
+        });
+    }
+
     if (elements.saveAppearance) {
         elements.saveAppearance.addEventListener('click', () => {
             localStorage.setItem('backgroundColor', elements.backgroundColor.value);
@@ -224,6 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elements.backgroundColor) {
         elements.backgroundColor.addEventListener('input', () => {
             document.body.style.backgroundColor = elements.backgroundColor.value;
+            localStorage.setItem('theme', 'custom'); // Reset theme to custom on manual color change
+            if (elements.themeSelect) elements.themeSelect.value = 'default';
         });
     }
 
@@ -250,7 +299,18 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.openAboutBlank.addEventListener('click', openAboutBlank);
     }
 
-    // Panic key handler (works globally)
+    if (elements.exportData) {
+        elements.exportData.addEventListener('click', exportData);
+    }
+
+    if (elements.importData) {
+        elements.importData.addEventListener('change', importData);
+    }
+
+    if (elements.resetAllData) {
+        elements.resetAllData.addEventListener('click', resetAllData);
+    }
+
     window.addEventListener('keydown', (e) => {
         const panicKey = localStorage.getItem('panicKey');
         const panicUrl = localStorage.getItem('panicUrl');
@@ -259,10 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Listen for settings changes from other tabs
     window.addEventListener('storage', (e) => {
         if (e.key === 'settingsUpdated') {
-            applyRightClickProtection(); // Ensure right-click protection updates dynamically
+            applyRightClickProtection();
             location.reload();
         }
     });
@@ -277,6 +336,5 @@ document.addEventListener('DOMContentLoaded', () => {
         autocloak();
     }
 
-    // Ensure anti-right click is applied on page load for all pages
     applyRightClickProtection();
 });

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements (dynamically checked to work with any page)
+    // DOM Elements (dynamically checked to work with any page).  This took FOREVER.
     const elements = {
         tabs: document.querySelectorAll('.tab') || [],
         sections: document.querySelectorAll('.section') || [],

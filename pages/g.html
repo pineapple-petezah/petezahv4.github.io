@@ -32,8 +32,6 @@
 			content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah"
 		/>
     <style>
-<style>
-<style>
 body {
     display: flex;
     flex-direction: column;
@@ -53,7 +51,7 @@ body::-webkit-scrollbar {
     display: none;  /* Hide scrollbar */
 }
 
-	    	.god-rays {
+.god-rays {
     position: fixed;
     top: 0;
     left: 0;
@@ -112,7 +110,7 @@ body::-webkit-scrollbar {
 .search-container input:focus {
     background: #333;
     outline: none;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);  /* Focused shadow */
+    box-shadow: 0 0 15px rgba(255, 255/pubsli255, 0.4);  /* Focused shadow */
     border-color: #0066cc;  /* Light blue focus border */
 }
 
@@ -126,18 +124,17 @@ body::-webkit-scrollbar {
     padding-bottom: 30px;  /* Added bottom padding for smoother look */
 }
 
+/* Image Item Styles */
 .image-item {
     position: relative;
-    width: 250px;
+    width: 250px;  /* Slightly larger image items */
     height: 220px;
     overflow: hidden;
     transition: transform 0.4s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
+    border-radius: 10px;  /* Slightly less rounded corners */
     background-color: #222;
-    border: 2px solid #fff;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-    animation: slideInFromLeft 0.5s ease-out forwards;
-    animation-delay: calc(var(--order) * 0.1s);
+    border: 2px solid #fff;  /* Skinny white border */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);  /* Deeper shadow for a more modern look */
 }
 
 .image-item:hover {
@@ -190,218 +187,195 @@ body::-webkit-scrollbar {
     gap: 30px;  /* More space between image items */
 }
 
-
-
 .appImage {
-	opacity: 0;
-	animation: fade-in-bottom 1s;
+    opacity: 0;
+    animation: fade-in-bottom 1s;
 }
 
 .appsContainer {
-	top: 65px;
-	position: absolute;
-	width: 1070px;
-	display: inline-flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	gap: 20px;
-	justify-content: flex-start;
+    top: 65px;
+    position: absolute;
+    width: 1070px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
 }
 
 .appsContainer img {
-	width: 198px;
-	height: 128px;
-	object-fit: cover;
-	border-radius: 14px;
-	cursor: pointer;
-	transition: 0.2s ease-in-out !important;
+    width: 198px;
+    height: 128px;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out !important;
 }
 
 .appsContainer img:hover {
-	transform: scale(1.05);
-	transition: 0.2s ease-in-out !important;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out !important;
 }
 
 .appsContainer img:active {
-	transition: 0s;
-	outline: 2px solid var(--image-outline-color);
+    transition: 0s;
+    outline: 2px solid var(--image-outline-color);
 }
 
 .gameImage {
-	opacity: 0;
-	animation: fade-in-bottom 1s;
+    opacity: 0;
+    animation: fade-in-bottom 1s;
 }
 
 .appsContainer {
-	opacity: 1;
+    opacity: 1;
 }
 
 .gameContain {
-	top: 65px;
-	position: absolute;
-	width: 1070px;
-	display: inline-flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	gap: 20px;
-	justify-content: flex-start;
+    top: 65px;
+    position: absolute;
+    width: 1070px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
 }
 
 .gameContain img {
-	width: 198px;
-	height: 128px;
-	object-fit: cover;
-	border-radius: 14px;
-	cursor: pointer;
-	transition: 0.2s ease-in-out !important;
+    width: 198px;
+    height: 128px;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out !important;
 }
 
 .gameContain img:hover {
-	transform: scale(1.05);
-	transition: 0.2s ease-in-out !important;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out !important;
 }
 
 .gameContain img:active {
-	transition: 0s;
-	outline: 2px solid var(--image-outline-color);
+    transition: 0s;
+    outline: 2px solid var(--image-outline-color);
 }
 
 .scrolltop {
-	background-color: var(--scrolltop-background-color);
-	backdrop-filter: var(--scrolltop-backdrop-filter);
-	width: 49px;
-	height: 49px;
-	border-radius: 50%;
-	position: fixed;
-	right: 20px;
-	bottom: 20px;
-	z-index: 9999;
-	transition: 0.3s ease-in-out all;
-	opacity: 0;
+    background-color: var(--scrolltop-background-color);
+    backdrop-filter: var(--scrolltop-backdrop-filter);
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    transition: 0.3s ease-in-out all;
+    opacity: 0;
 }
 
 .scrolltop:hover {
-	transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .scrolltop span.material-symbols-outlined {
-	justify-content: center;
-	transform: translateY(-10px);
-	font-size: 30px;
+    justify-content: center;
+    transform: translateY(-10px);
+    font-size: 30px;
 }
-
 
 .gameSearchInput,
 .appsSearchInput,
 #gointospace {
-	padding-left: 40px;
+    padding-left: 40px;
 }
 
 .search-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	text-align: center;
-	border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    border-radius: 30px;
 }
 
 .search-header__input {
-	font-family: 'DM Sans';
-	font-size: 16px;
-	background-color: var(--input-background-color);
-	border: solid 0.5px var(--border-color);
-	color: var(--text-color);
-	padding: 0.7rem 1rem;
-	border-radius: 25px;
-	width: 240px;
-	height: 20px;
-	transition: all ease-in-out 0.5s;
-	margin-right: -2rem;
-	opacity: 1;
-	text-align: center;
+    font-family: 'DM Sans';
+    font-size: 16px;
+    background-color: var(--input-background-color);
+    border: solid 0.5px var(--border-color);
+    color: var(--text-color);
+    padding: 0.7rem 1rem;
+    border-radius: 25px;
+    width: 240px;
+    height: 20px;
+    transition: all ease-in-out 0.5s;
+    margin-right: -2rem;
+    opacity: 1;
+    text-align: center;
 }
 
 .search-header__input:not(#gointospace2):hover,
 .search-header__input:not(#gointospace2):focus {
-	box-shadow:
-		10px 5px 40px -10px var(--dshadow1),
-		-14px -4px 40px -10px var(--dshadow2);
-	padding-left: calc(+50px) !important;
-	padding-right: calc(+50px) !important;
+    box-shadow:
+        10px 5px 40px -10px var(--dshadow1),
+        -14px -4px 40px -10px var(--dshadow2);
+    padding-left: calc(+50px) !important;
+    padding-right: calc(+50px) !important;
 }
 
 .search-header__input:focus {
-	outline: none;
-	background-color: #0a0a0af0;
+    outline: none;
+    background-color: #0a0a0af0;
 }
 
 .search-header__input::-webkit-input-placeholder {
-	font-weight: 200;
-	color: #868686;
-	font-family: 'DM Sans';
+    font-weight: 200;
+    color: #868686;
+    font-family: 'DM Sans';
 }
 
 .search-header__input:focus + .search-header__button {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .search-header__button {
-	border: none;
-	background-color: transparent;
-	margin-top: 0.1em;
+    border: none;
+    background-color: transparent;
+    margin-top: 0.1em;
 }
 
 .search-header__button:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .search-header__icon {
-	height: 1.3em;
-	width: 1.3em;
-	fill: #3a3a3a;
+    height: 1.3em;
+    width: 1.3em;
+    fill: #3a3a3a;
 }
 
 .searchEngineIcon {
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	object-fit: cover;
-	position: relative;
-	z-index: 9999999;
-	margin-right: -35px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 9999999;
+    margin-right: -35px;
 }
-
-
 
 .image-item {
     position: relative;
-    width: 250px;
-    height: 220px;
+    width: 200px;
+    height: 170px;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.3s ease; /* Keep the transition */
+    transition: transform 0.3s;
     border-radius: 10px;
-    background-color: #222;
-    border: 2px solid #fff;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-    animation: fadeInUp 0.5s ease-out forwards; /* Entrance animation */
-    animation-delay: calc(var(--order) * 0.1s);
+    animation: slideInFromLeft 0.5s ease-out forwards;
 }
 
 .image-item:hover {
-    transform: scale(1.05); /* Ensure hover effect still works */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-}
-
-/* Keep the image hover effect too */
-.image-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.4s ease; /* Add transition for image */
-}
-
-.image-item:hover img {
     transform: scale(1.1);
 }
 
@@ -432,19 +406,19 @@ body::-webkit-scrollbar {
     border-bottom-right-radius: 10px;
 }        
 
-	    .randomBtn {
-  position: fixed; 
-  top: 20px; 
-  left: 20px; 
-  z-index: 9999; 
-  padding: 10px 20px; 
-  background-color: #141414; 
-  color: white;
-  border: 1px solid white;
-  font-size: 16px; 
-  cursor: pointer; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+.randomBtn {
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    z-index: 9999; 
+    padding: 10px 20px; 
+    background-color: #141414; 
+    color: white;
+    border: 1px solid white;
+    font-size: 16px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
 }
 
 .randomBtn:hover {
@@ -452,77 +426,40 @@ body::-webkit-scrollbar {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);  
 }
 
-	    /* Filter Dropdown Styles */
-        .filter-container {
-            position: fixed;
-            top: 5px;
-            right: 20px;
-            z-index: 1000;
-            background-color: #141414;
-            padding: 10px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        }
-        
-        .filter-container select {
-            background-color: #222;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 2px solid #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .filter-container select:hover {
-            background-color: #333;
-        }
-
-	.ad-container-horizantal {
-		width: 100%;
-		height: 200px;
-		border: 3px solid red;
-		background-color: #000e24;
-		z-index: -2;
-	}
-
-	@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Filter Dropdown Styles */
+.filter-container {
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #141414;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes slideInFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.filter-container select {
+    background-color: #222;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.filter-container select:hover {
+    background-color: #333;
 }
 
-</style>
-
-</style>
+.ad-container-horizantal {
+    width: 100%;
+    height: 200px;
+    border: 3px solid red;
+    background-color: #000e24;
+    z-index: -2;
+}
 
     </style>
 </head>

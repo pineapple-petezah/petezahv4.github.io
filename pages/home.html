@@ -238,20 +238,6 @@
             box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
         }
 
-        /* New Styles for the Large Image */
-.large-image-container {
-    position: absolute;
-    top: 60%; /* Moved down slightly */
-    right: 200px; /* Moved 400px to the left */
-    transform: translateY(-50%);
-    text-align: center;
-    z-index: 5;
-    padding: 20px;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
 
 .large-image-container:hover {
     transform: translateY(-50%) scale(1.05);
@@ -393,10 +379,10 @@
     }
 }
 
-/* Updated keyframe for sliding in from right */
+/* Animation for sliding in from right */
 @keyframes slideInFromRight {
     from { 
-        transform: translateX(100px); /* Starts 100px off to the right */
+        transform: translateX(100px); /* Slide in from 100px to the right */
         opacity: 0;
     }
     to { 
@@ -405,11 +391,27 @@
     }
 }
 
-/* Updated large-image-container animation */
+/* Updated large-image-container styles */
 .large-image-container {
-    animation: slideInFromRight 0.8s ease-out forwards; /* Still 0.8s duration */
-    animation-delay: 0.4s; /* Same delay */
+    position: absolute;
+    top: 60%; /* Keep original top position */
+    right: 200px; /* Keep original right position */
+    transform: translateY(-50%); /* Maintain vertical centering */
+    text-align: center;
+    z-index: 5;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    animation: slideInFromRight 0.8s ease-out forwards;
+    animation-delay: 0.4s;
     opacity: 0; /* Initial state before animation */
+}
+
+/* Ensure hover effect doesn't interfere with position */
+.large-image-container:hover {
+    transform: translateY(-50%) scale(1.05); /* Combine with original translateY */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
 /* Apply animations to elements */

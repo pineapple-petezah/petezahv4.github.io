@@ -375,15 +375,33 @@ body::-webkit-scrollbar {
 
 .image-item {
     position: relative;
-    width: 200px;
-    height: 170px;
+    width: 250px;
+    height: 220px;
     overflow: hidden;
-    transition: transform 0.3s;
+    transition: transform 0.4s ease, box-shadow 0.3s ease; /* Keep the transition */
     border-radius: 10px;
-    animation: slideInFromLeft 0.5s ease-out forwards;
+    background-color: #222;
+    border: 2px solid #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    animation: fadeInUp 0.5s ease-out forwards; /* Entrance animation */
+    animation-delay: calc(var(--order) * 0.1s);
 }
 
 .image-item:hover {
+    transform: scale(1.05); /* Ensure hover effect still works */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Keep the image hover effect too */
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.4s ease; /* Add transition for image */
+}
+
+.image-item:hover img {
     transform: scale(1.1);
 }
 

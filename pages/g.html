@@ -380,6 +380,7 @@ body::-webkit-scrollbar {
     overflow: hidden;
     transition: transform 0.3s;
     border-radius: 10px;
+    animation: slideInFromLeft 0.5s ease-out forwards;
 }
 
 .image-item:hover {
@@ -492,20 +493,7 @@ body::-webkit-scrollbar {
             max-width: 1200px; /* Optional: limits container width */
         }
 
-        /* Update image-item base style */
-        .image-item {
-            position: relative;
-            width: 250px;
-            height: 220px;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.3s ease;
-            border-radius: 10px;
-            background-color: #222;
-            border: 2px solid #fff;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-            opacity: 0; /* Start hidden for animation */
-            animation: slideInFromLeft 0.5s ease-out forwards;
-        }
+
 </style>
 
 </style>

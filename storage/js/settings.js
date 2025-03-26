@@ -53,18 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedLogo = localStorage.getItem('siteLogo');
         if (savedLogo) updateFavicon(savedLogo);
 
-        // Apply background settings to body (affects all pages where script runs)
-        const savedBackgroundColor = localStorage.getItem('backgroundColor');
+        // Apply background settings consistently
         const savedBackgroundImage = localStorage.getItem('backgroundImage');
+        const savedBackgroundColor = localStorage.getItem('backgroundColor') || '#0A1D37';
+        
         if (savedBackgroundImage) {
             document.body.style.backgroundImage = `url(${savedBackgroundImage})`;
             document.body.style.backgroundSize = 'cover';
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';
-            document.body.style.backgroundColor = ''; // Clear color if image is set
+            document.body.style.backgroundColor = ''; // Ensure color doesn't override image
         } else {
             document.body.style.backgroundImage = 'none';
-            document.body.style.backgroundColor = savedBackgroundColor || '#0A1D37';
+            document.body.style.backgroundColor = savedBackgroundColor;
         }
 
         applyRightClickProtection();
@@ -99,11 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const broadcastSettingsChange = () => {
         localStorage.setItem('settingsUpdated', Date.now().toString());
-        // Ensure all pages update by reapplying settings
-        applyGlobalSettings();
+        applyGlobalSettings(); // Apply immediately to current page
     };
 
     const loadSettings = () => {
+        // Load and apply all settings
         if (elements.beforeUnloadToggle) elements.beforeUnloadToggle.checked = localStorage.getItem('beforeUnload') === 'true';
         if (elements.autocloakToggle) elements.autocloakToggle.checked = localStorage.getItem('autocloak') === 'true';
         if (elements.blockHeadersToggle) elements.blockHeadersToggle.checked = localStorage.getItem('blockHeaders') === 'true';
@@ -113,29 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.panicUrl) elements.panicUrl.value = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
         if (elements.backgroundColor) {
             elements.backgroundColor.value = localStorage.getItem('backgroundColor') || '#0A1D37';
-            if (!localStorage.getItem('backgroundImage')) {
-                document.body.style.backgroundColor = elements.backgroundColor.value;
-            }
         }
         if (elements.themeSelect) {
             const savedTheme = localStorage.getItem('theme') || 'default';
             elements.themeSelect.value = savedTheme;
-            if (!localStorage.getItem('backgroundImage')) {
-                document.body.style.backgroundColor = themes[savedTheme];
-            }
-        }
-        if (elements.backgroundImage && localStorage.getItem('backgroundImage')) {
-            document.body.style.backgroundImage = `url(${localStorage.getItem('backgroundImage')})`;
-            document.body.style.backgroundSize = 'cover';
-            document.body.style.backgroundRepeat = 'no-repeat';
-            document.body.style.backgroundPosition = 'center';
         }
         if (elements.disableParticles) {
-            const savedParticleState = localStorage.getItem('disableParticles') === 'true';
-            elements.disableParticles.checked = savedParticleState;
-            applyParticleSettings();
+            elements.disableParticles.checked = localStorage.getItem('disableParticles') === 'true';
         }
-        applyGlobalSettings(); // Apply settings immediately on load
+        
+        // Ensure background is applied on load
+        applyGlobalSettings();
+        console.log('Settings loaded:', { 
+            backgroundImage: localStorage.getItem('backgroundImage'), 
+            backgroundColor: localStorage.getItem('backgroundColor') 
+        }); // Debugging
     };
 
     const updateFavicon = (url) => {
@@ -314,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     localStorage.setItem('backgroundImage', e.target.result);
+                    console.log('Background image saved:', e.target.result); // Debugging
                     applyGlobalSettings();
                     broadcastSettingsChange();
                 };
@@ -348,7 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.style.backgroundSize = 'cover';
                     document.body.style.backgroundRepeat = 'no-repeat';
                     document.body.style.backgroundPosition = 'center';
-                    document.body.style.backgroundColor = ''; // Clear color when image is set
+                    document.body.style.backgroundColor = '';
+                    console.log('Background image set:', e.target.result); // Debugging
                 };
                 reader.readAsDataURL(elements.backgroundImage.files[0]);
             }
@@ -360,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('backgroundImage');
             document.body.style.backgroundImage = 'none';
             document.body.style.backgroundColor = elements.backgroundColor.value || '#0A1D37';
+            console.log('Background image removed'); // Debugging
             broadcastSettingsChange();
         });
     }
@@ -417,15 +413,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('storage', (e) => {
         if (e.key === 'settingsUpdated') {
+            console.log('Storage event triggered, reapplying settings'); // Debugging
+            applyGlobalSettings();
             applyRightClickProtection();
             applyParticleSettings();
-            applyGlobalSettings(); // Ensure background updates on all pages
-            // Optional: Uncomment to force reload if needed
-            // location.reload();
         }
     });
 
     // Initialization
+    console.log('Initializing settings'); // Debugging
     loadSettings();
     handleTabSwitch(elements.tabs, elements.sections, 'data-tab');
     handleTabSwitch(elements.legalTabs, elements.legalSections, 'data-legal');
@@ -434,8 +430,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!inIframe && elements.autocloakToggle && elements.autocloakToggle.checked && !navigator.userAgent.includes('Firefox')) {
         autocloak();
     }
-
-    applyRightClickProtection();
-    applyParticleSettings();
-    applyGlobalSettings(); // Ensure initial application on all pages
 });
+
+// Event Handlers
+const beforeUnloadHandler = (e) => {
+    e.preventDefault();
+    e.returnValue = '';
+};
+
+const rightClickHandler = (e) => e.preventDefault();

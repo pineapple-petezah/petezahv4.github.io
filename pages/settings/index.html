@@ -607,6 +607,10 @@ input[type="file"] {
             <div class="section" id="appearance">
                 <h2>Appearance</h2>
                 <p>Adjust the visual style of the site.</p>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="disableParticles">
+                    <label for="disableParticles">Disable Particles</label>
+                </div>
                 <label for="themeSelect">Select Theme:</label>
                 <select id="themeSelect">
                     <option value="default">Default</option>
@@ -619,10 +623,6 @@ input[type="file"] {
                 <label for="backgroundImage">Background Image:</label>
                 <input type="file" id="backgroundImage" accept="image/*">
                 <button id="removeBackgroundImage">Remove Background Image</button>
-                <div class="checkbox-item">
-                    <input type="checkbox" id="disableParticles">
-                    <label for="disableParticles">Disable Particles</label>
-                </div>
                 <button id="saveAppearance">Save Appearance</button>
             </div>
 

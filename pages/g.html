@@ -467,6 +467,45 @@ body::-webkit-scrollbar {
 		background-color: #000e24;
 		z-index: -2;
 	}
+
+	    /* Add this new animation */
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Modify the game-container */
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding-top: 120px;
+            padding-bottom: 30px;
+            width: 100%;
+            max-width: 1200px; /* Optional: limits container width */
+        }
+
+        /* Update image-item base style */
+        .image-item {
+            position: relative;
+            width: 250px;
+            height: 220px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            background-color: #222;
+            border: 2px solid #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            opacity: 0; /* Start hidden for animation */
+            animation: slideInFromLeft 0.5s ease-out forwards;
+        }
 </style>
 
 </style>
@@ -1524,6 +1563,30 @@ function filterItems() {
                 }
             });
         }
+
+	    // New function to handle row animations
+        function applyRowAnimations() {
+            const container = document.getElementById('imageContainer');
+            const items = container.querySelectorAll('.image-item');
+            const containerWidth = container.offsetWidth;
+            const itemWidth = 250 + 30; // Width + gap
+            
+            // Calculate items per row
+            const itemsPerRow = Math.floor(containerWidth / itemWidth);
+            
+            items.forEach((item, index) => {
+                // Calculate row number (0-based)
+                const row = Math.floor(index / itemsPerRow);
+                // Apply delay based on row number (0.2s per row)
+                const delay = row * 0.2;
+                item.style.animationDelay = `${delay}s`;
+            });
+        }
+
+        // Run animations when page loads
+        window.addEventListener('load', applyRowAnimations);
+        // Re-run animations when window is resized
+        window.addEventListener('resize', applyRowAnimations);
 
     </script>
 	<script src="/storage/js/settings.js"></script>

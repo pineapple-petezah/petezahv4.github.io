@@ -393,16 +393,23 @@
     }
 }
 
-@keyframes bounceIn {
-    0% { 
-        transform: scale(0.5); /* Adjusted starting scale for quicker bounce */
+/* Updated keyframe for sliding in from right */
+@keyframes slideInFromRight {
+    from { 
+        transform: translateX(100px); /* Starts 100px off to the right */
         opacity: 0;
     }
-    60% { 
-        transform: scale(1.05);
+    to { 
+        transform: translateX(0);
         opacity: 1;
     }
-    100% { transform: scale(1); }
+}
+
+/* Updated large-image-container animation */
+.large-image-container {
+    animation: slideInFromRight 0.8s ease-out forwards; /* Still 0.8s duration */
+    animation-delay: 0.4s; /* Same delay */
+    opacity: 0; /* Initial state before animation */
 }
 
 /* Apply animations to elements */
@@ -413,12 +420,6 @@
 .image-shuffler {
     animation: slideInUp 0.7s ease-out forwards; /* Reduced from 1s to 0.7s */
     animation-delay: 0.2s; /* Reduced from 0.3s */
-    opacity: 0;
-}
-
-.large-image-container {
-    animation: bounceIn 0.8s ease-out forwards; /* Reduced from 1s to 0.8s */
-    animation-delay: 0.4s; /* Reduced from 0.6s */
     opacity: 0;
 }
 

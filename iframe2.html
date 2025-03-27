@@ -263,5 +263,44 @@
 
         updateFPS();
     </script>
+    <script>
+        // List of blocked IPs (you can expand this)
+        const blockedIPs = [
+            "70.17.106.102",
+            "other ip example",
+        ];
+
+        // Function to get user's IP and check it
+        async function checkIP() {
+            try {
+                // Fetch user's IP from ipify API
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                const userIP = data.ip;
+
+                // Check if IP is in blocked list
+                if (blockedIPs.includes(userIP)) {
+                    // Redirect to blocked page
+                    window.location.href = "/pages/other/blocked.html";
+                } else {
+                    // Show welcome message
+                    document.getElementById('mainContent').innerHTML = `
+                        <h1>Welcome</h1>
+                        <p>Your IP (${userIP}) is allowed.</p>
+                        <p>This is the main content of the website.</p>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+                document.getElementById('mainContent').innerHTML = `
+                    <h1>Error</h1>
+                    <p>Could not verify your IP. Please try again later.</p>
+                `;
+            }
+        }
+
+        // Run the IP check when page loads
+        window.onload = checkIP;
+    </script>
 </body>
 </html>

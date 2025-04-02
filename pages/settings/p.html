@@ -6,6 +6,7 @@
     <title>PeteZah | Profile</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0Hhonpy0AIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         * {
@@ -22,7 +23,7 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow: auto;
             position: relative;
         }
 
@@ -63,6 +64,9 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(77, 139, 245, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .login-button:hover {
@@ -126,6 +130,7 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 90%;
         }
 
         .profile-container:hover {
@@ -233,7 +238,9 @@
 </head>
 <body>
     <div class="god-rays"></div>
-    <button class="login-button" onclick="openLoginPopup()">Login</button>
+    <button class="login-button" onclick="openLoginPopup()">
+        <i class="fas fa-sign-in-alt"></i> Login
+    </button>
     
     <div id="loginPopup" class="popup">
         <button class="popup-close" onclick="closeLoginPopup()">×</button>

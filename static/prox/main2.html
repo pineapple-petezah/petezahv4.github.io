@@ -12,7 +12,6 @@
     <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
 
     <style>
-        <style>
     * {
         margin: 0;
         padding: 0;
@@ -26,7 +25,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        background-color: #05080f; /* Darker background */
+        background-color: #05080f;
         color: #d0d0d0;
     }
 
@@ -108,7 +107,7 @@
         align-items: center;
         background-color: #121929;
         padding: 4px 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Frail white border */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     }
 
@@ -188,7 +187,6 @@
         display: block;
     }
 </style>
-    </style>
 </head>
 <body>
     <div class="tabs" id="tabs">
@@ -212,14 +210,13 @@
         </div>
     </div>
     <div class="content-wrapper" id="content-wrapper">
-        <iframe class="tab-iframe active" src="/static/index.html" id="iframe-1"></iframe>
+        <iframe class="tab-iframe active" src="petezah://newtab" id="iframe-1"></iframe>
     </div>
 
     <script>
     let tabCount = 1;
-    const proxyPrefix = "https://petezahgames.com/static/embed.html#";
-    const settingsPrefix = "https://petezahgames.com/static/prox/settings";
-    let tabHistory = []; // Array to store tab visit history
+    const proxyPrefix = "/static/embed.html#";
+    let tabHistory = [];
 
     function selectTab(tabElement) {
         const tabs = document.querySelectorAll('.tab');
@@ -231,15 +228,13 @@
         const iframe = iframes[tabIndex];
         iframe.classList.add('active');
         updateSearchBar(iframe);
-        updateUrlForTab(iframe);
         
-        // Update tab history
         const currentTabIndex = tabIndex;
-        tabHistory = tabHistory.filter(index => index !== currentTabIndex); // Remove if already in history
-        tabHistory.push(currentTabIndex); // Add to end of history
+        tabHistory = tabHistory.filter(index => index !== currentTabIndex);
+        tabHistory.push(currentTabIndex);
     }
 
-    function addTab(url = "/static/index.html") {
+    function addTab(url = "petezah://newtab") {
         tabCount++;
         const tabsContainer = document.getElementById('tabs');
         const newTab = document.createElement('div');
@@ -263,11 +258,9 @@
         const tabIndex = [...tab.parentElement.children].indexOf(tab);
         const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
         
-        // Remove tab from history
         tabHistory = tabHistory.filter(index => index !== tabIndex);
         
         if (tab.classList.contains('active') && tabCount > 1) {
-            // Select last visited tab from history
             const lastVisitedIndex = tabHistory.length > 0 ? tabHistory[tabHistory.length - 1] : 0;
             const tabs = document.querySelectorAll('.tab');
             const nextTab = tabs[lastVisitedIndex];
@@ -295,34 +288,6 @@
         return proxifiedUrl;
     }
 
-    function updateSearchBar(iframe) {
-        iframe.onload = () => {
-            const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
-            document.getElementById('search-input').value = unproxifiedUrl;
-            const activeTab = document.querySelector('.tab.active');
-            updateTabName(iframe, activeTab);
-        };
-    }
-
-    function updateUrlForTab(iframe) {
-        let url = iframe.src;
-
-        // Replace /static/index.html, https://petezahgames.com/static/index.html, or blank screen with petezah://newtab
-        if (url === "https://petezahgames.com/static/index.html" || url === "/static/index.html" || url === "") {
-            history.pushState(null, "", "petezah://newtab");
-        }
-
-        // Replace certain proxified URLs with petezah://settings
-        if (url === "https://petezahgames.com/static/prox/settings" || url === "/static/prox/settings" || url === "/static/prox/settings.html") {
-            history.pushState(null, "", "petezah://settings");
-        }
-
-        // Update browser URL to match the selected tab's URL
-        else {
-            history.pushState(null, "", url);
-        }
-    }
-
     function search() {
         const input = document.getElementById('search-input').value.trim();
         if (!input) return;
@@ -332,16 +297,14 @@
         document.getElementById('search-input').value = url;
         const activeTab = document.querySelector('.tab.active');
         updateTabName(iframe, activeTab);
-        updateUrlForTab(iframe);
     }
 
     function goHome() {
         const iframe = document.querySelector('.tab-iframe.active');
-        iframe.src = "/static/index.html";
-        document.getElementById('search-input').value = "/static/index.html";
+        iframe.src = "petezah://newtab";
+        document.getElementById('search-input').value = "petezah://newtab";
         const activeTab = document.querySelector('.tab.active');
         activeTab.childNodes[0].textContent = "New Tab";
-        updateUrlForTab(iframe);
     }
 
     function goBack() {
@@ -365,7 +328,6 @@
         document.getElementById('search-input').value = "/static/prox/settings";
         const activeTab = document.querySelector('.tab.active');
         activeTab.childNodes[0].textContent = "Settings";
-        updateUrlForTab(iframe);
     }
 
     function toggleFullscreen() {
@@ -377,10 +339,18 @@
         }
     }
 
+    function updateSearchBar(iframe) {
+        iframe.onload = () => {
+            const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
+            document.getElementById('search-input').value = unproxifiedUrl === "petezah://newtab" ? "petezah://newtab" : unproxifiedUrl;
+            const activeTab = document.querySelector('.tab.active');
+            updateTabName(iframe, activeTab);
+        };
+    }
+
     const initialIframe = document.querySelector('.tab-iframe.active');
     const initialTab = document.querySelector('.tab.active');
     updateTabName(initialIframe, initialTab);
     </script>
 </body>
 </html>
-

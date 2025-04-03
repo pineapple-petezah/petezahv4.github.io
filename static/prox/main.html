@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport Jorge="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeteZah | Proxy</title>
     <link rel="icon" href="storage/images/logo-png-removebg-preview.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -12,6 +12,7 @@
     <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
 
     <style>
+        <style>
     * {
         margin: 0;
         padding: 0;
@@ -25,7 +26,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        background-color: #05080f;
+        background-color: #05080f; /* Darker background */
         color: #d0d0d0;
     }
 
@@ -107,7 +108,7 @@
         align-items: center;
         background-color: #121929;
         padding: 4px 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Frail white border */
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     }
 
@@ -187,6 +188,7 @@
         display: block;
     }
 </style>
+    </style>
 </head>
 <body>
     <div class="tabs" id="tabs">
@@ -285,6 +287,12 @@
         if (proxifiedUrl.startsWith(proxyPrefix)) {
             return proxifiedUrl.replace(proxyPrefix, "");
         }
+        if (proxifiedUrl === "/static/index.html") {
+            return "petezah://newtab";
+        }
+        if (proxifiedUrl === "/static/prox/settings") {
+            return "petezah://settings";
+        }
         return proxifiedUrl;
     }
 
@@ -294,7 +302,7 @@
         const iframe = document.querySelector('.tab-iframe.active');
         const url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
         iframe.src = `${proxyPrefix}${url}`;
-        document.getElementById('search-input').value = "petezah://newtab";
+        document.getElementById('search-input').value = getUnproxifiedUrl(`${proxyPrefix}${url}`);
         const activeTab = document.querySelector('.tab.active');
         updateTabName(iframe, activeTab);
     }
@@ -325,7 +333,7 @@
     function settings() {
         const iframe = document.querySelector('.tab-iframe.active');
         iframe.src = "/static/prox/settings";
-        document.getElementById('search-input').value = "petezah://newtab";
+        document.getElementById('search-input').value = "petezah://settings";
         const activeTab = document.querySelector('.tab.active');
         activeTab.childNodes[0].textContent = "Settings";
     }
@@ -341,16 +349,18 @@
 
     function updateSearchBar(iframe) {
         iframe.onload = () => {
-            document.getElementById('search-input').value = "petezah://newtab";
+            const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
+            document.getElementById('search-input').value = unproxifiedUrl;
             const activeTab = document.querySelector('.tab.active');
             updateTabName(iframe, activeTab);
         };
     }
 
+    // Initialize search bar on page load
     const initialIframe = document.querySelector('.tab-iframe.active');
     const initialTab = document.querySelector('.tab.active');
-    updateTabName(initialIframe, initialTab);
     document.getElementById('search-input').value = "petezah://newtab";
+    updateTabName(initialIframe, initialTab);
     </script>
 </body>
 </html>

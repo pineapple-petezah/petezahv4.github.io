@@ -311,7 +311,9 @@
         document.getElementById('search-input').value = "/static/index.html";
         const activeTab = document.querySelector('.tab.active');
         activeTab.childNodes[0].textContent = "New Tab";
-        document.getElementById('search-input').value = "petezah://newtab";
+        setTimeout(() => {
+            document.getElementById('search-input').value = "petezah://newtab";
+        }, 100);
     }
 
     function goBack() {

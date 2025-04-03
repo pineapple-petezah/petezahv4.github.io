@@ -12,7 +12,6 @@
     <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
 
     <style>
-        <style>
     * {
         margin: 0;
         padding: 0;
@@ -26,7 +25,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        background-color: #05080f; /* Darker background */
+        background-color: #05080f;
         color: #d0d0d0;
     }
 
@@ -108,7 +107,7 @@
         align-items: center;
         background-color: #121929;
         padding: 4px 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Frail white border */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     }
 
@@ -188,7 +187,6 @@
         display: block;
     }
 </style>
-    </style>
 </head>
 <body>
     <div class="tabs" id="tabs">
@@ -218,7 +216,7 @@
     <script>
     let tabCount = 1;
     const proxyPrefix = "/static/embed.html#";
-    let tabHistory = []; // Array to store tab visit history
+    let tabHistory = [];
 
     function selectTab(tabElement) {
         const tabs = document.querySelectorAll('.tab');
@@ -231,10 +229,9 @@
         iframe.classList.add('active');
         updateSearchBar(iframe);
         
-        // Update tab history
         const currentTabIndex = tabIndex;
-        tabHistory = tabHistory.filter(index => index !== currentTabIndex); // Remove if already in history
-        tabHistory.push(currentTabIndex); // Add to end of history
+        tabHistory = tabHistory.filter(index => index !== currentTabIndex);
+        tabHistory.push(currentTabIndex);
     }
 
     function addTab(url = "/static/index.html") {
@@ -261,11 +258,9 @@
         const tabIndex = [...tab.parentElement.children].indexOf(tab);
         const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
         
-        // Remove tab from history
         tabHistory = tabHistory.filter(index => index !== tabIndex);
         
         if (tab.classList.contains('active') && tabCount > 1) {
-            // Select last visited tab from history
             const lastVisitedIndex = tabHistory.length > 0 ? tabHistory[tabHistory.length - 1] : 0;
             const tabs = document.querySelectorAll('.tab');
             const nextTab = tabs[lastVisitedIndex];
@@ -299,7 +294,7 @@
         const iframe = document.querySelector('.tab-iframe.active');
         const url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
         iframe.src = `${proxyPrefix}${url}`;
-        document.getElementById('search-input').value = url;
+        document.getElementById('search-input').value = "petezah://newtab";
         const activeTab = document.querySelector('.tab.active');
         updateTabName(iframe, activeTab);
     }
@@ -307,7 +302,7 @@
     function goHome() {
         const iframe = document.querySelector('.tab-iframe.active');
         iframe.src = "/static/index.html";
-        document.getElementById('search-input').value = "/static/index.html";
+        document.getElementById('search-input').value = "petezah://newtab";
         const activeTab = document.querySelector('.tab.active');
         activeTab.childNodes[0].textContent = "New Tab";
     }
@@ -330,7 +325,7 @@
     function settings() {
         const iframe = document.querySelector('.tab-iframe.active');
         iframe.src = "/static/prox/settings";
-        document.getElementById('search-input').value = "/static/prox/settings";
+        document.getElementById('search-input').value = "petezah://newtab";
         const activeTab = document.querySelector('.tab.active');
         activeTab.childNodes[0].textContent = "Settings";
     }
@@ -346,8 +341,7 @@
 
     function updateSearchBar(iframe) {
         iframe.onload = () => {
-            const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
-            document.getElementById('search-input').value = unproxifiedUrl;
+            document.getElementById('search-input').value = "petezah://newtab";
             const activeTab = document.querySelector('.tab.active');
             updateTabName(iframe, activeTab);
         };
@@ -356,6 +350,7 @@
     const initialIframe = document.querySelector('.tab-iframe.active');
     const initialTab = document.querySelector('.tab.active');
     updateTabName(initialIframe, initialTab);
+    document.getElementById('search-input').value = "petezah://newtab";
     </script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <title>PeteZah | AI</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Updated Font Awesome link -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
@@ -53,7 +54,7 @@
       .prompt-wrapper :is(button:hover,#cancel-file-btn,.file-icon){background:var(--secondary-hover-color)}
       .prompt-form .prompt-actions{gap:5px;margin-right:7px}
       .prompt-wrapper .prompt-form :where(.file-upload-wrapper,button,img){position:relative;height:45px;width:45px}
- .prompt-form .prompt-actions #send-prompt-btn{color:#fff;display:none;background:#4d8cff}
+      .prompt-form .prompt-actions #send-prompt-btn{color:#fff;display:none;background:#4d8cff}
       .prompt-form .prompt-input:valid~.prompt-actions #send-prompt-btn{display:block}
       .prompt-form #send-prompt-btn:hover{background:#6699ff}
       .prompt-form .file-upload-wrapper :where(button,img){display:none;border-radius:12px;object-fit:cover;position:absolute}
@@ -83,19 +84,19 @@
       <ul class="suggestions">
         <li class="suggestions-item">
           <p class="text">Write me an essay on dogs.</p>
-          <span class="icon"><i class="fa-regular fa-pencil"></i></span>
+          <span class="icon"><i class="fas fa-pencil-alt"></i></span>
         </li>
         <li class="suggestions-item">
           <p class="text">Suggest a creative project idea.</p>
-          <span class="icon"><i class="fa-regular fa-lightbulb"></i></span>
+          <span class="icon"><i class="fas fa-lightbulb"></i></span>
         </li>
         <li class="suggestions-item">
           <p class="text">Help me plan a weekend getaway.</p>
-          <span class="icon"><i class="fa-regular fa-map-signs"></i></span>
+          <span class="icon"><i class="fas fa-map-signs"></i></span>
         </li>
         <li class="suggestions-item">
           <p class="text">Write a simple to-do app in Python.</p>
-          <span class="icon"><i class="fa-regular fa-code"></i></span>
+          <span class="icon"><i class="fas fa-code"></i></span>
         </li>
       </ul>
       <div class="chats-container"></div>
@@ -118,25 +119,25 @@
                   hidden
                 />
                 <button type="button">
-                  <i class="fa-regular fa-arrow-right"></i>
+                  <i class="fas fa-arrow-right"></i>
                 </button>
                 <button id="cancel-file-btn" type="button">
-                  <i class="fa-regular fa-paperclip"></i>
+                  <i class="fas fa-paperclip"></i>
                 </button>
                 <button id="add-file-btn" type="button">
-                  <i class="fa-regular fa-paperclip"></i>
+                  <i class="fas fa-paperclip"></i>
                 </button>
               </div>
               <button id="stop-response-btn" type="button">
-                <i class="fa-regular fa-square"></i>
+                <i class="fas fa-square"></i>
               </button>
               <button id="send-prompt-btn">
-                <i class="fa-regular fa-arrow-right"></i>
+                <i class="fas fa-arrow-right"></i>
               </button>
             </div>
           </form>
           <button id="delete-chats-btn">
-            <i class="fa-regular fa-trash"></i>
+            <i class="fas fa-trash"></i>
           </button>
         </div>
       </div>
@@ -189,111 +190,45 @@
           copyBtn.onclick=()=>{
             navigator.clipboard.writeText(text).then(()=>{
               copyBtn.textContent="Copied!";
-              setTimeout(()=>copyBtn.textContent="Copy",1000);
+              setTimeout(()=>copyBtn.remove(),1500);
             });
           };
           messageElement.appendChild(copyBtn);
         }
       };
 
-      const generateResponse=async e=>{
-        const t=e.querySelector(".message-text");
-        controller=new AbortController;
-        chatHistory.push({role:"user",parts:[{text:userData.message},...userData.file.data?[{inline_data:(({fileName:e,isImage:t,...a})=>a)(userData.file)}]:[]]});
+      promptForm.addEventListener("submit",e=>{
+        e.preventDefault();
+        const prompt=promptInput.value.trim();
+        if(prompt){
+          userData.message=prompt;
+          promptInput.value="";
+          addMessage("user",prompt);
+          sendRequest();
+        }
+      });
+
+      function addMessage(type,text){
+        const messageElement=createMessageElement(text,type+"-message");
+        if(type==="bot") chatsContainer.append(messageElement);
+        else chatsContainer.prepend(messageElement);
+      }
+
+      async function sendRequest(){
         try{
-          const a=await fetch(API_URL,{
+          const response=await fetch(API_URL,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({contents:chatHistory}),
-            signal:controller.signal
+            body:JSON.stringify({message:userData.message})
           });
-          const s=await a.json();
-          if(!a.ok)throw new Error(s.error.message);
-          const o=s.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g,"$1").trim();
-          typingEffect(o,t,e);
-          chatHistory.push({role:"model",parts:[{text:o}]});
-        }catch(a){
-          t.textContent="AbortError"===a.name?"Response generation stopped.":a.message;
-          t.style.color="#ef5350";
-          e.classList.remove("loading");
-          document.body.classList.remove("bot-responding");
-          scrollToBottom();
-          addCopyButton(e, t.textContent);
-        }finally{
-          userData.file={};
+          const data=await response.json();
+          console.log(data);
+          addMessage("bot",data.message);
+        }catch(e){
+          addMessage("bot","Sorry, something went wrong.");
         }
-      };
-
-      const handleFormSubmit=e=>{
-        e.preventDefault();
-        const t=promptInput.value.trim();
-        if(!t||document.body.classList.contains("bot-responding"))return;
-        userData.message=t;
-        promptInput.value="";
-        document.body.classList.add("chats-active","bot-responding");
-        fileUploadWrapper.classList.remove("file-attached","img-attached","active");
-        const a=`\n    <p class="message-text"></p>\n    ${userData.file.data?userData.file.isImage?`<img src="data:${userData.file.mime_type};base64,${userData.file.data}" class="img-attachment" />`:`<p class="file-attachment"><span class="material-symbols-rounded">description</span>${userData.file.fileName}</p>`:""}\n  `;
-        const s=createMessageElement(a,"user-message");
-        s.querySelector(".message-text").textContent=userData.message;
-        chatsContainer.appendChild(s);
         scrollToBottom();
-        setTimeout(()=>{
-          const e=createMessageElement('<p class="message-text">...</p>',"bot-message","loading");
-          chatsContainer.appendChild(e);
-          scrollToBottom();
-          generateResponse(e);
-        },600);
-      };
-
-      fileInput.addEventListener("change",(()=>{
-        const e=fileInput.files[0];
-        if(!e)return;
-        const t=e.type.startsWith("image/");
-        const a=new FileReader;
-        a.readAsDataURL(e);
-        a.onload=a=>{
-          fileInput.value="";
-          const s=a.target.result.split(",")[1];
-          fileUploadWrapper.querySelector(".file-preview").src=a.target.result;
-          fileUploadWrapper.classList.add("active",t?"img-attached":"file-attached");
-          userData.file={fileName:e.name,data:s,mime_type:e.type,isImage:t};
-        };
-      }));
-
-      document.querySelector("#cancel-file-btn").addEventListener("click",(()=>{
-        userData.file={};
-        fileUploadWrapper.classList.remove("file-attached","img-attached","active");
-      }));
-
-      document.querySelector("#stop-response-btn").addEventListener("click",(()=>{
-        controller?.abort();
-        userData.file={};
-        clearInterval(typingInterval);
-        chatsContainer.querySelector(".bot-message.loading").classList.remove("loading");
-        document.body.classList.remove("bot-responding");
-      }));
-
-      document.querySelector("#delete-chats-btn").addEventListener("click",(()=>{
-        chatHistory.length=0;
-        chatsContainer.innerHTML="";
-        document.body.classList.remove("chats-active","bot-responding");
-      }));
-
-      document.querySelectorAll(".suggestions-item").forEach(e=>{
-        e.addEventListener("click",()=>{
-          promptInput.value=e.querySelector(".text").textContent;
-          promptForm.dispatchEvent(new Event("submit"));
-        });
-      });
-
-      document.addEventListener("click",({target:e})=>{
-        const t=document.querySelector(".prompt-wrapper");
-        const a=e.classList.contains("prompt-input")||t.classList.contains("hide-controls")&&("add-file-btn"===e.id||"stop-response-btn"===e.id);
-        t.classList.toggle("hide-controls",a);
-      });
-
-      promptForm.addEventListener("submit",handleFormSubmit);
-      promptForm.querySelector("#add-file-btn").addEventListener("click",()=>fileInput.click());
+      }
     </script>
   </body>
 </html>

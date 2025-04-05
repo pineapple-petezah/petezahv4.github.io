@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements (TOOK FOREVER)
+    // DOM Elements (Took FOREVER)
     const elements = {
         tabs: document.querySelectorAll('.tab') || [],
         sections: document.querySelectorAll('.section') || [],
@@ -39,10 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Themes
     const themes = {
-        'default': '#0A1D37',
-        'swampy-green': '#236b3e',
-        'royal-purple': '#591a5e',
-        'blood-red': '#6e0307'
+        'default': { bgColor: '#0A1D37', textColor: '#FFFFFF' },
+        'swampy-green': { bgColor: '#1A3C34', textColor: '#D4E4D9' },
+        'royal-purple': { bgColor: '#2A1A3C', textColor: '#E2D4E9' },
+        'blood-red': { bgColor: '#3C0A1A', textColor: '#E9D4D4' },
+        'midnight-forest': { bgColor: '#1F2A2F', textColor: '#CDE4D9' },
+        'cyber-neon': { bgColor: '#1A1A2E', textColor: '#E0E0FF' },
+        'desert-oasis': { bgColor: '#3C2F1A', textColor: '#E9E4D4' },
+        'glacial-frost': { bgColor: '#2A3C4F', textColor: '#D4E9E9' }
     };
 
     // Utility Functions
@@ -53,20 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedLogo = localStorage.getItem('siteLogo');
         if (savedLogo) updateFavicon(savedLogo);
 
-        // Apply background settings consistently
+        const savedTheme = localStorage.getItem('theme') || 'default';
+        document.body.className = document.body.className.replace(/theme-\w+/g, '');
+        document.body.classList.add(`theme-${savedTheme}`);
+
         const savedBackgroundImage = localStorage.getItem('backgroundImage');
-        const savedBackgroundColor = localStorage.getItem('backgroundColor') || '#0A1D37';
-        
+        const savedBackgroundColor = localStorage.getItem('backgroundColor') || themes[savedTheme].bgColor;
+
         if (savedBackgroundImage) {
             document.body.style.backgroundImage = `url(${savedBackgroundImage})`;
             document.body.style.backgroundSize = 'cover';
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundPosition = 'center';
-            document.body.style.backgroundColor = ''; // Ensure color doesn't override image
+            document.body.style.backgroundColor = '';
         } else {
             document.body.style.backgroundImage = 'none';
             document.body.style.backgroundColor = savedBackgroundColor;
         }
+        document.body.style.color = themes[savedTheme].textColor;
 
         applyRightClickProtection();
         applyParticleSettings();
@@ -100,11 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const broadcastSettingsChange = () => {
         localStorage.setItem('settingsUpdated', Date.now().toString());
-        applyGlobalSettings(); // Apply immediately to current page
+        applyGlobalSettings();
     };
 
     const loadSettings = () => {
-        // Load and apply all settings
         if (elements.beforeUnloadToggle) elements.beforeUnloadToggle.checked = localStorage.getItem('beforeUnload') === 'true';
         if (elements.autocloakToggle) elements.autocloakToggle.checked = localStorage.getItem('autocloak') === 'true';
         if (elements.blockHeadersToggle) elements.blockHeadersToggle.checked = localStorage.getItem('blockHeaders') === 'true';
@@ -113,22 +120,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.panicKey) elements.panicKey.value = localStorage.getItem('panicKey') || '';
         if (elements.panicUrl) elements.panicUrl.value = localStorage.getItem('panicUrl') || 'https://classroom.google.com';
         if (elements.backgroundColor) {
-            elements.backgroundColor.value = localStorage.getItem('backgroundColor') || '#0A1D37';
+            elements.backgroundColor.value = localStorage.getItem('backgroundColor') || themes['default'].bgColor;
         }
         if (elements.themeSelect) {
             const savedTheme = localStorage.getItem('theme') || 'default';
             elements.themeSelect.value = savedTheme;
+            document.body.classList.add(`theme-${savedTheme}`);
+            if (!localStorage.getItem('backgroundImage')) {
+                document.body.style.backgroundColor = themes[savedTheme].bgColor;
+            }
+            document.body.style.color = themes[savedTheme].textColor;
         }
         if (elements.disableParticles) {
             elements.disableParticles.checked = localStorage.getItem('disableParticles') === 'true';
         }
         
-        // Ensure background is applied on load
         applyGlobalSettings();
-        console.log('Settings loaded:', { 
-            backgroundImage: localStorage.getItem('backgroundImage'), 
-            backgroundColor: localStorage.getItem('backgroundColor') 
-        }); // Debugging
     };
 
     const updateFavicon = (url) => {
@@ -291,11 +298,14 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.themeSelect.addEventListener('change', () => {
             const theme = elements.themeSelect.value;
             localStorage.setItem('theme', theme);
+            document.body.className = document.body.className.replace(/theme-\w+/g, '');
+            document.body.classList.add(`theme-${theme}`);
             if (!localStorage.getItem('backgroundImage')) {
-                document.body.style.backgroundColor = themes[theme];
-                elements.backgroundColor.value = themes[theme];
-                localStorage.setItem('backgroundColor', themes[theme]);
+                document.body.style.backgroundColor = themes[theme].bgColor;
+                elements.backgroundColor.value = themes[theme].bgColor;
+                localStorage.setItem('backgroundColor', themes[theme].bgColor);
             }
+            document.body.style.color = themes[theme].textColor;
             broadcastSettingsChange();
         });
     }
@@ -307,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     localStorage.setItem('backgroundImage', e.target.result);
-                    console.log('Background image saved:', e.target.result); // Debugging
                     applyGlobalSettings();
                     broadcastSettingsChange();
                 };
@@ -343,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.style.backgroundRepeat = 'no-repeat';
                     document.body.style.backgroundPosition = 'center';
                     document.body.style.backgroundColor = '';
-                    console.log('Background image set:', e.target.result); // Debugging
                 };
                 reader.readAsDataURL(elements.backgroundImage.files[0]);
             }
@@ -354,8 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.removeBackgroundImage.addEventListener('click', () => {
             localStorage.removeItem('backgroundImage');
             document.body.style.backgroundImage = 'none';
-            document.body.style.backgroundColor = elements.backgroundColor.value || '#0A1D37';
-            console.log('Background image removed'); // Debugging
+            document.body.style.backgroundColor = elements.backgroundColor.value || themes['default'].bgColor;
             broadcastSettingsChange();
         });
     }
@@ -413,15 +420,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('storage', (e) => {
         if (e.key === 'settingsUpdated') {
-            console.log('Storage event triggered, reapplying settings'); // Debugging
             applyGlobalSettings();
-            applyRightClickProtection();
-            applyParticleSettings();
         }
     });
 
     // Initialization
-    console.log('Initializing settings'); // Debugging
     loadSettings();
     handleTabSwitch(elements.tabs, elements.sections, 'data-tab');
     handleTabSwitch(elements.legalTabs, elements.legalSections, 'data-legal');

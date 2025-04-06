@@ -1,0 +1,81 @@
+
+/* I added this cause I was getting weird bugs with default on main page and this seemed like the simplest fix */
+body.theme-default {
+    background-color: #0A1D37;
+    color: #FFFFFF;
+    --hover-gradient: linear-gradient(90deg, #2A3C5F, #3C5B8E);
+}
+
+body.theme-swampy-green {
+    background-color: #1A3C34;
+    color: #D4E4D9;
+    --primary-gradient: linear-gradient(90deg, #2E6B4F, #3E8C65);
+    --hover-gradient: linear-gradient(90deg, #1F4A3A, #2E6B4F);
+    --god-rays-color: rgba(30, 70, 50, 0.9);
+}
+
+body.theme-royal-purple {
+    background-color: #2A1A3C;
+    color: #E2D4E9;
+    --primary-gradient: linear-gradient(90deg, #5E3C8E, #7A4FA5);
+    --hover-gradient: linear-gradient(90deg, #3F2A5F, #5E3C8E);
+    --god-rays-color: rgba(70, 30, 90, 0.9);
+}
+
+body.theme-blood-red {
+    background-color: #3C0A1A;
+    color: #E9D4D4;
+    --primary-gradient: linear-gradient(90deg, #8E3C4F, #A54F6F);
+    --hover-gradient: linear-gradient(90deg, #5F2A3F, #8E3C4F);
+    --god-rays-color: rgba(90, 20, 40, 0.9);
+}
+
+body.theme-midnight-forest {
+    background-color: #1F2A2F;
+    color: #CDE4D9;
+    --primary-gradient: linear-gradient(90deg, #3F5E4A, #5A7F66);
+    --hover-gradient: linear-gradient(90deg, #2A3F35, #3F5E4A);
+    --god-rays-color: rgba(40, 70, 50, 0.9);
+}
+
+body.theme-cyber-neon {
+    background-color: #1A1A2E;
+    color: #E0E0FF;
+    --primary-gradient: linear-gradient(90deg, #FF2079, #00DDEB);
+    --hover-gradient: linear-gradient(90deg, #CC1A5F, #00A8B5);
+    --god-rays-color: rgba(50, 20, 80, 0.9);
+}
+
+body.theme-desert-oasis {
+    background-color: #3C2F1A;
+    color: #E9E4D4;
+    --primary-gradient: linear-gradient(90deg, #8E6B3C, #A58F4F);
+    --hover-gradient: linear-gradient(90deg, #5F4A2A, #8E6B3C);
+    --god-rays-color: rgba(90, 60, 30, 0.9);
+}
+
+body.theme-glacial-frost {
+    background-color: #2A3C4F;
+    color: #D4E9E9;
+    --primary-gradient: linear-gradient(90deg, #3C6B8E, #4F8FA5);
+    --hover-gradient: linear-gradient(90deg, #2A4A5F, #3C6B8E);
+    --god-rays-color: rgba(30, 60, 90, 0.9);
+}
+
+/* Apply Theme Variables */
+.tab, button, input[type="file"]::-webkit-file-upload-button, input[type="file"]::file-selector-button {
+    background: var(--primary-gradient);
+}
+
+.tab:hover, .tab.active, button:hover, input[type="file"]::-webkit-file-upload-button:hover, input[type="file"]::file-selector-button:hover {
+    background: var(--hover-gradient);
+}
+
+.god-rays {
+    background-image: repeating-linear-gradient(100deg, var(--god-rays-color, rgba(30, 50, 90, 0.9)) 10%, rgba(20, 40, 80, 0.9) 15%, var(--god-rays-color, rgba(30, 50, 90, 0.9)) 20%, rgba(20, 40, 80, 0.9) 25%, var(--god-rays-color, rgba(30, 50, 90, 0.9)) 30%);
+}
+
+/* Ensure background image overrides theme background color if set */
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}

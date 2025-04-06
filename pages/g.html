@@ -417,7 +417,7 @@ body::-webkit-scrollbar {
     border-bottom-right-radius: 10px;
 }        
 
-.randomGamesBtn {
+.randomGameOpensBtn {
     position: fixed; 
     top: 20px; 
     left: 20px; 
@@ -432,7 +432,7 @@ body::-webkit-scrollbar {
     border-radius: 16px;
 }
 
-.randomGamesBtn:hover {
+.randomGameOpensBtn:hover {
     transform: scale(1.05);  
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);  
 }
@@ -483,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<div class="god-rays"></div>
 
-	<button class="randomGamesBtn" onclick="randomGame()">Random Game</button>
+	<button class="randomGameOpensBtn" onclick="randomGameOpen()">Random Game</button>
 
             <div class="search-container">
         <input type="text" id="search-games" placeholder="Search for YOUR Favorite Game....." onkeyup="filterItems()">
@@ -1521,11 +1521,11 @@ function filterItems() {
             });
         }
 
-        function randomGame() {
+        function randomGameOpen() {
             const games = document.querySelectorAll('.image-item');
             const randomIndex = Math.floor(Math.random() * games.length);
-            const randomGame = games[randomIndex].querySelector('a').href;
-            window.location.href = randomGame;
+            const randomGameOpen = games[randomIndex].querySelector('a').href;
+            window.location.href = randomGameOpen;
         }
 
         function filterByCategory() {

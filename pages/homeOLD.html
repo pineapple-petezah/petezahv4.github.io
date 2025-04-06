@@ -323,7 +323,7 @@
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
             z-index: 999;
             font-size: 12px;
-            width: 90px;
+            width: 120px; /* Increased width from 90px to 120px */
         }
 
         .info-box p {
@@ -397,6 +397,13 @@
 
         .battery-full .battery-fill {
             background-color: #4CAF50; /* Green */
+        }
+
+        /* Updated layout for two-line display */
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         @keyframes fadeIn {
@@ -556,16 +563,20 @@
 
     <!-- Info Box -->
     <div id="info-box" class="info-box">
-        <p id="time-display">Time: Loading...</p>
-        <p id="battery-display">
-            <span class="battery-container">
-                <span id="battery-icon" class="battery-icon">
-                    <span id="battery-fill" class="battery-fill"></span>
+        <div class="info-row">
+            <span id="battery-display">
+                <span class="battery-container">
+                    <span id="battery-icon" class="battery-icon">
+                        <span id="battery-fill" class="battery-fill"></span>
+                    </span>
                 </span>
+                <span id="battery-percentage">Loading...</span>
             </span>
-            <span id="battery-percentage">Battery: Loading...</span>
-        </p>
-        <p id="fps">FPS: Calculating...</p>
+        </div>
+        <div class="info-row">
+            <span id="time-display">Time: Loading...</span>
+            <span id="fps">FPS: Calculating...</span>
+        </div>
         <a href="https://discord.gg/arcgZTV9zX" target="_blank" class="discord-btn-two">Join Discord</a>
     </div>
 
@@ -791,7 +802,7 @@
                         }
                     });
                 } else {
-                    batteryPercentage.textContent = 'Battery: N/A';
+                    batteryPercentage.textContent = 'N/A';
                     batteryIcon.style.display = 'none';
                 }
             }

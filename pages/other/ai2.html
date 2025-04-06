@@ -50,8 +50,8 @@
       .prompt-form .file-upload-wrapper #add-file-btn,.prompt-form .file-upload-wrapper.active.file-attached .file-icon,.prompt-form .file-upload-wrapper.active.img-attached img,.prompt-form .file-upload-wrapper.active:hover #cancel-file-btn,body.bot-responding .prompt-form #stop-response-btn{display:block}
       .prompt-form :is(#stop-response-btn:hover,#cancel-file-btn){color:#d62939}
       .material-icons {font-size: 24px;}
-      .bot-message .buttons {display: flex; gap: 10px; margin-top: 8px;}
-      .bot-message .buttons button {padding: 6px 12px; background: var(--secondary-color); color: var(--text-color); border: none; border-radius: 8px; cursor: pointer; transition: .1s; font-size: 0.9rem;}
+      .bot-message .buttons {display: flex; gap: 10px; margin-top: 8px; justify-content: flex-end;}
+      .bot-message .buttons button {width: 40px; height: 40px; background: var(--secondary-color); color: var(--text-color); border: none; border-radius: 8px; cursor: pointer; transition: .1s; display: flex; align-items: center; justify-content: center;}
       .bot-message .buttons button:hover {background: var(--secondary-hover-color);}
       .code-grid {background: #1e2a3c; padding: 10px; border-radius: 8px; margin-top: 8px; white-space: pre-wrap; font-family: monospace; color: #f8f8f2;}
       @media (max-width:768px){
@@ -154,7 +154,7 @@
 
       const scrollToBottom = () => container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
 
-      const typingEffect = (text, element, messageElement) => {
+      const typingEffect = (text, element, callback) => {
         element.textContent = "";
         const parts = text.split(" ");
         let i = 0;
@@ -164,40 +164,44 @@
             scrollToBottom();
           } else {
             clearInterval(typingInterval);
-            messageElement.classList.remove("loading");
-            document.body.classList.remove("bot-responding");
-            addButtons(messageElement, text);
+            callback();
           }
         }, 20);
       };
 
-      const formatResponse = (text) => {
+      const formatResponse = (text, messageElement) => {
         const codeBlockRegex = /```([\s\S]*?)```/g;
-        let html = '';
+        const parts = [];
         let lastIndex = 0;
         let match;
 
         while ((match = codeBlockRegex.exec(text)) !== null) {
-          // Add text before the code block
           if (match.index > lastIndex) {
-            html += `<p class="message-text">${text.slice(lastIndex, match.index).trim()}</p>`;
+            parts.push({ type: "text", content: text.slice(lastIndex, match.index).trim() });
           }
-          // Add the code block
-          html += `<pre class="code-grid">${match[1].trim()}</pre>`;
+          parts.push({ type: "code", content: match[1].trim() });
           lastIndex = codeBlockRegex.lastIndex;
         }
 
-        // Add remaining text after the last code block
         if (lastIndex < text.length) {
-          html += `<p class="message-text">${text.slice(lastIndex).trim()}</p>`;
+          parts.push({ type: "text", content: text.slice(lastIndex).trim() });
         }
 
-        // If no code blocks, just return the text as a paragraph
-        if (!html) {
-          html = `<p class="message-text">${text}</p>`;
+        if (parts.length === 0) {
+          parts.push({ type: "text", content: text });
         }
 
-        return html;
+        let html = '';
+        parts.forEach(part => {
+          if (part.type === "text") {
+            html += `<p class="message-text">${part.content}</p>`;
+          } else {
+            html += `<pre class="code-grid">${part.content}</pre>`;
+          }
+        });
+
+        messageElement.innerHTML = html;
+        return parts;
       };
 
       const addButtons = (messageElement, text) => {
@@ -205,16 +209,16 @@
         buttonsDiv.className = "buttons";
 
         const copyBtn = document.createElement("button");
-        copyBtn.textContent = "Copy";
+        copyBtn.innerHTML = '<i class="material-icons">content_copy</i>';
         copyBtn.onclick = () => {
           navigator.clipboard.writeText(text).then(() => {
-            copyBtn.textContent = "Copied!";
-            setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+            copyBtn.innerHTML = '<i class="material-icons">check</i>';
+            setTimeout(() => (copyBtn.innerHTML = '<i class="material-icons">content_copy</i>'), 1500);
           });
         };
 
         const redoBtn = document.createElement("button");
-        redoBtn.textContent = "Redo";
+        redoBtn.innerHTML = '<i class="material-icons">refresh</i>';
         redoBtn.onclick = () => {
           const lastUserMessage = chatHistory[chatHistory.length - 2]?.parts[0].text;
           if (lastUserMessage) {
@@ -233,7 +237,6 @@
       };
 
       const generateResponse = async (messageElement) => {
-        const textElement = messageElement.querySelector(".message-text");
         controller = new AbortController;
         chatHistory.push({ role: "user", parts: [{ text: userData.message }, ...userData.file.data ? [{ inline_data: (({ fileName: e, isImage: t, ...a }) => a)(userData.file) }] : []] });
         try {
@@ -246,10 +249,35 @@
           if (!response.ok) throw new Error((await response.json()).error.message);
           const data = await response.json();
           const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
-          messageElement.innerHTML = formatResponse(responseText);
-          typingEffect(responseText, messageElement.querySelector(".message-text") || messageElement, messageElement);
+          const parts = formatResponse(responseText, messageElement);
+          
+          const textParts = parts.filter(part => part.type === "text");
+          let currentTextIndex = 0;
+
+          const animateNextText = () => {
+            if (currentTextIndex < textParts.length) {
+              const textElement = messageElement.querySelectorAll(".message-text")[currentTextIndex];
+              if (textElement) {
+                typingEffect(textParts[currentTextIndex].content, textElement, () => {
+                  currentTextIndex++;
+                  animateNextText();
+                });
+              } else {
+                currentTextIndex++;
+                animateNextText();
+              }
+            } else {
+              messageElement.classList.remove("loading");
+              document.body.classList.remove("bot-responding");
+              addButtons(messageElement, responseText);
+              scrollToBottom();
+            }
+          };
+
+          animateNextText();
           chatHistory.push({ role: "model", parts: [{ text: responseText }] });
         } catch (error) {
+          const textElement = messageElement.querySelector(".message-text");
           textElement.textContent = error.name === "AbortError" ? "Response generation stopped." : error.message;
           textElement.style.color = "#d62939";
           messageElement.classList.remove("loading");

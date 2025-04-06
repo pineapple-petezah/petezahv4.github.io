@@ -6,60 +6,70 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
       *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-      :root{--text-color:#edf3ff;--subheading-color:#97a7ca;--placeholder-color:#c3cdde;--primary-color:#0a111d;--secondary-color:rgba(255, 255, 255, 0.07);--secondary-hover-color:rgba(255, 255, 255, 0.15);--scrollbar-color:rgba(255, 255, 255, 0.1)}
+      :root{
+        --text-color:#e6ecf5;
+        --subheading-color:#a0b0d0;
+        --placeholder-color:#b8c4d9;
+        --primary-color:#0A1D37;
+        --secondary-color:rgba(255, 255, 255, 0.08);
+        --secondary-hover-color:rgba(255, 255, 255, 0.16);
+        --scrollbar-color:rgba(255, 255, 255, 0.12);
+        --ai-container-bg:rgba(255, 255, 255, 0.06);
+      }
       body{color:var(--text-color);background:var(--primary-color)}
       .container{overflow-y:auto;padding:32px 0 60px;height:calc(100vh - 127px);scrollbar-color:var(--scrollbar-color) transparent}
       .container :where(.app-header,.suggestions,.message,.prompt-wrapper){position:relative;margin:0 auto;width:100%;padding:0 20px;max-width:990px}
       .container .app-header{margin-top:3vh}
       .container .suggestions{width:100%;list-style:none;display:flex;gap:15px;margin-top:9.5vh;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;position:absolute;bottom:100px;left:50%;transform:translateX(-50%)}
       body.chats-active .container :where(.app-header,.suggestions){display:none}
-      .suggestions .suggestions-item{cursor:pointer;padding:18px;width:228px;flex-shrink:0;display:flex;scroll-snap-align:center;flex-direction:column;align-items:flex-end;border-radius:15px;justify-content:space-between;background:var(--secondary-color);transition:.1s}
+      .suggestions .suggestions-item{cursor:pointer;padding:18px;width:228px;flex-shrink:0;display:flex;scroll-snap-align:center;flex-direction:column;align-items:flex-end;border-radius:18px;justify-content:space-between;background:var(--secondary-color);transition:.1s}
       .suggestions .suggestions-item:hover{background:var(--secondary-hover-color)}
       .suggestions .suggestions-item .text{font-size:1.1rem}
-      .suggestions .suggestions-item .icon{width:45px;height:45px;display:flex;font-size:1.1rem;margin-top:35px;align-self:flex-end;align-items:center;border-radius:25%;justify-content:center;color:#1d7efd;background:var(--primary-color)}
-      .suggestions .suggestions-item:nth-child(2) .icon{color:#edea28}
-      .suggestions .suggestions-item:nth-child(3) .icon{color:#4db04d}
-      .suggestions .suggestions-item:nth-child(4) .icon{color:#6f42c1}
+      .suggestions .suggestions-item .icon{width:45px;height:45px;display:flex;font-size:1.1rem;margin-top:35px;align-self:flex-end;align-items:center;border-radius:28%;justify-content:center;color:#4a90e2;background:var(--primary-color)}
+      .suggestions .suggestions-item:nth-child(2) .icon{color:#f4e050}
+      .suggestions .suggestions-item:nth-child(3) .icon{color:#68c368}
+      .suggestions .suggestions-item:nth-child(4) .icon{color:#8e63ce}
       .container .chats-container{display:flex;gap:20px;flex-direction:column}
-      .chats-container .message{display:flex;gap:11px;align-items:center}
-      .chats-container .message .avatar{width:43px;height:43px;flex-shrink:0;align-self:flex-start;border-radius:50%;padding:6px;margin-right:-7px;background:var(--secondary-color);border:1px solid var(--secondary-hover-color)}
+      .chats-container .message{display:flex;gap:11px;align-items:flex-start}
+      .chats-container .message .avatar{width:43px;height:43px;flex-shrink:0;border-radius:50%;padding:6px;margin-right:-7px;background:var(--secondary-color);border:1px solid var(--secondary-hover-color)}
       .chats-container .message.loading .avatar{animation:3s linear infinite rotate}
       @keyframes rotate{100%{transform:rotate(360deg)}}
       .chats-container .message .message-text{padding:3px 16px;word-wrap:break-word;white-space:pre-line}
       .chats-container .bot-message{margin:9px auto}
+      .chats-container .bot-message .ai-container{padding:16px;border-radius:16px;background:var(--ai-container-bg);max-width:75%;position:relative}
       .chats-container .user-message{flex-direction:column;align-items:flex-end}
-      .chats-container .user-message .message-text{padding:12px 16px;max-width:75%;background:var(--secondary-color);border-radius:10px}
-      .chats-container .user-message .img-attachment{margin-top:-7px;width:50%;border-radius:15px}
-      .chats-container .user-message .file-attachment{display:flex;gap:6px;align-items:center;padding:10px;margin-top:-7px;border-radius:10px;background:var(--secondary-color)}
-      .chats-container .user-message .file-attachment span,.prompt-wrapper .prompt-form .file-icon{color:#3d42eb}
+      .chats-container .user-message .message-text{padding:12px 16px;max-width:75%;background:var(--secondary-color);border-radius:16px}
+      .chats-container .user-message .img-attachment{margin-top:-7px;width:50%;border-radius:18px}
+      .chats-container .user-message .file-attachment{display:flex;gap:6px;align-items:center;padding:10px;margin-top:-7px;border-radius:16px;background:var(--secondary-color)}
+      .chats-container .user-message .file-attachment span,.prompt-wrapper .prompt-form .file-icon{color:#4a90e2}
       .container .prompt-container{position:fixed;width:100%;left:0;bottom:0;padding:16px 0;background:var(--primary-color)}
       .prompt-container :where(.prompt-wrapper,.prompt-form,.prompt-actions){display:flex;gap:12px;height:56px;align-items:center}
-      .prompt-container .prompt-form{height:100%;width:100%;border-radius:15px;background:var(--secondary-color)}
+      .prompt-container .prompt-form{height:100%;width:100%;border-radius:18px;background:var(--secondary-color)}
       .prompt-form .prompt-input{width:100%;height:100%;background:0 0;outline:0;border:none;font-size:1rem;color:var(--text-color);padding-left:24px}
       .prompt-form .prompt-input::placeholder{color:var(--placeholder-color)}
-      .prompt-wrapper button{width:56px;height:100%;flex-shrink:0;cursor:pointer;border-radius:12px;font-size:1.1rem;border:none;color:var(--text-color);background:var(--secondary-color);transition:.1s}
+      .prompt-wrapper button{width:56px;height:100%;flex-shrink:0;cursor:pointer;border-radius:14px;font-size:1.1rem;border:none;color:var(--text-color);background:var(--secondary-color);transition:.1s}
       .prompt-wrapper :is(button:hover,#cancel-file-btn,.file-icon){background:var(--secondary-hover-color)}
       .prompt-form .prompt-actions{gap:5px;margin-right:7px}
       .prompt-wrapper .prompt-form :where(.file-upload-wrapper,button,img){position:relative;height:45px;width:45px}
-      .prompt-form .prompt-actions #send-prompt-btn{color:#fff;display:none;background:#3d42eb}
+      .prompt-form .prompt-actions #send-prompt-btn{color:#fff;display:none;background:#4a90e2}
       .prompt-form .prompt-input:valid~.prompt-actions #send-prompt-btn{display:block}
-      .prompt-form #send-prompt-btn:hover{background:#3d42eb}
-      .prompt-form .file-upload-wrapper :where(button,img){display:none;border-radius:12px;object-fit:cover;position:absolute}
+      .prompt-form #send-prompt-btn:hover{background:#5a9ef2}
+      .prompt-form .file-upload-wrapper :where(button,img){display:none;border-radius:14px;object-fit:cover;position:absolute}
       .prompt-form #stop-response-btn,.prompt-form .file-upload-wrapper.active #add-file-btn,body.bot-responding .prompt-form .file-upload-wrapper{display:none}
       .prompt-form .file-upload-wrapper #add-file-btn,.prompt-form .file-upload-wrapper.active.file-attached .file-icon,.prompt-form .file-upload-wrapper.active.img-attached img,.prompt-form .file-upload-wrapper.active:hover #cancel-file-btn,body.bot-responding .prompt-form #stop-response-btn{display:block}
-      .prompt-form :is(#stop-response-btn:hover,#cancel-file-btn){color:#d62939}
+      .prompt-form :is(#stop-response-btn:hover,#cancel-file-btn){color:#e04e5e}
       .material-icons {font-size: 24px;}
       .bot-message .buttons {display: flex; gap: 10px; margin-top: 8px; justify-content: flex-end;}
-      .bot-message .buttons button {width: 40px; height: 40px; background: var(--secondary-color); color: var(--text-color); border: none; border-radius: 8px; cursor: pointer; transition: .1s; display: flex; align-items: center; justify-content: center;}
+      .bot-message .buttons button {width: 40px; height: 40px; background: var(--secondary-color); color: var(--text-color); border: none; border-radius:10px; cursor: pointer; transition: .1s; display: flex; align-items: center; justify-content: center;}
       .bot-message .buttons button:hover {background: var(--secondary-hover-color);}
       .code-grid {
-        background: #1e2a3c;
+        background: #1a2b4a;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 12px;
         margin-top: 12px;
         white-space: pre-wrap;
         font-family: 'Courier New', monospace;
-        color: #f8f8f2;
+        color: #f0f4fa;
         overflow-x: auto;
         line-height: 1.5;
         position: relative;
@@ -71,7 +81,7 @@
         left: 0;
         font-size: 0.7em;
         padding: 2px 8px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.12);
         border-radius: 0 0 4px 0;
       }
       @media (max-width:768px){
@@ -85,7 +95,7 @@
         .prompt-form :is(.file-upload-wrapper,button,img){height:42px;width:42px}
         .prompt-form .prompt-input{padding-left:20px}
         .prompt-form .file-upload-wrapper.active #cancel-file-btn{opacity:0}
-        .prompt-wrapper.hide-controls :where(#theme-toggle-btn,#delete-chats-btn){display:none}
+        .prompt-wrapper.hide-controls :where(#delete-chats-btn){display:none}
       }
     </style>
   </head>
@@ -158,7 +168,7 @@
       const container = document.querySelector(".container"),
             chatsContainer = document.querySelector(".chats-container"),
             promptForm = document.querySelector(".prompt-form"),
-            promptInput = promptForm.querySelector(".prompt-input"),
+            promptInput = prompt ഇForm.querySelector(".prompt-input"),
             fileInput = promptForm.querySelector("#file-input"),
             fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper"),
             API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${PeteAIKey}`;
@@ -197,12 +207,10 @@
         let match;
 
         while ((match = codeBlockRegex.exec(text)) !== null) {
-          // Add text before code block
           if (match.index > lastIndex) {
             html += `<p class="message-text">${text.slice(lastIndex, match.index).trim()}</p>`;
           }
           
-          // Add code block
           const language = match[1] || 'text';
           const codeContent = match[2].trim();
           html += `<pre class="code-grid" data-language="${language}">${escapeHtml(codeContent)}</pre>`;
@@ -210,12 +218,11 @@
           lastIndex = codeBlockRegex.lastIndex;
         }
 
-        // Add remaining text
         if (lastIndex < text.length) {
           html += `<p class="message-text">${text.slice(lastIndex).trim()}</p>`;
         }
 
-        return html || `<p class="message-text">${text}</p>`;
+        return `<div class="ai-container">${html || `<p class="message-text">${text}</p>`}</div>`;
       };
 
       const escapeHtml = (text) => {
@@ -249,12 +256,12 @@
 
         buttonsDiv.appendChild(copyBtn);
         buttonsDiv.appendChild(redoBtn);
-        messageElement.appendChild(buttonsDiv);
+        messageElement.querySelector('.ai-container').appendChild(buttonsDiv);
       };
 
       const generateBotResponse = () => {
         document.body.classList.add("bot-responding");
-        const botMessage = createMessageElement('<p class="message-text">...</p>', "bot-message", "loading");
+        const botMessage = createMessageElement('<div class="ai-container"><p class="message-text">...</p></div>', "bot-message", "loading");
         chatsContainer.appendChild(botMessage);
         scrollToBottom();
         generateResponse(botMessage);
@@ -304,9 +311,9 @@
 
           animateText();
         } catch (error) {
-          messageElement.innerHTML = `<p class="message-text">${error.name === "AbortError" ? "Response stopped" : error.message}</p>`;
+          messageElement.innerHTML = `<div class="ai-container"><p class="message-text">${error.name === "AbortError" ? "Response stopped" : error.message}</p></div>`;
           messageElement.classList.remove("loading");
-          messageElement.querySelector(".message-text").style.color = "#d62939";
+          messageElement.querySelector(".message-text").style.color = "#e04e5e";
           document.body.classList.remove("bot-responding");
           scrollToBottom();
         } finally {

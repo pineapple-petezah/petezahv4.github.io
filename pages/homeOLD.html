@@ -26,6 +26,8 @@
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
     <link rel="stylesheet" type="text/css" href="/storage/css/themes.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Material+Icons&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <meta name="description" content="Pete Zah, game on" />
     <meta name="keywords" content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah" />
@@ -323,7 +325,7 @@
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
             z-index: 999;
             font-size: 12px;
-            width: 140px;
+            width: 120px;
         }
 
         .info-box p {
@@ -348,7 +350,7 @@
             background-color: #5b6e8e;
         }
 
-        /* Battery Icon Styles */
+        /* Battery Icon Styles using Font Awesome */
         .battery-container {
             display: inline-flex;
             align-items: center;
@@ -357,46 +359,23 @@
         }
 
         .battery-icon {
-            width: 20px;
-            height: 10px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            position: relative;
-            background-color: transparent;
+            font-size: 16px; /* Adjust size as needed */
         }
 
-        .battery-icon::after {
-            content: '';
-            position: absolute;
-            right: -3px;
-            top: 2px;
-            width: 2px;
-            height: 6px;
-            background: #ccc;
-            border-radius: 0 2px 2px 0;
+        .battery-low {
+            color: #F44336; /* Red */
         }
 
-        .battery-fill {
-            height: 100%;
-            background-color: #fff;
-            transition: width 0.3s ease, background-color 0.3s ease;
-            border-radius: 1px;
+        .battery-medium {
+            color: #FF9800; /* Orange */
         }
 
-        .battery-low .battery-fill {
-            background-color: #F44336; /* Red */
+        .battery-good {
+            color: #FFEB3B; /* Yellow */
         }
 
-        .battery-medium .battery-fill {
-            background-color: #FF9800; /* Orange */
-        }
-
-        .battery-good .battery-fill {
-            background-color: #FFEB3B; /* Yellow */
-        }
-
-        .battery-full .battery-fill {
-            background-color: #4CAF50; /* Green */
+        .battery-full {
+            color: #4CAF50; /* Green */
         }
 
         /* Two-line layout with columns for time and FPS */
@@ -566,9 +545,7 @@
         <div class="info-row">
             <span id="battery-display">
                 <span class="battery-container">
-                    <span id="battery-icon" class="battery-icon">
-                        <span id="battery-fill" class="battery-fill"></span>
-                    </span>
+                    <i id="battery-icon" class="fas fa-battery-full battery-icon"></i>
                 </span>
                 <span id="battery-percentage">Loading...</span>
             </span>
@@ -760,7 +737,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const timeDisplay = document.getElementById('time-display');
             const batteryIcon = document.getElementById('battery-icon');
-            const batteryFill = document.getElementById('battery-fill');
             const batteryPercentage = document.getElementById('battery-percentage');
             const fpsElement = document.getElementById('fps');
             let frameCount = 0;
@@ -786,24 +762,25 @@
                         // Update percentage text
                         batteryPercentage.textContent = `${percentage}%`;
 
-                        // Update battery icon fill
-                        batteryFill.style.width = `${percentage}%`;
-
-                        // Update battery color and class
-                        batteryIcon.classList.remove('battery-low', 'battery-medium', 'battery-good', 'battery-full');
-                        if (percentage >= 75) {
-                            batteryIcon.classList.add('battery-full');
+                        // Update battery icon based on percentage
+                        batteryIcon.className = 'fas battery-icon'; // Reset classes
+                        if (percentage >= 90) {
+                            batteryIcon.classList.add('fa-battery-full', 'battery-full');
+                        } else if (percentage >= 70) {
+                            batteryIcon.classList.add('fa-battery-three-quarters', 'battery-good');
                         } else if (percentage >= 50) {
-                            batteryIcon.classList.add('battery-good');
-                        } else if (percentage >= 25) {
-                            batteryIcon.classList.add('battery-medium');
+                            batteryIcon.classList.add('fa-battery-half', 'battery-good');
+                        } else if (percentage >= 30) {
+                            batteryIcon.classList.add('fa-battery-quarter', 'battery-medium');
+                        } else if (percentage >= 10) {
+                            batteryIcon.classList.add('fa-battery-empty', 'battery-low');
                         } else {
-                            batteryIcon.classList.add('battery-low');
+                            batteryIcon.classList.add('fa-battery-empty', 'battery-low');
                         }
                     });
                 } else {
                     batteryPercentage.textContent = 'N/A';
-                    batteryIcon.style.display = 'none';
+                    batteryIcon.className = 'fas fa-battery-slash battery-icon'; // Icon for unavailable
                 }
             }
 

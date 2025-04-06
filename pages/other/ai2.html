@@ -5,17 +5,16 @@
     <title>PeteZah | AI</title>
     <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Updated Font Awesome link -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-      @import url("/storage/fonts/all.min.css");
       *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
       :root{
         --text-color:#ffffff;
         --subheading-color:#b3c0d9;
         --placeholder-color:#a0aecf;
-        --primary-color:#1a2b44; /* Dark blue */
+        --primary-color:#1a2b44;
         --secondary-color:rgba(255, 255, 255, 0.1);
         --secondary-hover-color:rgba(255, 255, 255, 0.2);
         --scrollbar-color:rgba(255, 255, 255, 0.15)
@@ -63,6 +62,7 @@
       .prompt-form :is(#stop-response-btn:hover,#cancel-file-btn){color:#ef5350}
       .copy-button {margin-top: 8px;padding: 6px 12px;background: var(--secondary-color);color: var(--text-color);border: none;border-radius: 8px;cursor: pointer;transition: .1s;font-size: 0.9rem}
       .copy-button:hover {background: var(--secondary-hover-color)}
+      .material-icons {font-size: 24px;} /* Adjust icon size */
       @media (max-width:768px){
         .container{padding:20px 0 100px}
         .app-header :is(.heading,.sub-heading){font-size:2rem;line-height:1.4}
@@ -84,19 +84,19 @@
       <ul class="suggestions">
         <li class="suggestions-item">
           <p class="text">Write me an essay on dogs.</p>
-          <span class="icon"><i class="fas fa-pencil-alt"></i></span>
+          <span class="icon"><i class="material-icons">edit</i></span>
         </li>
         <li class="suggestions-item">
           <p class="text">Suggest a creative project idea.</p>
-          <span class="icon"><i class="fas fa-lightbulb"></i></span>
+          <span class="icon"><i class="material-icons">lightbulb</i></span>
         </li>
         <li class="suggestions-item">
           <p class="text">Help me plan a weekend getaway.</p>
-          <span class="icon"><i class="fas fa-map-signs"></i></span>
+          <span class="icon"><i class="material-icons">map</i></span>
         </li>
         <li class="suggestions-item">
           <p class="text">Write a simple to-do app in Python.</p>
-          <span class="icon"><i class="fas fa-code"></i></span>
+          <span class="icon"><i class="material-icons">code</i></span>
         </li>
       </ul>
       <div class="chats-container"></div>
@@ -119,31 +119,32 @@
                   hidden
                 />
                 <button type="button">
-                  <i class="fas fa-arrow-right"></i>
+                  <i class="material-icons">arrow_forward</i>
                 </button>
                 <button id="cancel-file-btn" type="button">
-                  <i class="fas fa-paperclip"></i>
+                  <i class="material-icons">attach_file</i>
                 </button>
                 <button id="add-file-btn" type="button">
-                  <i class="fas fa-paperclip"></i>
+                  <i class="material-icons">attach_file</i>
                 </button>
               </div>
               <button id="stop-response-btn" type="button">
-                <i class="fas fa-square"></i>
+                <i class="material-icons">stop</i>
               </button>
               <button id="send-prompt-btn">
-                <i class="fas fa-arrow-right"></i>
+                <i class="material-icons">arrow_forward</i>
               </button>
             </div>
           </form>
           <button id="delete-chats-btn">
-            <i class="fas fa-trash"></i>
+            <i class="material-icons">delete</i>
           </button>
         </div>
       </div>
     </div>
     <script>
       const PeteAIKey = "AIzaSyC-t9UqpXINmssoIb8vNiMMU8ZOYss7cKY";
+      // It is illegal to steal this api.  If I catch you stealing it you will face legal repricussions.
     </script>
     <script>
       const container=document.querySelector(".container"),

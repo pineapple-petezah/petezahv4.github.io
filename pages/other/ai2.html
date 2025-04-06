@@ -49,7 +49,11 @@
       .prompt-form #stop-response-btn,.prompt-form .file-upload-wrapper.active #add-file-btn,body.bot-responding .prompt-form .file-upload-wrapper{display:none}
       .prompt-form .file-upload-wrapper #add-file-btn,.prompt-form .file-upload-wrapper.active.file-attached .file-icon,.prompt-form .file-upload-wrapper.active.img-attached img,.prompt-form .file-upload-wrapper.active:hover #cancel-file-btn,body.bot-responding .prompt-form #stop-response-btn{display:block}
       .prompt-form :is(#stop-response-btn:hover,#cancel-file-btn){color:#d62939}
-      .material-icons {font-size: 24px;} /* Adjust icon size */
+      .material-icons {font-size: 24px;}
+      .bot-message .buttons {display: flex; gap: 10px; margin-top: 8px;}
+      .bot-message .buttons button {padding: 6px 12px; background: var(--secondary-color); color: var(--text-color); border: none; border-radius: 8px; cursor: pointer; transition: .1s; font-size: 0.9rem;}
+      .bot-message .buttons button:hover {background: var(--secondary-hover-color);}
+      .code-grid {background: #1e2a3c; padding: 10px; border-radius: 8px; margin-top: 8px; white-space: pre-wrap; font-family: monospace; color: #f8f8f2;}
       @media (max-width:768px){
         .container{padding:20px 0 100px}
         .app-header :is(.heading,.sub-heading){font-size:2rem;line-height:1.4}
@@ -70,19 +74,19 @@
     <div class="container">
       <ul class="suggestions">
         <li class="suggestions-item">
-          <p class="text">Write me an essay on dogs.</p>
+          <p class="text">Compose an article about canines.</p>
           <span class="icon"><i class="material-icons">edit</i></span>
         </li>
         <li class="suggestions-item">
-          <p class="text">Suggest a creative project idea.</p>
+          <p class="text">Propose an innovative craft concept.</p>
           <span class="icon"><i class="material-icons">lightbulb</i></span>
         </li>
         <li class="suggestions-item">
-          <p class="text">Help me plan a weekend getaway.</p>
+          <p class="text">Assist with organizing a short trip.</p>
           <span class="icon"><i class="material-icons">map</i></span>
         </li>
         <li class="suggestions-item">
-          <p class="text">Write a simple to-do app in Python.</p>
+          <p class="text">Create a basic task manager in Python.</p>
           <span class="icon"><i class="material-icons">code</i></span>
         </li>
       </ul>
@@ -130,7 +134,7 @@
       </div>
     </div>
     <script>
-      const PeteAIKey = "AIzaSyC-t9UqpXINmssoIb8vNiMMU8ZOYss7cKY";
+      const PeteAIKey = "AIzaSyC-t9UqpXINmssoIb8vNiMMU8ZOYss7cKY"; // Replace with your valid API key
       const container = document.querySelector(".container"),
             chatsContainer = document.querySelector(".chats-container"),
             promptForm = document.querySelector(".prompt-form"),
@@ -150,42 +154,105 @@
 
       const scrollToBottom = () => container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
 
-      const typingEffect = (e, t, a) => {
-        t.textContent = "";
-        const s = e.split(" ");
-        let o = 0;
+      const typingEffect = (text, element, messageElement) => {
+        element.textContent = "";
+        const parts = text.split(" ");
+        let i = 0;
         typingInterval = setInterval(() => {
-          if (o < s.length) {
-            t.textContent += (o === 0 ? "" : " ") + s[o++];
+          if (i < parts.length) {
+            element.textContent += (i === 0 ? "" : " ") + parts[i++];
             scrollToBottom();
           } else {
             clearInterval(typingInterval);
-            a.classList.remove("loading");
+            messageElement.classList.remove("loading");
             document.body.classList.remove("bot-responding");
+            addButtons(messageElement, text);
           }
         }, 20);
       };
 
-      const generateResponse = async e => {
-        const t = e.querySelector(".message-text");
+      const formatResponse = (text) => {
+        const codeBlockRegex = /```([\s\S]*?)```/g;
+        let html = '';
+        let lastIndex = 0;
+        let match;
+
+        while ((match = codeBlockRegex.exec(text)) !== null) {
+          // Add text before the code block
+          if (match.index > lastIndex) {
+            html += `<p class="message-text">${text.slice(lastIndex, match.index).trim()}</p>`;
+          }
+          // Add the code block
+          html += `<pre class="code-grid">${match[1].trim()}</pre>`;
+          lastIndex = codeBlockRegex.lastIndex;
+        }
+
+        // Add remaining text after the last code block
+        if (lastIndex < text.length) {
+          html += `<p class="message-text">${text.slice(lastIndex).trim()}</p>`;
+        }
+
+        // If no code blocks, just return the text as a paragraph
+        if (!html) {
+          html = `<p class="message-text">${text}</p>`;
+        }
+
+        return html;
+      };
+
+      const addButtons = (messageElement, text) => {
+        const buttonsDiv = document.createElement("div");
+        buttonsDiv.className = "buttons";
+
+        const copyBtn = document.createElement("button");
+        copyBtn.textContent = "Copy";
+        copyBtn.onclick = () => {
+          navigator.clipboard.writeText(text).then(() => {
+            copyBtn.textContent = "Copied!";
+            setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+          });
+        };
+
+        const redoBtn = document.createElement("button");
+        redoBtn.textContent = "Redo";
+        redoBtn.onclick = () => {
+          const lastUserMessage = chatHistory[chatHistory.length - 2]?.parts[0].text;
+          if (lastUserMessage) {
+            userData.message = lastUserMessage;
+            document.body.classList.add("bot-responding");
+            const newBotMessage = createMessageElement('<p class="message-text">...</p>', "bot-message", "loading");
+            chatsContainer.appendChild(newBotMessage);
+            scrollToBottom();
+            generateResponse(newBotMessage);
+          }
+        };
+
+        buttonsDiv.appendChild(copyBtn);
+        buttonsDiv.appendChild(redoBtn);
+        messageElement.appendChild(buttonsDiv);
+      };
+
+      const generateResponse = async (messageElement) => {
+        const textElement = messageElement.querySelector(".message-text");
         controller = new AbortController;
         chatHistory.push({ role: "user", parts: [{ text: userData.message }, ...userData.file.data ? [{ inline_data: (({ fileName: e, isImage: t, ...a }) => a)(userData.file) }] : []] });
         try {
-          const a = await fetch(API_URL, {
+          const response = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ contents: chatHistory }),
             signal: controller.signal
           });
-          if (!a.ok) throw new Error((await a.json()).error.message);
-          const s = await a.json();
-          const o = s.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
-          typingEffect(o, t, e);
-          chatHistory.push({ role: "model", parts: [{ text: o }] });
-        } catch (a) {
-          t.textContent = "AbortError" === a.name ? "Response generation stopped." : a.message;
-          t.style.color = "#d62939";
-          e.classList.remove("loading");
+          if (!response.ok) throw new Error((await response.json()).error.message);
+          const data = await response.json();
+          const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+          messageElement.innerHTML = formatResponse(responseText);
+          typingEffect(responseText, messageElement.querySelector(".message-text") || messageElement, messageElement);
+          chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+        } catch (error) {
+          textElement.textContent = error.name === "AbortError" ? "Response generation stopped." : error.message;
+          textElement.style.color = "#d62939";
+          messageElement.classList.remove("loading");
           document.body.classList.remove("bot-responding");
           scrollToBottom();
         } finally {
@@ -193,41 +260,41 @@
         }
       };
 
-      const handleFormSubmit = e => {
+      const handleFormSubmit = (e) => {
         e.preventDefault();
-        const t = promptInput.value.trim();
-        if (!t || document.body.classList.contains("bot-responding")) return;
-        userData.message = t;
+        const prompt = promptInput.value.trim();
+        if (!prompt || document.body.classList.contains("bot-responding")) return;
+        userData.message = prompt;
         promptInput.value = "";
         document.body.classList.add("chats-active", "bot-responding");
         fileUploadWrapper.classList.remove("file-attached", "img-attached", "active");
-        const a = `
+        const userContent = `
           <p class="message-text">${userData.message}</p>
           ${userData.file.data ? userData.file.isImage ? `<img src="data:${userData.file.mime_type};base64,${userData.file.data}" class="img-attachment" />` : `<p class="file-attachment"><span class="material-symbols-rounded">description</span>${userData.file.fileName}</p>` : ""}
         `;
-        const s = createMessageElement(a, "user-message");
-        chatsContainer.appendChild(s);
+        const userMessage = createMessageElement(userContent, "user-message");
+        chatsContainer.appendChild(userMessage);
         scrollToBottom();
         setTimeout(() => {
-          const e = createMessageElement('<p class="message-text">...</p>', "bot-message", "loading");
-          chatsContainer.appendChild(e);
+          const botMessage = createMessageElement('<p class="message-text">...</p>', "bot-message", "loading");
+          chatsContainer.appendChild(botMessage);
           scrollToBottom();
-          generateResponse(e);
+          generateResponse(botMessage);
         }, 600);
       };
 
       fileInput.addEventListener("change", () => {
-        const e = fileInput.files[0];
-        if (!e) return;
-        const t = e.type.startsWith("image/");
-        const a = new FileReader();
-        a.readAsDataURL(e);
-        a.onload = a => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        const isImage = file.type.startsWith("image/");
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
           fileInput.value = "";
-          const s = a.target.result.split(",")[1];
-          fileUploadWrapper.querySelector(".file-preview").src = a.target.result;
-          fileUploadWrapper.classList.add("active", t ? "img-attached" : "file-attached");
-          userData.file = { fileName: e.name, data: s, mime_type: e.type, isImage: t };
+          const data = e.target.result.split(",")[1];
+          fileUploadWrapper.querySelector(".file-preview").src = e.target.result;
+          fileUploadWrapper.classList.add("active", isImage ? "img-attached" : "file-attached");
+          userData.file = { fileName: file.name, data: data, mime_type: file.type, isImage: isImage };
         };
       });
 
@@ -240,7 +307,8 @@
         controller?.abort();
         userData.file = {};
         clearInterval(typingInterval);
-        chatsContainer.querySelector(".bot-message.loading")?.classList.remove("loading");
+        const loadingMessage = chatsContainer.querySelector(".bot-message.loading");
+        if (loadingMessage) loadingMessage.classList.remove("loading");
         document.body.classList.remove("bot-responding");
       });
 
@@ -250,17 +318,17 @@
         document.body.classList.remove("chats-active", "bot-responding");
       });
 
-      document.querySelectorAll(".suggestions-item").forEach(e => {
-        e.addEventListener("click", () => {
-          promptInput.value = e.querySelector(".text").textContent;
+      document.querySelectorAll(".suggestions-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          promptInput.value = item.querySelector(".text").textContent;
           promptForm.dispatchEvent(new Event("submit"));
         });
       });
 
-      document.addEventListener("click", ({ target: e }) => {
-        const t = document.querySelector(".prompt-wrapper");
-        const a = e.classList.contains("prompt-input") || t.classList.contains("hide-controls") && ("add-file-btn" === e.id || "stop-response-btn" === e.id);
-        t.classList.toggle("hide-controls", a);
+      document.addEventListener("click", ({ target }) => {
+        const wrapper = document.querySelector(".prompt-wrapper");
+        const shouldHide = target.classList.contains("prompt-input") || wrapper.classList.contains("hide-controls") && (target.id === "add-file-btn" || target.id === "stop-response-btn");
+        wrapper.classList.toggle("hide-controls", shouldHide);
       });
 
       promptForm.addEventListener("submit", handleFormSubmit);

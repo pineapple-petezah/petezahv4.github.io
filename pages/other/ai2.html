@@ -38,7 +38,7 @@
       .chats-container .message.loading .avatar{animation:3s linear infinite rotate}
       @keyframes rotate{100%{transform:rotate(360deg)}}
       .chats-container .message .message-content{flex:1}
-      .chats-container .message .message-text{padding:3px 16px;word-wrap:break-word;white-space:pre-line}
+      .chats-container .message .message-text{padding:3px 16px;word-wrap:break-word;white-space:pre-wrap}
       .chats-container .bot-message{margin:9px auto}
       .chats-container .user-message{flex-direction:column;align-items:flex-end}
       .chats-container .user-message .message-text{padding:12px 16px;max-width:75%;background:var(--secondary-color);border-radius:10px}
@@ -152,7 +152,7 @@
             promptForm = document.querySelector(".prompt-form"),
             promptInput = promptForm.querySelector(".prompt-input"),
             fileInput = promptForm.querySelector("#file-input"),
-            fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper"),
+            fileUploadWrapper = document.querySelector(".file-upload-wrapper"),
             API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${PeteAIKey}`;
       let controller, typingInterval;
       const chatHistory = [], userData = { message: "", file: {} };
@@ -168,11 +168,10 @@
 
       const typingEffect = (text, element, callback) => {
         element.textContent = "";
-        const parts = text.split(" ");
         let i = 0;
         typingInterval = setInterval(() => {
-          if (i < parts.length) {
-            element.textContent += (i === 0 ? "" : " ") + parts[i++];
+          if (i < text.length) {
+            element.textContent += text[i++];
             scrollToBottom();
           } else {
             clearInterval(typingInterval);

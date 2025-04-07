@@ -315,18 +315,34 @@
         }
 
         .info-box {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #1e1e2d;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-            z-index: 999;
-            font-size: 12px;
-            width: 100px;
-        }
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #1e1e2d;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    z-index: 999;
+    font-size: 12px;
+    width: 120px; /* Increased width to accommodate both battery and FPS */
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+#battery-display {
+    display: flex;
+    align-items: center;
+}
+
+#fps {
+    font-size: 12px;
+}
 
         .info-box p {
             margin: 4px 0;
@@ -549,10 +565,10 @@
                 </span>
                 <span id="battery-percentage">Loading...</span>
             </span>
+            <span id="fps">FPS: Calculating...</span>
         </div>
         <div class="info-row">
-            <span id="time-display">Loading...</span><br>
-            <span id="fps">FPS: Calculating...</span>
+            <span id="time-display">Loading...</span>
         </div>
         <a href="https://discord.gg/arcgZTV9zX" target="_blank" class="discord-btn-two">Join Discord</a>
     </div>

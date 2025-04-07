@@ -229,6 +229,23 @@
         box-shadow: 0 5px 12px rgba(255, 255, 255, 0.4);
     }
 
+    .large-image-container {
+        position: absolute;
+        top: 50%; /* Adjusted to center vertically */
+        right: 200px;
+        transform: translateY(-50%);
+        text-align: center;
+        z-index: 5;
+        padding: 20px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        animation: slideInFromRight 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+        opacity: 0;
+        cursor: pointer;
+    }
+
     .large-image-container:hover {
         transform: translateY(-50%) scale(1.05);
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
@@ -325,7 +342,7 @@
         box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
         z-index: 999;
         font-size: 12px;
-        width: 120px; /* Adjusted width for battery and FPS */
+        width: 120px;
     }
 
     .info-row {
@@ -370,7 +387,7 @@
     }
 
     .battery-icon {
-        font-size: 16px; /* Adjust size as needed */
+        font-size: 16px;
     }
 
     .battery-low {
@@ -414,28 +431,6 @@
             transform: translateX(0);
             opacity: 1;
         }
-    }
-
-    .large-image-container {
-.ConcurrentModificationException        position: absolute;
-        top: 33%;
-        right: 200px;
-        transform: translateY(-50%);
-        text-align: center;
-        z-index: 5;
-        padding: 20px;
-        border-radius: 12px;
-        background: rgba(0, 0, 0, 0.5);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-        animation: slideInFromRight 0.8s ease-out forwards;
-        animation-delay: 0.4s;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .large-image-container:hover {
-        transform: translateY(-50%) scale(1.05);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
     }
 
     .welcome-section {

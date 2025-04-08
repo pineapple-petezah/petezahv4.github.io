@@ -3,13 +3,13 @@ function KeyboardInputManager() {
 
 	if (window.navigator.msPointerEnabled) {
 		//Internet Explorer 10 style
-		this.eventTouchstart = 'MSPointerDown';
-		this.eventTouchmove = 'MSPointerMove';
-		this.eventTouchend = 'MSPointerUp';
+		this.eventTouchstart = "MSPointerDown";
+		this.eventTouchmove = "MSPointerMove";
+		this.eventTouchend = "MSPointerUp";
 	} else {
-		this.eventTouchstart = 'touchstart';
-		this.eventTouchmove = 'touchmove';
-		this.eventTouchend = 'touchend';
+		this.eventTouchstart = "touchstart";
+		this.eventTouchmove = "touchmove";
+		this.eventTouchend = "touchend";
 	}
 
 	this.listen();
@@ -25,15 +25,13 @@ KeyboardInputManager.prototype.on = function (event, callback) {
 KeyboardInputManager.prototype.emit = function (event, data) {
 	var callbacks = this.events[event];
 	if (callbacks) {
-		callbacks.forEach(function (callback) {
+		callbacks.forEach((callback) => {
 			callback(data);
 		});
 	}
 };
 
 KeyboardInputManager.prototype.listen = function () {
-	var self = this;
-
 	var map = {
 		38: 0, // Up
 		39: 1, // Right
@@ -46,37 +44,38 @@ KeyboardInputManager.prototype.listen = function () {
 		87: 0, // W
 		68: 1, // D
 		83: 2, // S
-		65: 3 // A
+		65: 3, // A
 	};
 
 	// Respond to direction keys
-	document.addEventListener('keydown', function (event) {
-		var modifiers = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+	document.addEventListener("keydown", (event) => {
+		var modifiers =
+			event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
 		var mapped = map[event.which];
 
 		if (!modifiers) {
 			if (mapped !== undefined) {
 				event.preventDefault();
-				self.emit('move', mapped);
+				this.emit("move", mapped);
 			}
 		}
 
 		// R key restarts the game
 		if (!modifiers && event.which === 82) {
-			self.restart.call(self, event);
+			this.restart.call(this, event);
 		}
 	});
 
 	// Respond to button presses
-	this.bindButtonPress('.retry-button', this.restart);
-	this.bindButtonPress('.restart-button', this.restart);
-	this.bindButtonPress('.keep-playing-button', this.keepPlaying);
+	this.bindButtonPress(".retry-button", this.restart);
+	this.bindButtonPress(".restart-button", this.restart);
+	this.bindButtonPress(".keep-playing-button", this.keepPlaying);
 
 	// Respond to swipe events
 	var touchStartClientX, touchStartClientY;
-	var gameContainer = document.getElementsByClassName('game-container')[0];
+	var gameContainer = document.getElementsByClassName("game-container")[0];
 
-	gameContainer.addEventListener(this.eventTouchstart, function (event) {
+	gameContainer.addEventListener(this.eventTouchstart, (event) => {
 		if (
 			(!window.navigator.msPointerEnabled && event.touches.length > 1) ||
 			event.targetTouches.length > 1
@@ -95,11 +94,11 @@ KeyboardInputManager.prototype.listen = function () {
 		event.preventDefault();
 	});
 
-	gameContainer.addEventListener(this.eventTouchmove, function (event) {
+	gameContainer.addEventListener(this.eventTouchmove, (event) => {
 		event.preventDefault();
 	});
 
-	gameContainer.addEventListener(this.eventTouchend, function (event) {
+	gameContainer.addEventListener(this.eventTouchend, (event) => {
 		if (
 			(!window.navigator.msPointerEnabled && event.touches.length > 0) ||
 			event.targetTouches.length > 0
@@ -125,23 +124,23 @@ KeyboardInputManager.prototype.listen = function () {
 
 		if (Math.max(absDx, absDy) > 10) {
 			// (right : left) : (down : up)
-			self.emit('move', absDx > absDy ? (dx > 0 ? 1 : 3) : dy > 0 ? 2 : 0);
+			this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : dy > 0 ? 2 : 0);
 		}
 	});
 };
 
 KeyboardInputManager.prototype.restart = function (event) {
 	event.preventDefault();
-	this.emit('restart');
+	this.emit("restart");
 };
 
 KeyboardInputManager.prototype.keepPlaying = function (event) {
 	event.preventDefault();
-	this.emit('keepPlaying');
+	this.emit("keepPlaying");
 };
 
 KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
 	var button = document.querySelector(selector);
-	button.addEventListener('click', fn.bind(this));
+	button.addEventListener("click", fn.bind(this));
 	button.addEventListener(this.eventTouchend, fn.bind(this));
 };

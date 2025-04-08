@@ -16,7 +16,9 @@ const scramjet = new ScramjetController({
 scramjet.init();
 navigator.serviceWorker.register("./static/scramjet/sw.js");
 
-const connection = new BareMux.BareMuxConnection("/static/scramjet/baremux/worker.js");
+const connection = new BareMux.BareMuxConnection(
+	"/static/scramjet/baremux/worker.js",
+);
 const flex = css`
 	display: flex;
 `;
@@ -41,9 +43,11 @@ const store = $store(
 				"/bare/",
 		proxy: "",
 	},
-	{ ident: "settings", backing: "localstorage", autosave: "auto" }
+	{ ident: "settings", backing: "localstorage", autosave: "auto" },
 );
-connection.setTransport("/static/scramjet/epoxy/index.mjs", [{ wisp: store.wispurl }]);
+connection.setTransport("/static/scramjet/epoxy/index.mjs", [
+	{ wisp: store.wispurl },
+]);
 
 function Config() {
 	this.css = `
@@ -208,12 +212,12 @@ function BrowserApp() {
 		this.url = e.url;
 	});
 	frame.frame.addEventListener("load", () => {
-		let url = frame.frame.contentWindow.location.href;
+		const url = frame.frame.contentWindow.location.href;
 		if (!url) return;
 		if (url === "about:blank") return;
 
 		this.url = $scramjet.codec.decode(
-			url.substring((location.href + "/scramjet").length)
+			url.substring((location.href + "/scramjet").length),
 		);
 	});
 
@@ -277,6 +281,6 @@ window.addEventListener("load", async () => {
       background-size: contain;
       background-position: center center;
       background-repeat: no-repeat;
-  `
+  `,
 	);
 });

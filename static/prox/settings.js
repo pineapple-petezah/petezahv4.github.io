@@ -1,7 +1,7 @@
 
 const beforeUnloadEnabled = localStorage.getItem('beforeUnloadEnabled') === 'true';
 if (beforeUnloadEnabled) {
-    window.addEventListener('beforeunload', function (e) {
+    window.addEventListener('beforeunload', (e) => {
         e.preventDefault();
         e.returnValue = '';
     });
@@ -23,7 +23,7 @@ if (savedLogo) {
 const panicKey = localStorage.getItem('panicKey');
 const panicUrl = localStorage.getItem('panicUrl');
 if (panicKey && panicUrl) {
-    window.addEventListener('keydown', function (event) {
+    window.addEventListener('keydown', (event) => {
         if (event.key === panicKey) {
             window.location.href = panicUrl;
         }
@@ -32,7 +32,7 @@ if (panicKey && panicUrl) {
 
 const autocloak = localStorage.getItem('autocloakEnabled') === 'true';
 if (autocloak) {
-        window.onload = function() {
+        window.onload = () => {
             const newTab = window.open('about:blank', '_blank');
             if (!newTab) {
                 alert("Please enable popups to proceed.");

@@ -93,43 +93,41 @@
         /* Fixed Search Bar */
         .search-container {
             position: fixed;
-            /* Keeps the search bar fixed at the top */
             top: 0;
             left: 0;
             width: 100%;
             background-color: #0A1D37;
-            /* Dark blue background */
             padding: 15px 0;
             text-align: center;
             z-index: 1000;
-            /* Ensure it's always on top */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            /* Shadow effect on the search bar */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+            border-bottom: 2px solid #0066cc; /* Added bottom border */
+            transition: background-color 0.3s; /* Smooth background transition */
+        }
+
+        .search-container:hover {
+            background-color: #1a2a4d; /* Darker background on hover */
         }
 
         /* Search Bar Input */
         .search-container input {
-            font-family: "Nunito", serif;
-            width: 40vw;
+            font-family: "Poppins", sans-serif;
+            width: 50vw; /* Increased width for better usability */
             padding: 12px 20px;
             font-size: 18px;
             border: 2px solid #fff;
-            /* Skinny white border */
             color: #fff;
             background: #141414;
             border-radius: 50px;
             transition: 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            /* Shadow on the input field */
         }
 
         .search-container input:focus {
             background: #333;
             outline: none;
-            box-shadow: 0 0 15px rgba(255, 255/pubsli255, 0.4);
-            /* Focused shadow */
-            border-color: #0066cc;
-            /* Light blue focus border */
+            box-shadow: 0 0 15px rgba(0, 102, 204, 0.4); /* Updated focus shadow */
+            border-color: #0066cc; /* Light blue focus border */
         }
 
         /* Game Container */
@@ -137,35 +135,27 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            padding-top: 120px;
-            /* Added more padding to give space for the fixed search bar */
-            padding-bottom: 30px;
-            /* Added bottom padding for smoother look */
+            gap: 30px; /* Increased gap for better spacing */
+            padding-top: 120px; /* Space for fixed search bar */
+            padding-bottom: 30px; /* Bottom padding for smoother look */
         }
 
         /* Image Item Styles */
         .image-item {
             position: relative;
-            width: 250px;
-            /* Slightly larger image items */
+            width: 250px; /* Consistent width */
             height: 220px;
             overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
             border-radius: 10px;
-            /* Slightly less rounded corners */
             background-color: #222;
             border: 2px solid #fff;
-            /* Skinny white border */
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-            /* Deeper shadow for a more modern look */
         }
 
         .image-item:hover {
-            transform: scale(1.05);
-            /* Slight zoom effect on hover */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-            /* Bigger shadow on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow on hover */
         }
 
         .image-item a {
@@ -196,8 +186,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            /* Dark overlay for label */
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better contrast */
             color: white;
             text-align: center;
             padding: 10px;
@@ -205,11 +194,11 @@
             border-bottom-right-radius: 10px;
             font-weight: bold;
             font-size: 16px;
+            transition: background-color 0.3s; /* Smooth transition for label */
         }
 
         .image-item:hover .label {
-            background-color: rgba(0, 0, 0, 0.8);
-            /* Darker on hover */
+            background-color: rgba(0, 0, 0, 0.9); /* Darker on hover */
         }
 
         /* General Layout & Spacing */

@@ -10,13 +10,13 @@ html {
 
 body {
 	margin: 0;
-	background: #000!important;
+	background: #000 !important;
 }
 
 #gameContainer {
 	width: 100vw;
 	height: 100vh;
-	background: #000!important;
+	background: #000 !important;
 }
 
 canvas {
@@ -97,47 +97,47 @@ canvas + * {
 	display: none;
 }
 
-.modal{
-	background:rgba(0,0,0,.4);
-	display:none;
-	height:100%;
+.modal {
+	background: rgba(0, 0, 0, 0.4);
+	display: none;
+	height: 100%;
 	width: 100%;
-	position:fixed;
-	z-index:10000;
+	position: fixed;
+	z-index: 10000;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 }
 
-.modalContent{
+.modalContent {
 	margin: auto;
 	width: 100%;
 }
 
 .centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
-#continueWindow{
+#continueWindow {
 	background-color: #fefefe;
 	margin: 15% auto;
 	padding: 20px;
@@ -145,7 +145,7 @@ canvas + * {
 	width: 30%;
 }
 
-#adWindow{
+#adWindow {
 	background: #4382f5;
 	border: 10px solid #4382f5;
 	width: 660px;
@@ -153,13 +153,13 @@ canvas + * {
 	height: 540px;
 }
 
-.ads{
-	height:100%;
+.ads {
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	position: absolute;
-	z-index:40;
+	z-index: 40;
 }
 
 .ad-rectangle-bottom {
@@ -186,13 +186,13 @@ canvas + * {
 }
 
 @media (min-height: 900px) {
-	.ad-smallscreen{
+	.ad-smallscreen {
 		display: none;
 	}
 }
 
 @media (max-height: 900px) {
-	.ad-largescreen{
+	.ad-largescreen {
 		display: none;
 	}
 }

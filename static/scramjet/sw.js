@@ -9,7 +9,7 @@ if (navigator.userAgent.includes("Firefox")) {
 importScripts(
 	"/static/scramjet/scram/scramjet.wasm.js",
 	"/static/scramjet/scram/scramjet.shared.js",
-	"/static/scramjet/scram/scramjet.worker.js"
+	"/static/scramjet/scram/scramjet.worker.js",
 );
 
 const scramjet = new ScramjetServiceWorker();

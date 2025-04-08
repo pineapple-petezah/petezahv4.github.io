@@ -1,5 +1,8 @@
-(function () {
-	if (typeof window.Element === 'undefined' || 'classList' in document.documentElement) {
+(() => {
+	if (
+		typeof window.Element === "undefined" ||
+		"classList" in document.documentElement
+	) {
 		return;
 	}
 
@@ -12,7 +15,7 @@
 		this.el = el;
 		// The className needs to be trimmed and split on whitespace
 		// to retrieve a list of classes.
-		var classes = el.className.replace(/^\s+|\s+$/g, '').split(/\s+/);
+		var classes = el.className.replace(/^\s+|\s+$/g, "").split(/\s+/);
 		for (var i = 0; i < classes.length; i++) {
 			push.call(this, classes[i]);
 		}
@@ -39,7 +42,7 @@
 			this.el.className = this.toString();
 		},
 		toString: function () {
-			return join.call(this, ' ');
+			return join.call(this, " ");
 		},
 		toggle: function (token) {
 			if (!this.contains(token)) {
@@ -49,7 +52,7 @@
 			}
 
 			return this.contains(token);
-		}
+		},
 	};
 
 	window.DOMTokenList = DOMTokenList;
@@ -57,14 +60,14 @@
 	function defineElementGetter(obj, prop, getter) {
 		if (Object.defineProperty) {
 			Object.defineProperty(obj, prop, {
-				get: getter
+				get: getter,
 			});
 		} else {
 			obj.__defineGetter__(prop, getter);
 		}
 	}
 
-	defineElementGetter(HTMLElement.prototype, 'classList', function () {
+	defineElementGetter(HTMLElement.prototype, "classList", function () {
 		return new DOMTokenList(this);
 	});
 })();

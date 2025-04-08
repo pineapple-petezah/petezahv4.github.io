@@ -45,7 +45,7 @@ Grid.prototype.randomAvailableCell = function () {
 Grid.prototype.availableCells = function () {
 	var cells = [];
 
-	this.eachCell(function (x, y, tile) {
+	this.eachCell((x, y, tile) => {
 		if (!tile) {
 			cells.push({ x: x, y: y });
 		}
@@ -95,7 +95,12 @@ Grid.prototype.removeTile = function (tile) {
 };
 
 Grid.prototype.withinBounds = function (position) {
-	return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
+	return (
+		position.x >= 0 &&
+		position.x < this.size &&
+		position.y >= 0 &&
+		position.y < this.size
+	);
 };
 
 Grid.prototype.serialize = function () {
@@ -111,6 +116,6 @@ Grid.prototype.serialize = function () {
 
 	return {
 		size: this.size,
-		cells: cellState
+		cells: cellState,
 	};
 };

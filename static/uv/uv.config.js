@@ -1,6 +1,6 @@
 self.__uv$config = {
 	prefix: "/static/petezah/",
-	bare: "https://science.petezahgames.com/",
+	bare: "https://petezahserver.guillaumevanstrydonck.be/bare/",
 	encodeUrl: Ultraviolet.codec.xor.encode,
 	decodeUrl: Ultraviolet.codec.xor.decode,
 	handler: "/static/uv/uv.handler.js",
